@@ -3,4 +3,4 @@
 body { padding-top: 55px;}
 
 /* darle el tamaño de el sidebar SOLO FUNCIONA SI SE PONE ACA!*/
-.ng-sidebar{width: 100% !important;}
+.ng-sidebar{width: 280px !important;}

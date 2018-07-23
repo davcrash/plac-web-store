@@ -14,27 +14,29 @@
 
 <div class="container-fluid">
     <div class="row">
-        <ng-sidebar-container class="col-md-3 d-none d-md-block no-padding wrap">
-            <ng-sidebar [(opened)]="_opened">
 
-                <div class="wrap" style="background-color: black; color: white">
-                    SideBarMenu
+        <ng-sidebar-container class="col-md-12 no-padding wrap">
+
+            <ng-sidebar [(opened)]="_opened" [mode]="'push'" [autoCollapseWidth]="600">
+                <div class="wrap bg-secondary">
+               
                 </div>
             </ng-sidebar>
 
+
+            <div ng-sidebar-content>
+                <div class="container-fluid">
+                    Aqui va el contenido
+                </div>
+                
+            </div>
+
         </ng-sidebar-container>
 
-        <div class="col-md-9 wrap" style=" overflow-y: scroll;">
-            <div class="col-md-12" style="background-color: #dddd; height: 100vh;">
-                contenido
-                <router-outlet></router-outlet>
-            </div>
-            <div class="col-md-12" style="background-color: gray; height: 30vh;">
-                footer
-            </div>
 
 
-        </div>
+
+
 
     </div>
 </div>
