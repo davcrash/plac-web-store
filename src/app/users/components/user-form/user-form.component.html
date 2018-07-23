@@ -1,0 +1,29 @@
+<!--Inicio: formulario de registro-->
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <!--Campo: Nombre = user_name -->
+  <div class="form-group">
+    <label class="center-block">Nombre:</label>
+    <input class="form-control" formControlName="user_name" [ngClass]="{ 'is-invalid': !userForm.get('user_name').pristine && userForm.get('user_name').errors}">
+    <!--Mensaje de validacion-->
+    <div *ngIf="userForm.get('user_name').errors" class="invalid-feedback">
+      <div *ngIf="userForm.get('user_name').errors['required']">Este campo es obligatorio</div>
+    </div>
+  </div>
+
+  <!--Campo: Telefono = user_phone -->
+  <div class="form-group">
+    <label class="center-block">Telefono:</label>
+    <input class="form-control" formControlName="user_phone" [ngClass]="{ 'is-invalid': !userForm.get('user_phone').pristine && userForm.get('user_phone').errors}">
+    <!--Mensaje de validacion-->
+    <div *ngIf="userForm.get('user_phone').errors" class="invalid-feedback">
+      <div *ngIf="userForm.get('user_phone').errors['required']">Este campo es obligatorio</div>
+    </div>
+  </div>
+
+  
+  <button type="submit" *ngIf="!userForm.pristine &&  userForm.status == 'VALID'" class="btn btn-success">Save</button> &nbsp;
+  <button type="button" class="btn btn-danger" routerLink="/users">Cancelar</button>
+
+</form>
+<!--Fin: formulario de registro-->

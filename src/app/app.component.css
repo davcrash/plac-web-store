@@ -1,0 +1,7 @@
+.wrap {
+    height: calc(100vh - 55px);
+}
+.no-padding {
+    padding-right: 0;
+    padding-left: 0;
+  }

@@ -1,0 +1,29 @@
+<button type="button" class="btn btn-success"  routerLink="/users/create">Nuevo usuario</button>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">user_id</th>
+        <th scope="col">user_name</th>
+        <th scope="col">user_phone</th>
+        <th scope="col">create_at</th>
+        <th scope="col">update_at</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        
+      <tr *ngFor="let user of users">
+        <td>{{user.user_id}}</td>
+        <td>{{user.user_name}}</td>
+        <td>{{user.user_phone}}</td>
+        <td>{{user.create_at}}</td>
+        <td>{{user.update_at}}</td>
+        <td>
+            <button type="button" class="btn btn-primary"  routerLink="/users/{{user.user_id}}">Editar</button>
+            <button type="button" class="btn btn-secondary" (click)="deleteUser(user)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <loader *ngIf="loader"></loader>    
