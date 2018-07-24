@@ -1,42 +1,43 @@
-<!-- Container for sidebar(s) + page content -->
-<nav class="navbar navbar-light bg-light fixed-top">
+<!-- nav -->
+<nav class="navbar navbar-light bg-light fixed-top border-bottom" >
 
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed btn" (click)="_toggleSidebar()">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
 
-    <div>
-        <input class="form-control mr-sm-2" type="search" placeholder="Search">
-    </div>
+    <a class="navbar-brand navbar-header">
+        <button (click)="_opened=!_opened" class="btn btn-light align-top" style="padding-top: 1px; padding-right:6px; padding-left: 6px; padding-bottom: 2px;"><i class="fas fa-bars d-inline-block align-center"></i></button>
+        &nbsp;
+        <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt=""> Bootstrap
+    </a>
+   
 </nav>
 
 <div class="container-fluid">
     <div class="row">
 
+        <!--Inicio: Contenedor del menu desplegable-->
         <ng-sidebar-container class="col-md-12 no-padding wrap">
 
+            <!--Menu desplegable-->
             <ng-sidebar [(opened)]="_opened" [mode]="'push'" [autoCollapseWidth]="600">
-                <div class="wrap bg-secondary">
-               
+                <div class="wrap border-right">
+                    Aqui van las opciones
                 </div>
             </ng-sidebar>
 
-
+            <!--contenido pagina-->
             <div ng-sidebar-content>
-                <div class="container-fluid">
-                    Aqui va el contenido
+                <div class="wrap scroll">
+                    <div class="col-md-12" style="height: 100vh;">
+                        contenido
+                        <router-outlet></router-outlet>
+                    </div>
+                    <div class="col-md-12" style="height: 30vh;">
+                        footer
+                    </div>
                 </div>
-                
             </div>
 
         </ng-sidebar-container>
-
-
-
-
-
+        <!--fin: Contenedor del menu desplegable-->
 
     </div>
 </div>

@@ -6,10 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-   _opened: boolean = true;
+   _opened: boolean = true;//Variable que define si el menu desplegable esta abierto o no
 
-   _toggleSidebar() {
-    this._opened = !this._opened;
-  }
 
 }

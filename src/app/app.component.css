@@ -1,7 +1,11 @@
 .wrap {
-    height: calc(100vh - 55px);
+    height: calc(100vh - 57px);
 }
 .no-padding {
     padding-right: 0;
     padding-left: 0;
+  }
+
+  .wrap.scroll{
+    overflow-y: scroll;
   }
