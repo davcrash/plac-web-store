@@ -5,10 +5,19 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//Environment
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+//Firebase
+import { AngularFireModule } from 'angularfire2';
+
 //Estilos
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 //SideMenu
 import { SidebarModule } from 'ng-sidebar';
+
 //Componentes
 import { AppComponent } from './app.component';
 import { UserListComponent } from './users/components/user-list/user-list.component';
@@ -31,7 +40,9 @@ import { LoaderComponent } from './loader/loader.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     
   ],
   providers: [],

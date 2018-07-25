@@ -5,6 +5,14 @@
 export const environment = {
   production: false,
   rootApiUrl: "http://apiswapp",
+  firebase: {
+    apiKey: "AIzaSyChbdpaza09f_Y5aaVxkMjfm1Hvn0aCRxY",
+    authDomain: "fir-plac-debug.firebaseapp.com",
+    databaseURL: "https://fir-plac-debug.firebaseio.com",
+    projectId: "firebase-plac-debug",
+    storageBucket: "firebase-plac-debug.appspot.com",
+    messagingSenderId: "705857991353"
+  }
 };
 
 /*
