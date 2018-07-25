@@ -3,7 +3,7 @@
 
 
     <a class="navbar-brand navbar-header">
-        <button (click)="_opened=!_opened" class="btn btn-light align-top" style="padding-top: 1px; padding-right:6px; padding-left: 6px; padding-bottom: 2px;"><i class="fas fa-bars d-inline-block align-center"></i></button>
+        <button (click)="_opened=!_opened" class="btn btn-light align-top btnSideMenu"><i class="fas fa-bars d-inline-block align-center"></i></button>
         &nbsp;
         <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt=""> Bootstrap
     </a>
@@ -26,11 +26,12 @@
             <!--contenido pagina-->
             <div ng-sidebar-content>
                 <div class="wrap scroll">
-                    <div class="col-md-12" style="height: 100vh;">
+                    <div class="col-md-12">
                         contenido
                         <router-outlet></router-outlet>
                     </div>
-                    <div class="col-md-12" style="height: 30vh;">
+
+                    <div class="col-md-12 border-top">
                         footer
                     </div>
                 </div>
