@@ -1,0 +1,31 @@
+<div class="container-top">
+
+  <!--Item normal-->
+  <div class="contenedorItem">
+    <span>
+      <img src="/favicon.ico" width="20" height="20" class="d-inline-block align-top"> Alimentos
+    </span>
+  </div>
+
+
+  <!--Item con submenu 1-->
+  <div class="contenedorItem itemActive" (click)="isCollapsed1 = !isCollapsed1" [attr.aria-expanded]="!isCollapsed1">
+    <span>
+      <img src="/favicon.ico" width="20" height="20" class="d-inline-block align-top"> Comidas rapidas
+    </span>
+  </div>
+
+  <!-- Submenu 1-->
+  <div [ngbCollapse]="!isCollapsed1">
+    <!-- Item de submenu -->
+    <div class="contenedorItem subMenu itemActive">
+      <span>
+        <img src="/favicon.ico" width="20" height="20" class="d-inline-block align-top"> Perros calientes
+      </span>
+    </div>
+  </div>
+
+
+
+
+</div>

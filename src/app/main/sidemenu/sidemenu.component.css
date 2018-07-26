@@ -1,0 +1,20 @@
+.container-top{
+    padding-top: 2px;
+}
+
+.contenedorItem{
+    width: 100%; padding: 13px;
+}
+
+.contenedorItem:hover { 
+    background-color:#F8F9FA;
+    cursor: pointer;
+}
+
+.contenedorItem.subMenu { 
+    margin-left: 15px;
+}
+
+.itemActive{
+    background-color:#F8F9FA;
+}

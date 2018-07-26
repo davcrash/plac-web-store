@@ -1,7 +1,7 @@
 <!-- nav -->
 <nav class="navbar navbar-light bg-light fixed-top border-bottom">
 
-    <div class="row " style="width: 100%">
+    <div class="row widthTotal">
         <div class="col-md-8">
 
             <div class="row">
@@ -31,7 +31,19 @@
 
         <div class="col-md-4">
             <div class="row justify-content-end">
-                <a class="nav-item nav-link">Iniciar sesión</a>
+
+                <!--<a class="nav-item nav-link">Iniciar sesión</a>-->
+
+                <div ngbDropdown class="d-inline-block">
+                    <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>
+                        <img src="https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" class="avatar"> &nbsp; &nbsp;Kevin Vargas</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button class="dropdown-item">Pedidos</button>
+                        <button class="dropdown-item">Preguntas</button>
+                        <button class="dropdown-item">Cerrar sesión</button>
+                    </div>
+                </div>
+
                 <div class="col-auto navbar-brand navbar-header">
                     <button (click)="_opened=!_opened" class="btn btn-light align-top btnSideMenu">
                         <i class="fas fa-shopping-cart d-inline-block align-center"></i>
@@ -54,7 +66,7 @@
             <!--Menu desplegable-->
             <ng-sidebar [(opened)]="_opened" [mode]="'push'" [autoCollapseWidth]="600">
                 <div class="wrap border-right">
-                    Aqui van las opciones
+                    <app-sidemenu></app-sidemenu>
                 </div>
             </ng-sidebar>
 
@@ -62,7 +74,7 @@
             <div ng-sidebar-content>
                 <div class="wrap scroll">
                     <div class="col-md-12">
-                        contenido
+                        Contenido
                         <router-outlet></router-outlet>
                     </div>
 

@@ -24,6 +24,7 @@ import { UserListComponent } from './users/components/user-list/user-list.compon
 import { UserFormComponent } from './users/components/user-form/user-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoaderComponent } from './loader/loader.component';
+import { SidemenuComponent } from './main/sidemenu/sidemenu.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoaderComponent } from './loader/loader.component';
     UserListComponent,
     UserFormComponent,
     PageNotFoundComponent,
-    LoaderComponent
+    LoaderComponent,
+    SidemenuComponent
   ],
   imports: [
     BrowserModule,
