@@ -25,6 +25,8 @@ import { UserFormComponent } from './users/components/user-form/user-form.compon
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoaderComponent } from './loader/loader.component';
 import { SidemenuComponent } from './main/sidemenu/sidemenu.component';
+import { LoginComponent } from './users/components/login/login.component';
+import { NavComponent } from './main/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { SidemenuComponent } from './main/sidemenu/sidemenu.component';
     UserFormComponent,
     PageNotFoundComponent,
     LoaderComponent,
-    SidemenuComponent
+    SidemenuComponent,
+    LoginComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

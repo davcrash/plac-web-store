@@ -12,7 +12,8 @@
 }
 
 .contenedorItem.subMenu { 
-    margin-left: 15px;
+    padding-left: 30px;
+    width: auto;
 }
 
 .itemActive{
