@@ -4,7 +4,7 @@
     <div class="col-md-4 offset-md-4" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-top: 50px; border-radius: 5px; padding: 20px;">
 
       <div class="row">
-        <div class="col-md-1 color-plac-text">Volver</div>
+        <div class="col-md-1 color-plac-text pointer" [routerLink]="['/']">Volver</div>
       </div>
       <br>
 
@@ -15,15 +15,12 @@
       <p>Ingresar con</p>
 
       <div class="row">
-        <div class="col-md-2">
-          <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
-        </div>
-        <div class="col-md-10">
+        <div class="col-md-12">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">+57</span>
+              <span class="input-group-text" id="basic-addon1"><img src="https://www.viajejet.com/wp-content/viajes/la-bandera-representativa-de-colombia.png" width="25" height="20" class="d-inline-block align-top" alt="">+57</span>
             </div>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" placeholder="Ingresa con tu celular" aria-label="Username" aria-describedby="basic-addon1">
           </div>
         </div>
       </div>
@@ -40,7 +37,7 @@
       <br>
       <button type="button" class="btn btn-outline-secondary button-entrar">Entrar</button>
 
-    </div>
+   
   </div>
 
 </div>
