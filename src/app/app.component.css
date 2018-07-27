@@ -9,13 +9,11 @@
   .wrap.scroll{
     overflow-y: auto;
   }
-
-  .btnSideMenu{
-    padding-top: 1px; padding-right:6px; padding-left: 6px; padding-bottom: 2px;
-  }
-  .marginPetIcon{
+  
+  .margin-pet-icon{
     margin-left: 5px;
     margin-right: 5px;
   }
 
-  .widthTotal{width: 100vw;}
+  .width-total{width: 100vw;}
+

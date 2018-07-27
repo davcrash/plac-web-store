@@ -2,20 +2,20 @@
     padding-top: 2px;
 }
 
-.contenedorItem{
+.contenedor-item{
     width: 100%; padding: 13px;
 }
 
-.contenedorItem:hover { 
+.contenedor-item:hover { 
     background-color:#F8F9FA;
     cursor: pointer;
 }
 
-.contenedorItem.subMenu { 
+.contenedor-item.sub-menu { 
     padding-left: 30px;
     width: auto;
 }
 
-.itemActive{
+.item-active{
     background-color:#F8F9FA;
 }

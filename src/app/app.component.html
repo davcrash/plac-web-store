@@ -1,8 +1,8 @@
 <!-- nav -->
-<app-nav  [showElement]="showElement" (opened)="_opened=!_opened"></app-nav>
+<app-nav class="d-none d-lg-block" [showElement]="showElement" (opened)="_opened=!_opened"></app-nav>
 
 
-<div class="container-fluid">
+<div class="container-fluid d-none d-lg-block">
     <div class="row">
 
         <!--Inicio: Contenedor del menu desplegable-->
@@ -18,11 +18,10 @@
             <!--contenido pagina-->
             <div ng-sidebar-content>
                 <div class="wrap scroll">
-                    <div class="col-md-12">
+                    <div class="col-md-12 no-padding">
                         <router-outlet (activate)="componentAdded($event)"></router-outlet>
                     </div>
-
-                    <div class="col-md-12 border-top"  *ngIf="showElement">
+                    <div class="col-md-12 border-top" *ngIf="showElement">
                         footer
                     </div>
                 </div>
@@ -32,4 +31,10 @@
         <!--fin: Contenedor del menu desplegable-->
 
     </div>
+</div>
+
+
+<div class="d-block d-sm-block  d-lg-none">
+    <!--Componente de descarga la app-->
+    Aqui va el componente de ver en app
 </div>

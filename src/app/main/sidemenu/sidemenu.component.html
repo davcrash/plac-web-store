@@ -1,7 +1,7 @@
 <div class="container-top">
 
   <!--Item normal-->
-  <div class="contenedorItem">
+  <div class="contenedor-item">
     <span>
       <img src="/favicon.ico" width="20" height="20" class="d-inline-block align-top"> Alimentos
     </span>
@@ -9,7 +9,7 @@
 
 
   <!--Item con submenu 1-->
-  <div class="contenedorItem itemActive" (click)="isCollapsed1 = !isCollapsed1" [attr.aria-expanded]="!isCollapsed1">
+  <div class="contenedor-item item-active" (click)="isCollapsed1 = !isCollapsed1" [attr.aria-expanded]="!isCollapsed1">
     <span>
       <img src="/favicon.ico" width="20" height="20" class="d-inline-block align-top"> Comidas rapidas
     </span>
@@ -18,7 +18,7 @@
   <!-- Submenu 1-->
   <div [ngbCollapse]="!isCollapsed1">
     <!-- Item de submenu -->
-    <div class="contenedorItem subMenu itemActive">
+    <div class="contenedor-item sub-menu item-active">
       <span>
         <img src="/favicon.ico" width="20" height="20" class="d-inline-block align-top"> Perros calientes
       </span>

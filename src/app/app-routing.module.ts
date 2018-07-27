@@ -5,11 +5,12 @@ import { PageNotFoundComponent } from './main/page-not-found/page-not-found.comp
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { LoginComponent } from './users/login/login.component';
+import { HomePageComponent } from './main/home-page/home-page.component';
 
 
 
 const routes: Routes = [
-  { path: '',  component: UserListComponent },
+  { path: '',  component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
