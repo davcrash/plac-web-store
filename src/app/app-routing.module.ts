@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { UserListComponent } from './users/components/user-list/user-list.component';
-import { UserFormComponent } from './users/components/user-form/user-form.component';
-import { LoginComponent } from './users/components/login/login.component';
+import { PageNotFoundComponent } from './main/page-not-found/page-not-found.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+import { UserFormComponent } from './users/user-form/user-form.component';
+import { LoginComponent } from './users/login/login.component';
 
 
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
-import { UserService } from '../../services/user.service';
-import { User } from '../../models/user.model.ts';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user.model.ts';
 import Swal from 'sweetalert2';
 
 @Component({

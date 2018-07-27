@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
-import { User } from '../../models/user.model.ts';
-import { GlobalService } from '../../../global.service';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user.model.ts';
+import { GlobalService } from '../../global.service';
 import Swal from 'sweetalert2';
 
 @Component({

@@ -20,12 +20,12 @@ import { SidebarModule } from 'ng-sidebar';
 
 //Componentes
 import { AppComponent } from './app.component';
-import { UserListComponent } from './users/components/user-list/user-list.component';
-import { UserFormComponent } from './users/components/user-form/user-form.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { LoaderComponent } from './loader/loader.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+import { UserFormComponent } from './users/user-form/user-form.component';
+import { PageNotFoundComponent } from './main/page-not-found/page-not-found.component';
+import { LoaderComponent } from './main/loader/loader.component';
 import { SidemenuComponent } from './main/sidemenu/sidemenu.component';
-import { LoginComponent } from './users/components/login/login.component';
+import { LoginComponent } from './users/login/login.component';
 import { NavComponent } from './main/nav/nav.component';
 
 @NgModule({
