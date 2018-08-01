@@ -14,9 +14,6 @@ export class GlobalService {
     private _http: HttpClient
   ) { }
 
-  getRootApiUrl() {
-    return environment.rootApiUrl;
-  }
 
   HttpMethod(action, url, params?): Observable<any> {
     
@@ -29,9 +26,9 @@ export class GlobalService {
 
     //Validamos la accion y la enviamos
     if (action === "GET") {
-      result = this._http.get(this.getRootApiUrl() + url, { headers: headers });
+      result = this._http.get(environment.rootApiUrl + url, { headers: headers });
     } else if (action === "POST") {
-      result = this._http.post(this.getRootApiUrl() + url, params, { headers: headers });
+      result = this._http.post(environment.rootApiUrl + url, params, { headers: headers });
     }
 
     return result;
