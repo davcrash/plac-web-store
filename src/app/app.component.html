@@ -6,11 +6,11 @@
     <div class="row">
 
         <!--Inicio: Contenedor del menu desplegable-->
-        <ng-sidebar-container class="col-md-12 no-padding wrap">
+        <ng-sidebar-container class="col-md-12 no-padding wrap" >
 
             <!--Menu desplegable-->
-            <ng-sidebar [(opened)]="_opened" [mode]="'push'" [autoCollapseWidth]="600">
-                <div class="wrap border-right">
+            <ng-sidebar  [(opened)]="_opened" [mode]="_navBarMode" [autoCollapseWidth]="600" [closeOnClickOutside]="_closeOutside">
+                <div class="wrap border-right container-categories">
                     <app-sidemenu></app-sidemenu>
                 </div>
             </ng-sidebar>

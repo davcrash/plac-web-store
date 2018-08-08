@@ -1,19 +1,15 @@
 .wrap {
-    height: calc(100vh - 57px);
+    height: calc(100vh - 59px);
 }
-.no-padding {
-    padding-right: 0;
-    padding-left: 0;
-  }
+
 
   .wrap.scroll{
     overflow-y: auto;
   }
   
-  .margin-pet-icon{
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
   .width-total{width: 100vw;}
+
+  .container-categories{
+    background-color: white;
+}
 

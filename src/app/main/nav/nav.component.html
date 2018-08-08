@@ -1,39 +1,61 @@
 <nav class="navbar navbar-light bg-light fixed-top border-bottom">
 
-  <div class="row widthTotal">
-      <div class="col-md-8">
+    <div class="row widthTotal">
+        <div class="col-md-8">
 
-          <div class="row">
+            <div class="row align-items-center">
 
-              <div class="col-auto navbar-brand navbar-header">
-                  <button  *ngIf="showElement" (click)="showSideMenu()" class="btn btn-light align-top btnSideMenu">
-                      <i class="fas fa-bars d-inline-block align-center"></i>
-                  </button>
-                  &nbsp;
-                  <img  [routerLink]="['/']" src="/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
-              </div>
+                <div class="col-auto navbar-brand navbar-header">
+                    <button *ngIf="showElement" (click)="showSideMenu()" class="btn btn-light align-top btnSideMenu">
+                        <i class="fas fa-bars d-inline-block align-center"></i>
+                    </button>
+                    &nbsp;
+                    <img [routerLink]="['/']" src="/favicon.ico" class="d-inline-block align-top img-fluid" alt="">
+                </div>
 
-              <div class="col-md-3"  *ngIf="showElement">
-                  <input class="form-control" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
-              </div>
-              <!-- Inicio: iconos de mascotas -->
-              <div class="col navbar-brand"  *ngIf="showElement">
-                  <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-top marginPetIcon" alt="">
-                  <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-top marginPetIcon" alt="">
-                  <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-top marginPetIcon" alt="">
-                  <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-top marginPetIcon" alt="">
-                  <img src="/favicon.ico" width="30" height="30" class="d-inline-block align-top marginPetIcon" alt=""  [routerLink]="['/users']">
-              </div>
-              <!-- Fin: iconos de mascotas -->
-          </div>
-      </div>
+                <div class="col-md-3" *ngIf="showElement">
+                    <input class="form-control" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
+                </div>
+                <!-- Inicio: iconos de mascotas -->
+                <div class="col navbar-brand" *ngIf="showElement">
+                    <div #petButtonPerro id="Perro" class="d-inline-block align-top margin-pet-icon" 
+                    [ngClass]="{'bg-primary': petButtonPerro.id == selectedPet}"
+                    (click)="selectPet('Perro')">
+                        Perro
+                    </div>
+                    <div #petButtonGato id="Gato" class="d-inline-block align-top margin-pet-icon" 
+                    [ngClass]="{'bg-primary': petButtonGato.id == selectedPet}"
+                    (click)="selectPet('Gato')">
+                        Gato
+                    </div>
+                    <div #petButtonConejo id="Conejo" class="d-inline-block align-top margin-pet-icon" 
+                    [ngClass]="{'bg-primary': petButtonConejo.id == selectedPet}"
+                    (click)="selectPet('Conejo')">
+                        Conejo
+                    </div>
+                    <div #petButtonMinipig id="Minipig" class="d-inline-block align-top margin-pet-icon" 
+                    [ngClass]="{'bg-primary': petButtonMinipig.id == selectedPet}"
+                    (click)="selectPet('Minipig')">
+                        Minipig
+                    </div>
+                    <div #petButtonHamster id="Hamster" class="d-inline-block align-top margin-pet-icon" 
+                    [ngClass]="{'bg-primary': petButtonHamster.id == selectedPet}"
+                    (click)="selectPet('Hamster')">
+                        Hamster
 
-      <div class="col-md-4">
-          <div class="row justify-content-end" *ngIf="showElement">
+                    </div>
+                    
+                </div>
+                <!-- Fin: iconos de mascotas -->
+            </div>
+        </div>
 
-              <a class="nav-item nav-link pointer"  [routerLink]="['/login']">Iniciar sesión</a>
+        <div class="col-md-4">
+            <div class="row justify-content-end" *ngIf="showElement">
 
-              <!--<div ngbDropdown class="d-inline-block">
+                <a class="nav-item nav-link pointer" [routerLink]="['/login']">Iniciar sesión</a>
+
+                <!--<div ngbDropdown class="d-inline-block">
                   <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>
                       <img src="https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" class="avatar"> &nbsp; &nbsp;Kevin Vargas</button>
                   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -43,14 +65,14 @@
                   </div>
               </div>-->
 
-              <div class="col-auto navbar-brand navbar-header">
-                  <button class="btn btn-light align-top btnSideMenu">
-                      <i class="fas fa-shopping-cart d-inline-block align-center"></i>
-                  </button>
-              </div>
-          </div>
-      </div>
+                <div class="col-auto navbar-brand navbar-header">
+                    <button class="btn btn-light align-top btnSideMenu">
+                        <i class="fas fa-shopping-cart d-inline-block align-center"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-  </div>
+    </div>
 
 </nav>

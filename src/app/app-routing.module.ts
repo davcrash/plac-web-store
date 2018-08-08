@@ -6,6 +6,7 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { LoginComponent } from './users/login/login.component';
 import { HomePageComponent } from './main/home-page/home-page.component';
+import { ViewCategoryComponent } from './main/view-category/view-category.component';
 
 
 
@@ -14,7 +15,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
+  { path: 'categoria/:category_name', component: ViewCategoryComponent },
   { path: '**', component: PageNotFoundComponent },
+  
 ]; 
 
 @NgModule({

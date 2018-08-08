@@ -16,9 +16,9 @@ export class GlobalService {
 
 
   HttpMethod(action, url, params?): Observable<any> {
-    
+
     var result;
-    
+
     //Header de la solicitud
     let headers = new HttpHeaders({
       "Content-Type": "application/json"
@@ -26,12 +26,13 @@ export class GlobalService {
 
     //Validamos la accion y la enviamos
     if (action === "GET") {
-      result = this._http.get(environment.rootApiUrl + url, { headers: headers });
+      result = this._http.get(environment.rootApiUrl + url, { headers: headers, params});
     } else if (action === "POST") {
-      result = this._http.post(environment.rootApiUrl + url, params, { headers: headers });
+      result = this._http.post(environment.rootApiUrl + url, { headers: headers, params });
     }
 
     return result;
 
   }
+
 }

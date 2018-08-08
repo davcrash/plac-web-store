@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidemenuService } from '../services/sidemenu.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidemenu',
@@ -9,12 +10,13 @@ import { SidemenuService } from '../services/sidemenu.service';
 export class SidemenuComponent implements OnInit {
 
   categories;
-  idMenuCollapsed = null;
+  idMenuSelected = null;
   beforeId = null;
   openWithBeforeId;
 
   constructor(
-    private _sidemenuService: SidemenuService
+    private _sidemenuService: SidemenuService,
+    private _navigate: Router
   ) { }
 
   ngOnInit() {
@@ -27,22 +29,13 @@ export class SidemenuComponent implements OnInit {
       });
   }
 
-  clickOnMenu(event, elmtId) {
-    this.idMenuCollapsed = event.currentTarget.attributes.id.value;
-    
-    if(this.beforeId == elmtId){
-      this.openWithBeforeId=true;
-      this.beforeId = null;
-    }else{
-      this.openWithBeforeId=false;
-      this.beforeId = elmtId;
-    }
-    
-    
+  clickOnMenu(event) {
+
+    this.idMenuSelected = event.currentTarget.attributes.id.value;
+    this._navigate.navigate(["/categoria", this.idMenuSelected]);
+
   }
 
-  clickOnSubMenu(){
-    this.beforeId = null;
-  }
+
 
 }

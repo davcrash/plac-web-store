@@ -33,6 +33,9 @@ import { NavComponent } from './main/nav/nav.component';
 import { HomePageComponent } from './main/home-page/home-page.component';
 import { BannerComponent } from './advertising/banner/banner.component';
 import { InformativeBoxComponent } from './main/informative-box/informative-box.component';
+import { ViewCategoryComponent } from './main/view-category/view-category.component';
+import { SubcategoriesComponent } from './filters/subcategories/subcategories.component';
+import { BrandsComponent } from './filters/brands/brands.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { InformativeBoxComponent } from './main/informative-box/informative-box.
     HomePageComponent,
     BannerComponent,
     InformativeBoxComponent,
+    ViewCategoryComponent,
+    SubcategoriesComponent,
+    BrandsComponent,
   ],
   imports: [
     BrowserModule,

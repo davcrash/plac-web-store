@@ -1,44 +1,25 @@
-<div class="container-top">
+<div class="container-top container-categories">
 
   <loader *ngIf="!categories"></loader>
 
   <div *ngIf="categories">
 
-    <!--Item normal
-    <div class="contenedor-item">
-      <span>
-        <img src="/favicon.ico" width="20" height="20" class="d-inline-block align-top"> Alimentos
-      </span>
-    </div>
-    -->
 
+    <!--Item-->
 
-    <!--Item con submenu 1-->
-    
     <div *ngFor="let category of categories">
 
-      <div #elmt [id]="category.category_name" (click)="clickOnMenu($event,elmt.id)">
+      <div [id]="category.category_name" (click)="clickOnMenu($event)">
 
-        <div class="contenedor-item"  [attr.aria-expanded]="(elmt.id == idMenuCollapsed && !openWithBeforeId)?false:true">
+        <div class="contenedor-item">
           <span>
             <img [src]="category.category_image_url" width="20" height="20" class="d-inline-block align-top"> {{category.category_name}}
           </span>
         </div>
 
-        <!-- Submenu 1-->
-        <div (click)="clickOnSubMenu()" [ngbCollapse]="(elmt.id == idMenuCollapsed && !openWithBeforeId)?false:true" *ngFor="let subcategory of category.subcategories">
-          <!-- Item de submenu -->
-          <div class="contenedor-item sub-menu">
-            <span>
-              <img src="/favicon.ico" width="20" height="20" class="d-inline-block align-top"> {{subcategory.subcategory_name}}
-            </span>
-          </div>
-        </div>
       </div>
-
     </div>
+
+
+
   </div>
-
-
-
-</div>

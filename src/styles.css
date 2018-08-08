@@ -1,11 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 /* para que el contenido se acople al nav SOLO FUNCIONA SI SE PONE ACA!*/
-body { padding-top: 57px;}
+body { padding-top: 59px;}
 
 /* darle el tamaño de el sidebar SOLO FUNCIONA SI SE PONE ACA!*/
 .ng-sidebar{width: 280px !important;}
 
-.avatar {
+.pruebawit{width: calc(100vw - 280px);}
+
+.no-padding {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  
+.avatar{
     vertical-align: middle;
     width: 26px;
     height: 26px;

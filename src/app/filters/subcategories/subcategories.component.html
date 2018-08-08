@@ -1,0 +1,5 @@
+<loader *ngIf="!subcategories"></loader>
+
+<button class="btn btn-outline-info" *ngFor="let subcategory of subcategories">
+  {{subcategory.subcategory_name}}
+</button>
