@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { SubcategoriesService } from '../services/subcategories.service';
 import { LocalStorageService } from '../../local-storage.service';
 
@@ -10,6 +10,8 @@ import { LocalStorageService } from '../../local-storage.service';
 export class SubcategoriesComponent implements OnChanges, OnInit {
 
   @Input() categoryName: string;
+  @Output() public subcategorySelected = new EventEmitter<any>();
+  currentSubcategorySelected 
   subcategories
   constructor(
     private _subcategoriesService: SubcategoriesService,
@@ -22,6 +24,11 @@ export class SubcategoriesComponent implements OnChanges, OnInit {
         this.getSubCategoriesByCategoryName();
       }
     });
+  }
+
+  selectSubcategory(subcategory){
+    this.currentSubcategorySelected = subcategory;
+    this.subcategorySelected.emit(subcategory);
   }
 
   ngOnChanges(changes: SimpleChanges) {

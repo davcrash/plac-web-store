@@ -5,7 +5,10 @@ body { padding-top: 59px;}
 /* darle el tamaño de el sidebar SOLO FUNCIONA SI SE PONE ACA!*/
 .ng-sidebar{width: 280px !important;}
 
-.pruebawit{width: calc(100vw - 280px);}
+.container-products{
+    width: calc(100vw - 300px);
+    padding: 10px;
+}
 
 .no-padding {
     padding-right: 0;

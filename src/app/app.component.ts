@@ -13,6 +13,7 @@ export class AppComponent {
   _closeOutside:boolean = false;
 
   constructor() {
+    localStorage.setItem("city", "2257"); //Codigo de bogota
   }
 
 

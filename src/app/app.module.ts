@@ -36,6 +36,7 @@ import { InformativeBoxComponent } from './main/informative-box/informative-box.
 import { ViewCategoryComponent } from './main/view-category/view-category.component';
 import { SubcategoriesComponent } from './filters/subcategories/subcategories.component';
 import { BrandsComponent } from './filters/brands/brands.component';
+import { PlaceWithProductsComponent } from './places/place-with-products/place-with-products.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { BrandsComponent } from './filters/brands/brands.component';
     ViewCategoryComponent,
     SubcategoriesComponent,
     BrandsComponent,
+    PlaceWithProductsComponent,
   ],
   imports: [
     BrowserModule,

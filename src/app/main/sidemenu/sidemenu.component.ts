@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SidemenuService } from '../services/sidemenu.service';
 import { Router } from '@angular/router';
 
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidemenu.component.css']
 })
 export class SidemenuComponent implements OnInit {
+
+  @Output() public closeSidemenu = new EventEmitter<any>();
 
   categories;
   idMenuSelected = null;
@@ -23,17 +25,15 @@ export class SidemenuComponent implements OnInit {
     this._sidemenuService.getCategories()
       .subscribe(res => {
         this.categories = res;
-        console.log(this.categories);
       }, err => {
         console.log(err);
       });
   }
 
   clickOnMenu(event) {
-
     this.idMenuSelected = event.currentTarget.attributes.id.value;
     this._navigate.navigate(["/categoria", this.idMenuSelected]);
-
+    this.closeSidemenu.emit(true);
   }
 
 

@@ -1,49 +1,78 @@
 <div align="center">
-  <h1>{{CategoryReceivedByRoute}}</h1>
+  <h1>{{categoryReceivedByRoute}}</h1>
 </div>
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 text-center">
-      <app-subcategories [categoryName]="CategoryReceivedByRoute"></app-subcategories>
+      <app-subcategories [categoryName]="categoryReceivedByRoute" (subcategorySelected)="changeSubcategory($event)"></app-subcategories>
     </div>
     <div class="ng-sidebar bg-light">
       <app-brands></app-brands>
     </div>
-    <div class="pruebawit">
-      <div class="container-fluid">
 
-        <div class="row flex-row flex-nowrap" style="overflow-x: scroll" *ngFor="let placeWithProducts of placesWithProducts">
 
-          <div class="col col-lg-2 card-block">
-            <div class="place-img-container">
-              <img class="mx-auto d-block img-fluid" width="65" src="https://tasteandocom.files.wordpress.com/2016/02/tresor1.jpg?w=276&h=276"
-                alt="">
-            </div>
-            <div class="info-product-container text-center">
-              <p class="place-desciption">
-                Pasión por los animales, Pasión por el servicio, encuntra los productos má novedos y exclusivos importados de más de 17 paíes,
-                únicos en Bogotá.
-              </p>
-              <a class="btn btn-primary">Go somewhere</a>
-            </div>
+    <div class="container-products">
+      <loader *ngIf="loader"></loader>
+
+      <!--INICIO: lista de productos scroll horizontal-->
+      <div *ngFor="let place of placesWithProducts" #element [attr.maxScrollLeft]="0" [attr.position]="0" [attr.showLeft]="false"
+        [attr.showRight]="true" class="container-horizontal-slide">
+
+  
+        <!--Inico: flecha izquierda del scroll-->
+        <div *ngIf="element.getAttribute('showLeft') === 'true'" (click)="scrollLeft(element)" 
+          class="arrow-scroll d-flex justify-content-center border-right">
+          <i class="fas fa-angle-left"></i>
+        </div>
+        <!--Inico: flecha fin del scroll-->
+
+        <!-- Inicio: Card perfil empresa-->
+        <div class="card-container d-inline-block border rounded align-top" align="center">
+
+          <div style="height: 40%;">
+            <img src="{{place.path_image_logo}}" class="img-card">
+          </div>
+          <div style="height: 40%;">
+            <p class="text-muted block-ellipsis">{{place.place_description}}</p>
+          </div>
+          <div style="height: 20%;">
+            <button type="button" class="btn btn-primary btn-sm">Entrar</button>
           </div>
 
-          <div class="col col-lg-2 card-block" *ngFor="let product of placeWithProducts.products">
-            <img class="card-img-top" src="https://tasteandocom.files.wordpress.com/2016/02/tresor1.jpg?w=276&h=276" alt="">
-            <div class="info-product-container">
-              <p class="product-name">
-                Cereal TESOR
-              </p>
-              <p class="product-price">
-                $1000
-              </p>
-            </div>
+
+        </div>
+        <!-- Fin: Card perfil empresa-->
+
+        <!-- Inicio: Card producto-->
+
+        <div class="card-container d-inline-block border rounded align-top" *ngFor="let product of place.products.data" align="center">
+          <div style="height: 65%;">
+            <img src="{{product.product_images[0].url}}" class="img-card img-product">
+          </div>
+          <div style="height: 25%;">
+            <p class="block-ellipsis product">{{product.product_name}}</p>
+          </div>
+          <div style="height: 10%;" class="product-price">
+            ${{product.product_price | number}}
           </div>
 
         </div>
+                   <!-- Fin: Card producto-->
+      }
+        <!--Inico: flecha derecha del scroll-->
+        <div *ngIf="element.getAttribute('showRight') !== 'false' && (element.scrollWidth - element.clientWidth) > '0'" (click)="scrollRight(element)"
+          class="arrow-scroll right  border-left d-inline-block">
+          <div class="d-flex justify-content-center " style="align-items: center;height: inherit;">
+            <i class="fas fa-angle-right"></i>
+          </div>
+        </div>
+        <!--Fin: flecha derecha del scroll-->
 
+
+
+        <!--FIN: lista de productos scroll horizontal-->
       </div>
+
 
     </div>
   </div>
-</div>

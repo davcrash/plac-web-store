@@ -1,5 +1,6 @@
 <loader *ngIf="!subcategories"></loader>
 
-<button class="btn btn-outline-info" *ngFor="let subcategory of subcategories">
+<button [ngClass]="{'select':currentSubcategorySelected === subcategory}" class="btn btn-outline-info" *ngFor="let subcategory of subcategories" (click)="selectSubcategory(subcategory);">
   {{subcategory.subcategory_name}}
 </button>
+ 

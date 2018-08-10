@@ -28,7 +28,7 @@ export class GlobalService {
     if (action === "GET") {
       result = this._http.get(environment.rootApiUrl + url, { headers: headers, params});
     } else if (action === "POST") {
-      result = this._http.post(environment.rootApiUrl + url, { headers: headers, params });
+      result = this._http.post(environment.rootApiUrl + url, params ,{ headers: headers});
     }
 
     return result;
