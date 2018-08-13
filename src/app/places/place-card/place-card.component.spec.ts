@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewCategoryComponent } from './view-category.component';
+import { PlaceCardComponent } from './place-card.component';
 
-describe('ViewCategoryComponent', () => {
-  let component: ViewCategoryComponent;
-  let fixture: ComponentFixture<ViewCategoryComponent>;
+describe('PlaceCardComponent', () => {
+  let component: PlaceCardComponent;
+  let fixture: ComponentFixture<PlaceCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewCategoryComponent ]
+      declarations: [ PlaceCardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewCategoryComponent);
+    fixture = TestBed.createComponent(PlaceCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

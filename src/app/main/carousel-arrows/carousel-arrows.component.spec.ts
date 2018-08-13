@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InformativeBoxComponent } from './informative-box.component';
+import { CarouselArrowsComponent } from './carousel-arrows.component';
 
-describe('InformativeBoxComponent', () => {
-  let component: InformativeBoxComponent;
-  let fixture: ComponentFixture<InformativeBoxComponent>;
+describe('CarouselArrowsComponent', () => {
+  let component: CarouselArrowsComponent;
+  let fixture: ComponentFixture<CarouselArrowsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InformativeBoxComponent ]
+      declarations: [ CarouselArrowsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InformativeBoxComponent);
+    fixture = TestBed.createComponent(CarouselArrowsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

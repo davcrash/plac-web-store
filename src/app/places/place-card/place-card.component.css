@@ -1,0 +1,29 @@
+.card-container-place{
+    padding: 5px;
+    margin-right: 10px;
+    height: 35vh;
+    width: 200px;
+    white-space: normal;
+}
+
+.img-card-place{
+    height: 100%; max-width: 100%;
+}
+
+.block-ellipsis {
+    display: block;
+    display: -webkit-box;
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    font-size: 12px;
+    line-height: 1.4;
+    -webkit-line-clamp: 3 ;
+    -webkit-box-orient: vertical ;
+    overflow: hidden ;
+    text-overflow: ellipsis ;
+}
+
+.block-ellipsis.product{
+    font-size: 14px;
+}

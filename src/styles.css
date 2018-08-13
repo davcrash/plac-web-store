@@ -5,17 +5,11 @@ body { padding-top: 59px;}
 /* darle el tamaño de el sidebar SOLO FUNCIONA SI SE PONE ACA!*/
 .ng-sidebar{width: 280px !important;}
 
-.container-products{
-    width: calc(100vw - 300px);
-    padding: 10px;
-}
-
 .no-padding {
     padding-right: 0;
     padding-left: 0;
-  }
-
-  
+}
+ 
 .avatar{
     vertical-align: middle;
     width: 26px;

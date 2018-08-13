@@ -1,0 +1,4 @@
+.container-products{
+    width: calc(100vw - 300px);
+    padding: 10px;
+}

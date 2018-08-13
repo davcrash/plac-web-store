@@ -1,3 +1,42 @@
-<p>
-  place-with-products works!
-</p>
+<div align="center">
+  <h1>{{categoryReceivedByRoute}}</h1>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 text-center">
+      <app-subcategories [categoryName]="categoryReceivedByRoute" (subcategorySelected)="changeSubcategory($event)"></app-subcategories>
+    </div>
+    <div class="ng-sidebar bg-light">
+      <app-brands></app-brands>
+    </div>
+
+
+    <div class="container-products">
+      <loader *ngIf="loader"></loader>
+
+      <!--INICIO: lista de productos scroll horizontal-->
+      <carousel-arrows *ngFor="let place of placesWithProducts">
+
+        <!-- Inicio: Card perfil empresa-->
+        <app-place-card 
+          [placeId]="place.place_id" 
+          [placeDescription]="place.place_description" 
+          [placePathImageLogo]="place.path_image_logo">
+        </app-place-card>
+        <!-- Fin: Card perfil empresa-->
+
+        <!-- Inicio: Card producto-->
+        <app-product-card *ngFor="let product of place.products.data"
+          [productId]="product.product_id"
+          [imgProduct]="product.product_images[0].url"
+          [productName]="product.product_name"
+          [productPrice]="product.product_price">
+        </app-product-card>
+        <!-- Fin: Card producto-->
+
+        <!--FIN: lista de productos scroll horizontal-->
+      </carousel-arrows>
+
+
+    </div>
+  </div>

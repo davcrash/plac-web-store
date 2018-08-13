@@ -1,0 +1,31 @@
+
+.arrow-scroll{
+    position: absolute;
+    width: 60px;
+    text-align: center;
+    color: #333;
+    background: rgba(248, 249, 250, 0.9);
+    transition: .3s;
+    opacity: 1;
+    height: inherit;
+    border-radius: inherit;
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    -webkit-transform: inherit;
+    transform: inherit;
+    cursor: pointer;
+    font-size: 30px;
+}
+.arrow-scroll.right{
+    right: 0;
+}
+
+.container-horizontal-slide {
+    margin-bottom: 25px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y:hidden; 
+    white-space: nowrap;
+    height: 35vh;
+}

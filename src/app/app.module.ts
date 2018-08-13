@@ -32,11 +32,12 @@ import { LoginComponent } from './users/login/login.component';
 import { NavComponent } from './main/nav/nav.component';
 import { HomePageComponent } from './main/home-page/home-page.component';
 import { BannerComponent } from './advertising/banner/banner.component';
-import { InformativeBoxComponent } from './main/informative-box/informative-box.component';
-import { ViewCategoryComponent } from './main/view-category/view-category.component';
 import { SubcategoriesComponent } from './filters/subcategories/subcategories.component';
 import { BrandsComponent } from './filters/brands/brands.component';
 import { PlaceWithProductsComponent } from './places/place-with-products/place-with-products.component';
+import { CarouselArrowsComponent } from './main/carousel-arrows/carousel-arrows.component';
+import { PlaceCardComponent } from './places/place-card/place-card.component';
+import { ProductCardComponent } from './products/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -50,11 +51,12 @@ import { PlaceWithProductsComponent } from './places/place-with-products/place-w
     NavComponent,
     HomePageComponent,
     BannerComponent,
-    InformativeBoxComponent,
-    ViewCategoryComponent,
     SubcategoriesComponent,
     BrandsComponent,
     PlaceWithProductsComponent,
+    CarouselArrowsComponent,
+    PlaceCardComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,

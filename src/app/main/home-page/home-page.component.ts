@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class HomePageComponent implements OnInit {
 
   @Output() public navBarMode = new EventEmitter<any>();
+
   
   constructor() { }
 
