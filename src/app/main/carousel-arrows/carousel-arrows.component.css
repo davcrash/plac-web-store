@@ -1,31 +1,43 @@
-
-.arrow-scroll{
+.arrow-scroll {
     position: absolute;
     width: 60px;
     text-align: center;
     color: #333;
     background: rgba(248, 249, 250, 0.9);
+    /*background: rgba(253, 253, 253,.9);*/
     transition: .3s;
     opacity: 1;
     height: inherit;
     border-radius: inherit;
     visibility: visible;
-    display: flex;
     align-items: center;
     -webkit-transform: inherit;
     transform: inherit;
     cursor: pointer;
     font-size: 30px;
+    z-index: 1070;
 }
-.arrow-scroll.right{
-    right: 0;
+
+.align-arrow {
+    align-items: center;
+    height: inherit;
+}
+
+.arrow-scroll.right {
+    right: 15px;
 }
 
 .container-horizontal-slide {
-    margin-bottom: 25px;
+    margin-bottom: 40px;
     width: 100%;
-    overflow-x: hidden;
-    overflow-y:hidden; 
+    overflow-x: scroll;
+    overflow-y: hidden;
     white-space: nowrap;
-    height: 35vh;
+    height: 280px;
+}
+
+@media (min-width: 992px) {
+    .container-horizontal-slide {
+        overflow-x: hidden;
+    }
 }

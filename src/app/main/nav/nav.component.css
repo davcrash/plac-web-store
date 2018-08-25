@@ -1,11 +1,69 @@
+.width-total {
+    width: 100vw;
+}
 
-  .btnSideMenu{
-    padding-top: 1px; padding-right:6px; padding-left: 6px; padding-bottom: 2px;
-  }
+.logo-plac {
+    height: 30px;
+    width: auto;
+}
 
-  .widthTotal{width: 100vw;}
+.no-padding-left {
+    padding-left: 0
+}
 
-  .margin-pet-icon{
+.log-in>button {
+    text-decoration: none;
+}
+
+.btn-light {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-light:hover {
+    background-color: #ededed;
+}
+
+.margin-pet-icon {
     margin-left: 5px;
     margin-right: 5px;
-  }
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    -webkit-transition-property: none;
+    -moz-transition-property: none;
+    -o-transition-property: none;
+    transition-property: none;
+}
+
+.img-pet-icon {
+    vertical-align: middle;
+    width: auto;
+    height: 25px;
+}
+
+.text-pet-icon {
+    font-size: 9px;
+}
+
+@media (min-width: 992px) {
+    .img-pet-icon {
+        height: 35px;
+    }
+    .text-pet-icon {
+        font-size: 11px;
+    }
+}
+
+.col-responsive {
+    margin-bottom: 5px !important;
+}
+
+.btn-link:hover {
+    color: #00B99B;
+}
+
+.btn-light:hover>i {
+    color: #00B99B;
+}

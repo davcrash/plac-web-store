@@ -2,8 +2,8 @@
 
 
   <!--Inico: flecha izquierda del scroll-->
-  <div *ngIf="element.getAttribute('showLeft') === 'true'" (click)="scrollLeft(element)" class="arrow-scroll d-flex justify-content-center border-right">
-    <i class="fas fa-angle-left"></i>
+  <div *ngIf="element.getAttribute('showLeft') === 'true'" (click)="scrollLeft(element)" class="arrow-scroll justify-content-center  d-none d-sm-none d-lg-flex">
+    <i class="fas fa-angle-left color-dark-green-text"></i>
   </div>
   <!--Inico: flecha fin del scroll-->
 
@@ -13,9 +13,9 @@
 
   <!--Inico: flecha derecha del scroll-->
   <div *ngIf="element.getAttribute('showRight') !== 'false' && (element.scrollWidth - element.clientWidth) > '0'" (click)="scrollRight(element)"
-    class="arrow-scroll right  border-left d-inline-block">
-    <div class="d-flex justify-content-center " style="align-items: center;height: inherit;">
-      <i class="fas fa-angle-right"></i>
+    class="arrow-scroll right  d-none d-sm-none d-lg-inline-block">
+    <div class="d-flex justify-content-center align-arrow">
+      <i class="fas fa-angle-right color-dark-green-text"></i>
     </div>
   </div>
   <!--Fin: flecha derecha del scroll-->

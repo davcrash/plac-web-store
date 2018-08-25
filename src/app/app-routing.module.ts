@@ -11,14 +11,15 @@ import { PlaceWithProductsComponent } from './places/place-with-products/place-w
 
 
 const routes: Routes = [
-  { path: '',  component: HomePageComponent },
+  { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
   { path: 'categoria/:category_name', component: PlaceWithProductsComponent },
+  { path: 'other', component: LoginComponent, outlet: 'modal'},
   { path: '**', component: PageNotFoundComponent },
-  
-]; 
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class GlobalService {
 
+
   constructor(
     private _http: HttpClient
   ) { }
@@ -26,13 +27,14 @@ export class GlobalService {
 
     //Validamos la accion y la enviamos
     if (action === "GET") {
-      result = this._http.get(environment.rootApiUrl + url, { headers: headers, params});
+      result = this._http.get(environment.rootApiUrl + url, { headers: headers, params });
     } else if (action === "POST") {
-      result = this._http.post(environment.rootApiUrl + url, params ,{ headers: headers});
+      result = this._http.post(environment.rootApiUrl + url, params, { headers: headers });
     }
 
     return result;
 
   }
+
 
 }

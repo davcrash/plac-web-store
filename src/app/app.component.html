@@ -1,28 +1,164 @@
 <!-- nav -->
-<app-nav class="d-none d-lg-block" [showElement]="showElement" (opened)="_opened=!_opened"></app-nav>
+<app-nav class="" [showElement]="showElement" (opened)="_opened=!_opened"></app-nav>
 
+<router-outlet name="modal"></router-outlet>
 
-<div class="container-fluid d-none d-lg-block">
+<div class="container-fluid">
     <div class="row">
 
         <!--Inicio: Contenedor del menu desplegable-->
-        <ng-sidebar-container class="col-md-12 no-padding wrap" >
+        <ng-sidebar-container class="col-md-12 no-padding wrap">
 
             <!--Menu desplegable-->
-            <ng-sidebar  [(opened)]="_opened" [mode]="_navBarMode" [autoCollapseWidth]="600" [closeOnClickOutside]="_closeOutside">
+            <ng-sidebar [(opened)]="_opened" [mode]="_navBarMode" [autoCollapseWidth]="575" [closeOnClickOutside]="_closeOutside">
                 <div class="wrap border-right container-categories">
                     <app-sidemenu (closeSidemenu)="_opened = false"></app-sidemenu>
                 </div>
             </ng-sidebar>
 
-            <!--contenido pagina-->
+
             <div ng-sidebar-content>
                 <div class="wrap scroll">
-                    <div class="col-md-12 no-padding">
+                    <!--contenido pagina-->
+                    <div class="col-md-12 no-padding content-page">
                         <router-outlet (activate)="componentAdded($event)"></router-outlet>
                     </div>
-                    <div class="col-md-12 border-top" *ngIf="showElement">
-                        footer
+                    <!--fin contenido pagina-->
+                    <div class="col-md-12 footer no-padding">
+                        <!--Footer-->
+                        <footer>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 text-center img-footer-container">
+                                        <img [routerLink]="['/']" src="/assets/img/logo-PLAC-01.svg">
+                                    </div>
+                                    <div class="col-6 offset-sm-1 col-sm-2">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <b class="color-dark-green-text">Categorías</b>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Alimentos']">Alimentos</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Farmacia']">Farmacia</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Higiene']">Higiene</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Hogar, ropa y accesorios']">Hogar, ropa y accesorios</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Juguetes']">Juguetes</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Pet Lovers']">Pet Lovers</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Servicios']">Servicios</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6 col-sm-2">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <b class="color-dark-green-text">Marcas destacadas</b>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6 col-sm-2">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <b class="color-dark-green-text">Nosotros</b>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Alimentos']">El equipo</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Farmacia']">Prensa</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Higiene']">Empleo</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6 col-sm-2">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <b class="color-dark-green-text">Empresas</b>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Alimentos']">¿Cómo vender en plac?</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Farmacia']">Preguntas frecuentes</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Hogar, ropa y accesorios']">Solución de problemas</a>
+                                            </li>
+                                            <li>
+                                                <a [routerLink]="['/categoria/Higiene']">Contáctanos</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6 col-sm-2">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <b class="color-dark-green-text">Redes</b>
+                                            </li>
+                                            <li class="icon-social-network-li">
+                                                <i class="fab fa-facebook-f icon-social-network"></i>
+                                            </li>
+                                            <li class="icon-social-network-li">
+                                                <i class="fab fa-instagram icon-social-network"></i>
+                                            </li>
+                                            <li class="icon-social-network-li">
+                                                <i class="fab fa-twitter icon-social-network"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-12 text-center no-padding footer-bottom">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 text-left align-self-center">
+
+                                            <ul class="list-inline no-padding col-12 list-margin">
+                                                <li class="list-inline-item">
+                                                    <a [routerLink]="['/categoria/Alimentos']">Empleo</a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a [routerLink]="['/categoria/Alimentos']">Términos y condiciones</a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a [routerLink]="['/categoria/Alimentos']">Política de privacidad</a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a [routerLink]="['/categoria/Alimentos']">Política de cookies</a>
+                                                </li>
+                                            </ul>
+                                            <div class="no-padding col-12">
+                                                <span>Copyright© 2018 plac (Pet Location And Care App SAS).</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3 col-12 align-self-center">
+                                            <img height="33" src="/assets/img/LOGOS.png">
+                                        </div>
+                                        <div class="col-md-3 col-12 align-self-center">
+                                            <button class="btn btn-plac">
+                                                <img height="20" src="/assets/img/smartphone.svg"> ¡Descarga la app!
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                        <!--Fin Footer-->
                     </div>
                 </div>
             </div>
@@ -34,7 +170,8 @@
 </div>
 
 
-<div class="d-block d-sm-block  d-lg-none">
-    <!--Componente de descarga la app-->
-    Aqui va el componente de ver en app
-</div>
+<!--
+<div class="d-block d-sm-block d-md-none download-container bg-primary">
+    Componente de descarga la app
+    ir a tienda de aplicaciones
+</div>-->

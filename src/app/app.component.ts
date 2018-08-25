@@ -3,16 +3,20 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
 
-  _opened: boolean = true;//Variable que define si el menu desplegable esta abierto o no
+  _opened: boolean = false;//Variable que define si el menu desplegable esta abierto o no
   _navBarMode: string;
   showElement:boolean = true;
   _closeOutside:boolean = false;
 
   constructor() {
+    //document.body.style.
+    //alert(screen.width);
+
+
     localStorage.setItem("city", "2257"); //Codigo de bogota
   }
 

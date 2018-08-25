@@ -1,0 +1,161 @@
+/* You can add global styles to this file, and also import other style files */
+
+html {
+    font-size: 14px;
+}
+
+/* para que el contenido se acople al nav SOLO FUNCIONA SI SE PONE ACA!*/
+
+body {
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 142px;
+    @media (min-width: 992px) and (max-width: 4000.98px) {
+        padding-top: 72px;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Raleway', sans-serif;
+}
+
+img:focus {
+    outline-style: none;
+}
+
+nav {
+    z-index: 99999999;
+    min-height: 72px;
+    background-color: #fff;
+}
+
+/* darle el tamaño de el sidebar SOLO FUNCIONA SI SE PONE ACA!*/
+
+.ng-sidebar {
+    width: 280px !important;
+}
+
+.no-padding {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.modal-backdrop {
+    z-index: 99999999;
+}
+
+.modal {
+    z-index: 100000000;
+}
+
+/*colores plac*/
+
+.color-plac-text {
+    color: #15d2bb !important;
+}
+
+.color-dark-gray-text {
+    color: #555555;
+}
+
+.color-dark-green-text {
+    color: #00B99B;
+}
+
+.color-pink-like-text {
+    color: #fe526c;
+}
+
+.color-medium-gray-text {
+    color: #AAAAAA;
+}
+
+.color-error-red-text {
+    color: #d2152b;
+}
+
+
+/*Boton con color de plac*/
+
+.btn-plac:not(:disabled):not(.disabled):active,
+.show>.btn-plac.dropdown-toggle {
+    color: #fff;
+    background-color: #13bda9;
+    border-color: #13b9a6;
+}
+
+.btn-plac.focus,
+.btn-plac:focus {
+    box-shadow: 0 0 0 0.2rem rgba(21, 210, 187, .5);
+}
+
+.btn-plac {
+    color: #fff;
+    background-color: #15d2bb;
+    border-color: #15d2bb;
+}
+
+.btn-plac:hover {
+    color: #fff;
+    background-color: #13b9a6;
+    border-color: #15d2bb;
+}
+
+/*Boton outline con color de plac*/
+
+.btn-outline-plac {
+    color: #15d2bb;
+    background-color: transparent;
+    background-image: none;
+    border-color: #15d2bb;
+}
+
+.btn-outline-plac:hover {
+    color: #fff;
+    background-color: #15d2bb;
+    border-color: #15d2bb;
+}
+
+.btn-outline-plac:not(:disabled):not(.disabled).active,
+.btn-outline-plac:not(:disabled):not(.disabled):active,
+.show>.btn-outline-plac.dropdown-toggle {
+    color: #fff;
+    background-color: #15d2bb;
+    border-color: #15d2bb;
+}
+
+.btn-outline-plac.focus,
+.btn-outline-plac:focus {
+    box-shadow: 0 0 0 0.2rem rgba(21, 210, 187, .5);
+}
+
+
+.btn-outline-plac-variation{
+    color: #555555; 
+}
+
+
+/*input plac*/
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #15d2bb;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 185, 155, .25);
+}
