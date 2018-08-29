@@ -5,8 +5,9 @@
     <div class="row width-total d-none d-lg-flex d-xl-flex align-items-center">
 
         <div class="col-auto">
-            <button (click)="showSideMenu()" class="btn btn-light" *ngIf="showElement">
-                <i class="fas fa-bars d-inline-block align-center color-dark-gray-text"></i>
+            <button (click)="showSideMenu()" class="btn btn-light btn-menu-sidebar" *ngIf="showElement">
+                <i *ngIf="_opened" class="fas fa-bars d-inline-block align-center color-dark-gray-text"></i>
+                <i *ngIf="!_opened" class="fas fa-times d-inline-block align-center color-dark-gray-text"></i>
             </button>
         </div>
         <div class="col-auto no-padding-left">
@@ -19,7 +20,7 @@
 
         <div class="col-auto mr-auto" *ngIf="showElement">
 
-            <button #petButtonPerro id="Perro" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-plac-text': petButtonPerro.id == selectedPet}"
+            <button #petButtonPerro id="Perro" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonPerro.id == selectedPet}"
                 (click)="selectPet('Perro')">
                 <!--Img Perro-->
                 <svg [attr.fill]="(petButtonPerro.id == selectedPet)?'#00B99B':'#555555'" class="img-pet-icon" version="1.1" id="Layer_1"
@@ -35,7 +36,7 @@
                 <div class="text-pet-icon">Perro</div>
             </button>
 
-            <button #petButtonGato id="Gato" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-plac-text': petButtonGato.id == selectedPet}"
+            <button #petButtonGato id="Gato" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonGato.id == selectedPet}"
                 (click)="selectPet('Gato')">
                 <!--Img Gato-->
                 <svg [attr.fill]="(petButtonGato.id == selectedPet)?'#00B99B':'#555555'" class="img-pet-icon" version="1.1" id="Layer_1"
@@ -64,7 +65,7 @@
                 <div class="text-pet-icon">Gato</div>
             </button>
 
-            <button #petButtonConejo id="Conejo" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-plac-text': petButtonConejo.id == selectedPet}"
+            <button #petButtonConejo id="Conejo" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonConejo.id == selectedPet}"
                 (click)="selectPet('Conejo')">
                 <!--Img Conejo-->
                 <svg [attr.fill]="(petButtonConejo.id == selectedPet)?'#00B99B':'#555555'" class="img-pet-icon" version="1.1" id="Layer_1"
@@ -97,7 +98,7 @@
                 <div class="text-pet-icon">Conejo</div>
             </button>
 
-            <button #petButtonMinipig id="Minipig" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-plac-text': petButtonMinipig.id == selectedPet}"
+            <button #petButtonMinipig id="Minipig" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonMinipig.id == selectedPet}"
                 (click)="selectPet('Minipig')">
                 <!--Img Minipig-->
                 <svg [attr.fill]="(petButtonMinipig.id == selectedPet)?'#00B99B':'#555555'" class="img-pet-icon" version="1.1" id="Layer_1"
@@ -119,7 +120,7 @@
                 <div class="text-pet-icon">Minipig</div>
             </button>
 
-            <button #petButtonHamster id="Hamster" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-plac-text': petButtonHamster.id == selectedPet}"
+            <button #petButtonHamster id="Hamster" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonHamster.id == selectedPet}"
                 (click)="selectPet('Hamster')">
                 <!--Img Hamster-->
                 <svg [attr.fill]="(petButtonHamster.id == selectedPet)?'#00B99B':'#555555'" class="img-pet-icon" version="1.1" id="Layer_1"
@@ -164,7 +165,7 @@
 
 
         <div class="col-auto" *ngIf="showElement">
-            <button (click)="showSideMenu()" class="btn btn-light">
+            <button (click)="showShopCar()" class="btn btn-light">
                 <i class="fas fa-shopping-cart d-inline-block align-center color-dark-gray-text"></i>
             </button>
         </div>
@@ -177,8 +178,9 @@
     <div class="row width-total d-flex d-sm-flex d-lg-none">
 
         <div class="col-auto mr-auto col-responsive">
-            <button (click)="showSideMenu()" class="btn btn-light">
-                <i class="fas fa-bars d-inline-block align-center color-dark-gray-text"></i>
+            <button (click)="showSideMenu()" class="btn btn-light btn-menu-sidebar">
+                <i *ngIf="_opened" class="fas fa-bars d-inline-block align-center color-dark-gray-text"></i>
+                <i *ngIf="!_opened" class="fas fa-times d-inline-block align-center color-dark-gray-text"></i>
             </button>
             &nbsp;
             <img [routerLink]="['/']" class="pointer logo-plac" src="/assets/img/logo-PLAC-01.svg">
@@ -210,7 +212,7 @@
 
 
         <div class="col-auto col-responsive " *ngIf="showElement">
-            <button (click)="showSideMenu()" class="btn btn-light">
+            <button (click)="showShopCar()" class="btn btn-light">
                 <i class="fas fa-shopping-cart d-inline-block align-center color-dark-gray-text"></i>
             </button>
         </div>
@@ -223,7 +225,7 @@
 
         <div class="col-12 col-responsive" *ngIf="showElement" align="center">
 
-            <button #petButtonPerro id="Perro" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-plac-text': petButtonPerro.id == selectedPet}"
+            <button #petButtonPerro id="Perro" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonPerro.id == selectedPet}"
                 (click)="selectPet('Perro')">
                 <!--Img Perro-->
                 <svg [attr.fill]="(petButtonPerro.id == selectedPet)?'#00B99B':'#555555'" class="img-pet-icon" version="1.1" id="Layer_1"
@@ -240,7 +242,7 @@
                 <div class="text-pet-icon">Perro</div>
             </button>
 
-            <button #petButtonGato id="Gato" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-plac-text': petButtonGato.id == selectedPet}"
+            <button #petButtonGato id="Gato" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonGato.id == selectedPet}"
                 (click)="selectPet('Gato')">
                 <!--Img Gato-->
                 <svg [attr.fill]="(petButtonGato.id == selectedPet)?'#00B99B':'#555555'" class="img-pet-icon" version="1.1" id="Layer_1"
@@ -269,7 +271,7 @@
                 <div class="text-pet-icon">Gato</div>
             </button>
 
-            <button #petButtonConejo id="Conejo" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-plac-text': petButtonConejo.id == selectedPet}"
+            <button #petButtonConejo id="Conejo" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonConejo.id == selectedPet}"
                 (click)="selectPet('Conejo')">
                 <!--Img Conejo-->
                 <svg [attr.fill]="(petButtonConejo.id == selectedPet)?'#00B99B':'#555555'" class="img-pet-icon" version="1.1" id="Layer_1"
@@ -302,7 +304,7 @@
                 <div class="text-pet-icon">Conejo</div>
             </button>
 
-            <button #petButtonMinipig id="Minipig" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-plac-text': petButtonMinipig.id == selectedPet}"
+            <button #petButtonMinipig id="Minipig" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonMinipig.id == selectedPet}"
                 (click)="selectPet('Minipig')">
                 <!--Img Minipig-->
                 <svg [attr.fill]="(petButtonMinipig.id == selectedPet)?'#00B99B':'#555555'" class="img-pet-icon" version="1.1" id="Layer_1"
@@ -324,7 +326,7 @@
                 <div class="text-pet-icon">Minipig</div>
             </button>
 
-            <button #petButtonHamster id="Hamster" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-plac-text': petButtonHamster.id == selectedPet}"
+            <button #petButtonHamster id="Hamster" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonHamster.id == selectedPet}"
                 (click)="selectPet('Hamster')">
                 <!--Img Hamster-->
                 <svg [attr.fill]="(petButtonHamster.id == selectedPet)?'#00B99B':'#555555'" class="img-pet-icon" version="1.1" id="Layer_1"

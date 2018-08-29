@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router ,ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -8,20 +8,20 @@ import { Router ,ActivatedRoute} from '@angular/router';
 })
 export class ProductCardComponent implements OnInit {
 
-  @Input() public productId:string;
-  @Input() public imgProduct:string;
-  @Input() public productName:string;
-  @Input() public productPrice:any;
+  @Input() public productId: string;
+  @Input() public imgProduct: string;
+  @Input() public productName: string;
+  @Input() public productPrice: any;
 
   constructor(
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _route: ActivatedRoute
   ) { }
 
   ngOnInit() {
   }
 
-  prueba(){
-    this._router.navigate([{outlets: { modal: 'other' }}], {  relativeTo: this._activatedRoute })
+  viewProduct() {
+    this._router.navigate([this._route.snapshot['_routerState'].url.replace(/%20/g, ' ') + '/product', this.productId]);
   }
 }

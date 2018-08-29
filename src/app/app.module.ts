@@ -38,7 +38,7 @@ import { PlaceWithProductsComponent } from './places/place-with-products/place-w
 import { CarouselArrowsComponent } from './main/carousel-arrows/carousel-arrows.component';
 import { PlaceCardComponent } from './places/place-card/place-card.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
-import { ModalComponent } from './main/modal/modal.component';
+import { ProductModalComponent } from './products/product-modal/product-modal.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,7 @@ import { ModalComponent } from './main/modal/modal.component';
     CarouselArrowsComponent,
     PlaceCardComponent,
     ProductCardComponent,
-    ModalComponent,
+    ProductModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { LocalStorageService } from '../../local-storage.service';
 
 @Component({
@@ -10,7 +10,10 @@ export class NavComponent implements OnInit {
 
   @Input() public showElement = true;
   @Output() public opened = new EventEmitter<any>();
-  _opened = true;
+  @Output() public openedShopCar = new EventEmitter<any>();
+
+  @Input() public _opened = true;
+  @Input() public _openedShopCar = false;
   selectedPet: string;
 
   constructor(
@@ -21,8 +24,15 @@ export class NavComponent implements OnInit {
     this.selectedPet = localStorage.getItem('pet_filter');
   }
 
+  
+
   showSideMenu() {
+    this._opened = !this._opened;
     this.opened.emit(!this._opened);
+  }
+
+  showShopCar() {
+    this.openedShopCar.emit(!this._openedShopCar);
   }
 
   selectPet(pet) {

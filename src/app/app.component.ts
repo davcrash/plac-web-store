@@ -7,10 +7,25 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  _opened: boolean = false;//Variable que define si el menu desplegable esta abierto o no
-  _navBarMode: string;
-  showElement:boolean = true;
-  _closeOutside:boolean = false;
+
+  //Variable que define propiedades del menu de categorias
+  _opened: boolean = false;
+  _sideBarMode: string;
+  _closeOutside: boolean = false;
+
+  //Variable que define propiedades del menu de categorias
+  shopCarProperties={
+    _opened:false,
+    _position:'right',
+    _mode: 'over',
+    _closeOutside:true,
+    _showBackdrop:true,
+    _closeOnClickBackdrop:true
+  }
+
+
+  //variable para mostrar elementos
+  showElement: boolean = true;
 
   constructor() {
     //document.body.style.
@@ -29,13 +44,13 @@ export class AppComponent {
 
       this.showElement = true;
       //Si no viene del componente login
-      if (event.navBarMode) {//si esta en el home emite un evento true para que el navbar no se sobreponga
+      if (event.sideBarMode) {//si esta en el home emite un evento true para que el navbar no se sobreponga
         this._opened = true;
-        this._navBarMode = 'push';
+        this._sideBarMode = 'push';
         this._closeOutside = false;
       } else {//si no esta en el home se sobrepone
         this._opened = false;
-        this._navBarMode = 'over';
+        this._sideBarMode = 'over';
         this._closeOutside = true;
       }
     }

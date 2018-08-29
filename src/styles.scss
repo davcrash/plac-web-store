@@ -28,15 +28,36 @@ img:focus {
 }
 
 nav {
-    z-index: 99999999;
+    z-index: 1030;
     min-height: 72px;
     background-color: #fff;
 }
 
-/* darle el tamaño de el sidebar SOLO FUNCIONA SI SE PONE ACA!*/
+/* darle el tamaño de el sidebar categorias SOLO FUNCIONA SI SE PONE ACA!*/
 
 .ng-sidebar {
+    z-index: 1080 !important;
     width: 280px !important;
+}
+
+/* si se cambia el width de arriba toca cambiar este*/
+
+.ng-sidebar-width {
+    width: 280px;
+}
+
+.ng-sidebar__backdrop {
+    z-index: 1090 !important;
+}
+
+/* darle el tamaño de el sidebar shopCar SOLO FUNCIONA SI SE PONE ACA!*/
+
+.shop-car {
+    width: 100% !important;
+    @media (min-width: 992px) and (max-width: 4000.98px) {
+        width: 500px !important;
+    }
+    z-index: 1090 !important;
 }
 
 .no-padding {
@@ -88,7 +109,6 @@ nav {
 .color-error-red-text {
     color: #d2152b;
 }
-
 
 /*Boton con color de plac*/
 
@@ -144,11 +164,9 @@ nav {
     box-shadow: 0 0 0 0.2rem rgba(21, 210, 187, .5);
 }
 
-
-.btn-outline-plac-variation{
-    color: #555555; 
+.btn-outline-plac-variation {
+    color: #555555;
 }
-
 
 /*input plac*/
 

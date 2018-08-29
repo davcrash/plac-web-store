@@ -26,7 +26,6 @@ export class PlaceWithProductsComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _router: Router,
     private _placeWithProducts: PlaceWithProductsService,
     private _localStorageService: LocalStorageService
   ) { }
@@ -70,7 +69,6 @@ export class PlaceWithProductsComponent implements OnInit {
     this._placeWithProducts.getPlacesWithProducts(this.categoryReceivedByRoute, this.subcategorySelected).subscribe(result => {
       //Asignamos los datos a la variable de usuarios
       this.placesWithProducts = result;
-      console.log(result);
     },
       error => {
         console.log(error);

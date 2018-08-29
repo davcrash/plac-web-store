@@ -1,9 +1,12 @@
-<!-- Componente slide de publicidad-->
+<!-- Componente slide de publicidad
 <app-banner></app-banner>
-
+-->
 
 <!-- Componente recudros informativos d-none d-lg-flex-->
 <div class="row no-margin ">
+  <!--router outlet de producto-->
+  <router-outlet></router-outlet>
+  <!--fin router outlet de producto-->
 
   <div class="col-md-4 col-sm-6 informative-box border pointer" (click)="openModal(queEsPlac)">
     <div class="col-12 text-center img-icon">
@@ -101,8 +104,8 @@
 
     <h3>Marcas destacadas</h3>
     <carousel-arrows>
-      <app-place-card *ngFor="let featuredPlaceList of featuredPlaces" [placeId]="featuredPlaceList.place_id" [placeName]="featuredPlaceList.place_location.place_location_name" [placeDescription]="featuredPlaceList.place_location.place_description"
-        [placePathImageLogo]="featuredPlaceList.path_image_logo">
+      <app-place-card *ngFor="let featuredPlaceList of featuredPlaces" [placeId]="featuredPlaceList.place_id" [placeName]="featuredPlaceList.place_location.place_location_name"
+        [placeDescription]="featuredPlaceList.place_location.place_description" [placePathImageLogo]="featuredPlaceList.path_image_logo">
       </app-place-card>
 
     </carousel-arrows>

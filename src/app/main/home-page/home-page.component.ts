@@ -10,7 +10,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomePageComponent implements OnInit {
 
-  @Output() public navBarMode = new EventEmitter<any>();
+  @Output() public sideBarMode = new EventEmitter<any>();
 
 
   //Productos mas vendidos
@@ -50,7 +50,7 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.navBarMode.emit('over');
+    this.sideBarMode.emit(true);
 
     this.getFeaturedPlaces();
     this.getFeaturedProducts();
@@ -74,7 +74,6 @@ export class HomePageComponent implements OnInit {
     this._homeService.getFeaturedPlaces()
       .subscribe(places => {
         this.featuredPlaces = places;
-        console.log(places);
       }, error => {
         console.log(error);
       }, () => {//Cuando ya la solicitud se completo ocultamos el loader

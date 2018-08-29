@@ -8,14 +8,16 @@
     <div class="col no-padding container-category-image" [ngStyle]="{'background-image': (categoryPropieties)?'url(' + categoryPropieties.category_img_url + ')':''}"></div>
   </div>
 </div>
-
+<!--router outlet de producto-->
+<router-outlet></router-outlet>
+<!--fin router outlet de producto-->
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 text-center subcategory-container">
       <app-subcategories [categoryName]="categoryReceivedByRoute" (subcategorySelected)="changeSubcategory($event)"></app-subcategories>
     </div>
-    <div class="col-sm-auto col-12 ng-sidebar">
+    <div class="col-sm-auto col-12 ng-sidebar-width">
       <app-brands></app-brands>
     </div>
 

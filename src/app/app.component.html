@@ -1,7 +1,5 @@
 <!-- nav -->
-<app-nav class="" [showElement]="showElement" (opened)="_opened=!_opened"></app-nav>
-
-<router-outlet name="modal"></router-outlet>
+<app-nav class="" [showElement]="showElement" [_opened]="!_opened" (opened)="_opened=!_opened" (openedShopCar)="shopCarProperties._opened =!shopCarProperties._opened"></app-nav>
 
 <div class="container-fluid">
     <div class="row">
@@ -10,7 +8,7 @@
         <ng-sidebar-container class="col-md-12 no-padding wrap">
 
             <!--Menu desplegable-->
-            <ng-sidebar [(opened)]="_opened" [mode]="_navBarMode" [autoCollapseWidth]="575" [closeOnClickOutside]="_closeOutside">
+            <ng-sidebar [(opened)]="_opened" [mode]="_sideBarMode" [autoCollapseWidth]="575" [closeOnClickOutside]="_closeOutside">
                 <div class="wrap border-right container-categories">
                     <app-sidemenu (closeSidemenu)="_opened = false"></app-sidemenu>
                 </div>
@@ -162,6 +160,15 @@
                     </div>
                 </div>
             </div>
+
+            <!--Menu desplegable Shoping Car-->
+            <ng-sidebar [(opened)]="shopCarProperties._opened" [position]="shopCarProperties._position" [mode]="shopCarProperties._mode"
+                [autoCollapseWidth]="575" [closeOnClickOutside]="shopCarProperties._closeOutside" [showBackdrop]="shopCarProperties._showBackdrop"
+                [closeOnClickBackdrop]="shopCarProperties._closeOnClickBackdrop" [sidebarClass]="'shop-car'">
+                <div class="wrap border-left container-categories">
+                    carrito
+                </div>
+            </ng-sidebar>
 
         </ng-sidebar-container>
         <!--fin: Contenedor del menu desplegable-->

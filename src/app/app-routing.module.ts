@@ -7,16 +7,24 @@ import { UserFormComponent } from './users/user-form/user-form.component';
 import { LoginComponent } from './users/login/login.component';
 import { HomePageComponent } from './main/home-page/home-page.component';
 import { PlaceWithProductsComponent } from './places/place-with-products/place-with-products.component';
-
-
+import { ProductModalComponent } from './products/product-modal/product-modal.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  {
+    path: '', component: HomePageComponent,
+    children: [
+      { path: 'product/:id', component: ProductModalComponent }
+    ]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
-  { path: 'categoria/:category_name', component: PlaceWithProductsComponent },
-  { path: 'other', component: LoginComponent, outlet: 'modal'},
+  {
+    path: 'categoria/:category_name', component: PlaceWithProductsComponent,
+    children: [
+      { path: 'product/:id', component: ProductModalComponent }
+    ]
+  },
   { path: '**', component: PageNotFoundComponent },
 
 ];
