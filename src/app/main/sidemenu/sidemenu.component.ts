@@ -18,7 +18,7 @@ export class SidemenuComponent implements OnInit {
 
   constructor(
     private _sidemenuService: SidemenuService,
-    private _navigate: Router
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class SidemenuComponent implements OnInit {
 
   clickOnMenu(event) {
     this.idMenuSelected = event.currentTarget.attributes.id.value;
-    this._navigate.navigate(["/categoria", this.idMenuSelected]);
+    this._router.navigate(["/categoria", this.idMenuSelected]);
     this.closeSidemenu.emit(true);
   }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-modal',
@@ -17,8 +16,8 @@ export class ProductModalComponent implements OnInit {
 
   constructor(
     private _modalService: NgbModal,
-    private _location: Location,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _router: Router,
   ) {
   }
 
@@ -34,10 +33,12 @@ export class ProductModalComponent implements OnInit {
       //abrir modal 
       this._modalService.open(this.modal, { size: 'lg' }).result.then(() => {
         //regresar atras si se cierra
-        this._location.back();
+        //this._location.back();
+        this._router.navigate(['../../'], { relativeTo: this._route });
       }, () => {
         //regresar atras si se da click afuera
-        this._location.back();
+        //this._location.back();
+        this._router.navigate(['../../'], { relativeTo: this._route });
       });
 
     }, 1);

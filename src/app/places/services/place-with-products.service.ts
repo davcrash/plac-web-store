@@ -21,6 +21,6 @@ export class PlaceWithProductsService {
         }
       }
     }
-    return this._globalService.HttpMethod("POST", "/store/places/city", params);
+    return this._globalService.HttpMethod("POST", "store/places/city", params);
   }
 }

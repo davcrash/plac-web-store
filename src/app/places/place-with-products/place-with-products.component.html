@@ -18,7 +18,7 @@
       <app-subcategories [categoryName]="categoryReceivedByRoute" (subcategorySelected)="changeSubcategory($event)"></app-subcategories>
     </div>
     <div class="col-sm-auto col-12 ng-sidebar-width">
-      <app-brands></app-brands>
+      <app-brands [categoryId]="categoryPropieties.category_id" [subcategoryId]="subcategoryIdSelected"></app-brands>
     </div>
 
 

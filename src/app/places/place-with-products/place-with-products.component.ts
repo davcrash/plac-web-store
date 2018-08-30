@@ -18,9 +18,16 @@ export class PlaceWithProductsComponent implements OnInit {
 
   categoryReceivedByRoute;//category_name by route
 
-  categoryPropieties;
+  categoryPropieties = {
+    category_color: "",
+    category_icon_url: "",
+    category_id:"",
+    category_img_url:"",
+    category_name:""
+  };
 
   subcategorySelected = "";
+  subcategoryIdSelected = "";
 
   placesWithProducts;
 
@@ -31,27 +38,29 @@ export class PlaceWithProductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
-    //Cuando cambien el filtro de tipo de mascota
-    this._localStorageService.watchStorage().subscribe((data) => {
-      if (data.change === 'pet_filter') {
-        this.getPlacesWithProducts();
-      }
-      if (data.change === 'categories') {
-        this.categories = JSON.parse(localStorage.getItem('categories'));
-        this.setCategoryPropieties();
-      }
-    });
-
     this._route.params.subscribe(routeParam => {
       this.categoryReceivedByRoute = routeParam.category_name;
       //si las categorias estan llenas set las propiedades
       this.categories = JSON.parse(localStorage.getItem('categories'));
-      (this.categories)?this.setCategoryPropieties():'';
+      (this.categories) ? this.setCategoryPropieties() : '';
       //Consultamos las empresas y sus productos
       this.subcategorySelected = "";
       this.getPlacesWithProducts();
     });
+   
+    this._localStorageService.watchStorage().subscribe((data) => {
+       //Cuando cambien el filtro de tipo de mascota
+      if (data.change === 'pet_filter') {
+        this.getPlacesWithProducts();
+      }
+       //Cuando se llene las categorias
+      if (data.change === 'categories') {
+        this.categories = JSON.parse(localStorage.getItem('categories'));
+        (this.categories) ? this.setCategoryPropieties() : '';
+      }
+    });
+
+    
   }
 
   setCategoryPropieties() {
@@ -60,6 +69,7 @@ export class PlaceWithProductsComponent implements OnInit {
 
   changeSubcategory(subcategory) {
     this.subcategorySelected = subcategory.subcategory_name;
+    this.subcategoryIdSelected = subcategory.subcategory_id;
     this.getPlacesWithProducts();
   }
 

@@ -1,7 +1,11 @@
 <div class="brands-container">
 
   <h5 class="color-dark-green-text">Selecciona una marca</h5>
-  <select class="form-control d-block d-sm-none">
+  <loader *ngIf="loader"></loader>
+
+
+
+  <select *ngIf="!loader" class="form-control d-block d-sm-none">
     <option>--Seleccionar--</option>
     <option>Pedigree mini</option>
     <option>DOG CHOW CACHORROS</option>
@@ -9,43 +13,14 @@
     <option>BARF DOGO</option>
   </select>
 
+  <div *ngIf="!loader" class="d-none d-sm-block">
 
-  <div class="d-none d-sm-block">
-
-    <div class="contenedor-item">
+    <div class="contenedor-item" *ngFor="let brand of brands" id="{{brand.brand}}" [ngClass]="{'active': brand.isActive>0}">
       <span>
-        <span>Pedigree mini</span>
-      </span>
-    </div>
-    <div class="contenedor-item">
-      <span>
-        <span>DOG CHOW CACHORROS </span>
-      </span>
-    </div>
-    <div class="contenedor-item">
-      <span>
-        <span>PIXIE</span>
-      </span>
-    </div>
-    <div class="contenedor-item active">
-      <span>
-        <span>BARF DOGO</span>
-      </span>
-    </div>
-    <div class="contenedor-item">
-      <span>
-        <span>EXCELLENT ADULT </span>
-      </span>
-    </div>
-    <div class="contenedor-item">
-      <span>
-        <span>EXCELLENT ADULT </span>
+        <span>{{brand.brand}}</span>
       </span>
     </div>
 
   </div>
 
-
-
-  <br>
 </div>
