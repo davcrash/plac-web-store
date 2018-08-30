@@ -1,17 +1,26 @@
-<ng-template #productModal let-c="close" let-d="dismiss">
-{{product_id}}
-  <div class="modal-body">
-    <button type="button" class="close" aria-label="Close" (click)="c()">
-      <span aria-hidden="true">&times;</span>
+<ng-template #productModal let-c="close">
+
+  <loader *ngIf="loader"></loader>
+  <div class="align-items-end d-inline-block" *ngIf="!loader">
+    <button type="button" class="btn btn-light float-right" aria-label="Close" (click)="c()">
+      <i aria-hidden="true" class="fas fa-times d-inline-block align-center color-dark-gray-text"></i>
     </button>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+
+  <div class="modal-body row" *ngIf="!loader">
+
+    <div class="col-md-12 col-lg-6">
+      <img [src]="product.product_images[0].url" class="rounded mx-auto d-block" style="width: 100%; padding: 15px">
+    </div>
+    <div class="d-flex flex-column col-md-12 col-lg-6">
+      <div><h3>{{product.product_name}}</h3></div>
+      <div><h5 class="color-dark-green-text">${{product.product_price | number}}</h5></div>
+      <div class="mt-auto">
+        
+        <button class="btn btn-plac btn-block">Agregar</button>
+      </div>
+    </div>
+
+  </div>
+
 </ng-template>

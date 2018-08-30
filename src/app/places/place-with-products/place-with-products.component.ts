@@ -21,9 +21,9 @@ export class PlaceWithProductsComponent implements OnInit {
   categoryPropieties = {
     category_color: "",
     category_icon_url: "",
-    category_id:"",
-    category_img_url:"",
-    category_name:""
+    category_id: "",
+    category_img_url: "",
+    category_name: ""
   };
 
   subcategorySelected = "";
@@ -47,20 +47,20 @@ export class PlaceWithProductsComponent implements OnInit {
       this.subcategorySelected = "";
       this.getPlacesWithProducts();
     });
-   
+
     this._localStorageService.watchStorage().subscribe((data) => {
-       //Cuando cambien el filtro de tipo de mascota
+      //Cuando cambien el filtro de tipo de mascota
       if (data.change === 'pet_filter') {
         this.getPlacesWithProducts();
       }
-       //Cuando se llene las categorias
+      //Cuando se llene las categorias
       if (data.change === 'categories') {
         this.categories = JSON.parse(localStorage.getItem('categories'));
         (this.categories) ? this.setCategoryPropieties() : '';
       }
     });
 
-    
+
   }
 
   setCategoryPropieties() {
@@ -79,14 +79,11 @@ export class PlaceWithProductsComponent implements OnInit {
     this._placeWithProducts.getPlacesWithProducts(this.categoryReceivedByRoute, this.subcategorySelected).subscribe(result => {
       //Asignamos los datos a la variable de usuarios
       this.placesWithProducts = result;
-    },
-      error => {
-        console.log(error);
-      },
-      () => {//Cuando ya la solicitud se completo ocultamos el loader
-        this.loader = false;
-      }
-    );
+    }, error => {
+      console.log(error);
+    }, () => {//Cuando ya la solicitud se completo ocultamos el loader
+      this.loader = false;
+    });
   }
 
 }

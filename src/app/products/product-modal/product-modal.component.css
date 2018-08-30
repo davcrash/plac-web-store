@@ -1,0 +1,17 @@
+.btn-light {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-light:hover {
+    background-color: #ededed;
+}
+
+.btn-light:hover>i {
+    color: #00B99B;
+}
+
+.btn-light.color-dark-green-text:hover {
+    color: #00B99B;
+}
+
