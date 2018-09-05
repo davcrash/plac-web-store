@@ -9,6 +9,8 @@ import { LocalStorageService } from '../../local-storage.service';
 })
 export class SubcategoriesComponent implements OnChanges, OnInit {
 
+  loader:boolean = true;
+
   @Input() categoryName: string;
   @Output() public subcategorySelected = new EventEmitter<any>();
   currentSubcategorySelected 
@@ -21,6 +23,7 @@ export class SubcategoriesComponent implements OnChanges, OnInit {
   ngOnInit() {
     this._localStorageService.watchStorage().subscribe((data) => {
       if (data.change === 'pet_filter') {
+        this.loader = true;
         this.getSubCategoriesByCategoryName();
       }
     });
@@ -35,6 +38,7 @@ export class SubcategoriesComponent implements OnChanges, OnInit {
     if (changes['categoryName']) {
       this.subcategories = null;
       this.categoryName = changes['categoryName'].currentValue;
+      this.loader = true;
       this.getSubCategoriesByCategoryName();
     }
   }
@@ -44,7 +48,10 @@ export class SubcategoriesComponent implements OnChanges, OnInit {
     this._subcategoriesService.getSubCategories(this.categoryName, localStorage.getItem('pet_filter'))
       .subscribe(res => {
         this.subcategories = res;
-        console.log(res);
+      },error=>{
+        console.log(error);
+      },()=>{
+        this.loader = false;
       });
   }
 

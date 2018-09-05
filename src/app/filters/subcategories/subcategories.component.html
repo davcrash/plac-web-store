@@ -1,4 +1,4 @@
-<loader *ngIf="!subcategories"></loader>
+<loader *ngIf="loader"></loader>
 <div class="d-inline-flex subcategory" *ngFor="let subcategory of subcategories">
   <button [ngClass]="{'active':currentSubcategorySelected === subcategory}" class="btn btn-outline-plac btn-outline-plac-variation"
     (click)="selectSubcategory(subcategory);">

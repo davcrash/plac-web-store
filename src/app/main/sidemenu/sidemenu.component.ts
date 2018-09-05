@@ -25,8 +25,8 @@ export class SidemenuComponent implements OnInit {
     this._sidemenuService.getCategories()
       .subscribe(res => {
         this.categories = res;
-      }, err => {
-        console.log(err);
+      }, error => {
+        console.log(error);
       });
   }
 

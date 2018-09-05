@@ -74,7 +74,6 @@ export class HomePageComponent implements OnInit {
     this._homeService.getFeaturedPlaces()
       .subscribe(places => {
         this.featuredPlaces = places;
-        console.log(places);
       }, error => {
         console.log(error);
       }, () => {//Cuando ya la solicitud se completo ocultamos el loader
