@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PlaceWithProductsService {
+export class CategoryWithFiltersService {
 
   constructor(private _globalService: GlobalService) { }
 

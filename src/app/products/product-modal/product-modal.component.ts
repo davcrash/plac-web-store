@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductModalService } from '../services/product-modal.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-modal',
@@ -15,9 +14,10 @@ export class ProductModalComponent implements OnInit {
 
 
   productId;
-  product: Observable<any>;
+  product;
   loader: boolean = true;
-
+  productShortDescription:string;
+  productViewDescription:string;
 
   constructor(
     private _modalService: NgbModal,
@@ -33,6 +33,16 @@ export class ProductModalComponent implements OnInit {
       this._productModalService.getProductById(this.productId)
         .subscribe(res => {
           this.product = res;
+
+          let maxLength = 170;
+          if (this.product.product_description.length > maxLength) {
+            
+            this.productShortDescription = this.product.product_description.substring(0, maxLength).trim().concat('...');
+            this.productViewDescription = this.productShortDescription
+          }else{
+            this.productViewDescription = this.product.product_description;
+          }
+
           this.loader = false
         }, error => {
           console.log(error);
@@ -49,7 +59,7 @@ export class ProductModalComponent implements OnInit {
       this._modalService.open(this.modal, { size: 'lg' }).result.then(() => {
         //regresar atras si se cierra
         //this._location.back();
-        this._router.navigate(['../../'], { relativeTo: this._route});
+        this._router.navigate(['../../'], { relativeTo: this._route });
       }, () => {
         //regresar atras si se da click afuera
         //this._location.back();
@@ -58,6 +68,10 @@ export class ProductModalComponent implements OnInit {
 
     }, 1);
 
+  }
+
+  vewMoreText(){
+    (this.product.product_description === this.productViewDescription)?this.productViewDescription=this.productShortDescription:this.productViewDescription=this.product.product_description
   }
 
 }

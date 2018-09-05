@@ -32,6 +32,7 @@ export class BrandsComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['categoryId'] && this.categoryId != '') {
       this.loader=true;
+      this.subcategoryId = null;
       this.categoryId = changes['categoryId'].currentValue;
       this.getBrands();
     }

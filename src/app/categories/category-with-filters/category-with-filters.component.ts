@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
-import { PlaceWithProductsService } from '../services/place-with-products.service';
+import { Component, OnInit} from '@angular/core';
+import { ActivatedRoute} from "@angular/router";
+import { CategoryWithFiltersService } from '../services/category-with-filters.service';
 import { LocalStorageService } from '../../local-storage.service';
 
 @Component({
-  selector: 'app-place-with-products',
-  templateUrl: './place-with-products.component.html',
-  styleUrls: ['./place-with-products.component.css']
+  selector: 'app-category-with-filters',
+  templateUrl: './category-with-filters.component.html',
+  styleUrls: ['./category-with-filters.component.css']
 })
-export class PlaceWithProductsComponent implements OnInit {
+export class CategoryWithFiltersComponent implements OnInit {
 
+  
   loader = false;
 
   //CategoryReceivedByRoute = this._route.snapshot.params['category_name'];
@@ -33,9 +34,10 @@ export class PlaceWithProductsComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _placeWithProducts: PlaceWithProductsService,
+    private _categoryWithFiltersService: CategoryWithFiltersService,
     private _localStorageService: LocalStorageService
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
     this._route.params.subscribe(routeParam => {
@@ -76,7 +78,8 @@ export class PlaceWithProductsComponent implements OnInit {
   getPlacesWithProducts() {
     //Mostramos el loader para comenzar a hacer la solicitud
     this.loader = true;
-    this._placeWithProducts.getPlacesWithProducts(this.categoryReceivedByRoute, this.subcategorySelected).subscribe(result => {
+    this._categoryWithFiltersService.getPlacesWithProducts(this.categoryReceivedByRoute, this.subcategorySelected)
+    .subscribe(result => {
       //Asignamos los datos a la variable de usuarios
       this.placesWithProducts = result;
     }, error => {
@@ -85,5 +88,6 @@ export class PlaceWithProductsComponent implements OnInit {
       this.loader = false;
     });
   }
+
 
 }

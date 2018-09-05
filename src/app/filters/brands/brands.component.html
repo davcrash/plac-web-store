@@ -6,11 +6,8 @@
 
 
   <select *ngIf="!loader" class="form-control d-block d-sm-none">
-    <option>--Seleccionar--</option>
-    <option>Pedigree mini</option>
-    <option>DOG CHOW CACHORROS</option>
-    <option>PIXIE</option>
-    <option>BARF DOGO</option>
+    <option value="" selected disabled>Marcas</option>
+    <option *ngFor="let brand of brands" value="{{brand.brand}}" [selected]="brand.isActive>0">{{brand.brand}}</option>
   </select>
 
   <div *ngIf="!loader" class="d-none d-sm-block">

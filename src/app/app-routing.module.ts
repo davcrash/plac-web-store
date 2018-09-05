@@ -6,8 +6,9 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { LoginComponent } from './users/login/login.component';
 import { HomePageComponent } from './main/home-page/home-page.component';
-import { PlaceWithProductsComponent } from './places/place-with-products/place-with-products.component';
 import { ProductModalComponent } from './products/product-modal/product-modal.component';
+import { PlaceProfileComponent } from './places/place-profile/place-profile.component';
+import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
 
 const routes: Routes = [
   {
@@ -17,10 +18,11 @@ const routes: Routes = [
     ]
   },
   { path: 'login', component: LoginComponent },
+  { path: 'place', component: PlaceProfileComponent },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
   {
-    path: 'categoria/:category_name', component: PlaceWithProductsComponent,
+    path: 'categoria/:category_name', component: CategoryWithFiltersComponent,
     children: [
       { path: 'product/:id', component: ProductModalComponent }
     ]

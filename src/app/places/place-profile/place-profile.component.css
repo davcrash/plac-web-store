@@ -1,0 +1,18 @@
+.container-products {
+    width: calc(100vw - 300px);
+}
+.color-dark-gray-text>.breadcrumb-item.active {
+    color: #00B99B;
+}
+
+.color-dark-gray-text>.breadcrumb-item:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #00B99B;
+}
+
+.breadcrumbs-container {
+    background-color: transparent;
+    margin-bottom: 0;
+    min-height: auto;
+}

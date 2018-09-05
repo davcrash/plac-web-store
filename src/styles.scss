@@ -127,37 +127,37 @@ nav {
 
 .btn-plac {
     color: #fff;
-    background-color: #15d2bb;
-    border-color: #15d2bb;
+    background-color: #00B99B;
+    border-color: #00B99B;
 }
 
 .btn-plac:hover {
     color: #fff;
-    background-color: #13b9a6;
-    border-color: #15d2bb;
+    background-color: #049b82;
+    border-color: #049b82;
 }
 
 /*Boton outline con color de plac*/
 
 .btn-outline-plac {
-    color: #15d2bb;
+    color: #00B99B;
     background-color: transparent;
     background-image: none;
-    border-color: #15d2bb;
+    border-color: #00B99B;
 }
 
 .btn-outline-plac:hover {
     color: #fff;
-    background-color: #15d2bb;
-    border-color: #15d2bb;
+    background-color: #00B99B;
+    border-color: #00B99B;
 }
 
 .btn-outline-plac:not(:disabled):not(.disabled).active,
 .btn-outline-plac:not(:disabled):not(.disabled):active,
 .show>.btn-outline-plac.dropdown-toggle {
     color: #fff;
-    background-color: #15d2bb;
-    border-color: #15d2bb;
+    background-color: #00B99B;
+    border-color: #00B99B;
 }
 
 .btn-outline-plac.focus,

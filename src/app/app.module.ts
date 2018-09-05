@@ -34,11 +34,12 @@ import { HomePageComponent } from './main/home-page/home-page.component';
 import { BannerComponent } from './advertising/banner/banner.component';
 import { SubcategoriesComponent } from './filters/subcategories/subcategories.component';
 import { BrandsComponent } from './filters/brands/brands.component';
-import { PlaceWithProductsComponent } from './places/place-with-products/place-with-products.component';
 import { CarouselArrowsComponent } from './main/carousel-arrows/carousel-arrows.component';
 import { PlaceCardComponent } from './places/place-card/place-card.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { ProductModalComponent } from './products/product-modal/product-modal.component';
+import { PlaceProfileComponent } from './places/place-profile/place-profile.component';
+import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
 
 @NgModule({
   declarations: [
@@ -54,11 +55,12 @@ import { ProductModalComponent } from './products/product-modal/product-modal.co
     BannerComponent,
     SubcategoriesComponent,
     BrandsComponent,
-    PlaceWithProductsComponent,
     CarouselArrowsComponent,
     PlaceCardComponent,
     ProductCardComponent,
     ProductModalComponent,
+    PlaceProfileComponent,
+    CategoryWithFiltersComponent,
   ],
   imports: [
     BrowserModule,
