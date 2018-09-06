@@ -10,7 +10,7 @@ export class CategoryWithFiltersService {
   constructor(private _globalService: GlobalService) { }
 
   
-  getPlacesWithProducts(categoryReceivedByRoute, subcategorySelected): Observable<any> {
+  getPlacesWithProducts(categoryReceivedByRoute, subcategorySelected, productBrandSelected): Observable<any> {
     var params = {
       'cityId': localStorage.getItem("city"),
       'petTypeName': localStorage.getItem("pet_filter"),
@@ -19,7 +19,8 @@ export class CategoryWithFiltersService {
         'subcategory': {
           'subcategory_name': subcategorySelected
         }
-      }
+      },
+      'brand':productBrandSelected
     }
     return this._globalService.HttpMethod("POST", "store/places/city", params);
   }

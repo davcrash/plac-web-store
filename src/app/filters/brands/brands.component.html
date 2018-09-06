@@ -5,14 +5,14 @@
 
 
 
-  <select *ngIf="!loader" class="form-control d-block d-sm-none">
-    <option value="" selected disabled>Marcas</option>
-    <option *ngFor="let brand of brands" value="{{brand.brand}}" [selected]="brand.isActive>0">{{brand.brand}}</option>
+  <select *ngIf="!loader" class="form-control d-block d-sm-none" (change)="selectBrand($event.target.value)">
+    <option value="" disabled [selected]="productBrandSelected == '' || productBrandSelected == null">Marcas</option>
+    <option *ngFor="let brand of brands" value="{{brand.brand}}" [selected]="productBrandSelected == brand.brand">{{brand.brand}}</option>
   </select>
 
   <div *ngIf="!loader" class="d-none d-sm-block">
 
-    <div class="contenedor-item" *ngFor="let brand of brands" id="{{brand.brand}}" [ngClass]="{'active': brand.isActive>0}">
+    <div class="contenedor-item" *ngFor="let brand of brands" id="{{brand.brand}}" [ngClass]="{'active': productBrandSelected == brand.brand}" (click)="selectBrand(brand.brand)">
       <span>
         <span>{{brand.brand}}</span>
       </span>

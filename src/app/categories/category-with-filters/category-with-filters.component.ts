@@ -1,5 +1,5 @@
-import { Component, OnInit} from '@angular/core';
-import { ActivatedRoute} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 import { CategoryWithFiltersService } from '../services/category-with-filters.service';
 import { LocalStorageService } from '../../local-storage.service';
 
@@ -10,7 +10,7 @@ import { LocalStorageService } from '../../local-storage.service';
 })
 export class CategoryWithFiltersComponent implements OnInit {
 
-  
+
   loader = false;
 
   //CategoryReceivedByRoute = this._route.snapshot.params['category_name'];
@@ -27,16 +27,21 @@ export class CategoryWithFiltersComponent implements OnInit {
     category_name: ""
   };
 
-  subcategorySelected = "";
+  subcategorySelected: string;
   subcategoryIdSelected = "";
+  productBrandSelected: string;
+
+  needResetBrand:string;
+  needResetSubcategory:boolean = false;
 
   placesWithProducts;
 
   constructor(
     private _route: ActivatedRoute,
+    private _router: Router,
     private _categoryWithFiltersService: CategoryWithFiltersService,
     private _localStorageService: LocalStorageService
-  ) { 
+  ) {
   }
 
   ngOnInit() {
@@ -46,7 +51,8 @@ export class CategoryWithFiltersComponent implements OnInit {
       this.categories = JSON.parse(localStorage.getItem('categories'));
       (this.categories) ? this.setCategoryPropieties() : '';
       //Consultamos las empresas y sus productos
-      this.subcategorySelected = "";
+      this.subcategorySelected = null;
+      this.productBrandSelected = null;
       this.getPlacesWithProducts();
     });
 
@@ -67,26 +73,58 @@ export class CategoryWithFiltersComponent implements OnInit {
 
   setCategoryPropieties() {
     this.categoryPropieties = this.categories.find(category => category.category_name === this.categoryReceivedByRoute);
+    (this.categoryPropieties==undefined)?this._router.navigate(['']):'';
   }
 
   changeSubcategory(subcategory) {
+    this.productBrandSelected = null;
     this.subcategorySelected = subcategory.subcategory_name;
     this.subcategoryIdSelected = subcategory.subcategory_id;
+    this.getPlacesWithProducts();
+  }
+
+  changeBrand(brand) {
+    this.productBrandSelected = brand;
     this.getPlacesWithProducts();
   }
 
   getPlacesWithProducts() {
     //Mostramos el loader para comenzar a hacer la solicitud
     this.loader = true;
-    this._categoryWithFiltersService.getPlacesWithProducts(this.categoryReceivedByRoute, this.subcategorySelected)
-    .subscribe(result => {
-      //Asignamos los datos a la variable de usuarios
-      this.placesWithProducts = result;
-    }, error => {
-      console.log(error);
-    }, () => {//Cuando ya la solicitud se completo ocultamos el loader
-      this.loader = false;
-    });
+    this._categoryWithFiltersService.getPlacesWithProducts(this.categoryReceivedByRoute, this.subcategorySelected, this.productBrandSelected)
+      .subscribe(result => {
+        //Asignamos los datos a la variable de usuarios
+        this.placesWithProducts = result;
+      }, error => {
+        console.log(error);
+      }, () => {//Cuando ya la solicitud se completo ocultamos el loader
+        this.loader = false;
+      });
+  }
+
+  manageBreadcrumbs(key) {
+    switch (key) {
+      case 1:
+        if (this.subcategorySelected != null || this.productBrandSelected != null) {
+          this.subcategorySelected = null;
+          this.productBrandSelected = null;
+          this.needResetBrand = 'category';
+          this.needResetSubcategory = !this.needResetSubcategory;
+          this.getPlacesWithProducts();
+        }
+        break;
+      case 2:
+        if (this.productBrandSelected != null) {
+          this.productBrandSelected = null;
+          this.needResetBrand += 'sub';
+          this.getPlacesWithProducts();
+        }
+        break;
+      case 3:
+        //no hace nada
+        break;
+
+    }
   }
 
 

@@ -53,8 +53,8 @@
 
 
 <div class="home-container">
-
-  <div class="container-fluid">
+  <loader *ngIf="loaderfeaturedProducts && loaderfeaturedPlaces"></loader>
+  <div *ngIf="!loaderfeaturedProducts && !loaderfeaturedPlaces" class="container-fluid">
 
     <div class="row justify-content-center">
       <div class="col-auto">
@@ -89,7 +89,6 @@
 
 
 
-  <loader *ngIf="loaderfeaturedProducts && loaderfeaturedPlaces"></loader>
 
   <div *ngIf="!loaderfeaturedProducts && !loaderfeaturedPlaces">
     <h3>Los más vendidos</h3>

@@ -13,6 +13,9 @@ export class SubcategoriesComponent implements OnChanges, OnInit {
 
   @Input() categoryName: string;
   @Output() public subcategorySelected = new EventEmitter<any>();
+
+  @Input() needReset?: boolean = false;
+
   currentSubcategorySelected 
   subcategories
   constructor(
@@ -35,6 +38,9 @@ export class SubcategoriesComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['needReset']) {
+      this.currentSubcategorySelected = null;
+    }
     if (changes['categoryName']) {
       this.subcategories = null;
       this.categoryName = changes['categoryName'].currentValue;

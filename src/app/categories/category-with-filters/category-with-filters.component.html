@@ -15,44 +15,50 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 text-center subcategory-container">
-      <app-subcategories [categoryName]="categoryReceivedByRoute" (subcategorySelected)="changeSubcategory($event)"></app-subcategories>
+      <app-subcategories [needReset]="needResetSubcategory"  [categoryName]="categoryReceivedByRoute" (subcategorySelected)="changeSubcategory($event)"></app-subcategories>
     </div>
     <div class="col-sm-auto col-12 ng-sidebar-width">
-      <app-brands [categoryId]="categoryPropieties.category_id" [subcategoryId]="subcategoryIdSelected"></app-brands>
+      <app-brands [needReset]="needResetBrand" [categoryId]="categoryPropieties.category_id" [subcategoryId]="subcategoryIdSelected" (brandSelected)="changeBrand($event)"></app-brands>
     </div>
 
 
     <div class="col-sm-auto col-12 container-products container-fluid">
-      <loader *ngIf="loader"></loader>
+
 
       <ol class="breadcrumb breadcrumbs-container color-dark-gray-text">
-        <li class="breadcrumb-item">
-          <span>Alimentos</span>
+        <li class="breadcrumb-item" [ngClass]="{'active': subcategorySelected == null && productBrandSelected ==null}"
+          (click)="manageBreadcrumbs(1)">
+          <span>{{categoryReceivedByRoute}}</span>
         </li>
-        <li class="breadcrumb-item">
-          <span>Barf</span>
+        <li class="breadcrumb-item" *ngIf="subcategorySelected" [ngClass]="{'active': productBrandSelected ==null}"
+          (click)="manageBreadcrumbs(2)">
+          <span>{{subcategorySelected}}</span>
         </li>
-        <li class="breadcrumb-item active">
-          <span>PIXIE</span>
+        <li class="breadcrumb-item active" *ngIf="productBrandSelected" (click)="manageBreadcrumbs(3)">
+          <span>{{productBrandSelected}}</span>
         </li>
       </ol>
-
+      <loader *ngIf="loader"></loader>
       <!--INICIO: lista de productos scroll horizontal-->
-      <carousel-arrows *ngFor="let place of placesWithProducts">
+      <div *ngIf="!loader">
+        <carousel-arrows *ngFor="let place of placesWithProducts">
 
-        <!-- Inicio: Card perfil empresa-->
-        <app-place-card [placeId]="place.place_id" [placeDescription]="place.place_description" [placePathImageLogo]="place.path_image_logo" [placeAssessment]="place.assessment">
-        </app-place-card>
-        <!-- Fin: Card perfil empresa-->
+          <!-- Inicio: Card perfil empresa-->
+          <app-place-card [placeId]="place.place_id" [placeDescription]="place.place_description" [placePathImageLogo]="place.path_image_logo"
+            [placeAssessment]="place.assessment">
+          </app-place-card>
+          <!-- Fin: Card perfil empresa-->
 
-        <!-- Inicio: Card producto-->
-        <app-product-card *ngFor="let product of place.products.data" [productId]="product.product_id" [imgProduct]="product.product_images[0].url"
-          [productName]="product.product_name" [productPrice]="product.product_price">
-        </app-product-card>
-        <!-- Fin: Card producto-->
+          <!-- Inicio: Card producto-->
+          <app-product-card *ngFor="let product of place.products.data" [productId]="product.product_id" [imgProduct]="product.product_images[0].url"
+            [productName]="product.product_name" [productPrice]="product.product_price">
+          </app-product-card>
+          <!-- Fin: Card producto-->
 
-        <!--FIN: lista de productos scroll horizontal-->
-      </carousel-arrows>
+          <!--FIN: lista de productos scroll horizontal-->
+        </carousel-arrows>
+      </div>
+
 
 
     </div>
