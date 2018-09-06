@@ -16,8 +16,18 @@ export class ProductModalComponent implements OnInit {
   productId;
   product;
   loader: boolean = true;
-  productShortDescription:string;
-  productViewDescription:string;
+  productShortDescription: string;
+  productViewDescription: string;
+
+  question = {
+    product_id: "",
+    place_id: "",
+    plac_user_id: "",
+    question_txt: "",
+  }
+
+  textButtonQuestion = "Preguntar";
+  questionGenerated;
 
   constructor(
     private _modalService: NgbModal,
@@ -33,13 +43,13 @@ export class ProductModalComponent implements OnInit {
       this._productModalService.getProductById(this.productId)
         .subscribe(res => {
           this.product = res;
-
+          this.product.questions.reverse();
           let maxLength = 170;
           if (this.product.product_description.length > maxLength) {
-            
+
             this.productShortDescription = this.product.product_description.substring(0, maxLength).trim().concat('...');
             this.productViewDescription = this.productShortDescription
-          }else{
+          } else {
             this.productViewDescription = this.product.product_description;
           }
 
@@ -70,8 +80,25 @@ export class ProductModalComponent implements OnInit {
 
   }
 
-  vewMoreText(){
-    (this.product.product_description === this.productViewDescription)?this.productViewDescription=this.productShortDescription:this.productViewDescription=this.product.product_description
+  vewMoreText() {
+    (this.product.product_description === this.productViewDescription) ? this.productViewDescription = this.productShortDescription : this.productViewDescription = this.product.product_description
+  }
+
+  senNewQuestion() {
+    this.question.place_id = this.product.place_location.place_id;
+    this.question.product_id = this.productId;
+    this.question.plac_user_id = "04MUa3jkiL";
+
+    this.textButtonQuestion = "Enviando...";
+    this._productModalService.sendNewQuestion(this.question).subscribe(data => {
+      this.questionGenerated = data;
+      this.product.questions.push(this.questionGenerated);
+      this.product.questions.reverse();
+      this.textButtonQuestion = "Preguntar";
+    }, error => {
+      console.log(error);
+      this.textButtonQuestion = "Preguntar";
+    });
   }
 
 }
