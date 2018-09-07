@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductModalService } from '../services/product-modal.service';
+import { ShopCartService } from '../../shop-cart/services/shop-cart.service';
 
 @Component({
   selector: 'app-product-modal',
@@ -19,6 +20,9 @@ export class ProductModalComponent implements OnInit {
   productShortDescription: string;
   productViewDescription: string;
 
+  quantityToAddToCart = 0; //Cantidad para agregar por defecto
+
+
   question = {
     product_id: "",
     place_id: "",
@@ -33,7 +37,8 @@ export class ProductModalComponent implements OnInit {
     private _modalService: NgbModal,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _productModalService: ProductModalService
+    private _productModalService: ProductModalService,
+    private _shopCartService: ShopCartService
   ) {
   }
 
@@ -52,6 +57,10 @@ export class ProductModalComponent implements OnInit {
           } else {
             this.productViewDescription = this.product.product_description;
           }
+
+          //Consultamos si esta en el carrito
+          var quantityInCart = (this._shopCartService.getProductInCart(this.product)).quantity;
+          this.quantityToAddToCart = quantityInCart;
 
           this.loader = false
         }, error => {
@@ -100,5 +109,20 @@ export class ProductModalComponent implements OnInit {
       this.textButtonQuestion = "Preguntar";
     });
   }
+
+  addUnits(){
+    if(this.quantityToAddToCart <= 50){
+      this.quantityToAddToCart = (this.quantityToAddToCart + 1);
+      this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart);   
+    }
+  }
+
+  removeUnits(){
+    if(this.quantityToAddToCart >0){
+      this.quantityToAddToCart = (this.quantityToAddToCart - 1);
+      this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart);   
+    }
+  }
+
 
 }

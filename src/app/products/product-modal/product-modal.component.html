@@ -34,14 +34,23 @@
           <div>
             <span class="color-dark-green-text" style="font-size: 1.25rem;">${{product.product_price | number}}</span>
           </div>
-          <button class="btn btn-outline-plac ">
-            <i class="fas fa-minus"></i>
-          </button>
-          <span style="margin-left: 20px; margin-right: 20px">12</span>
-          <button class="btn btn-outline-plac ">
-            <i class="fas fa-plus"></i>
-          </button>
-          <button class="btn btn-plac float-right">Agregar</button>
+
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button (click)="removeUnits()" class="btn btn-outline-plac" type="button">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+            <input [disabled]="true" [(ngModel)]="quantityToAddToCart" name="quantityToAddToCart" type="number" class="form-control"  style="flex: none;width: 70px;"
+              aria-describedby="button-addon1">
+            <div class="input-group-append">
+              <button (click)="addUnits()" class="btn btn-outline-plac" type="button">
+                <i class="fas fa-plus d-inline"></i>&nbsp;Agregar
+              </button>
+            </div>
+          </div>
+          <!--<button class="btn btn-plac float-right" (click)="addProductToCart()">Agregar</button>-->
         </div>
       </div>
 
@@ -52,11 +61,13 @@
     <b class="color-dark-gray-text">Preguntas</b>
 
     <div class="input-group mb-3">
-      <textarea [(ngModel)]="question.question_txt" name="hey" type="text" class="form-control" placeholder="Preguntarle al vendedor..." rows="2" style="resize: none;"></textarea>
+      <textarea [(ngModel)]="question.question_txt" name="hey" type="text" class="form-control" placeholder="Preguntarle al vendedor..."
+        rows="2" style="resize: none;"></textarea>
       <div class="input-group-append">
-        <button [disabled]="textButtonQuestion != 'Preguntar' || question.question_txt == ''" (click)="senNewQuestion()" class="btn btn-outline-plac" type="button">{{textButtonQuestion}}</button>
+        <button [disabled]="textButtonQuestion != 'Preguntar' || question.question_txt == ''" (click)="senNewQuestion()" class="btn btn-outline-plac"
+          type="button">{{textButtonQuestion}}</button>
       </div>
-      
+
     </div>
     <!--Inicio: Preguntas realizadas-->
     <div *ngFor="let question of product.questions">
@@ -64,16 +75,16 @@
 
       <div class="row">
         <div class="col-md-1" align="center">
-          <div  class="avatar-question" >?</div>
+          <div class="avatar-question">?</div>
         </div>
         <div class="col-md-11">
           <b>{{question.question_txt}}</b>
         </div>
       </div>
       <div class="row">
-        <div  *ngIf="question.answer_txt" class="col-md-1 offset-md-1">
+        <div *ngIf="question.answer_txt" class="col-md-1 offset-md-1">
           <div class="icon-question-answered">
-              <i class="far fa-check-circle" ></i>
+            <i class="far fa-check-circle"></i>
           </div>
         </div>
         <div class="col-md-10" style="text-align: justify;">
