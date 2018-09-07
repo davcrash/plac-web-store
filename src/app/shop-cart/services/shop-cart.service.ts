@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { GlobalService } from '../../global.service';
 import { LocalStorageService } from '../../local-storage.service';
 
 @Injectable({
@@ -22,13 +21,10 @@ export class ShopCartService {
     if (shopCart) {
 
       //Buscamos en el objeto del carro si la empresa ya esta
-      var objectPlace = shopCart.find(element => {
-        if (element.place.place_id == product.place_id) {
-          //element.total = parseFloat(product.product_price) * parseInt(quantity);
-          // element.total = this.calculateTotalPlace(product, quantity);
-
+      var objectPlace = shopCart.find((element, index) => {
+        if(index != 0){
+          return element.place.place_id == product.place_id;
         }
-        return element.place.place_id == product.place_id;
       });
       //Validamos si el objeto de la empresa ya existe, si no lo creamos
       if (!objectPlace) {
@@ -78,12 +74,16 @@ export class ShopCartService {
       var newProduct: any = [];
 
       newProduct[0] = {
+        totalOrder: 0
+      };
+
+      newProduct[1] = {
         place: place,
         order_detail: [],
         //# total: product.product_price * parseInt(quantity)
       };
 
-      newProduct[0].order_detail[0] = {
+      newProduct[1].order_detail[0] = {
         product: product,
         quantity: quantity,
       }
@@ -100,20 +100,25 @@ export class ShopCartService {
     var shopCart = JSON.parse(localStorage.getItem("shop-cart"));
     var total = 0;
 
-    shopCart.forEach(element => {
-      total = total + parseFloat(element.total);
+    shopCart.forEach((element, index) => {
+      if (index != 0) {
+        total = total + parseFloat(element.total);
+      }
     });
 
-    this._localStorageService.removeItem("shop-cart-total");
-    this._localStorageService.setItem("shop-cart-total", total);
+    shopCart[0].totalOrder = total;
+    this._localStorageService.setItem("shop-cart", JSON.stringify(shopCart));
+
   }
 
   calculateTotalPlace(product) {
 
     var shopCart = JSON.parse(localStorage.getItem("shop-cart"));
 
-    var placeObject = shopCart.find(element => {
-      return element.place.place_id == product.place_id;
+    var placeObject = shopCart.find((element, index) => {
+      if (index != 0) {
+        return element.place.place_id == product.place_id;
+      }
     })
 
     var totalPlace = 0;
@@ -135,14 +140,16 @@ export class ShopCartService {
     };
 
     if (shopCart) {
-      shopCart.find(place => {
-      return  productObject = place.order_detail.find(productFind => {
-          return product.product_id == productFind.product.product_id;
-        });
+      shopCart.find((place, index) => {
+        if (index != 0) {
+          return productObject = place.order_detail.find(productFind => {
+            return product.product_id == productFind.product.product_id;
+          });
+        }
       });
     }
 
-    if(!productObject){
+    if (!productObject) {
       productObject = {
         quantity: 0
       };
