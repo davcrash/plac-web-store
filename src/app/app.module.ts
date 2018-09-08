@@ -40,6 +40,7 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
 import { ProductModalComponent } from './products/product-modal/product-modal.component';
 import { PlaceProfileComponent } from './places/place-profile/place-profile.component';
 import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
+import { ShopCartViewComponent } from './shop-cart/shop-cart-view/shop-cart-view.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { CategoryWithFiltersComponent } from './categories/category-with-filters
     ProductModalComponent,
     PlaceProfileComponent,
     CategoryWithFiltersComponent,
+    ShopCartViewComponent,
   ],
   imports: [
     BrowserModule,

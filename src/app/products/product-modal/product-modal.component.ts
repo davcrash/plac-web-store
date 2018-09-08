@@ -20,7 +20,7 @@ export class ProductModalComponent implements OnInit {
   productShortDescription: string;
   productViewDescription: string;
 
-  quantityToAddToCart = 0; //Cantidad para agregar por defecto
+  quantityToAddToCart = 1; //Cantidad para agregar por defecto
 
 
   question = {
@@ -32,6 +32,8 @@ export class ProductModalComponent implements OnInit {
 
   textButtonQuestion = "Preguntar";
   questionGenerated;
+
+  productInCart;
 
   constructor(
     private _modalService: NgbModal,
@@ -59,8 +61,8 @@ export class ProductModalComponent implements OnInit {
           }
 
           //Consultamos si esta en el carrito
-          var quantityInCart = (this._shopCartService.getProductInCart(this.product)).quantity;
-          this.quantityToAddToCart = quantityInCart;
+          this.productInCart = this._shopCartService.getProductInCart(this.product)
+          this.quantityToAddToCart = this.productInCart.quantity;
 
           this.loader = false
         }, error => {
@@ -113,16 +115,24 @@ export class ProductModalComponent implements OnInit {
   addUnits(){
     if(this.quantityToAddToCart <= 50){
       this.quantityToAddToCart = (this.quantityToAddToCart + 1);
-      this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart);   
+      this.productInCart.totalProduct = this.product.product_price * this.quantityToAddToCart;
     }
   }
 
   removeUnits(){
-    if(this.quantityToAddToCart >0){
+    if(this.quantityToAddToCart >1){
       this.quantityToAddToCart = (this.quantityToAddToCart - 1);
-      this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart);   
+      this.productInCart.totalProduct = this.product.product_price * this.quantityToAddToCart;
     }
   }
 
+  addProductToCart(){
+    this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart);  
+  }
+
+
+  removeProductInCart(){
+
+  }
 
 }

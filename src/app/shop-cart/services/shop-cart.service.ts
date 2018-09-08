@@ -136,7 +136,7 @@ export class ShopCartService {
   getProductInCart(product) {
     var shopCart = JSON.parse(localStorage.getItem("shop-cart"));
     var productObject = {
-      quantity: 0
+      quantity: 1
     };
 
     if (shopCart) {
@@ -151,7 +151,7 @@ export class ShopCartService {
 
     if (!productObject) {
       productObject = {
-        quantity: 0
+        quantity: 1
       };
     }
 

@@ -17,6 +17,7 @@
         <div>
           <h3>{{product.product_name}}</h3>
         </div>
+        <h5 style="font-family: Montserrat"><b>${{product.product_price | number}}</b></h5>
         <div class="text-muted">
           <b class="color-dark-gray-text">Descripción</b>
           <br>
@@ -31,26 +32,36 @@
 
         <br>
         <div class="mt-auto">
-          <div>
-            <span class="color-dark-green-text" style="font-size: 1.25rem;">${{product.product_price | number}}</span>
+
+         
+          <div style="margin-bottom: 5px; margin-left: 30px;">
+            <!-- <span class="color-dark-green-text" style="font-size: 1.25rem;">${{product.product_price | number}} cu</span>-->
+            <b *ngIf="!productInCart.totalProduct" class="color-dark-green-text" style="font-size: 1.25rem;"> ${{product.product_price | number}}</b>
+            <b *ngIf="productInCart.totalProduct" class="color-dark-green-text" style="font-size: 1.25rem;"> ${{productInCart.totalProduct | number}}</b>
           </div>
 
-
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <button (click)="removeUnits()" class="btn btn-outline-plac" type="button">
-                <i class="fas fa-minus"></i>
-              </button>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group mb-6">
+                <div class="input-group-prepend">
+                  <button (click)="removeUnits()" class="btn btn-outline-plac" type="button">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <input [disabled]="true" [(ngModel)]="quantityToAddToCart" name="quantityToAddToCart" type="number" class="form-control"
+                  style="flex: none;width: 55px; text-align:right;" aria-describedby="button-addon1">
+                <div class="input-group-append">
+                  <button (click)="addUnits()" class="btn btn-outline-plac" type="button">
+                    <i class="fas fa-plus d-inline"></i>
+                  </button>
+                </div>
+              </div>
             </div>
-            <input [disabled]="true" [(ngModel)]="quantityToAddToCart" name="quantityToAddToCart" type="number" class="form-control"  style="flex: none;width: 70px;"
-              aria-describedby="button-addon1">
-            <div class="input-group-append">
-              <button (click)="addUnits()" class="btn btn-outline-plac" type="button">
-                <i class="fas fa-plus d-inline"></i>&nbsp;Agregar
-              </button>
+            <div class="col-md-6">
+              <button class="btn btn-plac float-right " (click)="addProductToCart()" style="font-size: 1rem; padding-right: 25px; padding-left: 25px;"><i class="fas fa-shopping-cart" ></i>&nbsp;&nbsp;Agregar</button>
             </div>
           </div>
-          <!--<button class="btn btn-plac float-right" (click)="addProductToCart()">Agregar</button>-->
+
         </div>
       </div>
 
