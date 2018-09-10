@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { PlaceProfileService } from '../services/place-profile.service';
 
 @Component({
   selector: 'app-place-card',
@@ -11,14 +13,23 @@ export class PlaceCardComponent implements OnInit {
   @Input() private placeDescription: string;
   @Input() private placePathImageLogo: string;
   @Input() private placeName: string;
-
   @Input() private placeAssessment: number;
+
+
+  @Input() private placeToProfile?:any;
+  @Input() private categoryToProfile?:any;
+  @Input() private subcategoryNameToProfile?:any;
+  @Input() private subcategoryIdToProfile?:any;
+  @Input() private brandToProfile?:any;
 
   arrayAssessmentStars: Array<number>;
   arrayAssessmentNoStars: Array<number>;
 
 
-  constructor() { }
+  constructor(
+    private _router:Router,
+    private _placeProfileService: PlaceProfileService
+  ) { }
 
   ngOnInit() {
     //para listar las estrellas
@@ -29,6 +40,14 @@ export class PlaceCardComponent implements OnInit {
     if (this.placeDescription.length > maxLength) {
       this.placeDescription = this.placeDescription.substring(0, maxLength).trim().concat('...');;
     }
+  }
+
+  selectPlace(){
+    this._placeProfileService.place = this.placeToProfile;
+    this._placeProfileService.category = this.categoryToProfile;
+    this._placeProfileService.subcategoryId = this.subcategoryIdToProfile;
+    this._placeProfileService.brand = this.brandToProfile;
+    this._router.navigate(['/place/'+this.placeId]);
   }
 
 }

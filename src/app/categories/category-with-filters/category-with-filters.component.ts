@@ -59,6 +59,7 @@ export class CategoryWithFiltersComponent implements OnInit {
     this._localStorageService.watchStorage().subscribe((data) => {
       //Cuando cambien el filtro de tipo de mascota
       if (data.change === 'pet_filter') {
+        this.manageBreadcrumbs(1);
         this.getPlacesWithProducts();
       }
       //Cuando se llene las categorias
@@ -93,7 +94,6 @@ export class CategoryWithFiltersComponent implements OnInit {
     this.loader = true;
     this._categoryWithFiltersService.getPlacesWithProducts(this.categoryReceivedByRoute, this.subcategorySelected, this.productBrandSelected)
       .subscribe(result => {
-        //Asignamos los datos a la variable de usuarios
         this.placesWithProducts = result;
       }, error => {
         console.log(error);

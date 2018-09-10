@@ -12,12 +12,14 @@ export class BrandsComponent implements OnInit, OnChanges {
 
   @Input() categoryId: string;
   @Input() subcategoryId: string;
+  @Input() placeId?: string;
+  @Input() preBrandSelected?: string;
 
 
   @Input() needReset?: boolean = false;
 
   @Output() public brandSelected = new EventEmitter<any>();
-  
+
   brands;
   loader: boolean = true;
   productBrandSelected: string;
@@ -36,6 +38,7 @@ export class BrandsComponent implements OnInit, OnChanges {
         this.getBrands();
       }
     });
+    this.productBrandSelected = this.preBrandSelected;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -47,24 +50,27 @@ export class BrandsComponent implements OnInit, OnChanges {
         this.getBrands();
       }
     }
+
+    let flag = 0;
     if (changes['categoryId'] && this.categoryId != '') {
       this.productBrandSelected = null;
       this.loader = true;
       this.subcategoryId = null;
       this.categoryId = changes['categoryId'].currentValue;
-      this.getBrands();
+      flag += 1;
     }
     if (changes['subcategoryId']) {
       this.productBrandSelected = null;
       this.subcategoryId = changes['subcategoryId'].currentValue;
       this.loader = true;
-      this.getBrands();
+      flag += 1;
     }
+    
+    flag >= 1 ? this.getBrands() : '';
   }
 
   getBrands() {
-
-    this._brandsService.getBrands(this.categoryId, localStorage.getItem("pet_filter"), this.subcategoryId)
+    this._brandsService.getBrands(this.categoryId, localStorage.getItem("pet_filter"), this.subcategoryId, this.placeId)
       .subscribe(res => {
         this.brands = res;
       }, error => {

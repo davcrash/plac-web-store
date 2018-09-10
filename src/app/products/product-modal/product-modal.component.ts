@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+//import {Location} from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductModalService } from '../services/product-modal.service';
@@ -16,12 +17,13 @@ export class ProductModalComponent implements OnInit {
   productId;
   product;
   loader: boolean = true;
-  productShortDescription:string;
-  productViewDescription:string;
+  productShortDescription: string;
+  productViewDescription: string;
 
   constructor(
     private _modalService: NgbModal,
     private _route: ActivatedRoute,
+    //private _location: Location,
     private _router: Router,
     private _productModalService: ProductModalService
   ) {
@@ -36,10 +38,10 @@ export class ProductModalComponent implements OnInit {
 
           let maxLength = 170;
           if (this.product.product_description.length > maxLength) {
-            
+
             this.productShortDescription = this.product.product_description.substring(0, maxLength).trim().concat('...');
             this.productViewDescription = this.productShortDescription
-          }else{
+          } else {
             this.productViewDescription = this.product.product_description;
           }
 
@@ -59,19 +61,19 @@ export class ProductModalComponent implements OnInit {
       this._modalService.open(this.modal, { size: 'lg' }).result.then(() => {
         //regresar atras si se cierra
         //this._location.back();
-        this._router.navigate(['../../'], { relativeTo: this._route });
+        this._router.navigate(['../../'], { relativeTo: this._route, /*replaceUrl: true*/ });
       }, () => {
         //regresar atras si se da click afuera
         //this._location.back();
-        this._router.navigate(['../../'], { relativeTo: this._route });
+        this._router.navigate(['../../'], { relativeTo: this._route, /*replaceUrl: true*/ });
       });
 
     }, 1);
 
   }
 
-  vewMoreText(){
-    (this.product.product_description === this.productViewDescription)?this.productViewDescription=this.productShortDescription:this.productViewDescription=this.product.product_description
+  vewMoreText() {
+    (this.product.product_description === this.productViewDescription) ? this.productViewDescription = this.productShortDescription : this.productViewDescription = this.product.product_description
   }
 
 }

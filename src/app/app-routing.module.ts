@@ -18,7 +18,12 @@ const routes: Routes = [
     ]
   },
   { path: 'login', component: LoginComponent },
-  { path: 'place', component: PlaceProfileComponent },
+  {
+    path: 'place/:id', component: PlaceProfileComponent,
+    children: [
+      { path: 'product/:id', component: ProductModalComponent }
+    ]
+  },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
   {
