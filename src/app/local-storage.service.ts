@@ -11,7 +11,7 @@ export class LocalStorageService {
   constructor() { }
 
   watchStorage(): Observable<any> {
-    return this.storagePetSub.asObservable();
+      return this.storagePetSub.asObservable();
   }
 
   setItem(key: string, data: any) {

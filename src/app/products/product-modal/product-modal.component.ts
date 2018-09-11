@@ -127,12 +127,8 @@ export class ProductModalComponent implements OnInit {
   }
 
   addProductToCart(){
-    this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart);  
+    this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart); 
   }
 
-
-  removeProductInCart(){
-
-  }
 
 }

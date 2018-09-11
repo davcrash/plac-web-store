@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  rootApiUrl: "http://192.168.0.11:8000/",
+  rootApiUrl: "http://192.168.0.12:8000/",
   firebase: {
     apiKey: "AIzaSyChbdpaza09f_Y5aaVxkMjfm1Hvn0aCRxY",
     authDomain: "fir-plac-debug.firebaseapp.com",

@@ -5,6 +5,9 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+import { NgxNotificationComponent } from 'ngx-notification';
+
 //Environment
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -20,6 +23,8 @@ import { SidebarModule } from 'ng-sidebar';
 
 //Banner slide
 import {SlideshowModule} from 'ng-simple-slideshow';
+
+
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -45,6 +50,7 @@ import { ShopCartViewComponent } from './shop-cart/shop-cart-view/shop-cart-view
 @NgModule({
   declarations: [
     AppComponent,
+    NgxNotificationComponent,
     UserListComponent,
     UserFormComponent,
     PageNotFoundComponent,
