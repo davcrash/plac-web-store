@@ -7,10 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Environment
 import { environment } from '../environments/environment';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 
 //Firebase
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 //Estilos
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

@@ -49,6 +49,12 @@ export class BrandsComponent implements OnInit, OnChanges {
         this.subcategoryId = null;
         this.getBrands();
       }
+      else if (changes['needReset'].currentValue == 'categoryPlaceProfile') {
+        this.loader = true;
+        this.subcategoryId = null;
+        this.categoryId = null;
+        this.getBrands();
+      }
     }
 
     let flag = 0;
@@ -65,7 +71,6 @@ export class BrandsComponent implements OnInit, OnChanges {
       this.loader = true;
       flag += 1;
     }
-    
     flag >= 1 ? this.getBrands() : '';
   }
 

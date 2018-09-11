@@ -41,7 +41,6 @@ export class PlaceProfileService {
         'search': "",
       }
     };
-
     return this._globalService.HttpMethod("POST", 'store/place/products', params);
   }
 

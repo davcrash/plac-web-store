@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-//import {Location} from '@angular/common';
+import {Location} from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductModalService } from '../services/product-modal.service';
@@ -23,7 +23,7 @@ export class ProductModalComponent implements OnInit {
   constructor(
     private _modalService: NgbModal,
     private _route: ActivatedRoute,
-    //private _location: Location,
+    private _location: Location,
     private _router: Router,
     private _productModalService: ProductModalService
   ) {
@@ -60,12 +60,12 @@ export class ProductModalComponent implements OnInit {
       //abrir modal 
       this._modalService.open(this.modal, { size: 'lg' }).result.then(() => {
         //regresar atras si se cierra
-        //this._location.back();
-        this._router.navigate(['../../'], { relativeTo: this._route, /*replaceUrl: true*/ });
+        this._router.navigate(['../../'], { relativeTo: this._route, replaceUrl: true });
+        //this._location.replaceState('');
       }, () => {
         //regresar atras si se da click afuera
-        //this._location.back();
-        this._router.navigate(['../../'], { relativeTo: this._route, /*replaceUrl: true*/ });
+        this._router.navigate(['../../'], { relativeTo: this._route, replaceUrl: true });
+        //this._location.replaceState('');
       });
 
     }, 1);
