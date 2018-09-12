@@ -17,6 +17,10 @@ export class NavComponent implements OnInit {
   selectedPet: string;
 
 
+  //Si dan click en el nav se cierra el carrito
+  @Output() public closeShopCart = new EventEmitter<any>();
+
+
   constructor(
     private _localStorageService: LocalStorageService
   ) { }
@@ -35,6 +39,10 @@ export class NavComponent implements OnInit {
       }
     });
 
+  }
+
+  closeShopCartEmit(){
+    this.closeShopCart.emit(true);
   }
 
 

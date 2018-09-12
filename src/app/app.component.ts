@@ -18,7 +18,7 @@ export class AppComponent {
     _opened:false,
     _position:'right',
     _mode: 'over',
-    _closeOutside:true,
+    _closeOutside:false,
     _showBackdrop:true,
     _closeOnClickBackdrop:true
   }
@@ -33,6 +33,10 @@ export class AppComponent {
 
 
     localStorage.setItem("city", "2257"); //Codigo de bogota
+  }
+
+  closeShopCart(){
+    this.shopCarProperties._opened = false;
   }
 
 
@@ -55,6 +59,11 @@ export class AppComponent {
         this._closeOutside = true;
       }
     }
+  }
+
+
+  prueba(event){
+    console.log(event);
   }
 
 

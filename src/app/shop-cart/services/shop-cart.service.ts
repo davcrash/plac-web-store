@@ -31,6 +31,7 @@ export class ShopCartService {
         var newObjectPlace = {
           place: place,
           order_detail: [],
+          showPlace: true
           // total: product.product_price * quantity
         }
         shopCart.push(newObjectPlace);
@@ -55,7 +56,8 @@ export class ShopCartService {
       if (!objectProduct) {
         var newProductObject = {
           product: product,
-          quantity: quantity
+          quantity: quantity,
+          showProduct: true
         }
         //objectPlace.total = this.calculateTotalPlace(product, quantity);
         objectPlace.order_detail.push(newProductObject);
@@ -80,12 +82,14 @@ export class ShopCartService {
       newProduct[1] = {
         place: place,
         order_detail: [],
+        showPlace: true
         //# total: product.product_price * parseInt(quantity)
       };
 
       newProduct[1].order_detail[0] = {
         product: product,
         quantity: quantity,
+        showProduct: true
       }
 
       this._localStorageService.setItem("shop-cart", JSON.stringify(newProduct));
@@ -124,10 +128,20 @@ export class ShopCartService {
     var totalPlace = 0;
     placeObject.order_detail.forEach(element => {
       element.totalProduct = element.product.product_price * element.quantity;
+      if(element.quantity == 0){
+        element.showProduct = false;
+      }else{
+        element.showProduct = true;
+      }
       totalPlace += element.totalProduct;
     });
 
     placeObject.total = totalPlace;
+    if(totalPlace == 0){
+      placeObject.showPlace = false;
+    }else{
+      placeObject.showPlace = true;
+    }
 
     this._localStorageService.setItem("shop-cart", JSON.stringify(shopCart));
 
@@ -158,5 +172,12 @@ export class ShopCartService {
     return productObject;
   }
 
+  validateQuantities(){
+    if(JSON.parse(localStorage.getItem('shop-cart'))[0].totalOrder == 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
 }

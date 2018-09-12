@@ -8,7 +8,8 @@
     <small>Aqui se encuentran tus producto, estas a un paso de adquirirlos</small>
   </div>
 
-  <div *ngIf="!shopCart" style="height: 100%;" align="center">
+
+  <div *ngIf="cartEmpty" style="height: 100%;" align="center">
 
     <br>
     <br>
@@ -21,7 +22,8 @@
     <div *ngIf="shopCart != null && iPlace != 0">
 
       <!--Div de empresa -->
-      <div class="border" style="background-color: #F7F7F7">
+      <div class="border" style="background-color: #F7F7F7; margin-top: 25px;" *ngIf="placeObject.showPlace">
+        
         <div class="col-md-12">
           <table style="height: 100%;">
             <tbody>
@@ -54,34 +56,34 @@
       </div>
 
       <!--Lista de productos-->
-      <div class="border" *ngFor="let productObject of placeObject.order_detail; let iProdcut = index;">
-
-        <div class="border">
+      <div  *ngFor="let productObject of placeObject.order_detail; let iProdcut = index;">
+        <div class="border" *ngIf="productObject.showProduct">
           <div class="col-md-12">
-            <table style="height: 100%;">
+            <table style="height: 100%; width: 100%;">
               <tbody>
                 <tr>
 
-                  <td class="align-middle" style="width: 5%">
+                  <td class="align-middle" style="width: 5%;">
                   </td>
-                  <td class="align-middle" style="width: 15%">
+                  <td class="align-middle" style="width: 15%;">
                     <div style="width: 70px; height: 70px;">
                       <img src="{{productObject.product.product_images[0].url}}" style="max-height: 70px; max-width: 100%;">
                     </div>
                   </td>
 
-                  <td class="align-middle" style="width: 45%">
+                  <td class="align-middle" style="width: 40%;">
                     <h6 style="font-family: Montserrat">
                       {{productObject.product.product_name}}
                     </h6>
                   </td>
 
-                  <td class="align-middle" style="width: 35%;">
+                  <td class="align-middle" style="width: 20%;">
 
                     <div class="input-group mb-6">
                       <div class="input-group-prepend">
-                        <button (click)="decreaseUnit(iPlace, iProdcut)" class="btn btn-outline-plac btn-sm" type="button">
-                          <i class="fas fa-minus"></i>
+                        <button  (click)="decreaseUnit(iPlace, iProdcut)" class="btn btn-outline-plac btn-sm" type="button">
+                          <i *ngIf="productObject.quantity >= 2" class="fas fa-minus"></i>
+                          <i *ngIf="productObject.quantity <= 1" class="far fa-trash-alt"></i>
                         </button>
                       </div>
                       <input value="{{productObject.quantity}}" [disabled]="true" type="text" class="form-control form-control-sm" style="flex: none;width: 30px; text-align:center;">
@@ -93,7 +95,7 @@
                     </div>
                   </td>
 
-                  <td class="align-middle" style="width: 10%">
+                  <td class="align-middle" style="width: 20%;" style="text-align: right;">
                     <h6 style="font-family: Montserrat">${{productObject.totalProduct | number}}</h6>
                   </td>
 
@@ -106,7 +108,7 @@
       </div>
 
     </div>
-    <br>
 
   </div>
+  <br>
 </div>
