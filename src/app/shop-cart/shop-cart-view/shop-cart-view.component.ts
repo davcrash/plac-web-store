@@ -11,7 +11,7 @@ export class ShopCartViewComponent implements OnInit {
 
   shopCart: any;
   
-  cartEmpty = false;
+  cartEmpty = true;
 
 
 

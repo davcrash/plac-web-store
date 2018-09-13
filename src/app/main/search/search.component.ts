@@ -69,7 +69,6 @@ export class SearchComponent implements OnInit {
       .subscribe(result => {
         this.placesWithProductsPaginator = result.next_page_url;
         this.placesWithProducts.push.apply(this.placesWithProducts, result.data);
-        console.log(result);
       }, error => {
         console.log(error);
       }, () => {//Cuando ya la solicitud se completo ocultamos el loader

@@ -8,8 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 
 //Firebase
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+//import { AngularFireModule } from 'angularfire2';
+//import { AngularFireAuthModule } from 'angularfire2/auth';
 
 //Estilos
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -76,8 +76,8 @@ import { SearchComponent } from './main/search/search.component';
     HttpClientModule,
     ReactiveFormsModule,
     SidebarModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
+    //AngularFireModule.initializeApp(environment.firebase),
+    //AngularFireAuthModule,
     SlideshowModule,
     FormsModule,
     
