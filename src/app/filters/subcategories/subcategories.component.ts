@@ -46,6 +46,7 @@ export class SubcategoriesComponent implements OnChanges, OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['needReset']) {
+      this.preLoadSelected = null;
       this.currentSubcategorySelected = null;
     }
     if (changes['categoryName']) {

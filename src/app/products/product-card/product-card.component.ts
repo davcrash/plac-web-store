@@ -22,6 +22,8 @@ export class ProductCardComponent implements OnInit {
   }
 
   viewProduct() {
-    this._router.navigate([this._route.snapshot['_routerState'].url.replace(/%20/g, ' ') + '/product', this.productId]);
+    let queryParams = this._route.snapshot.queryParams;
+
+    this._router.navigate(['product', this.productId], { relativeTo: this._route, queryParams: queryParams });
   }
 }

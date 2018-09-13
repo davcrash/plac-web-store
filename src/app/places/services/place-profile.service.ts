@@ -25,7 +25,7 @@ export class PlaceProfileService {
     return this._globalService.HttpMethod("POST", 'store/place/id', params);
   }
 
-  getProducts(): Observable<any> {
+  getProducts(search?): Observable<any> {
     let params = {
       filters: {
         'pet_type': localStorage.getItem("pet_filter"),
@@ -38,14 +38,13 @@ export class PlaceProfileService {
         'brand': (this.brand) ? this.brand : null,
         'place_id': this.place.place_id,
         'limit': 20,
-        'search': "",
+        'search': (search) ? search : null,
       }
     };
-
     return this._globalService.HttpMethod("POST", 'store/place/products', params);
   }
 
-  getMoreProducts(url): Observable<any> {
+  getMoreProducts(url, search?): Observable<any> {
 
     let params = {
       filters: {
@@ -60,7 +59,7 @@ export class PlaceProfileService {
         'brand': (this.brand) ? this.brand : null,
         'place_id': this.place.place_id,
         'limit': 20,
-        'search': "",
+        'search': (search) ? search : null,
       }
     };
 

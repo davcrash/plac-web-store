@@ -1,4 +1,4 @@
-import { Component ,ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +7,16 @@ import { Component ,ViewChild} from '@angular/core';
 })
 export class AppComponent {
 
-@ViewChild('contentPages') contentPages; 
+  @ViewChild('contentPages') contentPages;
   //Variable que define propiedades del menu de categorias
   _opened: boolean = false;
   _sideBarMode: string;
   _closeOutside: boolean = false;
 
   //Variable que define propiedades del menu de categorias
-  shopCarProperties={
-    _opened:false,
-    _position:'right',
+  shopCarProperties = {
+    _opened: false,
+    _position: 'right',
     _mode: 'over',
     _closeOutside:false,
     _showBackdrop:true,
@@ -41,6 +41,13 @@ export class AppComponent {
 
 
   componentAdded(event) {/*Cuando el componente login se muestre el retorna un true para que escondamos el menu*/
+    /*
+    this.contentPages.nativeElement.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });*/
+
     this.contentPages.nativeElement.scrollTop = 0;//para que cuando se cambia de pagina se ponga en el principio
     if (event.showElements) {
       this._opened = false;

@@ -9,7 +9,7 @@ export class BrandsService {
 
   constructor(private _globalService: GlobalService) { }
 
-  getBrands(category_id, pet_target, subcategory_id, place_id?): Observable<any> {
+  getBrands(category_id, pet_target, subcategory_id, place_id?, search?): Observable<any> {
 
     var params = {
       filters: {
@@ -19,7 +19,8 @@ export class BrandsService {
     };
     subcategory_id != "" ? params.filters['subcategory_id'] = subcategory_id : '';
     place_id != "" ? params.filters['place_id'] = place_id : '';
-//console.log(params);
+    search != "" ? params.filters['search'] = search : '';
+    //console.log(params);
     return this._globalService.HttpMethod("POST", "store/place/products/brand", params);
   }
 }

@@ -4,16 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
-import { NgxNotificationComponent } from 'ngx-notification';
-
 //Environment
 import { environment } from '../environments/environment';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 
 //Firebase
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 //Estilos
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -46,11 +42,11 @@ import { ProductModalComponent } from './products/product-modal/product-modal.co
 import { PlaceProfileComponent } from './places/place-profile/place-profile.component';
 import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
 import { ShopCartViewComponent } from './shop-cart/shop-cart-view/shop-cart-view.component';
+import { SearchComponent } from './main/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NgxNotificationComponent,
     UserListComponent,
     UserFormComponent,
     PageNotFoundComponent,
@@ -69,9 +65,11 @@ import { ShopCartViewComponent } from './shop-cart/shop-cart-view/shop-cart-view
     PlaceProfileComponent,
     CategoryWithFiltersComponent,
     ShopCartViewComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     NgbModule.forRoot(),
     AppRoutingModule,
