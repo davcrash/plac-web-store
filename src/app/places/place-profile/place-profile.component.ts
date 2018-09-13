@@ -33,7 +33,9 @@ export class PlaceProfileComponent implements OnInit {
   productsPaginator;
 
 
-  loaderProducts:boolean = false;
+  searchText: string;
+
+  loaderProducts: boolean = false;
   constructor(
     private _placeProfileService: PlaceProfileService,
     private _route: ActivatedRoute,
@@ -54,13 +56,14 @@ export class PlaceProfileComponent implements OnInit {
     this._localStorageService.watchStorage().subscribe((data) => {
       //Cuando cambien el filtro de tipo de mascota
       if (data.change === 'pet_filter') {
-        this._placeProfileService.brand= null;
-        this._placeProfileService.category= null;
-        this._placeProfileService.subcategoryId= null;
+        this.searchText = null;
+        this._placeProfileService.brand = null;
+        this._placeProfileService.category = null;
+        this._placeProfileService.subcategoryId = null;
         this._placeProfileService.subcategoryName = null;
         this.needResetBrand += 'sub';
         this.getPlaceById();
-        
+
         this.categorySelected = null;
         this.categoryIdSelected = null;
         this.brandSelected = null;
@@ -68,7 +71,7 @@ export class PlaceProfileComponent implements OnInit {
         this.subcategoryNameSelected = null;
         this.subcategorySelected = null;
 
-       
+
       }
     });
 
@@ -116,9 +119,9 @@ export class PlaceProfileComponent implements OnInit {
 
   }
 
-  getInitProduct() {
+  getInitProduct(searchText?) {
     this.loaderProducts = true;
-    this._placeProfileService.getProducts()
+    this._placeProfileService.getProducts(searchText)
       .subscribe(result => {
         this.productsPaginator = result;
         this.products = this.productsPaginator.data;
@@ -132,7 +135,7 @@ export class PlaceProfileComponent implements OnInit {
 
 
   getMoreProducts() {
-    this._placeProfileService.getMoreProducts(this.productsPaginator.next_page_url)
+    this._placeProfileService.getMoreProducts(this.productsPaginator.next_page_url, this.searchText)
       .subscribe(result => {
         this.productsPaginator = result;
         this.products.push.apply(this.products, this.productsPaginator.data);
@@ -146,10 +149,11 @@ export class PlaceProfileComponent implements OnInit {
   selectBrand(event) {
     this.brandSelected = event;
     this._placeProfileService.brand = event;
-    this.getInitProduct();
+    this.getInitProduct(this.searchText);
   }
 
   selectSubcategory(event) {
+    this.searchText = null;
     let category = this.categoryArray.find(category => category.category_id === event.category_id);
     this.categoryIdSelected = event.category_id;
     this.categorySelected = category.category_name;
@@ -165,20 +169,33 @@ export class PlaceProfileComponent implements OnInit {
   }
 
   selectCategory(categoryIn) {
-      this.needResetSubcategory = !this.needResetSubcategory;
-      this.categorySelected = categoryIn.category_name;
-      this.categoryIdSelected = categoryIn.category_id;
-      this.subcategoryIdSelected = null;
-      this._placeProfileService.category = this.categorySelected;
-      let category = this.categoryArray.find(category => category.category_name === this.categorySelected);
-      this.subcategories = category.subcategories;
-      this._placeProfileService.subcategoryId = null;
-      this._placeProfileService.subcategoryName = null;
-      this.subcategoryNameSelected = null;
-      this.needResetBrand += 'sub';
+    this.searchText = null;
+    this.needResetSubcategory = !this.needResetSubcategory;
+    this.categorySelected = categoryIn.category_name;
+    this.categoryIdSelected = categoryIn.category_id;
+    this.subcategoryIdSelected = null;
+    this._placeProfileService.category = this.categorySelected;
+    let category = this.categoryArray.find(category => category.category_name === this.categorySelected);
+    this.subcategories = category.subcategories;
+    this._placeProfileService.subcategoryId = null;
+    this._placeProfileService.subcategoryName = null;
+    this.subcategoryNameSelected = null;
+    this.needResetBrand += 'sub';
+    this.brandSelected = null;
+    this._placeProfileService.brand = null;
+    this.getInitProduct();
+  }
+
+  onEnterSearch(searchInput) {
+    this.searchText = this.searchText.trim();
+    if (this.searchText != '') {
+      searchInput.blur();//se quita el focus del input
       this.brandSelected = null;
       this._placeProfileService.brand = null;
-      this.getInitProduct();
+      this.needResetBrand += 'sch';
+
+      this.getInitProduct(this.searchText);
+    }
   }
 
 
@@ -208,7 +225,7 @@ export class PlaceProfileComponent implements OnInit {
         }
         break;
       case 2:
-      
+
         if (this.subcategorySelected != null || this.brandSelected != null) {
           this.subcategorySelected = null;
           this.subcategoryIdSelected = null;

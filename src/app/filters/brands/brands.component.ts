@@ -15,6 +15,8 @@ export class BrandsComponent implements OnInit, OnChanges {
   @Input() placeId?: string;
   @Input() preBrandSelected?: string;
 
+  @Input() search?: string;
+
 
   @Input() needReset?: boolean = false;
 
@@ -54,6 +56,8 @@ export class BrandsComponent implements OnInit, OnChanges {
         this.subcategoryId = null;
         this.categoryId = null;
         this.getBrands();
+      } else if (((changes['needReset'].currentValue) ? changes['needReset'].currentValue.slice(-3) : '') == 'sch') {
+        this.getBrands(this.search);
       }
     }
 
@@ -74,8 +78,8 @@ export class BrandsComponent implements OnInit, OnChanges {
     flag >= 1 ? this.getBrands() : '';
   }
 
-  getBrands() {
-    this._brandsService.getBrands(this.categoryId, localStorage.getItem("pet_filter"), this.subcategoryId, this.placeId)
+  getBrands(search?) {
+    this._brandsService.getBrands(this.categoryId, localStorage.getItem("pet_filter"), this.subcategoryId, this.placeId, search)
       .subscribe(res => {
         this.brands = res;
       }, error => {

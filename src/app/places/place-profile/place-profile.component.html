@@ -28,6 +28,15 @@
         -->
       </div>
 
+      <div class="col-4 input-group">
+        <input style="padding: 7px;" #searchInput [(ngModel)]="searchText" (keyup.enter)="onEnterSearch(searchInput)" class="form-control " type="search"
+          placeholder="Buscar productos">
+        <div class="input-group-append">
+          <button class="btn btn-outline-plac" type="button" (click)="onEnterSearch(searchInput)">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
       <div class="col-12 d-flex justify-content-center">
         <button *ngFor="let category of place.categories" (click)="selectCategory(category)" class="btn btn-link"
           [ngClass]="{'active': categorySelected ==category.category_name}">{{category.category_name}}</button>
@@ -40,7 +49,7 @@
       </div>
 
       <div class="col-sm-auto col-12 ng-sidebar-width">
-        <app-brands [needReset]="needResetBrand" [categoryId]="categoryIdSelected" [subcategoryId]="subcategoryIdSelected"
+        <app-brands [needReset]="needResetBrand" [categoryId]="categoryIdSelected" [subcategoryId]="subcategoryIdSelected" [search]="searchText"
           [preBrandSelected]="brandSelected" (brandSelected)="selectBrand($event)" [placeId]="place.place_id"></app-brands>
       </div>
 
@@ -55,7 +64,8 @@
             class="breadcrumb-item" (click)="manageBreadcrumbs(2)">
             <span>{{categorySelected}}</span>
           </li>
-          <li *ngIf="subcategoryNameSelected" [ngClass]="{'active': brandSelected ==null}" class="breadcrumb-item" (click)="manageBreadcrumbs(3)">
+          <li *ngIf="subcategoryNameSelected" [ngClass]="{'active': brandSelected ==null}" class="breadcrumb-item"
+            (click)="manageBreadcrumbs(3)">
             <span>{{subcategoryNameSelected}}</span>
           </li>
           <li *ngIf="brandSelected" class="breadcrumb-item active" (click)="manageBreadcrumbs(4)">
