@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FormsModule } from '@angular/forms'; 
 //Environment
 import { environment } from '../environments/environment';
 
@@ -40,6 +40,7 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
 import { ProductModalComponent } from './products/product-modal/product-modal.component';
 import { PlaceProfileComponent } from './places/place-profile/place-profile.component';
 import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
+import { SearchComponent } from './main/search/search.component';
 
 @NgModule({
   declarations: [
@@ -61,9 +62,11 @@ import { CategoryWithFiltersComponent } from './categories/category-with-filters
     ProductModalComponent,
     PlaceProfileComponent,
     CategoryWithFiltersComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     NgbModule.forRoot(),
     AppRoutingModule,

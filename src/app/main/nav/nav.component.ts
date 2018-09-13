@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { LocalStorageService } from '../../local-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -17,14 +18,15 @@ export class NavComponent implements OnInit {
   selectedPet: string;
 
   constructor(
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
     this.selectedPet = localStorage.getItem('pet_filter');
   }
 
-  
+
 
   showSideMenu() {
     this._opened = !this._opened;
@@ -38,6 +40,16 @@ export class NavComponent implements OnInit {
   selectPet(pet) {
     this.selectedPet = pet;
     this._localStorageService.setItem('pet_filter', pet);
+  }
+
+  onEnterSearch(searchInput) {
+    let searchText = searchInput.value;
+    searchText = searchText.trim();
+    if (searchText != '') {
+      searchInput.blur();//se quita el focus del input
+      this._router.navigate(['search'], { queryParams: { queryText: searchText } });
+    }
+
   }
 
 }

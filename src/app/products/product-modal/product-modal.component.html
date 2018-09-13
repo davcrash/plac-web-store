@@ -22,7 +22,7 @@
           <br>
           <div>
             {{productViewDescription}}
-            <a *ngIf="productShortDescription" (click)="vewMoreText()" [routerLink]="">
+            <a *ngIf="productShortDescription" (click)="vewMoreText()">
               <span *ngIf="this.product.product_description === this.productViewDescription">ver menos</span>
               <span *ngIf="this.product.product_description !== this.productViewDescription">ver más</span>
             </a>

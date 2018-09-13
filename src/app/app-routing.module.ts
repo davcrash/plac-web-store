@@ -9,29 +9,42 @@ import { HomePageComponent } from './main/home-page/home-page.component';
 import { ProductModalComponent } from './products/product-modal/product-modal.component';
 import { PlaceProfileComponent } from './places/place-profile/place-profile.component';
 import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
+import { SearchComponent } from './main/search/search.component';
 
 const routes: Routes = [
+  //login
+  { path: 'login', component: LoginComponent },
+  //home
   {
     path: '', component: HomePageComponent,
     children: [
       { path: 'product/:id', component: ProductModalComponent }
     ]
   },
-  { path: 'login', component: LoginComponent },
+  //perfil empresa
   {
     path: 'place/:id', component: PlaceProfileComponent,
     children: [
       { path: 'product/:id', component: ProductModalComponent }
     ]
   },
-  { path: 'users', component: UserListComponent },
-  { path: 'users/:id', component: UserFormComponent },
+  //categoria
   {
     path: 'categoria/:category_name', component: CategoryWithFiltersComponent,
     children: [
       { path: 'product/:id', component: ProductModalComponent }
     ]
   },
+  //busqueda
+  {
+    path: 'search', component: SearchComponent,
+    children: [
+      { path: 'product/:id', component: ProductModalComponent }
+    ]
+  },
+
+  { path: 'users', component: UserListComponent },
+  { path: 'users/:id', component: UserFormComponent },
   { path: '**', component: PageNotFoundComponent },
 
 ];
