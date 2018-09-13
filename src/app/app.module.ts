@@ -2,8 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { NgxNotificationComponent } from 'ngx-notification';
 
 //Environment
 import { environment } from '../environments/environment';
@@ -20,6 +23,8 @@ import { SidebarModule } from 'ng-sidebar';
 
 //Banner slide
 import {SlideshowModule} from 'ng-simple-slideshow';
+
+
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -40,10 +45,12 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
 import { ProductModalComponent } from './products/product-modal/product-modal.component';
 import { PlaceProfileComponent } from './places/place-profile/place-profile.component';
 import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
+import { ShopCartViewComponent } from './shop-cart/shop-cart-view/shop-cart-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NgxNotificationComponent,
     UserListComponent,
     UserFormComponent,
     PageNotFoundComponent,
@@ -61,6 +68,7 @@ import { CategoryWithFiltersComponent } from './categories/category-with-filters
     ProductModalComponent,
     PlaceProfileComponent,
     CategoryWithFiltersComponent,
+    ShopCartViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +81,7 @@ import { CategoryWithFiltersComponent } from './categories/category-with-filters
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     SlideshowModule,
+    FormsModule,
     
   ],
   providers: [],

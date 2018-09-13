@@ -17,6 +17,7 @@
         <div>
           <h3>{{product.product_name}}</h3>
         </div>
+        <h5 style="font-family: Montserrat"><b>${{product.product_price | number}}</b></h5>
         <div class="text-muted">
           <b class="color-dark-gray-text">Descripción</b>
           <br>
@@ -31,33 +32,83 @@
 
         <br>
         <div class="mt-auto">
-          <div>
-            <span class="color-dark-green-text" style="font-size: 1.25rem;">${{product.product_price | number}}</span>
+
+         
+          <div style="margin-bottom: 5px; margin-left: 30px;">
+            <!-- <span class="color-dark-green-text" style="font-size: 1.25rem;">${{product.product_price | number}} cu</span>-->
+            <b *ngIf="!productInCart.totalProduct" class="color-dark-green-text" style="font-size: 1.25rem;"> ${{product.product_price | number}}</b>
+            <b *ngIf="productInCart.totalProduct" class="color-dark-green-text" style="font-size: 1.25rem;"> ${{productInCart.totalProduct | number}}</b>
           </div>
-          <button class="btn btn-outline-plac "><i class="fas fa-minus"></i></button>
-          <span style="margin-left: 20px; margin-right: 20px">12</span>
-          <button class="btn btn-outline-plac "><i class="fas fa-plus"></i></button>
-          <button class="btn btn-plac float-right">Agregar</button>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group mb-6">
+                <div class="input-group-prepend">
+                  <button (click)="removeUnits()" class="btn btn-outline-plac" type="button">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <input [disabled]="true" [(ngModel)]="quantityToAddToCart" name="quantityToAddToCart" type="number" class="form-control"
+                  style="flex: none;width: 55px; text-align:right;" aria-describedby="button-addon1">
+                <div class="input-group-append">
+                  <button (click)="addUnits()" class="btn btn-outline-plac" type="button">
+                    <i class="fas fa-plus d-inline"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-plac float-right " (click)="addProductToCart();c();" style="font-size: 1rem; padding-right: 25px; padding-left: 25px;"><i class="fas fa-shopping-cart" ></i>&nbsp;&nbsp;Agregar</button>
+            </div>
+          </div>
+
         </div>
       </div>
 
     </div>
   </div>
-  <div class="border-top container" style="padding: 0 30px">
+  <div *ngIf="!loader" class="border-top container" style="padding: 0 30px">
     <br>
     <b class="color-dark-gray-text">Preguntas</b>
 
     <div class="input-group mb-3">
-      <textarea type="text" class="form-control" placeholder="Preguntarle al vendedor..." rows="2" style="resize: none;"></textarea>
+      <textarea [(ngModel)]="question.question_txt" name="hey" type="text" class="form-control" placeholder="Preguntarle al vendedor..."
+        rows="2" style="resize: none;"></textarea>
       <div class="input-group-append">
-        <button class="btn btn-outline-plac" type="button">Preguntar</button>
+        <button [disabled]="textButtonQuestion != 'Preguntar' || question.question_txt == ''" (click)="senNewQuestion()" class="btn btn-outline-plac"
+          type="button">{{textButtonQuestion}}</button>
       </div>
+
     </div>
+    <!--Inicio: Preguntas realizadas-->
+    <div *ngFor="let question of product.questions">
 
 
+      <div class="row">
+        <div class="col-md-1" align="center">
+          <div class="avatar-question">?</div>
+        </div>
+        <div class="col-md-11">
+          <b>{{question.question_txt}}</b>
+        </div>
+      </div>
+      <div class="row">
+        <div *ngIf="question.answer_txt" class="col-md-1 offset-md-1">
+          <div class="icon-question-answered">
+            <i class="far fa-check-circle"></i>
+          </div>
+        </div>
+        <div class="col-md-10" style="text-align: justify;">
+          <p>{{question.answer_txt}}</p>
+        </div>
+      </div>
 
+
+    </div>
+    <!--Fin: Preguntas realizadas-->
     <br>
     <br>
   </div>
 
 </ng-template>
+

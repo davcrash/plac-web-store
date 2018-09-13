@@ -28,6 +28,7 @@
     "iconate": "^0.3.1",
     "ng-sidebar": "^7.2.1",
     "ng-simple-slideshow": "^1.2.3",
+    "ngx-notification": "^1.0.5",
     "rxjs": "^6.0.0",
     "sweetalert2": "^7.24.1",
     "zone.js": "^0.8.26"

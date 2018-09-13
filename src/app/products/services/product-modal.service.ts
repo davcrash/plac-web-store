@@ -13,4 +13,8 @@ export class ProductModalService {
   getProductById(id): Observable<any> {
     return this._globalService.HttpMethod("GET", "getproductbyid/"+id);
   }
+
+  sendNewQuestion(question): Observable<any>{
+    return this._globalService.HttpMethod("POST", "store/product/questions", question);
+  }
 }

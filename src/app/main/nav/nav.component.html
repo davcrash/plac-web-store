@@ -4,21 +4,21 @@
     <!--Navbar in md->lg (in pc)-->
     <div class="row width-total d-none d-lg-flex d-xl-flex align-items-center">
 
-        <div class="col-auto">
+        <div class="col-auto" (click)="closeShopCartEmit()">
             <button (click)="showSideMenu()" class="btn btn-light btn-menu-sidebar" *ngIf="showElement">
                 <i *ngIf="_opened" class="fas fa-bars d-inline-block align-center color-dark-gray-text"></i>
                 <i *ngIf="!_opened" class="fas fa-times d-inline-block align-center color-dark-gray-text"></i>
             </button>
         </div>
-        <div class="col-auto no-padding-left">
+        <div class="col-auto no-padding-left" (click)="closeShopCartEmit()">
             <img [routerLink]="['/']" class="pointer logo-plac" src="/assets/img/logo-PLAC-01.svg">
         </div>
 
-        <div class="col-12 col-sm-6 col-md-3" *ngIf="showElement">
+        <div class="col-12 col-sm-6 col-md-3" *ngIf="showElement" (click)="closeShopCartEmit()">
             <input class="form-control " type="search" placeholder="Buscar productos" aria-label="Buscar productos">
         </div>
 
-        <div class="col-auto mr-auto" *ngIf="showElement">
+        <div class="col-auto mr-auto" *ngIf="showElement" (click)="closeShopCartEmit()">
 
             <button #petButtonPerro id="Perro" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonPerro.id == selectedPet}"
                 (click)="selectPet('Perro')">
@@ -155,13 +155,12 @@
 
         </div>
 
-
-
-        <div class="col-auto no-padding log-in" *ngIf="showElement">
-            <button [routerLink]="['/login']" class="btn btn-link color-dark-gray-text">
+        <div class="col-auto no-padding log-in" *ngIf="showElement" >
+            <button [routerLink]="['/login']" class="btn btn-link color-dark-gray-text" (click)="closeShopCartEmit()">
                 <b>Iniciar sesión</b>
             </button>
         </div>
+
 
 
         <div class="col-auto" *ngIf="showElement">
@@ -177,7 +176,7 @@
     <!--Navbar in xs->sm (in celular)-->
     <div class="row width-total d-flex d-sm-flex d-lg-none">
 
-        <div class="col-auto mr-auto col-responsive">
+        <div class="col-auto mr-auto col-responsive" (click)="closeShopCartEmit()">
             <button (click)="showSideMenu()" class="btn btn-light btn-menu-sidebar">
                 <i *ngIf="_opened" class="fas fa-bars d-inline-block align-center color-dark-gray-text"></i>
                 <i *ngIf="!_opened" class="fas fa-times d-inline-block align-center color-dark-gray-text"></i>
@@ -186,7 +185,7 @@
             <img [routerLink]="['/']" class="pointer logo-plac" src="/assets/img/logo-PLAC-01.svg">
         </div>
 
-        <div class="col-auto no-padding col-responsive" *ngIf="showElement">
+        <div class="col-auto no-padding col-responsive" *ngIf="showElement" (click)="closeShopCartEmit()">
 
             <!--<button [routerLink]="['/login']" class="btn btn-light">
                 <img src="https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
@@ -217,13 +216,13 @@
             </button>
         </div>
 
-        <div class="col-12 col-responsive" *ngIf="showElement">
+        <div class="col-12 col-responsive" *ngIf="showElement" (click)="closeShopCartEmit()">
             <input class="form-control" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
         </div>
 
 
 
-        <div class="col-12 col-responsive" *ngIf="showElement" align="center">
+        <div class="col-12 col-responsive" *ngIf="showElement" align="center" (click)="closeShopCartEmit()">
 
             <button #petButtonPerro id="Perro" class="btn btn-light d-inline-block align-top margin-pet-icon" [ngClass]="{'color-dark-green-text': petButtonPerro.id == selectedPet}"
                 (click)="selectPet('Perro')">
