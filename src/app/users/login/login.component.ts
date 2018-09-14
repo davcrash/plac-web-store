@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +10,24 @@ export class LoginComponent implements OnInit {
 
   @Output() public showElements = new EventEmitter<any>();
 
-  constructor(public afAuth: AngularFireAuth) { 
+  constructor(public _loginService: LoginService) {
   }
 
   ngOnInit() {
     this.showElements.emit(false);
   }
 
-  login() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+  loginWithGoogle() {
+    this._loginService.loginWithGoogle();
+  }
+
+  loginWithFacebook() {
+    this._loginService.loginWithFacebook();
+  }
+
+
+  logout() {
+    this._loginService.logout();
   }
 
 }
