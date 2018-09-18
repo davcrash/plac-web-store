@@ -26,12 +26,14 @@
         </div>
       </div>
       <p>ó</p>
-      <button type="button" class="btn btn-primary  btn-block" style="background-color: #3B5998; border-color:#3B5998;">Iniciar
+      <button (click)="loginWithFacebook()" type="button" class="btn btn-primary  btn-block" style="background-color: #3B5998; border-color:#3B5998;">Iniciar
         sesión con Facebook</button>
-      <button type="button" class="btn btn-primary  btn-block" style="background-color: #D54B3D; border-color:#D54B3D;">Iniciar
+      <button (click)="loginWithGoogle()" type="button" class="btn btn-primary  btn-block" style="background-color: #D54B3D; border-color:#D54B3D;">Iniciar
         sesión con Google</button>
 
-      <br>
+        <button (click)="logout()">Cerrar</button>
+
+        <br>
       <br>
       <p style="font-size: 13px;">Al hacer click aceptas los
         <b>Términos y Condiciones, Políticas de uso y Habeas data</b>

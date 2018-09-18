@@ -4,13 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//Environment
-import { environment } from '../environments/environment';
+
 
 //Firebase
-//import { AngularFireModule } from 'angularfire2';
-//import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
+//Environment
+import { environment } from '../environments/environment';
 //Estilos
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -18,7 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarModule } from 'ng-sidebar';
 
 //Banner slide
-import {SlideshowModule} from 'ng-simple-slideshow';
+import { SlideshowModule } from 'ng-simple-slideshow';
 
 
 
@@ -69,18 +70,17 @@ import { SearchComponent } from './main/search/search.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     BrowserAnimationsModule,
     NgbModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     SidebarModule.forRoot(),
-    //AngularFireModule.initializeApp(environment.firebase),
-    //AngularFireAuthModule,
     SlideshowModule,
     FormsModule,
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
