@@ -24,8 +24,8 @@
           <div>
             {{productViewDescription}}
             <a *ngIf="productShortDescription" (click)="vewMoreText()">
-              <span *ngIf="this.product.product_description === this.productViewDescription">ver menos</span>
-              <span *ngIf="this.product.product_description !== this.productViewDescription">ver más</span>
+              <span *ngIf="this.product.product_description === this.productViewDescription" class="btn-link pointer">ver menos</span>
+              <span *ngIf="this.product.product_description !== this.productViewDescription" class="btn-link pointer">ver más</span>
             </a>
           </div>
         </div>
@@ -41,7 +41,7 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-6">
               <div class="input-group mb-6">
                 <div class="input-group-prepend">
                   <button (click)="removeUnits()" class="btn btn-outline-plac" type="button">
@@ -57,7 +57,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-6">
               <button class="btn btn-plac float-right " (click)="addProductToCart();c();" style="font-size: 1rem; padding-right: 25px; padding-left: 25px;"><i class="fas fa-shopping-cart" ></i>&nbsp;&nbsp;Agregar</button>
             </div>
           </div>
