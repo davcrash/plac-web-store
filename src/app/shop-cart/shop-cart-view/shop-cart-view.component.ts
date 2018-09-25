@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { LocalStorageService } from '../../local-storage.service';
 import { ShopCartService } from '../services/shop-cart.service';
 
@@ -10,32 +10,28 @@ import { ShopCartService } from '../services/shop-cart.service';
 export class ShopCartViewComponent implements OnInit {
 
   shopCart: any;
-  
   cartEmpty = true;
-
-
+  @Output() public closeCar = new EventEmitter<void>();
 
   constructor(private _localStorageService: LocalStorageService,
-    private _shopService: ShopCartService) { 
-    }
-
-
+    private _shopService: ShopCartService) {
+  }
 
   ngOnInit() {
 
-    if (localStorage.getItem('shop-cart')) {
-      this.shopCart = JSON.parse(localStorage.getItem('shop-cart'));
-      this.cartEmpty = this._shopService.validateQuantities();
-    }
+    this.shopCart = JSON.parse(localStorage.getItem('shop-cart'));
 
+    // this.cartEmpty = this._shopService.validateQuantities();
+    if(this.shopCart.length > 0){
+      this.cartEmpty = false;
+    }
 
     this._localStorageService.watchStorage().subscribe((data) => {
       if (data.change === 'shop-cart') {
-        if (localStorage.getItem('flag') != "inShopCart") {
           this.shopCart = JSON.parse(localStorage.getItem('shop-cart'));
-          this.cartEmpty = this._shopService.validateQuantities();
-        }
-
+          if(this.shopCart.length > 0){
+            this.cartEmpty = false;
+          }
       }
     });
 
@@ -44,42 +40,49 @@ export class ShopCartViewComponent implements OnInit {
 
   addUnit(indexPlace, indexProduct) {
 
-    
-
-    if (this.shopCart[indexPlace].order_detail[indexProduct].quantity < 50) {
       var quantity = this.shopCart[indexPlace].order_detail[indexProduct].quantity += 1;
       var product = this.shopCart[indexPlace].order_detail[indexProduct].product;
-      localStorage.setItem("flag", "inShopCart");
+
+      this.shopCart[indexPlace].total = this._shopService.calculateTotalPlace(this.shopCart[indexPlace]);
+      this.shopCart[indexPlace].order_detail[indexProduct].totalProduct = quantity * parseFloat(product.product_price);
+ 
       this._shopService.addProductToCart(product, quantity);
-
-      this.shopCart[indexPlace].total = JSON.parse(localStorage.getItem('shop-cart'))[indexPlace].total;
-      this.shopCart[indexPlace].order_detail[indexProduct].totalProduct = JSON.parse(localStorage.getItem('shop-cart'))[indexPlace].order_detail[indexProduct].totalProduct;
-      localStorage.removeItem("flag");
-    }
-
-
-
-
   }
 
   decreaseUnit(indexPlace, indexProduct) {
 
     var quantity = this.shopCart[indexPlace].order_detail[indexProduct].quantity -= 1;
     var product = this.shopCart[indexPlace].order_detail[indexProduct].product;
-    localStorage.setItem("flag", "inShopCart");
+
+    this.shopCart[indexPlace].total = this._shopService.calculateTotalPlace(this.shopCart[indexPlace]);
+    this.shopCart[indexPlace].order_detail[indexProduct].totalProduct = quantity * parseFloat(product.product_price);
+
+    if(quantity <= 0){ //Estan eliminando un producto
+      this.shopCart[indexPlace].order_detail[indexProduct] = null;
+      if(this._shopService.calculateTotalPlace(this.shopCart[indexPlace]) <= 0){
+        this.shopCart[indexPlace] = null;
+        
+      }
+    }
+
     this._shopService.addProductToCart(product, quantity);
+    this.validateEmptyCar();
+    // this.cartEmpty = this._shopService.validateQuantities();
+  
+  }
 
-    this.shopCart[indexPlace].total = JSON.parse(localStorage.getItem('shop-cart'))[indexPlace].total;
-    this.shopCart[indexPlace].order_detail[indexProduct].totalProduct = JSON.parse(localStorage.getItem('shop-cart'))[indexPlace].order_detail[indexProduct].totalProduct;
-
-    this.shopCart[indexPlace].showPlace = JSON.parse(localStorage.getItem('shop-cart'))[indexPlace].showPlace;
-    this.shopCart[indexPlace].order_detail[indexProduct].showProduct = JSON.parse(localStorage.getItem('shop-cart'))[indexPlace].order_detail[indexProduct].showProduct;
-    this.cartEmpty = this._shopService.validateQuantities();
-    localStorage.removeItem("flag");
+  
+  validateEmptyCar(){
+    this.cartEmpty = true;
+    this.shopCart.forEach(element => {
+      if(element != null){
+        this.cartEmpty = false;
+      }
+    });
   }
 
 
-  
+
 
 
 }

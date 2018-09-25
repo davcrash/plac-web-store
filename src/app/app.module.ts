@@ -44,6 +44,7 @@ import { PlaceProfileComponent } from './places/place-profile/place-profile.comp
 import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
 import { ShopCartViewComponent } from './shop-cart/shop-cart-view/shop-cart-view.component';
 import { SearchComponent } from './main/search/search.component';
+import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { SearchComponent } from './main/search/search.component';
     CategoryWithFiltersComponent,
     ShopCartViewComponent,
     SearchComponent,
+    PurchaseViewComponent,
   ],
   imports: [
     BrowserModule,

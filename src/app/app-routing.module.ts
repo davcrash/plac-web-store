@@ -10,6 +10,7 @@ import { ProductModalComponent } from './products/product-modal/product-modal.co
 import { PlaceProfileComponent } from './places/place-profile/place-profile.component';
 import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
 import { SearchComponent } from './main/search/search.component';
+import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.component';
 
 const routes: Routes = [
   //login
@@ -43,6 +44,7 @@ const routes: Routes = [
     ]
   },
 
+  { path: 'compra/:indexPlace', component: PurchaseViewComponent },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
   { path: '**', component: PageNotFoundComponent },
