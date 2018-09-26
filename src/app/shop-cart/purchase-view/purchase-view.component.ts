@@ -50,11 +50,8 @@ export class PurchaseViewComponent implements OnInit {
 
   ngOnInit() {
 
-    //Toamamos el uid de la persona 
-    //00fbdhy6wB sin direcciones
-    // 1prs3mbVlM con direeci
-    //JENPzz2LJF varias dir
-    this.uid = "JENPzz2LJF";
+    //Tomamos el uid de la persona 
+    this.uid = JSON.parse(localStorage.getItem("user_data")).plac_user_id;
 
     //Capturamos el parametro de la ruta
     this._route.params.subscribe(routeParam => {

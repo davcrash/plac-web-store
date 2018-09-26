@@ -71,15 +71,20 @@
     <br>
     <b class="color-dark-gray-text">Preguntas</b>
 
-    <div class="input-group mb-3">
+    <div *ngIf="uid" class="input-group mb-3">
       <textarea [(ngModel)]="question.question_txt" name="hey" type="text" class="form-control" placeholder="Preguntarle al vendedor..."
         rows="2" style="resize: none;"></textarea>
       <div class="input-group-append">
-        <button [disabled]="textButtonQuestion != 'Preguntar' || question.question_txt == ''" (click)="senNewQuestion()" class="btn btn-outline-plac"
+        <button [disabled]="textButtonQuestion != 'Preguntar' || question.question_txt == ''" (click)="sendNewQuestion()" class="btn btn-outline-plac"
           type="button">{{textButtonQuestion}}</button>
       </div>
-
     </div>
+
+    <div *ngIf="!uid">
+      <small>Para realizar una pregunta, primero debes <span class="btn-link pointer" (click)="c();goToLogin()">Iniciar sesión</span></small>
+    </div>
+    <br>
+
     <!--Inicio: Preguntas realizadas-->
     <div *ngFor="let question of product.questions">
 

@@ -21,7 +21,7 @@ export class LoginGuard implements CanActivate {
   canActivate(): Observable<boolean> | boolean {
 
     return this._angularFireAuth.authState.pipe(map(result => {
-      if (result && (localStorage.getItem('user_data'))) {
+      if (!(result && (localStorage.getItem('user_data')))) {
 
         this._router.navigate(['']);
 

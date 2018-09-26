@@ -50,7 +50,7 @@ const routes: Routes = [
     ]
   },
 
-  { path: 'compra/:indexPlace', component: PurchaseViewComponent },
+  { path: 'compra/:indexPlace', component: PurchaseViewComponent, canActivate: [LoginGuard] },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
   { path: '**', component: PageNotFoundComponent },

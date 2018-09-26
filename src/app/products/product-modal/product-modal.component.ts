@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductModalService } from '../services/product-modal.service';
 import { ShopCartService } from '../../shop-cart/services/shop-cart.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-modal',
@@ -32,8 +33,8 @@ export class ProductModalComponent implements OnInit {
 
   textButtonQuestion = "Preguntar";
   questionGenerated;
+  uid;
 
-  
 
   constructor(
     private _modalService: NgbModal,
@@ -46,6 +47,9 @@ export class ProductModalComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.uid = (localStorage.getItem("user_data")) ? JSON.parse(localStorage.getItem("user_data")).plac_user_id : '';
+
     this._route.params.subscribe(routeParam => {
       this.productId = routeParam.id;
       this._productModalService.getProductById(this.productId)
@@ -96,40 +100,67 @@ export class ProductModalComponent implements OnInit {
     (this.product.product_description === this.productViewDescription) ? this.productViewDescription = this.productShortDescription : this.productViewDescription = this.product.product_description
   }
 
-  senNewQuestion() {
-    this.question.place_id = this.product.place_location.place_id;
-    this.question.product_id = this.productId;
-    this.question.plac_user_id = "04MUa3jkiL";
+  sendNewQuestion() {
 
-    this.textButtonQuestion = "Enviando...";
-    this._productModalService.sendNewQuestion(this.question).subscribe(data => {
-      this.questionGenerated = data;
-      this.product.questions.push(this.questionGenerated);
-      this.product.questions.reverse();
-      this.textButtonQuestion = "Preguntar";
-    }, error => {
-      console.log(error);
-      this.textButtonQuestion = "Preguntar";
-    });
+    if (this.uid) {
+      this.question.place_id = this.product.place_location.place_id;
+      this.question.product_id = this.productId;
+      this.question.plac_user_id = this.uid;
+
+      this.textButtonQuestion = "Enviando...";
+      this._productModalService.sendNewQuestion(this.question).subscribe(data => {
+        this.questionGenerated = data;
+        this.product.questions.push(this.questionGenerated);
+        this.product.questions.reverse();
+        this.textButtonQuestion = "Preguntar";
+      }, error => {
+        console.log(error);
+        this.textButtonQuestion = "Preguntar";
+      });
+    } else {
+      swal({
+        title: 'Inicia sesión',
+        text: 'Para realizar tus compras, primero debes iniciar sesión',
+        type: 'info',
+        showCancelButton: true,
+        cancelButtonText: 'Más tarde',
+        confirmButtonText: 'Iniciar sesión'
+      }).then(res => {
+        if (res.value === true) {
+          this._router.navigate(['login']);
+        }
+      });
+    }
+
+
+
   }
 
-  addUnits(){
-    if(this.quantityToAddToCart <= 50){
+  addUnits() {
+    if (this.quantityToAddToCart <= 50) {
       this.quantityToAddToCart = (this.quantityToAddToCart + 1);
       this.productInCart.totalProduct = this.product.product_price * this.quantityToAddToCart;
     }
   }
 
-  removeUnits(){
-    if(this.quantityToAddToCart >1){
+  removeUnits() {
+    if (this.quantityToAddToCart > 1) {
       this.quantityToAddToCart = (this.quantityToAddToCart - 1);
       this.productInCart.totalProduct = this.product.product_price * this.quantityToAddToCart;
     }
   }
 
-  addProductToCart(){
-    this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart, true); 
+  addProductToCart() {
+    this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart, true);
   }
 
+
+  goToLogin() {
+
+    setTimeout(() => {
+      this._router.navigate(['login']);
+    }, 16);
+
+  }
 
 }

@@ -72,6 +72,7 @@ export class NavComponent implements OnInit {
       .then(() => {
         localStorage.removeItem('user_data');
         this._router.navigate(['']);
+        location.reload();
       })
       .catch(error => {
         console.log(error)
