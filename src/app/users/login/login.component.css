@@ -1,2 +1,17 @@
+.btn-facebook {
+    background-color: #3B5998;
+    border-color: #3B5998;
+}
 
+.btn-facebook:hover {
+    background-color: #31508a;
+    border-color: #3B5998;
+}
 
+.btn-facebook:not(:disabled):not(.disabled).active,
+.btn-facebook:not(:disabled):not(.disabled):active,
+.show>.btn-facebook.dropdown-toggle {
+    color: #fff;
+    background-color: #29487d;
+    border-color: #31508a;
+}

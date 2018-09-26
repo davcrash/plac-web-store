@@ -15,7 +15,8 @@
         </div>
 
         <div class="col-4 input-group" *ngIf="showElement" (click)="closeShopCartEmit()">
-            <input style="padding: 7px;" #searchInput (keyup.enter)="onEnterSearch(searchInput)" class="form-control " type="search" placeholder="Buscar productos" >
+            <input style="padding: 7px;" #searchInput (keyup.enter)="onEnterSearch(searchInput)" class="form-control "
+                type="search" placeholder="Buscar productos">
             <div class="input-group-append">
                 <button class="btn btn-outline-plac" type="button" (click)="onEnterSearch(searchInput)">
                     <i class="fas fa-search"></i>
@@ -162,11 +163,25 @@
 
         </div>
 
-        <div class="col-auto no-padding log-in" *ngIf="showElement" >
-            <button [routerLink]="['/login']" class="btn btn-link color-dark-gray-text" (click)="closeShopCartEmit()">
+        <div class="col-auto no-padding log-in" *ngIf="showElement">
+            <button *ngIf="!isLoggedin" [routerLink]="['/login']" class="btn btn-link color-dark-gray-text" (click)="closeShopCartEmit()">
                 <b>Iniciar sesión</b>
             </button>
+            <div *ngIf="isLoggedin" class="col text-right">
+                <div ngbDropdown placement="bottom-right" class="d-inline-block">
+                    <button class=" btn btn-light" id="dropdownBasic2" ngbDropdownToggle>
+                        <img src="{{(userData!=null)?userData.plac_user_image:'https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1'}}"
+                            class="avatar">
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                        <button class="dropdown-item" [routerLink]="['/login']">Pedidos</button>
+                        <button class="dropdown-item">Preguntas</button>
+                        <button class="dropdown-item" (click)="logout()">Cerrar sesión</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
 
 
@@ -184,7 +199,7 @@
     <div class="row width-total d-flex d-sm-flex d-lg-none">
 
         <div class="col-auto mr-auto col-responsive" (click)="closeShopCartEmit()">
-            <button (click)="showSideMenu()" class="btn btn-light btn-menu-sidebar">
+            <button (click)="showSideMenu()" class="btn btn-light btn-menu-sidebar" *ngIf="showElement">
                 <i *ngIf="_opened" class="fas fa-bars d-inline-block align-center color-dark-gray-text"></i>
                 <i *ngIf="!_opened" class="fas fa-times d-inline-block align-center color-dark-gray-text"></i>
             </button>
@@ -194,26 +209,23 @@
 
         <div class="col-auto no-padding col-responsive" *ngIf="showElement" (click)="closeShopCartEmit()">
 
-            <!--<button [routerLink]="['/login']" class="btn btn-light">
-                <img src="https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
-                    class="avatar">
-            </button>-->
+            <button *ngIf="!isLoggedin" [routerLink]="['/login']" class="btn btn-link color-dark-gray-text" (click)="closeShopCartEmit()">
+                <b>Iniciar</b>
+            </button>
 
-
-            <div class="col text-right">
+            <div class="col text-right" *ngIf="isLoggedin">
                 <div ngbDropdown placement="bottom-right" class="d-inline-block">
-                    <button class=" btn btn-light" id="dropdownBasic2" ngbDropdownToggle>
-                        <img src="https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
-                            class="avatar">
+                    <button style="padding: 3px" class=" btn btn-light" id="dropdownBasic2" ngbDropdownToggle>
+                        <img src="{{(userData!=null)?userData.plac_user_image:'https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1'}}"
+                            class="avatar sm">
                     </button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                        <button class="dropdown-item">Pedidos</button>
+                        <button class="dropdown-item" [routerLink]="['/login']">Pedidos</button>
                         <button class="dropdown-item">Preguntas</button>
-                        <button class="dropdown-item">Cerrar sesión</button>
+                        <button class="dropdown-item" (click)="logout()">Cerrar sesión</button>
                     </div>
                 </div>
             </div>
-
         </div>
 
 
@@ -224,7 +236,8 @@
         </div>
 
         <div class="col-12 col-responsive input-group" *ngIf="showElement" (click)="closeShopCartEmit()">
-            <input style="padding: 7px;" #searchInput (keyup.enter)="onEnterSearch(searchInput)" class="form-control " type="search" placeholder="Buscar productos" aria-label="Buscar productos">
+            <input style="padding: 7px;" #searchInput (keyup.enter)="onEnterSearch(searchInput)" class="form-control "
+                type="search" placeholder="Buscar productos" aria-label="Buscar productos">
             <div class="input-group-append">
                 <button class="btn btn-outline-plac" type="button" (click)="onEnterSearch(searchInput)">
                     <i class="fas fa-search"></i>

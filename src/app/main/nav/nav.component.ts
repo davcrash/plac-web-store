@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { LocalStorageService } from '../../local-storage.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../../users/services/login.service';
 
 @Component({
   selector: 'app-nav',
@@ -16,6 +17,8 @@ export class NavComponent implements OnInit {
   @Input() public _opened = true;
   @Input() public _openedShopCar = false;
   selectedPet: string;
+  isLoggedin: boolean = false;
+  userData: any;
 
 
   //Si dan click en el nav se cierra el carrito
@@ -24,15 +27,23 @@ export class NavComponent implements OnInit {
 
   constructor(
     private _localStorageService: LocalStorageService,
-    private _router: Router
+    private _router: Router,
+    private _loginService: LoginService,
   ) { }
 
   ngOnInit() {
     this.selectedPet = localStorage.getItem('pet_filter');
+    this.setUserData();
 
-    
+    this._loginService.isLoggedIn()
+      .subscribe(isLoggedin => {
+        this.isLoggedin = !isLoggedin;
+      });
+
     this._localStorageService.watchStorage().subscribe((data) => {
-
+      if (data.change === 'user_data') {
+        this.setUserData();
+      }
       //CARRITO DE COMPRA, ABRIR O CERRAR CARRO CUANDO SE AGREGAN PRODUCTOS
       if (data.change === 'shop-cart') {
         if (localStorage.getItem('flag') != "inShopCart") {
@@ -43,11 +54,27 @@ export class NavComponent implements OnInit {
 
   }
 
-  closeShopCartEmit(){
+  setUserData() {
+    let user = localStorage.getItem('user_data');
+    if (user) {
+      this.userData = JSON.parse(user);
+    }
+  }
+
+  closeShopCartEmit() {
     this.closeShopCart.emit(true);
   }
 
-
+  logout() {
+    this._loginService.logout()
+      .then(() => {
+        localStorage.removeItem('user_data');
+        this._router.navigate(['']);
+      })
+      .catch(error => {
+        console.log(error)
+      });
+  }
 
   showSideMenu() {
     this._opened = !this._opened;

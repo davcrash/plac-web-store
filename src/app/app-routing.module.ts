@@ -5,15 +5,21 @@ import { PageNotFoundComponent } from './main/page-not-found/page-not-found.comp
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { LoginComponent } from './users/login/login.component';
+import { RegisterComponent } from './users/register/register.component';
 import { HomePageComponent } from './main/home-page/home-page.component';
 import { ProductModalComponent } from './products/product-modal/product-modal.component';
 import { PlaceProfileComponent } from './places/place-profile/place-profile.component';
 import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
 import { SearchComponent } from './main/search/search.component';
+import { RegisterGuard } from './users/register/register.guard';
+import { LoginGuard } from './users/login/login.guard';
 
 const routes: Routes = [
   //login
   { path: 'login', component: LoginComponent },
+
+  //registrar usuario
+  { path: 'register', component: RegisterComponent, canActivate: [RegisterGuard] },
   //home
   {
     path: '', component: HomePageComponent,

@@ -21,7 +21,11 @@ import { SidebarModule } from 'ng-sidebar';
 //Banner slide
 import { SlideshowModule } from 'ng-simple-slideshow';
 
+//Device detector
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
+//Directivas
+import { OnlyNumberDirective } from './directives/only-number.directive';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -44,6 +48,7 @@ import { PlaceProfileComponent } from './places/place-profile/place-profile.comp
 import { CategoryWithFiltersComponent } from './categories/category-with-filters/category-with-filters.component';
 import { ShopCartViewComponent } from './shop-cart/shop-cart-view/shop-cart-view.component';
 import { SearchComponent } from './main/search/search.component';
+import { RegisterComponent } from './users/register/register.component';
 
 @NgModule({
   declarations: [
@@ -67,9 +72,12 @@ import { SearchComponent } from './main/search/search.component';
     CategoryWithFiltersComponent,
     ShopCartViewComponent,
     SearchComponent,
+    OnlyNumberDirective,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
+    DeviceDetectorModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     BrowserAnimationsModule,
