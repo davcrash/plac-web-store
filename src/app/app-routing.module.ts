@@ -13,6 +13,7 @@ import { CategoryWithFiltersComponent } from './categories/category-with-filters
 import { SearchComponent } from './main/search/search.component';
 import { RegisterGuard } from './users/register/register.guard';
 import { LoginGuard } from './users/login/login.guard';
+import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.component';
 
 const routes: Routes = [
   //login
@@ -49,6 +50,7 @@ const routes: Routes = [
     ]
   },
 
+  { path: 'compra/:indexPlace', component: PurchaseViewComponent },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
   { path: '**', component: PageNotFoundComponent },

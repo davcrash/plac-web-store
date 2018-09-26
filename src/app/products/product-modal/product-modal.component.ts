@@ -14,7 +14,6 @@ export class ProductModalComponent implements OnInit {
 
   @ViewChild('productModal') modal;//modal element
 
-
   productId;
   product;
   loader: boolean = true;
@@ -22,7 +21,7 @@ export class ProductModalComponent implements OnInit {
   productViewDescription: string;
 
   quantityToAddToCart = 1; //Cantidad para agregar por defecto
-
+  productInCart;
 
   question = {
     product_id: "",
@@ -34,7 +33,7 @@ export class ProductModalComponent implements OnInit {
   textButtonQuestion = "Preguntar";
   questionGenerated;
 
-  productInCart;
+  
 
   constructor(
     private _modalService: NgbModal,
@@ -129,7 +128,7 @@ export class ProductModalComponent implements OnInit {
   }
 
   addProductToCart(){
-    this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart); 
+    this._shopCartService.addProductToCart(this.product, this.quantityToAddToCart, true); 
   }
 
 

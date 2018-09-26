@@ -7,8 +7,6 @@
     </h3>
     <small>Aqui se encuentran tus producto, estas a un paso de adquirirlos</small>
   </div>
-
-
   <div *ngIf="cartEmpty" style="height: 100%;" align="center">
 
     <br>
@@ -18,11 +16,11 @@
 
   </div>
 
-  <div *ngFor="let placeObject of shopCart; let iPlace = index">
-    <div *ngIf="shopCart != null && iPlace != 0">
+  <div *ngFor="let placeObject of shopCart; let iPlace = index ">
+    <div *ngIf="shopCart.length > 0">
 
       <!--Div de empresa -->
-      <div class="border" style="background-color: #F7F7F7; margin-top: 25px;" *ngIf="placeObject.showPlace">
+      <div *ngIf="placeObject != null" class="border" style="background-color: #F7F7F7; margin-top: 25px;">
         
         <div class="col-md-12">
           <table style="height: 100%;">
@@ -46,7 +44,7 @@
                 </td>
 
                 <td class="align-middle" style="width: 10%;">
-                  <button class="d-inline" type="button" class="btn  btn-plac">Comprar</button>
+                  <button (click)="closeCar.emit(true)" routerLink="/compra/{{iPlace}}" class="d-inline" type="button" class="btn  btn-plac">Comprar</button>
                 </td>
 
               </tr>
@@ -56,8 +54,9 @@
       </div>
 
       <!--Lista de productos-->
+      <div *ngIf="placeObject != null">
       <div  *ngFor="let productObject of placeObject.order_detail; let iProdcut = index;">
-        <div class="border" *ngIf="productObject.showProduct">
+        <div class="border" *ngIf="productObject != null">
           <div class="col-md-12">
             <table style="height: 100%; width: 100%;">
               <tbody>
@@ -71,13 +70,13 @@
                     </div>
                   </td>
 
-                  <td class="align-middle" style="width: 40%;">
+                  <td class="align-middle" style="width: 35%;">
                     <h6 style="font-family: Montserrat">
                       {{productObject.product.product_name}}
                     </h6>
                   </td>
 
-                  <td class="align-middle" style="width: 20%;">
+                  <td class="align-middle" style="width: 30%;">
 
                     <div class="input-group mb-6">
                       <div class="input-group-prepend">
@@ -95,7 +94,7 @@
                     </div>
                   </td>
 
-                  <td class="align-middle" style="width: 20%;" style="text-align: right;">
+                  <td class="align-middle" style="width: 15%;" style="text-align: right;">
                     <h6 style="font-family: Montserrat">${{productObject.totalProduct | number}}</h6>
                   </td>
 
@@ -106,6 +105,7 @@
         </div>
 
       </div>
+    </div>
 
     </div>
 

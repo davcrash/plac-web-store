@@ -49,6 +49,7 @@ import { CategoryWithFiltersComponent } from './categories/category-with-filters
 import { ShopCartViewComponent } from './shop-cart/shop-cart-view/shop-cart-view.component';
 import { SearchComponent } from './main/search/search.component';
 import { RegisterComponent } from './users/register/register.component';
+import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { RegisterComponent } from './users/register/register.component';
     SearchComponent,
     OnlyNumberDirective,
     RegisterComponent,
+    PurchaseViewComponent,
   ],
   imports: [
     BrowserModule,

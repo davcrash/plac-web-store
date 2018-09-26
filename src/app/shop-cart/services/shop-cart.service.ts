@@ -6,162 +6,125 @@ import { LocalStorageService } from '../../local-storage.service';
 })
 export class ShopCartService {
 
-  shopCartArray = [];
+  myShopCart = [];
 
   constructor(
     private _localStorageService: LocalStorageService
-  ) { }
+  ) {
 
-  addProductToCart(product, quantity) {
+    //Miramnos si el shopCart existe en localStorage, si no lo creamos
+    if (!localStorage.getItem("shop-cart")) {
+      var newShopCart = [];
+      localStorage.setItem("shop-cart", JSON.stringify(newShopCart));
+    }
 
-    var shopCart = JSON.parse(localStorage.getItem("shop-cart"));
+    //Obtenemos el carro de compras
+    this.myShopCart = JSON.parse(localStorage.getItem("shop-cart"));
+
+  }
+
+  addProductToCart(product, quantity, fromModal?) {
+
+
     var place = product.place_location;
 
-    //Validamos si el objeto en local storage ya existe
-    if (shopCart) {
+    //Buscamos en el objeto del carro si la empresa ya esta
+    var indexPlace = 0;
+    var placeObject = this.myShopCart.find((element, index) => {
+      indexPlace = index;
+      return element.place.place_id == product.place_id;
+    });
 
-      //Buscamos en el objeto del carro si la empresa ya esta
-      var objectPlace = shopCart.find((element, index) => {
-        if(index != 0){
-          return element.place.place_id == product.place_id;
-        }
-      });
-      //Validamos si el objeto de la empresa ya existe, si no lo creamos
-      if (!objectPlace) {
-        var newObjectPlace = {
-          place: place,
-          order_detail: [],
-          showPlace: true
-          // total: product.product_price * quantity
-        }
-        shopCart.push(newObjectPlace);
-        objectPlace = newObjectPlace;
+    //Si el objeto de la empresa no existe lo creamos
+    if (!placeObject) {
+      placeObject = this.createPlaceObject(place);
+    }
+
+    //Miramos si en el carro ya esta el producto
+    //si el producto ya esta modificamos la cantidad y modificamos los totales
+    var indexProduct = 0;
+    var productObject = placeObject.order_detail.find((element, index) => {
+      if (element.product.product_id == product.product_id) {
+        element.quantity = parseInt(quantity);
       }
+      indexProduct = index;
+      return element.product.product_id == product.product_id;
+    });
+
+    //Si el producto no esta lo agregamos
+    if (!productObject) {
+      this.createProductObject(placeObject, product, quantity);
+    }
+
+    this.calculateTotalPlace(placeObject);
 
 
-      //Miramos si en el carro ya esta el producto
-      //si el producto ya esta y si esta sumamos uno a la cantidad y modificamos los totales
-      var objectProduct = objectPlace.order_detail.find(element => {
-        if (element.product.product_id == product.product_id) {
-          element.quantity = parseInt(quantity);
-        }
-        return element.product.product_id == product.product_id;
-      });
+    //si la cantidad es 0 quiere decir que eliminaron el producto desde el carrito
+    if (quantity <= 0) {
+      this.removeProduct(indexPlace, indexPlace);
+    }
 
-
-      //delete product.place_location;
-      //delete product.questions;
-
-      //Si el producto no esta lo agregamos
-      if (!objectProduct) {
-        var newProductObject = {
-          product: product,
-          quantity: quantity,
-          showProduct: true
-        }
-        //objectPlace.total = this.calculateTotalPlace(product, quantity);
-        objectPlace.order_detail.push(newProductObject);
-      }
-
-      this._localStorageService.removeItem("shop-cart");
-      this._localStorageService.setItem("shop-cart", JSON.stringify(shopCart));
-      this.calculateTotalPlace(product);
-      this.calculateTotalGeneral();
-
+    //Si viene del dialogo del producto, utilizamos el metodo para que escuche y se abra el carrito
+    if (fromModal) {
+      this._localStorageService.setItem("shop-cart", JSON.stringify(this.myShopCart));
     } else {
-
-      //delete product.place_location;
-      //delete product.questions;
-      //Le damos la estructura al objeto y lo creamos en el localstorage
-      var newProduct: any = [];
-
-      newProduct[0] = {
-        totalOrder: 0
-      };
-
-      newProduct[1] = {
-        place: place,
-        order_detail: [],
-        showPlace: true
-        //# total: product.product_price * parseInt(quantity)
-      };
-
-      newProduct[1].order_detail[0] = {
-        product: product,
-        quantity: quantity,
-        showProduct: true
-      }
-
-      this._localStorageService.setItem("shop-cart", JSON.stringify(newProduct));
-      this.calculateTotalPlace(product);
-      this.calculateTotalGeneral();
-
+      localStorage.setItem("shop-cart", JSON.stringify(this.myShopCart));
     }
 
   }
 
-  calculateTotalGeneral() {
-    var shopCart = JSON.parse(localStorage.getItem("shop-cart"));
-    var total = 0;
+  createPlaceObject(place) {
 
-    shopCart.forEach((element, index) => {
-      if (index != 0) {
-        total = total + parseFloat(element.total);
-      }
+    var placeObject = {
+      place: place,
+      order_detail: [],
+      total: 0
+    }
+
+    this.myShopCart.push(placeObject);
+
+    return placeObject;
+  }
+
+  createProductObject(placeObject, product, quantity) {
+
+    delete product.place_location;
+    delete product.questions;
+
+    placeObject.order_detail.push({
+      product: product,
+      quantity: quantity,
     });
-
-    shopCart[0].totalOrder = total;
-    this._localStorageService.setItem("shop-cart", JSON.stringify(shopCart));
 
   }
 
-  calculateTotalPlace(product) {
 
-    var shopCart = JSON.parse(localStorage.getItem("shop-cart"));
-
-    var placeObject = shopCart.find((element, index) => {
-      if (index != 0) {
-        return element.place.place_id == product.place_id;
-      }
-    })
+  calculateTotalPlace(placeObject) {
 
     var totalPlace = 0;
     placeObject.order_detail.forEach(element => {
-      element.totalProduct = element.product.product_price * element.quantity;
-      if(element.quantity == 0){
-        element.showProduct = false;
-      }else{
-        element.showProduct = true;
+      if (element) {
+        element.totalProduct = element.product.product_price * element.quantity;
+        totalPlace += element.totalProduct;
       }
-      totalPlace += element.totalProduct;
     });
 
     placeObject.total = totalPlace;
-    if(totalPlace == 0){
-      placeObject.showPlace = false;
-    }else{
-      placeObject.showPlace = true;
-    }
 
-    this._localStorageService.setItem("shop-cart", JSON.stringify(shopCart));
+    return totalPlace;
 
   }
 
   getProductInCart(product) {
-    var shopCart = JSON.parse(localStorage.getItem("shop-cart"));
     var productObject = {
       quantity: 1
     };
 
-    if (shopCart) {
-      shopCart.find((place, index) => {
-        if (index != 0) {
-          return productObject = place.order_detail.find(productFind => {
-            return product.product_id == productFind.product.product_id;
-          });
-        }
+    this.myShopCart.find((place) => {
+      return productObject = place.order_detail.find(productFind => {
+        return product.product_id == productFind.product.product_id;
       });
-    }
+    });
 
     if (!productObject) {
       productObject = {
@@ -172,12 +135,51 @@ export class ShopCartService {
     return productObject;
   }
 
-  validateQuantities(){
-    if(JSON.parse(localStorage.getItem('shop-cart'))[0].totalOrder == 0){
-      return true;
-    }else{
-      return false;
+
+  removeProduct(indexPlace, indexProduct) {
+
+    delete this.myShopCart[indexPlace].order_detail[indexProduct];
+
+    if (this.myShopCart[indexPlace].total <= 0) {
+      delete this.myShopCart[indexPlace]
     }
+
+    this.reIndexingShopCart();
+
+  }
+
+  removePlace(indexPlace){
+    delete this.myShopCart[indexPlace];
+    this.reIndexingShopCart();
+    localStorage.setItem("flag-in-purchase", "1");
+    this._localStorageService.setItem("shop-cart", JSON.stringify(this.myShopCart));
+  }
+
+  reIndexingShopCart() {
+
+    var shopCartAux = [];
+
+    this.myShopCart.forEach(placeObject => {
+
+      if (placeObject) {
+
+        var placePush = {
+          place: placeObject.place,
+          order_detail: [],
+          total: placeObject.total
+        }
+
+        placeObject.order_detail.forEach(product => {
+          if (product) {
+            placePush.order_detail.push(product);
+          }
+        });
+
+        shopCartAux.push(placePush);
+      }
+
+    });
+    this.myShopCart = shopCartAux;
   }
 
 }

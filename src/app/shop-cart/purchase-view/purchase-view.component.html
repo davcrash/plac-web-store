@@ -1,0 +1,219 @@
+<div class="container" *ngIf="objectPlace">
+
+  <br>
+  <!-- Inicio: Encabezado -->
+  <table>
+    <tr>
+      <td style="width: 20%">
+        <div style="width: 50px; height: 50px;">
+          <img src="{{objectPlace.place.place.path_image_logo}}" style="max-width: 100%; max-height: 70px;">
+        </div>
+      </td>
+      <td class="align-middle">
+        <h4>Orden de compra para <b>{{objectPlace.place.place_location_name}}</b></h4>
+      </td>
+    </tr>
+  </table>
+  <!-- Fin: Encabezado -->
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <!--Datos del envio -->
+      <div *ngIf="showSection == 'myAddress'">
+
+        <div *ngIf="loaderInfo" align="center">
+          <loader></loader>
+          Obteniendo tus direcciones...
+        </div>
+
+
+        <div *ngIf="!loaderInfo" class="border" style="padding:10px;">
+
+          <div class="float-right"><button (click)="showSection = 'listAddress'" type="button" class="btn btn-outline-secondary">Cambiar
+              datos</button></div>
+
+          <h5><b>Datos del envío </b>({{addressSelected.city.city_name}})</h5>
+
+          <span><b>Nombre:</b> {{addressSelected.plac_user_name}}</span><br>
+          <span><b>Correo:</b> {{addressSelected.plac_user_email}}</span><br>
+          <span><b>Teléfono:</b> {{addressSelected.plac_user_telephone}}</span><br>
+          <span><b>Dirección:</b> {{currentAddressFormatted}}</span><br>
+          <span><b>Barrio:</b> {{addressSelected.plac_user_neighborhood}}</span><br>
+          <span><b>Info. Adicional:</b> {{addressSelected.plac_user_additional_info}}</span><br>
+
+        </div>
+
+        <br>
+        <div *ngIf="paymentMethods" class="border" style="padding:10px;">
+          <h5><b>Métodos de pago</b></h5>
+          <div *ngIf="paymentMethods.paymentDeliveryAvailable" class="form-check" >
+            <input [disabled]="!paymentMethods.mercadoPagoAvailable"  (change)="selectPaymentMethod('paymentDelivery')" [(ngModel)]="paymentDelivery" name="paymentDelivery" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              Pago contraentrega
+            </label>
+          </div>
+          <div class="form-check"  *ngIf="paymentMethods.mercadoPagoAvailable">
+            <input [disabled]="!paymentMethods.paymentDeliveryAvailable" (change)="selectPaymentMethod('paymentMercadoPago')" [(ngModel)]="paymentMercadoPago" name="paymentMercadoPago" class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+            <label class="form-check-label" for="defaultCheck2">
+              Pago por internet
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!--Seleccion de direcciones -->
+      <div *ngIf="showSection == 'listAddress'" class="border" style="padding:10px;">
+        <div class="float-right"><button (click)="showSection = 'formAddress'" class="btn btn-outline-secondary">Nueva
+            dirección</button></div>
+        <div>
+          <h5><i (click)="showSection = 'myAddress'" class="fas fa-arrow-circle-left color-plac-text" style="cursor: pointer;"></i><b>
+              Mis direcciones</b></h5>
+        </div>
+        <small>Selecciona una dirección</small>
+        <br>
+
+        <!--Lista de direcciones-->
+        <br>
+        <div class="list-group">
+          <a *ngFor="let item of userAddresses" class="list-group-item list-group-item-action" style="cursor: pointer"
+          (click)="selectAddres(item);">
+            {{item.plac_user_name}}, {{item.plac_user_telephone}},
+            {{item.plac_user_email}}, {{formatterAddress(item.plac_user_address)}},
+            {{item.plac_user_neighborhood}}, {{item.city.city_name}}
+          </a>
+        </div>
+
+
+
+      </div>
+
+      <!--Cambio de datos -->
+      <div *ngIf="showSection == 'formAddress'" class="border" style="padding:10px;">
+        <h5><i *ngIf="userAddresses.length > 0" (click)="showSection = 'listAddress'" class="fas fa-arrow-circle-left color-plac-text"
+            style="cursor: pointer;"></i><b> Datos del envío (Bogotá)</b></h5>
+
+        <div class="row">
+          <div class="col-md-6">
+            <span>Nombre</span><br>
+            <input [(ngModel)]="addressModel.plac_user_name" name="plac_user_name" type="text" class="form-control" placeholder="Giovanny Vargas" />
+          </div>
+          <div class="col-md-6">
+            <span>Teléfono</span><br>
+            <input [(ngModel)]="addressModel.plac_user_telephone" name="plac_user_telephone" type="number" class="form-control" placeholder="3123010232" />
+          </div>
+        </div>
+
+        <span>Correo</span><br>
+        <input [(ngModel)]="addressModel.plac_user_email" name="plac_user_email" type="text" class="form-control" placeholder="ejemplo@gmail.com" />
+
+        <!-- Input de direccion -->
+        <span>Dirección</span><br>
+        <div class="input-group mb-3">
+          <select [(ngModel)]="addressModel.plac_user_address.mainWay" name="mainWay" class="custom-select" id="inputGroupSelect02">
+            <option value="Calle" >Calle</option>
+            <option value="Carrera">Carrera</option>
+            <option value="Avenida calle">Avenida calle</option>
+            <option value="Avenida carrera">Avenida carrera</option>
+            <option value="Circunvalar">Circunvalar</option>
+            <option value="Diagonal">Diagonal</option>
+            <option value="Transversal">Transversal</option>
+            <option value="Via">Via</option>
+            <option value="Manzana">Manzana</option>
+            <option value="Circular">Circular</option>
+          </select>
+          <input [(ngModel)]="addressModel.plac_user_address.address1" name="address1" class="form-control" type="text" placeholder="67 bis">
+          <div class="input-group-append">
+            <label class="input-group-text">#</label>
+          </div>
+          <input [(ngModel)]="addressModel.plac_user_address.address2" name="address2"  class="form-control" type="text" placeholder="105">
+          <div class="input-group-append">
+            <label class="input-group-text">-</label>
+          </div>
+          <input [(ngModel)]="addressModel.plac_user_address.address3" name="address3"  class="form-control" type="text" placeholder="28">
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <span>Barrio</span><br>
+            <input [(ngModel)]="addressModel.plac_user_neighborhood" name="plac_user_neighborhood" class="form-control" type="text" placeholder="Modelia">
+          </div>
+          <div class="col-md-8">
+            <span>Información adicional</span><br>
+            <input [(ngModel)]="addressModel.plac_user_additional_info" name="plac_user_additional_info" class="form-control" type="text" placeholder="Conjunto amanecer verde casa 54">
+          </div>
+        </div>
+        <br>
+        
+        <loader *ngIf="loaderNewAddress"></loader>
+        <button *ngIf="!loaderNewAddress" (click)="addNewAddress()"  class="btn btn-plac btn-block"
+        [disabled]="
+            addressModel.plac_user_name == '' &&
+            addressModel.plac_user_telephone == '' &&
+            addressModel.plac_user_email == '' &&
+            addressModel.plac_user_address.address1 == '' &&
+            addressModel.plac_user_address.address2 == '' &&
+            addressModel.plac_user_address.address3 == '' &&
+            addressModel.plac_user_neighborhood == ''">Agregar datos</button>
+      </div>
+
+
+    </div>
+
+    <div class="col-md-6">
+
+      <h5><b>Resumen de la orden</b></h5>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Producto</td>
+            <td>Unidades</td>
+            <td>Subtotal</td>
+          </tr>
+          <tr *ngFor="let item of objectPlace.order_detail">
+            <td class="align-center">
+              <div style="width: 70px; height: 70px;">
+                <img src="{{item.product.product_images[0].url}}" style="max-height: 70px; max-width: 100%;">
+              </div>
+            </td>
+            <td class="align-center">
+              {{item.quantity}}
+            </td>
+            <td class="align-right">${{item.totalProduct | number}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div align="right" style="padding: 15px;;width: 100%; height: auto; background-color: #FDFDFD; border-radius: 5px;">
+
+        <table>
+          <tr>
+            <td>Subtotal: </td>
+            <td class="text-right">${{objectPlace.total | number}}</td>
+          </tr>
+          <tr>
+            <td>Envío: </td>
+            <td class="text-right">$5.000</td>
+          </tr>
+          <tr>
+            <td><b>TOTAL: </b></td>
+            <td class="text-right"><b>${{objectPlace.total + 5000| number}}</b></td>
+          </tr>
+        </table>
+
+      </div>
+      <br>
+      <loader *ngIf="loaderNewOrder"></loader>
+      <button *ngIf="!loaderNewOrder" [disabled]="!paymentDelivery && !paymentMercadoPago" (click)="buyOrder()" class="d-inline" type="button" class="btn btn-plac btn-block btn-lg">Comprar</button>
+
+
+    </div>
+
+  </div>
+
+
+</div>
