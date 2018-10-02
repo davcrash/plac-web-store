@@ -17,7 +17,7 @@ export class RegisterService {
       "authentication": authentication,
       "installation": installation
     };
-    return this._globalService.HttpMethod("POST", "placusers", body);
+    return this._globalService.HttpMethod("POST", "placusers/tienda", body);
   }
 
   linkCurrentAccountWithAuth(placUserId, placUserName, placUserEmail, newAuth): Observable<any> {

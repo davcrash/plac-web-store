@@ -20,7 +20,7 @@ export class SearchService {
       orderBy: orderByPrice,//price_low o price_high
       search: queryText
     }
-    return this._globalService.HttpMethod("POST", "store/search", params);
+    return this._globalService.HttpMethod("POST", "store/search/tienda", params);
   }
 
   getMorePlacesWithProducts(url, queryText, orderByPrice, paymentTypeFilter): Observable<any> {

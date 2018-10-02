@@ -148,6 +148,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         if (result.status == 'success') {
           this.needConfirmationEmailCode = true;
         } else {
+          console.log(result);
           Swal('Oops...', 'Algo anda mal por favor inténtalo después', 'error');
         }
       }, error => {

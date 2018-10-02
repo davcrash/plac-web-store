@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
-  rootApiUrl: "http://xxxxxxxxx.x",
+  rootApiUrl: "http://api.placapp.com/",
   firebase: {
-    apiKey: '<your-key>',
-    authDomain: '<your-project-authdomain>',
-    databaseURL: '<your-database-URL>',
-    projectId: '<your-project-id>',
-    storageBucket: '<your-storage-bucket>',
-    messagingSenderId: '<your-messaging-sender-id>'
+    apiKey: "AIzaSyCZRgNVO95U9t7rowIkfEVKpekEQLHtd0c",
+    authDomain: "plac-release.firebaseapp.com",
+    databaseURL: "https://plac-release.firebaseio.com",
+    projectId: "plac-release",
+    storageBucket: "plac-release.appspot.com",
+    messagingSenderId: "839585325028"
   }
 };

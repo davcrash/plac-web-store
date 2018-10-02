@@ -9,32 +9,32 @@ import { PlaceProfileService } from '../services/place-profile.service';
 })
 export class PlaceCardComponent implements OnInit {
 
-  @Input() private placeId: string;
-  @Input() private placeDescription: string;
-  @Input() private placePathImageLogo: string;
-  @Input() private placeName: string;
-  @Input() private placeAssessment: number;
+  @Input() placeId: string;
+  @Input() placeDescription: string;
+  @Input() placePathImageLogo: string;
+  @Input() placeName: string;
+  @Input() placeAssessment: number;
 
 
-  @Input() private placeToProfile?:any;
-  @Input() private categoryToProfile?:any;
-  @Input() private subcategoryNameToProfile?:any;
-  @Input() private subcategoryIdToProfile?:any;
-  @Input() private brandToProfile?:any;
+  @Input() placeToProfile?: any;
+  @Input() categoryToProfile?: any;
+  @Input() subcategoryNameToProfile?: any;
+  @Input() subcategoryIdToProfile?: any;
+  @Input() brandToProfile?: any;
 
   arrayAssessmentStars: Array<number>;
   arrayAssessmentNoStars: Array<number>;
 
 
   constructor(
-    private _router:Router,
+    private _router: Router,
     private _placeProfileService: PlaceProfileService
   ) { }
 
   ngOnInit() {
     //para listar las estrellas
     this.arrayAssessmentStars = Array(Math.round(this.placeAssessment)).fill(0).map((x, i) => i);
-    this.arrayAssessmentNoStars = Array(-this.arrayAssessmentStars.length+5).fill(0).map((x, i) => i);
+    this.arrayAssessmentNoStars = Array(-this.arrayAssessmentStars.length + 5).fill(0).map((x, i) => i);
 
     let maxLength = 70;
     if (this.placeDescription.length > maxLength) {
@@ -42,12 +42,12 @@ export class PlaceCardComponent implements OnInit {
     }
   }
 
-  selectPlace(){
+  selectPlace() {
     this._placeProfileService.place = this.placeToProfile;
     this._placeProfileService.category = this.categoryToProfile;
     this._placeProfileService.subcategoryId = this.subcategoryIdToProfile;
     this._placeProfileService.brand = this.brandToProfile;
-    this._router.navigate(['/place/'+this.placeId]);
+    this._router.navigate(['/place/' + this.placeId]);
   }
 
 }

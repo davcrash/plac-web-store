@@ -18,7 +18,7 @@ export class PurchaseService {
   }
 
   getPaymentMethods(placeId){
-    return this._globalService.HttpMethod("POST", "store/place/payments/availables/", placeId);
+    return this._globalService.HttpMethod("POST", "store/place/payments/availables/tienda", placeId);
   }
 
   createOrder(order){

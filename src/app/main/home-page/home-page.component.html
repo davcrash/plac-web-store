@@ -8,7 +8,8 @@
   <router-outlet></router-outlet>
   <!--fin router outlet de producto-->
 
-  <div class="col-md-4 col-sm-6 informative-box border pointer" (click)="openModal(queEsPlac)">
+  <!--<div class="col-md-4 col-sm-6 informative-box border pointer" (click)="openModal(queEsPlac)">-->
+  <div class="col-md-4 col-sm-6 informative-box border pointer">
     <div class="col-12 text-center img-icon">
       <img src="/assets/img/logo-PLAC-01.svg">
     </div>
@@ -21,7 +22,8 @@
   </div>
 
 
-  <div class="col-md-4 col-sm-6 informative-box border pointer" (click)="openModal(descargaLaApp)">
+  <!--<div class="col-md-4 col-sm-6 informative-box border pointer" (click)="openModal(descargaLaApp)">-->
+  <div class="col-md-4 col-sm-6 informative-box border pointer">
     <div class="col-12 text-center img-icon">
       <img src="/assets/img/appstore.png">
       <img src="/assets/img/playstore.png">
@@ -34,7 +36,8 @@
     </div>
   </div>
 
-  <div class="col-md-4 col-sm-6 informative-box border pointer" (click)="openModal(vendeEnPlac)">
+  <!--<div class="col-md-4 col-sm-6 informative-box border pointer" (click)="openModal(vendeEnPlac)">-->
+  <div class="col-md-4 col-sm-6 informative-box border pointer">
     <div class="col-12 text-center img-icon">
       <img src="/assets/img/store.png">
     </div>
@@ -54,7 +57,7 @@
 
 <div class="home-container">
   <loader *ngIf="loaderfeaturedProducts && loaderfeaturedPlaces"></loader>
-  <div *ngIf="!loaderfeaturedProducts && !loaderfeaturedPlaces" class="container-fluid">
+  <div *ngIf="!loaderfeaturedProducts && !loaderfeaturedPlaces" class="container-fluid d-none">
 
     <div class="row justify-content-center">
       <div class="col-auto">
@@ -85,7 +88,7 @@
   </div>
 
 
-  <br>
+  <!--<br>-->
 
 
 
@@ -95,16 +98,18 @@
 
     <carousel-arrows>
 
-      <app-product-card *ngFor="let featuredProductList of featuredProducts" [productId]="featuredProductList.product_id" [imgProduct]="featuredProductList.product.product_images[0].url"
-        [productName]="featuredProductList.product.product_name" [productPrice]="featuredProductList.product.product_price">
+      <app-product-card *ngFor="let featuredProductList of featuredProducts" [productId]="featuredProductList.product_id"
+        [imgProduct]="featuredProductList.product.product_images[0].url" [productName]="featuredProductList.product.product_name"
+        [productPrice]="featuredProductList.product.product_price">
       </app-product-card>
 
     </carousel-arrows>
 
     <h3>Marcas destacadas</h3>
     <carousel-arrows>
-      <app-place-card *ngFor="let featuredPlaceList of featuredPlaces" [placeId]="featuredPlaceList.place_id" [placeName]="featuredPlaceList.place_location.place_location_name"
-        [placeDescription]="featuredPlaceList.place_location.place_description" [placeAssessment]="featuredPlaceList.assessment" [placePathImageLogo]="featuredPlaceList.path_image_logo">
+      <app-place-card *ngFor="let featuredPlaceList of featuredPlaces" [placeId]="featuredPlaceList.place_id"
+        [placeName]="featuredPlaceList.place_location.place_location_name" [placeDescription]="featuredPlaceList.place_location.place_description"
+        [placeAssessment]="featuredPlaceList.assessment" [placePathImageLogo]="featuredPlaceList.path_image_logo">
       </app-place-card>
 
     </carousel-arrows>

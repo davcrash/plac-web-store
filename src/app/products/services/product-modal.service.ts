@@ -15,6 +15,6 @@ export class ProductModalService {
   }
 
   sendNewQuestion(question): Observable<any>{
-    return this._globalService.HttpMethod("POST", "store/product/questions", question);
+    return this._globalService.HttpMethod("POST", "store/product/questions/tienda", question);
   }
 }

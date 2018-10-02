@@ -20,6 +20,11 @@
     cursor: default;
 }
 
-.active{
-    color: green;
+
+
+.subcategory-container {
+    border-bottom: 1px solid #e2e2e2;
+    border-top: 1px solid #e2e2e2;
+    padding: 15px;
+    background-color: #fdfdfd;
 }

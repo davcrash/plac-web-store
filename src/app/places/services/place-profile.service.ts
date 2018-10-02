@@ -41,7 +41,7 @@ export class PlaceProfileService {
         'search': (search) ? search : null,
       }
     };
-    return this._globalService.HttpMethod("POST", 'store/place/products', params);
+    return this._globalService.HttpMethod("POST", 'store/place/products/tienda', params);
   }
 
   getMoreProducts(url, search?): Observable<any> {

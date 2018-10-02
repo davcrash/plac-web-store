@@ -11,46 +11,76 @@
   <div class="container-fluid">
 
     <div class="row">
-      <div class="col-12 col-md-3 border" style="height: 100px;">
-        {{place.place_description}}
+      <div class="col-12 col-md-3 border d-flex justify-content-center" style="height: 100px;">
+        <div class="align-self-center">
+          <h3>{{place.place_location_name}}</h3>
+        </div>
       </div>
-      <div class="col-12 col-md-3 border" style="height: 100px;">
+      <div class="col-12 col-md-3 border d-flex justify-content-center" style="height: 100px;">
+        <div class="align-self-center">
+          {{place.place_description}}
+        </div>
+      </div>
+      <div class="col-12 col-md-3 border d-flex justify-content-center" style="height: 100px;">
+        <div class="align-self-center">
 
+          Valoración:
+          <div class="color-plac-text">
+            <i class="fas fa-star" *ngFor='let stars of arrayAssessmentStars'></i>
+            <i class="far fa-star" *ngFor='let stars of arrayAssessmentNoStars'></i>
+          </div>
+
+        </div>
       </div>
-      <div class="col-12 col-md-3 border" style="height: 100px;">
-        valoracion:
-        {{place.assessment}}
-      </div>
-      <div class="col-12 col-md-3 border" style="height: 100px;">
+      <div class="col-12 col-md-3 border d-flex justify-content-center" style="height: 100px;">
+        <div class="align-self-center" *ngIf="deliverySchedules != null">
+          Horarios de envio:
+          <div *ngFor="let schedule of deliverySchedules">
+            <div *ngIf="schedule.isOpened">
+              {{schedule.period}}: {{schedule.am}}AM a {{schedule.pm}}PM
+            </div>
+            <div *ngIf="!schedule.isOpened">
+              {{schedule.period}}: no abre
+            </div>
+          </div>
+        </div>
+        <div class="align-self-center">
+          <i class="fas fa-shipping-fast color-plac-text" style="font-size: 20px"></i>
+        </div>
+
         <!--
-        {{place.delivery_schedules}}
         {{place.delivery_time}}
         -->
       </div>
 
-      <div class="col-4 input-group">
-        <input style="padding: 7px;" #searchInput [(ngModel)]="searchText" (keyup.enter)="onEnterSearch(searchInput)" class="form-control " type="search"
-          placeholder="Buscar productos">
-        <div class="input-group-append">
-          <button class="btn btn-outline-plac" type="button" (click)="onEnterSearch(searchInput)">
-            <i class="fas fa-search"></i>
-          </button>
+      <div class="col-12 col-sm-9 d-flex justify-content-left" style="margin-top:10px; overflow-x: auto">
+        <button *ngFor="let category of place.categories" (click)="selectCategory(category)" class="btn btn-outline-plac btn-outline-plac-variation"
+          [ngClass]="{'active': categorySelected ==category.category_name}" [ngStyle]="{'background-image':'url('+category.category_img_url+')'}" 
+          style="height: 42.5px;background-size: auto 42.5px;background-repeat: no-repeat;background-position: right center; margin: 0 3px;margin-bottom: 10px; padding-right: 30px">{{category.category_name}}</button>
+      </div>
+
+      <div class="col-12 col-sm-3 d-flex justify-content-center" style="margin-top:10px">
+        <div class="input-group">
+          <input style="padding: 7px; height: 37px;" #searchInput [(ngModel)]="searchText" (keyup.enter)="onEnterSearch(searchInput)"
+            class="form-control " type="search" placeholder="Buscar productos en {{place.place_location_name}}">
+          <div class="input-group-append" style="height: 37px;">
+            <button class="btn btn-outline-plac" type="button" (click)="onEnterSearch(searchInput)">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
         </div>
       </div>
-      <div class="col-12 d-flex justify-content-center">
-        <button *ngFor="let category of place.categories" (click)="selectCategory(category)" class="btn btn-link"
-          [ngClass]="{'active': categorySelected ==category.category_name}">{{category.category_name}}</button>
-      </div>
 
 
-      <div class="col-12 d-flex justify-content-center" *ngIf="categorySelected && categoryArray.length>=1">
+
+      <div class="col-12 d-flex justify-content-center subcategory-container" *ngIf="categorySelected && categoryArray.length>=1">
         <app-subcategories [needReset]="needResetSubcategory" [categoryName]="categorySelected" [preLoadSubcategories]="subcategories"
           [preLoadSelected]="subcategorySelected" (subcategorySelected)="selectSubcategory($event)"></app-subcategories>
       </div>
 
       <div class="col-sm-auto col-12 ng-sidebar-width">
-        <app-brands [needReset]="needResetBrand" [categoryId]="categoryIdSelected" [subcategoryId]="subcategoryIdSelected" [search]="searchText"
-          [preBrandSelected]="brandSelected" (brandSelected)="selectBrand($event)" [placeId]="place.place_id"></app-brands>
+        <app-brands [needReset]="needResetBrand" [categoryId]="categoryIdSelected" [subcategoryId]="subcategoryIdSelected"
+          [search]="searchText" [preBrandSelected]="brandSelected" (brandSelected)="selectBrand($event)" [placeId]="place.place_id"></app-brands>
       </div>
 
       <div class="col-sm-auto col-12 container-products container-fluid">

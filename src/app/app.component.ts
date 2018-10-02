@@ -18,9 +18,9 @@ export class AppComponent {
     _opened: false,
     _position: 'right',
     _mode: 'over',
-    _closeOutside:false,
-    _showBackdrop:true,
-    _closeOnClickBackdrop:true
+    _closeOutside: false,
+    _showBackdrop: true,
+    _closeOnClickBackdrop: true
   }
 
 
@@ -35,7 +35,7 @@ export class AppComponent {
     localStorage.setItem("city", "2257"); //Codigo de bogota
   }
 
-  closeShopCart(){
+  closeShopCart() {
     this.shopCarProperties._opened = false;
   }
 
@@ -69,8 +69,13 @@ export class AppComponent {
   }
 
 
-  prueba(event){
-    console.log(event);
+  goTo(where) {
+    let windowRef = window;
+    switch (where) {
+      case 'download':
+        windowRef.open("https://play.google.com/store/apps/details?id=com.placapp", "_blank");
+        break;
+    }
   }
 
 

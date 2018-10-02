@@ -64,7 +64,7 @@ export class GlobalService {
     //Header de la solicitud
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
-      "access-key": "base64:X4IgJH07nbeiobM9KVDSIvMN1VxAgPV7wv5YKI18fpE="
+      "access-key": "base64:2CGwJBWqyaZ5DsFdBMBCBOP8hIi/KXTZtnshG1ZClIU="
     });
 
     result = this._http.post(environment.rootApiUrl + url, params, { headers: headers });

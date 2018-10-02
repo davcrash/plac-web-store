@@ -12,6 +12,10 @@ export class PlaceProfileComponent implements OnInit {
 
   place: any;
 
+  arrayAssessmentStars: Array<number>;
+  arrayAssessmentNoStars: Array<number>;
+  deliverySchedules;
+
   categorySelected: string;
   categoryIdSelected: string;
 
@@ -93,6 +97,11 @@ export class PlaceProfileComponent implements OnInit {
   setPlacePropieties() {
     this.place = this._placeProfileService.place;
     this.categoryArray = this.place.categories;
+    //para listar las estrellas
+    this.arrayAssessmentStars = Array(Math.round(this.place.assessment)).fill(0).map((x, i) => i);
+    this.arrayAssessmentNoStars = Array(-this.arrayAssessmentStars.length + 5).fill(0).map((x, i) => i);
+    this.deliverySchedules = JSON.parse(this.place.delivery_schedules);
+
     if (this._placeProfileService.category) {
       this.categorySelected = this._placeProfileService.category;
       let category = this.categoryArray.find(category => category.category_name === this.categorySelected);

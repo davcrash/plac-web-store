@@ -21,6 +21,6 @@ export class BrandsService {
     place_id != "" ? params.filters['place_id'] = place_id : '';
     search != "" ? params.filters['search'] = search : '';
     //console.log(params);
-    return this._globalService.HttpMethod("POST", "store/place/products/brand", params);
+    return this._globalService.HttpMethod("POST", "store/place/products/brand/tienda", params);
   }
 }
