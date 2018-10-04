@@ -111,7 +111,7 @@ export class ShopCartViewComponent implements OnInit {
           }
         });
 
-      }, 301);
+      }, 350);
 
     }
 

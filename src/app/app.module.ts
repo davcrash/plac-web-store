@@ -50,6 +50,7 @@ import { ShopCartViewComponent } from './shop-cart/shop-cart-view/shop-cart-view
 import { SearchComponent } from './main/search/search.component';
 import { RegisterComponent } from './users/register/register.component';
 import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.component';
+import { DownloadAppComponent } from './main/landing/download-app/download-app.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.c
     OnlyNumberDirective,
     RegisterComponent,
     PurchaseViewComponent,
+    DownloadAppComponent,
   ],
   imports: [
     BrowserModule,

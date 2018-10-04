@@ -95,6 +95,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
         this._loginService.getRedirectResult()
           .subscribe(resultredirect => {
+            console.log(resultredirect);
             if (resultredirect.user) {
               let user = resultredirect.user;
               let placAuth = {
