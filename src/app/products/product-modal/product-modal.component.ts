@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductModalService } from '../services/product-modal.service';
 import { ShopCartService } from '../../shop-cart/services/shop-cart.service';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-product-modal',
@@ -121,12 +121,10 @@ export class ProductModalComponent implements OnInit {
       swal({
         title: 'Inicia sesión',
         text: 'Para realizar tus compras, primero debes iniciar sesión',
-        type: 'info',
-        showCancelButton: true,
-        cancelButtonText: 'Más tarde',
-        confirmButtonText: 'Iniciar sesión'
-      }).then(res => {
-        if (res.value === true) {
+        icon: 'info',
+        buttons: ["Más tarde", "Iniciar sesión"],
+      }).then((value) => {
+        if (value === true) {
           this._router.navigate(['login']);
         }
       });

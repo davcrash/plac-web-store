@@ -4,15 +4,15 @@
 
 export const environment = {
   production: false,
-  rootApiUrl: "//api.placapp.com/",
-  //rootApiUrl: "http://192.168.0.10:8000/",
+  //rootApiUrl: "//api.placapp.com/",
+  rootApiUrl: "http://localhost:8000/",
   firebase: {
-    apiKey: "AIzaSyCZRgNVO95U9t7rowIkfEVKpekEQLHtd0c",
-    authDomain: "plac-release.firebaseapp.com",
-    databaseURL: "https://plac-release.firebaseio.com",
-    projectId: "plac-release",
-    storageBucket: "plac-release.appspot.com",
-    messagingSenderId: "839585325028"
+    apiKey: "AIzaSyChbdpaza09f_Y5aaVxkMjfm1Hvn0aCRxY",
+    authDomain: "fir-plac-debug.firebaseapp.com",
+    databaseURL: "https://fir-plac-debug.firebaseio.com",
+    projectId: "firebase-plac-debug",
+    storageBucket: "firebase-plac-debug.appspot.com",
+    messagingSenderId: "705857991353"
   }
 };
 

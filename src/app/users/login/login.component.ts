@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy, AfterViewInit, Injector, NgZone } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
 import { LocalStorageService } from '../../local-storage.service';
+import swal from 'sweetalert';
 declare var grecaptcha: any;
 
 @Component({
@@ -92,18 +92,17 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
       if (sessionStorage.getItem('redirect')) {
         this.redirectLoader = true;
 
-
         this._loginService.getRedirectResult()
           .subscribe(resultredirect => {
-            console.log(resultredirect);
+            //console.log(resultredirect.additionalUserInfo.profile.email);
             if (resultredirect.user) {
               let user = resultredirect.user;
               let placAuth = {
                 user_uid: user.uid,
                 authentication_type: resultredirect.additionalUserInfo.providerId,
-                authentication_identificator: user.email
+                authentication_identificator: resultredirect.additionalUserInfo.profile.email
               };
-              this.verifyIfUserExist(placAuth, user);
+              this.verifyIfUserExist(placAuth, resultredirect);
             }
           }, error => {
             this.logout();
@@ -135,7 +134,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
           authentication_type: result.additionalUserInfo.providerId,
           authentication_identificator: user.phoneNumber
         };
-        this.verifyIfUserExist(placAuth, user);
+        this.verifyIfUserExist(placAuth, result);
       })
       .catch(error => {
         this.showAlertError(error);
@@ -147,12 +146,12 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this._loginService.manageLogIn(placAuth, this.deviceInfo)
       .subscribe(result => {
         this.removeRedirectLoader();
-
         if (result.message == "user_not_exist") {
           let dataToRegister = {
             authentication: JSON.stringify(placAuth),
             installation: JSON.stringify(this.deviceInfo),
-            user: JSON.stringify(user)
+            user: JSON.stringify(user.user),
+            additionalUserInfo: JSON.stringify(user.additionalUserInfo)
           };
           this._registerService.registerActive = true;
 
@@ -252,35 +251,39 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
   showAlertError(error) {
     switch (error.code) {
       case "auth/user-disabled": {
-        Swal('Oops...', 'Tu cuenta no esta habilitada', 'info')
+        swal('Oops...', 'Tu cuenta no esta habilitada', 'info')
         break;
       }
       case "auth/user-not-found": {
-        Swal('Oops...', 'Usuario no encontrado', 'info')
+        swal('Oops...', 'Usuario no encontrado', 'info')
         break;
       }
       case "auth/invalid-verification-code": {
-        Swal('Oops...', 'El codigo esta mal', 'info')
+        swal('Oops...', 'El codigo esta mal', 'info')
         break;
       }
       case "auth/internal-error": {
-        Swal('Oops...', 'Algo anda mal por favor inténtalo después', 'info');
+        swal('Oops...', 'Algo anda mal por favor inténtalo después', 'info');
         break;
       }
       case "auth/code-expired": {
-        Swal('Oops...', 'Este código se a expirado por favor envié otro', 'error');
+        swal('Oops...', 'Este código se a expirado por favor envié otro', 'error');
         break;
       }
       case "auth/invalid-phone-number": {
-        Swal('Oops...', 'El numero de telefono no es valido', 'error');
+        swal('Oops...', 'El numero de telefono no es valido', 'error');
         break;
       }
       case "auth/too-many-requests": {
-        Swal('Oops...', 'Has echo muchas peticiones, inténtalo mas tarde', 'error');
+        swal('Oops...', 'Has echo muchas peticiones, inténtalo mas tarde', 'error');
+        break;
+      }
+      case "auth/account-exists-with-different-credential": {
+        swal('Oops...', 'Ya hay una cuenta existente con este correo electrónico pero diferente método de acceso, por favor intenta con otra cuenta', 'info');
         break;
       }
       default: {
-        Swal('Oops...', 'Error desconocido', 'error')
+        swal('Oops...', 'Error desconocido', 'error')
         break;
       }
     }

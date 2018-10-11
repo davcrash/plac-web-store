@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegisterService } from '../services/register.service';
 import { LoginService } from '../services/login.service';
 import { LocalStorageService } from '../../local-storage.service';
-import Swal from 'sweetalert2';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-register',
@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   authentication;
   installation;
   user;
+  additionalUserInfo;
 
   placUserId: string;
 
@@ -52,7 +53,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ) {
 
     window.onbeforeunload = (ev) => {//si se refresca la pagina
-      this.logout();
+      if (this._registerService.registerActive) {
+        this.logout();
+      }
     };
   }
 
@@ -63,13 +66,17 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.authentication = JSON.parse(result['authentication']);
         this.installation = JSON.parse(result['installation']);
         this.user = JSON.parse(result['user']);
+        this.additionalUserInfo = JSON.parse(result['additionalUserInfo']);
+
+
 
         this.plac_user.plac_user_name = (this.user.displayName) ? this.user.displayName : '';
-        this.plac_user.plac_user_email = (this.user.email) ? this.user.email : '';
+        this.plac_user.plac_user_email = (this.additionalUserInfo.profile != undefined) ? this.additionalUserInfo.profile.email : '';
         this.plac_user.plac_user_image = (this.user.photoURL) ? this.user.photoURL : 'empty';
         this.createForm();
       });
   }
+
 
   ngOnDestroy() {
     if (this._registerService.registerActive) {
@@ -102,19 +109,17 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
             this._localStorageService.setItem('user_data', JSON.stringify(result.data));
 
-            Swal('Muy bien', "", "success");
+            swal('Muy bien', "", "success");
             this._router.navigate(['']);
           } else {
             if (result.message === "23000") {
-              Swal({
+              swal({
                 title: 'Oops...',
                 text: 'Este correo ya esta registrado en plac deseas anclarlo a la cuenta ya existente',
-                type: 'info',
-                showCancelButton: true,
-                cancelButtonText: 'Cambiar correo',
-                confirmButtonText: 'Si'
+                icon: 'info',
+                buttons: ['Cambiar correo', 'Si']
               }).then(res => {
-                if (res.value === true) {
+                if (res === true) {
                   this.loaderSubmit = true;
                   //se envia un correo con el codigo de verificacion
                   this.linkCurrentAccountWithAuth(result.data.plac_user_id);
@@ -125,7 +130,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             } else {
 
               this.logout();
-              Swal('Oops...', 'Algo anda mal por favor inténtalo después', 'error');
+              swal('Oops...', 'Algo anda mal por favor inténtalo después', 'error');
             }
           }
         }, error => {
@@ -149,11 +154,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
           this.needConfirmationEmailCode = true;
         } else {
           console.log(result);
-          Swal('Oops...', 'Algo anda mal por favor inténtalo después', 'error');
+          swal('Oops...', 'Algo anda mal por favor inténtalo después', 'error');
         }
       }, error => {
         console.log(error);
-        Swal('Oops...', 'Algo anda mal por favor inténtalo después', 'error');
+        swal('Oops...', 'Algo anda mal por favor inténtalo después', 'error');
       }, () => {
         this.loaderSubmit = false;
       })
@@ -171,10 +176,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
         .subscribe(result => {
           if (result.status == 'success') {
             this._localStorageService.setItem('user_data', JSON.stringify(result.data));
-            Swal('Muy bien', "", "success");
+            swal('Muy bien', "", "success");
             this._router.navigate(['']);
           } else {
-            Swal('Oops...', result.message, 'error');
+            swal('Oops...', result.message, 'error');
           }
         }, error => {
           console.log(error);

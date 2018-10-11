@@ -13,15 +13,16 @@
 }
 
 .zoom:active {
-    -ms-transform: scale(1.2);
+    -ms-transform: scale(.9);
     /* IE 9 */
-    -webkit-transform: scale(1.2);
+    -webkit-transform: scale(.9);
     /* Safari 3-8 */
-    transform: scale(1.2);
+    transform: scale(.9);
 }
 
 .img-cel{
-    height: 60vh;
+    width: 120%;
+    height: auto;
 }
 
 @media (max-width: 991.98px) {

@@ -48,12 +48,12 @@ export class LoginService {
     }
 
     loginWithGoogle() {
-        return this._angularFireAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+        return this._angularFireAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider().addScope('email'));
     }
 
 
     loginWithFacebook() {
-        return this._angularFireAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider());
+        return this._angularFireAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider().addScope('email'));
     }
 
 

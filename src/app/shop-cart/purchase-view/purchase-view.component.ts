@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PurchaseService } from '../services/purchase.service';
 import { ShopCartService } from '../services/shop-cart.service';
-import swal from 'sweetalert2'
+import swal from 'sweetalert'
 
 @Component({
   selector: 'app-purchase-view',
@@ -94,7 +94,7 @@ export class PurchaseViewComponent implements OnInit {
 
     }, error => {
       console.log(error);
-      swal("Opps..","Ocurrio un error obteniendo los metodos de pago","error");
+      swal("Opps..", "Ocurrio un error obteniendo los metodos de pago", "error");
     })
   }
 
@@ -125,7 +125,7 @@ export class PurchaseViewComponent implements OnInit {
       this.loaderInfo = false;
     }, error => {
       this.showSection = "changeAddress";
-      swal("Opps..","Ocurrio un error obteniendo tus direcciones","error");
+      swal("Opps..", "Ocurrio un error obteniendo tus direcciones", "error");
       console.log(error);
     });
 
@@ -157,7 +157,7 @@ export class PurchaseViewComponent implements OnInit {
       this.showSection = 'myAddress';
 
     }, error => {
-      swal("Opps..","Ocurrio un error agregando la información","error");
+      swal("Opps..", "Ocurrio un error agregando la información", "error");
       console.log(error)
       this.loaderNewAddress = false;
     })
@@ -213,7 +213,7 @@ export class PurchaseViewComponent implements OnInit {
       this.manageOrderSuccess(response);
       this.loaderNewOrder = false;
     }, error => {
-      swal("Opps..","Ocurrio un error creando la orden","error");
+      swal("Opps..", "Ocurrio un error creando la orden", "error");
       console.log(error);
       this.loaderNewOrder = false;
     });
@@ -238,12 +238,12 @@ export class PurchaseViewComponent implements OnInit {
     if (this.paymentDelivery) {
       //Mostramos alerta 
       swal({
+
         title: 'Correcto',
         text: "La orden fue procesada, PLAC la enviará a la dirección de domicilio seleccionada, Muchas gracias.",
-        type: 'success',
-        confirmButtonText: 'OK',
-        allowOutsideClick: false,
-        allowEscapeKey: false
+        icon: 'success',
+        closeOnEsc: false,
+        closeOnClickOutside: false
       }).then((result) => {
         if (result.value) {
           //redirigimos
@@ -261,10 +261,10 @@ export class PurchaseViewComponent implements OnInit {
       swal({
         title: 'Correcto',
         text: "Te redirigeremos a Mercado Pago para que realices el pago correspondiente, Muchas gracias.",
-        type: 'success',
-        confirmButtonText: 'Ir a Mercado Pago',
-        allowOutsideClick: false,
-        allowEscapeKey: false
+        icon: 'success',
+        buttons: [false, 'Ir a Mercado Pago'],
+        closeOnEsc: false,
+        closeOnClickOutside: false
       }).then((result) => {
         if (result.value) {
           //redirigimos a mercado pago

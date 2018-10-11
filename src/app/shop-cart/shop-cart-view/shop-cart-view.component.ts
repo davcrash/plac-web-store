@@ -2,7 +2,8 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { LocalStorageService } from '../../local-storage.service';
 import { ShopCartService } from '../services/shop-cart.service';
 import { Router } from '@angular/router';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-shop-cart-view',
@@ -89,11 +90,24 @@ export class ShopCartViewComponent implements OnInit {
   goToBuy(iPlace) {
 
     if (localStorage.getItem("user_data")) {
-      console.log('/compra/' + iPlace);
       this._router.navigate(['/compra/' + iPlace]);
       this.closeCar.emit();
     } else {
       this.closeCar.emit();
+
+
+      swal({
+        title: 'Inicia sesión',
+        text: 'Para realizar tus compras, primero debes iniciar sesión',
+        icon: 'info',
+        buttons: ["Más tarde", "Iniciar sesión"]
+      }).then((value) => {
+        if (value === true) {
+          this._router.navigate(['login']);
+        }
+      });
+
+      /*
       setTimeout(() => {
 
         swal({
@@ -104,15 +118,13 @@ export class ShopCartViewComponent implements OnInit {
           cancelButtonText: 'Más tarde',
           confirmButtonText: 'Iniciar sesión'
         }).then(res => {
-          this.closeCar.emit();
           if (res.value === true) {
-            this.closeCar.emit();
             this._router.navigate(['login']);
           }
         });
 
-      }, 350);
-
+      }, 10000);
+*/
     }
 
 

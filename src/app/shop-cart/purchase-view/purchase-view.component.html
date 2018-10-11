@@ -208,7 +208,7 @@
       </div>
       <br>
       <loader *ngIf="loaderNewOrder"></loader>
-      <button *ngIf="!loaderNewOrder" [disabled]="!paymentDelivery && !paymentMercadoPago" (click)="buyOrder()" class="d-inline" type="button" class="btn btn-plac btn-block btn-lg">Comprar</button>
+      <button *ngIf="!loaderNewOrder" [disabled]="!((paymentDelivery || paymentMercadoPago) && addressSelected != null)" (click)="buyOrder()" class="d-inline" type="button" class="btn btn-plac btn-block btn-lg">Comprar</button>
 
 
     </div>
