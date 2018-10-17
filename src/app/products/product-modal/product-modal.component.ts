@@ -84,12 +84,13 @@ export class ProductModalComponent implements OnInit {
       //abrir modal 
       this._modalService.open(this.modal, { size: 'lg' }).result.then(() => {
         //regresar atras si se cierra
-        //this._router.navigate(['../../'], { relativeTo: this._route, replaceUrl: true });
-        this._location.back();
+        (window.history.length > 2) ? this._location.back() : this._router.navigate(['../../'], { relativeTo: this._route, replaceUrl: true });
+
+
+        ;
       }, () => {
         //regresar atras si se da click afuera
-        //this._router.navigate(['../../'], { relativeTo: this._route, replaceUrl: true });
-        this._location.back();
+        (window.history.length > 2) ? this._location.back() : this._router.navigate(['../../'], { relativeTo: this._route, replaceUrl: true });
       });
 
     }, 1);

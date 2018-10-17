@@ -15,6 +15,8 @@ import { RegisterGuard } from './users/register/register.guard';
 import { LoginGuard } from './users/login/login.guard';
 import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.component';
 import { DownloadAppComponent } from './main/landing/download-app/download-app.component';
+import { OrdersListComponent } from './orders/orders-list/orders-list.component';
+
 
 const routes: Routes = [
   //login
@@ -52,7 +54,8 @@ const routes: Routes = [
   },
 
   { path: 'compra/:indexPlace', component: PurchaseViewComponent, canActivate: [LoginGuard] },
-  { path: 'descargar', component: DownloadAppComponent},
+  { path: 'ordenes', component: OrdersListComponent, canActivate: [LoginGuard] },
+  { path: 'descargar', component: DownloadAppComponent },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
   { path: '**', component: PageNotFoundComponent },

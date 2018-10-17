@@ -51,6 +51,7 @@ import { SearchComponent } from './main/search/search.component';
 import { RegisterComponent } from './users/register/register.component';
 import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.component';
 import { DownloadAppComponent } from './main/landing/download-app/download-app.component';
+import { OrdersListComponent } from './orders/orders-list/orders-list.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { DownloadAppComponent } from './main/landing/download-app/download-app.c
     RegisterComponent,
     PurchaseViewComponent,
     DownloadAppComponent,
+    OrdersListComponent,
   ],
   imports: [
     BrowserModule,
