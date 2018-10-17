@@ -17,9 +17,9 @@
 
 
             <div ng-sidebar-content>
-                <div class="wrap scroll" #contentPages>
+                <div class="wrap scroll" #contentPages (scroll)="manageScroll()">
                     <!--contenido pagina-->
-                    <div class="col-md-12 no-padding content-page">
+                    <div class="col-md-12 no-padding content-page" >
                         <router-outlet (activate)="componentAdded($event)"></router-outlet>
                     </div>
                     <!--fin contenido pagina-->

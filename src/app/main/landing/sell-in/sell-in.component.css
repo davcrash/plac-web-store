@@ -1,0 +1,56 @@
+.border-radius-container{
+    background-color: #EBECF1;
+    border-top-left-radius: 100vw 15vw;
+    border-top-right-radius: 100vw 15vw;
+}
+
+.card-first-container{
+    background-color: white;
+    border-radius: 5%;
+    width: 280px;
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-bottom: 30px;
+    margin-bottom: 30px
+}
+
+.container-history{
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-bottom: 30px
+}
+
+.checks{
+margin: 10px 0;
+}
+
+.text-type-product{
+    color: white;
+    position: absolute;
+    left: 20%;
+    top: 50%;
+}
+
+.navmenu{
+    background: white;
+    margin-bottom: 30px; 
+    z-index: 1040;
+    right: 0;
+    left: 0;
+}
+.navfixed{
+    position: fixed; 
+    top: 72px;
+}
+
+
+@media (max-width: 991.98px) {
+    .navfixed{
+        top: 137px;
+    }
+}
+
+

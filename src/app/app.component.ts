@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { SellInService } from './main/landing/sell-in/sell-in.service';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,10 @@ export class AppComponent {
   //variable para mostrar elementos
   showElement: boolean = true;
 
-  constructor() {
+  //variable para saber si esta en vende en plac
+  isInSellIn: boolean = false;
+
+  constructor(private _sellInService: SellInService) {
     //document.body.style.
     //alert(screen.width);
 
@@ -47,8 +51,15 @@ export class AppComponent {
       left: 0,
       behavior: 'smooth'
     });*/
-
     this.contentPages.nativeElement.scrollTop = 0;//para que cuando se cambia de pagina se ponga en el principio
+
+
+    if (event.isInSellIn) {//si esta en el componente de vende en plac
+      this.isInSellIn = true;
+    } else {
+      this.isInSellIn = false;
+    }
+
     if (event.showElements) {
       this._opened = false;
       this.showElement = false;
@@ -65,6 +76,12 @@ export class AppComponent {
         this._sideBarMode = 'over';
         this._closeOutside = true;
       }
+    }
+  }
+
+  manageScroll() {
+    if (this.isInSellIn) {
+      this._sellInService.setScrollValue(this.contentPages.nativeElement.scrollTop);
     }
   }
 
