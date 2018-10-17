@@ -1,0 +1,38 @@
+.border-radius-container {
+    background-color: #EBECF1;
+    border-top-left-radius: 100vw 15vw;
+    border-top-right-radius: 100vw 15vw;
+}
+
+.img-background {
+    height: 90vh;
+    background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/assets/img/team-view/fondo.png');
+    background-position: top;
+    background-size: cover;
+}
+
+.person {
+    transition: transform .1s;
+}
+
+.person:hover, .person.active {
+    transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    /* IE 9 */
+    -webkit-transform: scale(1.1);
+    /* Safari 3-8 */
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.person:active {
+    -ms-transform: scale(.95);
+    /* IE 9 */
+    -webkit-transform: scale(.95);
+    /* Safari 3-8 */
+    transform: scale(.95);
+}
+
+@media (max-width: 991.98px) {
+    .img-background {
+        background-size: contain;
+    }
+}

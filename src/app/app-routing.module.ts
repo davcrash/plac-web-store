@@ -17,6 +17,7 @@ import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.c
 import { DownloadAppComponent } from './main/landing/download-app/download-app.component';
 import { SellInComponent } from './main/landing/sell-in/sell-in.component';
 import { WhatIsComponent } from './main/landing/what-is/what-is.component';
+import { TeamComponent } from './main/landing/team/team.component';
 
 const routes: Routes = [
   //login
@@ -57,10 +58,15 @@ const routes: Routes = [
   { path: 'descargar', component: DownloadAppComponent },
   { path: 'vende-en-plac', component: SellInComponent },
   { path: 'que-es-plac', component: WhatIsComponent },
+  { path: 'equipo', component: TeamComponent },
 
-  ////////////
+
+  /*
+  EJEMPLOS
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
+  */
+
   { path: '**', component: PageNotFoundComponent },
 
 ];

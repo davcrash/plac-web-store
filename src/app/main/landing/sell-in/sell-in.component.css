@@ -1,10 +1,10 @@
-.border-radius-container{
+.border-radius-container {
     background-color: #EBECF1;
     border-top-left-radius: 100vw 15vw;
     border-top-right-radius: 100vw 15vw;
 }
 
-.card-first-container{
+.card-first-container {
     background-color: white;
     border-radius: 5%;
     width: 280px;
@@ -14,7 +14,7 @@
     margin-bottom: 30px
 }
 
-.container-history{
+.container-history {
     width: 100%;
     background-color: white;
     border-radius: 5px;
@@ -23,34 +23,40 @@
     margin-bottom: 30px
 }
 
-.checks{
-margin: 10px 0;
+.checks {
+    margin: 10px 0;
 }
 
-.text-type-product{
+.text-type-product {
     color: white;
     position: absolute;
     left: 20%;
     top: 50%;
 }
 
-.navmenu{
+.navmenu {
     background: white;
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
     z-index: 1040;
     right: 0;
     left: 0;
 }
-.navfixed{
-    position: fixed; 
+
+.navfixed {
+    position: fixed;
     top: 72px;
 }
 
+.btn-link {
+    text-decoration: none
+}
+
+.btn-link:hover {
+    color: #00B99B;
+}
 
 @media (max-width: 991.98px) {
-    .navfixed{
+    .navfixed {
         top: 137px;
     }
 }
-
-

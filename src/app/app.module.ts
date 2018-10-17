@@ -56,6 +56,7 @@ import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.c
 import { DownloadAppComponent } from './main/landing/download-app/download-app.component';
 import { SellInComponent } from './main/landing/sell-in/sell-in.component';
 import { WhatIsComponent } from './main/landing/what-is/what-is.component';
+import { TeamComponent } from './main/landing/team/team.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { WhatIsComponent } from './main/landing/what-is/what-is.component';
     DownloadAppComponent,
     SellInComponent,
     WhatIsComponent,
+    TeamComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center align-items-center img-background">
+
+  <h2 style="color:white" align="center">
+    El equipo
+  </h2>
+</div>
+<div class="border-radius-container d-flex justify-content-center" style="position: relative; top: -20vh; padding-top:15vh; margin-bottom: -20vh; overflow: hidden;">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-8 col-12" align="center">
+
+        <h2>"En plac tenemos la capacidad de trabajar individualmente en equipo"</h2>
+        <br><br><br>
+        <br><br><br>
+      </div>
+
+    </div>
+    <div class="row justify-content-center" style="margin-bottom: 60px">
+      <div class="col-auto person pointer" [ngClass]="{'active':person == personSelected }" align="center" *ngFor="let person of team" (click)="selectPerson(person)">
+        <div style="height: 100px; width: 100px;" class="bg-danger rounded-circle">
+
+        </div>
+        {{person.firstName}}<br>{{person.lastName}}
+      </div>
+
+    </div>
+    <div class="row justify-content-center" style="margin-bottom: 60px">
+      <div class="col-md-6 col-12 rounded" style="background-color: white; padding: 25px">
+        <div class="row">
+          <div class="col-md-8 col-12" align="center">
+            {{personSelected.firstName}} {{personSelected.lastName}}
+            <br>
+            {{personSelected.workPosition}}
+            <br><br>
+            {{personSelected.description}}
+          </div>
+          <div class="col-md-4 col-12" align="center">
+            <div style="height: 150px; width: 150px" class="rounded-circle bg-danger">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
