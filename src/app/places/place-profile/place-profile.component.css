@@ -2,7 +2,6 @@
     width: calc(100vw - 300px);
 }
 
-
 .color-dark-gray-text>.breadcrumb-item:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -14,13 +13,17 @@
     margin-bottom: 0;
     min-height: auto;
 }
-.color-dark-gray-text>.breadcrumb-item.active, .color-dark-gray-text>.breadcrumb-item.active:hover {
+
+.color-dark-gray-text>.breadcrumb-item.active,
+.color-dark-gray-text>.breadcrumb-item.active:hover {
     color: #00B99B;
     text-decoration: none;
     cursor: default;
 }
 
-
+.img-logo-place {
+    height: 120px;
+}
 
 .subcategory-container {
     border-bottom: 1px solid #e2e2e2;

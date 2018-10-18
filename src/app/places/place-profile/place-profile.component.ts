@@ -85,6 +85,7 @@ export class PlaceProfileComponent implements OnInit {
     this.loaderProducts = true;
     this._placeProfileService.getPlaceById(this._route.snapshot.params['id'])
       .subscribe(result => {
+        console.log(result);
         this._placeProfileService.place = result;
         this.setPlacePropieties();
       }, error => {
