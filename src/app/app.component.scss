@@ -40,6 +40,10 @@
     text-decoration: none;
 }
 
+.link-hover:hover {
+    text-decoration: underline !important;
+}
+
 .list-inline>.list-inline-item>a:hover {
     color: #00B99B;
 }

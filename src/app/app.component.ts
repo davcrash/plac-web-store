@@ -89,8 +89,14 @@ export class AppComponent {
   goTo(where) {
     let windowRef = window;
     switch (where) {
-      case 'download':
-        windowRef.open("https://play.google.com/store/apps/details?id=com.placapp", "_blank");
+      case 'facebook':
+        windowRef.open("https://www.facebook.com/placoficial/", "_blank");
+        break;
+      case 'instagram':
+        windowRef.open("https://www.instagram.com/placoficial/", "_blank");
+        break;
+      case 'twitter':
+        windowRef.open("https://twitter.com/placapp", "_blank");
         break;
     }
   }

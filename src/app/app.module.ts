@@ -57,6 +57,8 @@ import { DownloadAppComponent } from './main/landing/download-app/download-app.c
 import { SellInComponent } from './main/landing/sell-in/sell-in.component';
 import { WhatIsComponent } from './main/landing/what-is/what-is.component';
 import { TeamComponent } from './main/landing/team/team.component';
+import { JobComponent } from './main/landing/job/job.component';
+import { PressComponent } from './main/landing/press/press.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,8 @@ import { TeamComponent } from './main/landing/team/team.component';
     SellInComponent,
     WhatIsComponent,
     TeamComponent,
+    JobComponent,
+    PressComponent,
   ],
   imports: [
     BrowserModule,

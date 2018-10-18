@@ -19,7 +19,7 @@
             <div ng-sidebar-content>
                 <div class="wrap scroll" #contentPages (scroll)="manageScroll()">
                     <!--contenido pagina-->
-                    <div class="col-md-12 no-padding content-page" >
+                    <div class="col-md-12 no-padding content-page">
                         <router-outlet (activate)="componentAdded($event)"></router-outlet>
                     </div>
                     <!--fin contenido pagina-->
@@ -27,8 +27,8 @@
                         <!--Footer-->
                         <footer>
 
-                            <div class="container d-none">
-                                <div class="row">
+                            <div class="container">
+                                <div class="row justify-content-center">
                                     <div class="col-12 text-center img-footer-container">
                                         <img [routerLink]="['/']" src="/assets/img/logo-PLAC-01.svg">
                                     </div>
@@ -64,23 +64,16 @@
                                     <div class="col-6 col-sm-2">
                                         <ul class="list-inline">
                                             <li>
-                                                <b class="color-dark-green-text">Marcas destacadas</b>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-6 col-sm-2">
-                                        <ul class="list-inline">
-                                            <li>
                                                 <b class="color-dark-green-text">Nosotros</b>
                                             </li>
                                             <li>
-                                                <a [routerLink]="['/categoria/Alimentos']">El equipo</a>
+                                                <a [routerLink]="['/equipo']">El equipo</a>
                                             </li>
                                             <li>
-                                                <a [routerLink]="['/categoria/Farmacia']">Prensa</a>
+                                                <a [routerLink]="['/prensa']">Prensa</a>
                                             </li>
                                             <li>
-                                                <a [routerLink]="['/categoria/Higiene']">Empleo</a>
+                                                <a [routerLink]="['/empleo']">Empleo</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -110,13 +103,21 @@
                                                 <b class="color-dark-green-text">Redes</b>
                                             </li>
                                             <li class="icon-social-network-li">
-                                                <i class="fab fa-facebook-f icon-social-network"></i>
+                                                <a (click)="goTo('facebook')" class="link-hover pointer">
+                                                    <i class="fab fa-facebook-f icon-social-network"></i>&nbsp;&nbsp;Facebook
+                                                </a>
                                             </li>
                                             <li class="icon-social-network-li">
-                                                <i class="fab fa-instagram icon-social-network"></i>
+                                                <a (click)="goTo('instagram')" class="link-hover pointer">
+                                                    <i class="fab fa-instagram icon-social-network"></i>&nbsp;&nbsp;Instagram
+                                                </a>
+
                                             </li>
                                             <li class="icon-social-network-li">
-                                                <i class="fab fa-twitter icon-social-network"></i>
+                                                <a (click)="goTo('twitter')" class="link-hover pointer">
+                                                    <i class="fab fa-twitter icon-social-network"></i>&nbsp;&nbsp;Twitter
+                                                </a>
+
                                             </li>
                                         </ul>
                                     </div>

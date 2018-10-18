@@ -6,16 +6,26 @@
 
 .img-background {
     height: 90vh;
-    background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/assets/img/team-view/fondo.png');
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/team-view/fondo.png');
     background-position: top;
     background-size: cover;
+}
+
+.btn-link {
+    text-decoration: none;
+    color:white
+}
+
+.btn-link:hover , .btn-link.active{
+    color: #00B99B;
 }
 
 .person {
     transition: transform .1s;
 }
 
-.person:hover, .person.active {
+.person:hover,
+.person.active {
     transform: scale(1.1);
     -ms-transform: scale(1.1);
     /* IE 9 */
@@ -23,16 +33,11 @@
     /* Safari 3-8 */
     /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
+
 .person:active {
     -ms-transform: scale(.95);
     /* IE 9 */
     -webkit-transform: scale(.95);
     /* Safari 3-8 */
     transform: scale(.95);
-}
-
-@media (max-width: 991.98px) {
-    .img-background {
-        background-size: contain;
-    }
 }
