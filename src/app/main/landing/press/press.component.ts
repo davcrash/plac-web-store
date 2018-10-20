@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PressService } from './press.service';
 
 @Component({
   selector: 'app-press',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PressComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _pressService: PressService) { }
+
+  info;
 
   ngOnInit() {
+    this._pressService.getInfo().subscribe(result => this.info = result);
   }
 
 }

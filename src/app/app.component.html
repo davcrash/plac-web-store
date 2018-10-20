@@ -83,17 +83,17 @@
                                                 <b class="color-dark-green-text">Empresas</b>
                                             </li>
                                             <li>
-                                                <a [routerLink]="['/categoria/Alimentos']">¿Cómo vender en plac?</a>
+                                                <a [routerLink]="['/vende-en-plac']">¿Cómo vender en plac?</a>
                                             </li>
                                             <li>
-                                                <a [routerLink]="['/categoria/Farmacia']">Preguntas frecuentes</a>
+                                                <a [routerLink]="['/vende-en-plac/preguntas']">Preguntas frecuentes</a>
                                             </li>
                                             <li>
-                                                <a [routerLink]="['/categoria/Hogar, ropa y accesorios']">Solución de
+                                                <a [routerLink]="['']">Solución de
                                                     problemas</a>
                                             </li>
                                             <li>
-                                                <a [routerLink]="['/categoria/Higiene']">Contáctanos</a>
+                                                <a [routerLink]="['/empleo']">Contáctanos</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -119,6 +119,12 @@
                                                 </a>
 
                                             </li>
+                                            <li class="icon-social-network-li">
+                                                <a (click)="goTo('pinterest')" class="link-hover pointer">
+                                                    <i class="fab fa-pinterest icon-social-network"></i>&nbsp;&nbsp;Pinterest
+                                                </a>
+
+                                            </li>
                                         </ul>
                                     </div>
 
@@ -131,16 +137,16 @@
 
                                             <ul class="list-inline no-padding col-12 list-margin">
                                                 <li class="list-inline-item">
-                                                    <a [routerLink]="['/categoria/Alimentos']">Empleo</a>
+                                                    <a [routerLink]="['/empleo']">Empleo</a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a [routerLink]="['/categoria/Alimentos']">Términos y condiciones</a>
+                                                    <a [routerLink]="['']">Términos y condiciones</a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a [routerLink]="['/categoria/Alimentos']">Política de privacidad</a>
+                                                    <a [routerLink]="['']">Política de privacidad</a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a [routerLink]="['/categoria/Alimentos']">Política de cookies</a>
+                                                    <a [routerLink]="['']">Política de cookies</a>
                                                 </li>
                                             </ul>
                                             <div class="no-padding col-12">

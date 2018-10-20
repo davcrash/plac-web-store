@@ -98,6 +98,9 @@ export class AppComponent {
       case 'twitter':
         windowRef.open("https://twitter.com/placapp", "_blank");
         break;
+      case 'pinterest':
+        windowRef.open("https://co.pinterest.com/placapp/", "_blank");
+        break;
     }
   }
 

@@ -59,6 +59,7 @@ const routes: Routes = [
   { path: 'compra/:indexPlace', component: PurchaseViewComponent, canActivate: [LoginGuard] },
   { path: 'descargar', component: DownloadAppComponent },
   { path: 'vende-en-plac', component: SellInComponent },
+  { path: 'vende-en-plac/:destination', component: SellInComponent },
   { path: 'que-es-plac', component: WhatIsComponent },
   { path: 'equipo', component: TeamComponent },
   { path: 'prensa', component: PressComponent },

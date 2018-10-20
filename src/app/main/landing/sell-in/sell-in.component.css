@@ -51,7 +51,7 @@
     text-decoration: none
 }
 
-.btn-link:hover {
+.btn-link:hover ,.btn-link.active{
     color: #00B99B;
 }
 

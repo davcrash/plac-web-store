@@ -19,12 +19,18 @@
 
   <div class="row navmenu" #nav>
     <div class="col-12" align="center">
-      <button class="btn btn-link color-dark-gray-text" [ngx-scroll-to]="'#tarifas'"><b>Tarifas</b></button>
-      <button class="btn btn-link color-dark-gray-text" [ngx-scroll-to]="'#herramientas'"><b>Herramientas</b></button>
-      <button class="btn btn-link color-dark-gray-text" [ngx-scroll-to]="'#ayuda'"><b>Ayuda</b></button>
-      <button class="btn btn-link color-dark-gray-text" [ngx-scroll-to]="'#historias'"><b>Historias</b></button>
-      <button class="btn btn-link color-dark-gray-text" [ngx-scroll-to]="'#ventas'"><b>Ventas</b></button>
-      <button class="btn btn-link color-dark-gray-text" [ngx-scroll-to]="'#preguntas'"><b>Preguntas frecuentes</b></button>
+      <button name="tarifas" #tarifasBtn [class.active]="destination === tarifasBtn.name" class="btn btn-link color-dark-gray-text"
+        [routerLink]="['/vende-en-plac/tarifas']"><b>Tarifas</b></button>
+      <button name="herramientas" #herramientasBtn [class.active]="destination === herramientasBtn.name" class="btn btn-link color-dark-gray-text"
+        [routerLink]="['/vende-en-plac/herramientas']"><b>Herramientas</b></button>
+      <button name="ayuda" #ayudaBtn [class.active]="destination === ayudaBtn.name" class="btn btn-link color-dark-gray-text"
+        [routerLink]="['/vende-en-plac/ayuda']"><b>Ayuda</b></button>
+      <!--<button name="historias" #historiasBtn [class.active]="destination === historiasBtn.name" class="btn btn-link color-dark-gray-text" [routerLink]="['/vende-en-plac/historias']"><b>Historias</b></button>-->
+      <button name="ventas" #ventasBtn [class.active]="destination === ventasBtn.name" class="btn btn-link color-dark-gray-text"
+        [routerLink]="['/vende-en-plac/ventas']"><b>Ventas</b></button>
+      <button name="preguntas" #preguntasBtn [class.active]="destination === preguntasBtn.name" class="btn btn-link color-dark-gray-text"
+        [routerLink]="['/vende-en-plac/preguntas']"><b>Preguntas
+          frecuentes</b></button>
     </div>
   </div>
 
@@ -57,7 +63,7 @@
         </div>
 
         <div class="col-12 col-md-auto" align="center">
-          <div class="card-first-container shadow-sm" >
+          <div class="card-first-container shadow-sm">
             <div class="" style="padding: 35px; padding-top: 50px">
               <i class="fas fa-piggy-bank color-plac-text" style="font-size: 80px"></i>
             </div>
@@ -331,7 +337,7 @@
 
   </div>
 
-  <div id="historias" class="row border-radius-container" style="padding-top: 100px ;padding-bottom: 100px">
+  <div id="historias" class="row border-radius-container d-none" style="padding-top: 100px ;padding-bottom: 100px">
     <div class="container d-flex justify-content-center align-items-center">
       <div class="row justify-content-center">
         <div class="col-sm-12 d-flex justify-content-center align-items-center" style="margin-bottom: 60px">
@@ -402,12 +408,12 @@
         <div class="row justify-content-center">
 
           <div class="col-6 col-sm-3" style="margin: 50px 0;">
-            <img class="img-fluid rounded" src="https://protoio.s3.amazonaws.com/joseregino-593047-proto/projects/fcb5dd42-ec68-4d01-a084-0e487c1e09a7/assets/root/ef7e959fd31fb11831582866a34addcf.jpg?AWSAccessKeyId=AKIAIK3DUR7RE5WBTUXA&Expires=1539721534&Signature=wxggGes4TyA8sMsqZ95PB0KOBtA%3D&response-cache-control=max-age%3D1296000&ts=1532555089">
+            <img class="img-fluid rounded" src="/assets/img/sell-in-view/productos.jpg">
             <h5 class="text-type-product">Productos</h5>
 
           </div>
           <div class="col-6 col-sm-3" style="margin: 50px 0">
-            <img class="img-fluid rounded" src="https://protoio.s3.amazonaws.com/joseregino-593047-proto/projects/fcb5dd42-ec68-4d01-a084-0e487c1e09a7/assets/root/4d73d3c7f4bc7a6accbef8c355c70220.jpg?AWSAccessKeyId=AKIAIK3DUR7RE5WBTUXA&Expires=1539725288&Signature=s39VsGMuLXfwy78jvoEVj%2FCpgAA%3D&response-cache-control=max-age%3D1296000&ts=1532555095">
+            <img class="img-fluid rounded" src="/assets/img/sell-in-view/servicios.jpg">
             <h5 class="text-type-product">Servicios</h5>
           </div>
 

@@ -38,14 +38,14 @@
     <div class="row justify-content-center" style="margin-bottom: 60px">
       <div class="col-auto person pointer" [ngClass]="{'active':person == personSelected }" align="center" *ngFor="let person of team"
         (click)="selectPerson(person)">
-        <div style="height: 100px; width: 100px;" class="bg-danger rounded-circle">
-
-        </div>
+        <img src="{{person.img}}"
+          style="height: 100px; width: 100px;" class="rounded-circle">
+        <br>
         {{person.firstName}}<br>{{person.lastName}}
       </div>
 
     </div>
-    <div class="row justify-content-center" style="margin-bottom: 60px">
+    <div class="row justify-content-center d-none" style="margin-bottom: 60px">
       <div class="col-md-6 col-12 rounded" style="background-color: white; padding: 25px">
         <div class="row">
           <div class="col-md-8 col-12" align="center">
