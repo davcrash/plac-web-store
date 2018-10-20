@@ -20,6 +20,8 @@ import { WhatIsComponent } from './main/landing/what-is/what-is.component';
 import { TeamComponent } from './main/landing/team/team.component';
 import { PressComponent } from './main/landing/press/press.component';
 import { JobComponent } from './main/landing/job/job.component';
+import { OrdersListComponent } from './orders/orders-list/orders-list.component';
+
 
 const routes: Routes = [
   //login
@@ -64,10 +66,13 @@ const routes: Routes = [
   { path: 'equipo', component: TeamComponent },
   { path: 'prensa', component: PressComponent },
   { path: 'empleo', component: JobComponent },
-
+  { path: 'ordenes', component: OrdersListComponent, canActivate: [LoginGuard] },
+  { path: 'descargar', component: DownloadAppComponent },
 
   /*
   EJEMPLOS
+  { path: 'ordenes', component: OrdersListComponent, canActivate: [LoginGuard] },
+  { path: 'descargar', component: DownloadAppComponent },
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
   */
