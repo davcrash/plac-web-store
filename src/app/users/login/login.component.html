@@ -1,69 +1,3 @@
-<!--
-<div class="container" align="center" [style.display]="!redirectLoader?'block':'none'">
-
-  <div class="row">
-    <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-top: 50px; border-radius: 5px; padding: 20px;">
-
-      <div class="row">
-        <div class="col-md-1 color-plac-text pointer" [routerLink]="['/']">Volver</div>
-      </div>
-      <br>
-
-      <img height="50" src="/assets/img/logo-PLAC-01.svg">
-
-      <br>
-      <br>
-      <p>Ingresar con</p>
-      <br>
-
-      <div class="row" *ngIf="!needConfirmationDigit">
-        <div class="col-md-12">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <img src="https://www.viajejet.com/wp-content/viajes/la-bandera-representativa-de-colombia.png" width="25"
-                  height="20" class="d-inline-block align-top">&nbsp;+57
-              </span>
-            </div>
-            <input autocomplete="on" maxlength="10" #inputphoneNumber="ngModel" appOnlyNumber type="tel" class="form-control"
-              placeholder="Ingresa con tu celular" [(ngModel)]="phoneNumber">
-          </div>
-          <button *ngIf="inputphoneNumber.dirty && inputphoneNumber.value != ''" class="btn btn-primary" (click)="phoneLogin()">verificar</button>
-        </div>
-      </div>
-      <div class="row" *ngIf="needConfirmationDigit">
-        <div class="col-md-12">
-          <input maxlength="6" #inputverificationCode="ngModel" appOnlyNumber type="text" class="form-control"
-            placeholder="Ingresa con tu celular" [(ngModel)]="verificationCode">
-          <br>
-          <button class="btn btn-primary" (click)="verifyLoginCode()">continuar</button>
-          <button class="btn btn-light" (click)="cancelVerificationCode()">cancelar</button>
-        </div>
-      </div>
-      <div id="recaptcha-container"></div>
-
-
-      <p>ó</p>
-      <button (click)="loginWithFacebook()" type="button" class="btn btn-primary  btn-block" style="background-color: #3B5998; border-color:#3B5998;">Iniciar
-        sesión con Facebook</button>
-      <button (click)="loginWithGoogle()" type="button" class="btn btn-danger btn-block" style="background-color: #D54B3D; border-color:#D54B3D;">Iniciar
-        sesión con Google</button>
-
-
-
-      <br>
-      <br>
-      <p style="font-size: 13px;">Al hacer click aceptas los
-        <b>Términos y Condiciones, Políticas de uso y Habeas data</b>
-      </p>
-      <button (click)="logout()">Cerrar</button>
-
-    </div>
-
-  </div>
--->
-
-
 <div class="container-fluid">
   <loader *ngIf="redirectLoader"></loader>
   <div class="justify-content-center row" [style.display]="!redirectLoader?'flex':'none'">
@@ -129,6 +63,10 @@
       <br>
       <p class="text-center">Al hacer click aceptas los
         <b>Términos y Condiciones, Políticas de uso y Habeas data</b>
+      </p>
+      <br>
+      <p class="text-center">
+        <a href="http://www.placapp.com/dashboard">Inicia como empresa</a>
       </p>
 
 

@@ -1,0 +1,21 @@
+.border-radius-container {
+    background-color: #EBECF1;
+    border-top-left-radius: 100vw 15vw;
+    border-top-right-radius: 100vw 15vw;
+}
+
+.img-background {
+    height: 90vh;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/job-view/fondo.png');
+    background-position: top;
+    background-size: cover;
+}
+
+.btn-link {
+    text-decoration: none;
+    color:white
+}
+
+.btn-link:hover , .btn-link.active{
+    color: #00B99B;
+}

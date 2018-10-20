@@ -1,5 +1,5 @@
 .wrap {
-    height: calc(100vh - 140.5px);
+    height: calc(100vh - 137px);
     @media (min-width: 992px) {
         height: calc(100vh - 72px);
     }
@@ -38,6 +38,10 @@
 .list-inline>.list-inline-item>a {
     color: #555555;
     text-decoration: none;
+}
+
+.link-hover:hover {
+    text-decoration: underline !important;
 }
 
 .list-inline>.list-inline-item>a:hover {

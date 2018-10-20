@@ -18,6 +18,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //SideMenu
 import { SidebarModule } from 'ng-sidebar';
 
+//scroll
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+
 //Banner slide
 import { SlideshowModule } from 'ng-simple-slideshow';
 
@@ -51,6 +54,11 @@ import { SearchComponent } from './main/search/search.component';
 import { RegisterComponent } from './users/register/register.component';
 import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.component';
 import { DownloadAppComponent } from './main/landing/download-app/download-app.component';
+import { SellInComponent } from './main/landing/sell-in/sell-in.component';
+import { WhatIsComponent } from './main/landing/what-is/what-is.component';
+import { TeamComponent } from './main/landing/team/team.component';
+import { JobComponent } from './main/landing/job/job.component';
+import { PressComponent } from './main/landing/press/press.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +86,11 @@ import { DownloadAppComponent } from './main/landing/download-app/download-app.c
     RegisterComponent,
     PurchaseViewComponent,
     DownloadAppComponent,
+    SellInComponent,
+    WhatIsComponent,
+    TeamComponent,
+    JobComponent,
+    PressComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,7 +105,7 @@ import { DownloadAppComponent } from './main/landing/download-app/download-app.c
     SidebarModule.forRoot(),
     SlideshowModule,
     FormsModule,
-
+    ScrollToModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

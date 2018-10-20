@@ -15,6 +15,11 @@ import { RegisterGuard } from './users/register/register.guard';
 import { LoginGuard } from './users/login/login.guard';
 import { PurchaseViewComponent } from './shop-cart/purchase-view/purchase-view.component';
 import { DownloadAppComponent } from './main/landing/download-app/download-app.component';
+import { SellInComponent } from './main/landing/sell-in/sell-in.component';
+import { WhatIsComponent } from './main/landing/what-is/what-is.component';
+import { TeamComponent } from './main/landing/team/team.component';
+import { PressComponent } from './main/landing/press/press.component';
+import { JobComponent } from './main/landing/job/job.component';
 
 const routes: Routes = [
   //login
@@ -52,9 +57,21 @@ const routes: Routes = [
   },
 
   { path: 'compra/:indexPlace', component: PurchaseViewComponent, canActivate: [LoginGuard] },
-  { path: 'descargar', component: DownloadAppComponent},
+  { path: 'descargar', component: DownloadAppComponent },
+  { path: 'vende-en-plac', component: SellInComponent },
+  { path: 'vende-en-plac/:destination', component: SellInComponent },
+  { path: 'que-es-plac', component: WhatIsComponent },
+  { path: 'equipo', component: TeamComponent },
+  { path: 'prensa', component: PressComponent },
+  { path: 'empleo', component: JobComponent },
+
+
+  /*
+  EJEMPLOS
   { path: 'users', component: UserListComponent },
   { path: 'users/:id', component: UserFormComponent },
+  */
+
   { path: '**', component: PageNotFoundComponent },
 
 ];
