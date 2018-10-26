@@ -15,6 +15,19 @@
 
       <div class="col-12 border-bottom">
         <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-6 d-flex justify-content-center" style="margin-top:10px">
+              <div class="input-group">
+                <input style="padding: 7px; height: 37px;" #searchInput [(ngModel)]="searchText" (keyup.enter)="onEnterSearch(searchInput)"
+                  class="form-control " type="search" placeholder="Buscar productos en {{place.place_location_name}}">
+                <div class="input-group-append" style="height: 37px;">
+                  <button class="btn btn-outline-plac" type="button" (click)="onEnterSearch(searchInput)">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row" style="padding: 15px">
             <div class="col-12 col-md-auto" align="center">
               <img [src]="place.path_image_logo" class="img-logo-place rounded">
@@ -22,14 +35,14 @@
             <div class="col-12 col-md-6">
               <h5><b>{{place.place_location_name}}</b></h5>
               <p style="font-size: 11px; line-height: 1.4" class="text-muted">{{place.place_description}}</p>
-              <span class="border-right px-2">Ciudad</span>
-              <span class="border-right px-2">Articulos</span>
-              <span class="px-2">Ventas</span>
+              <span class="border-right px-2">{{operationCities}}</span>
+              <span class="border-right px-2">{{productsCount}} Articulos</span>
+              <span class="px-2">{{ordersCount}} Ventas</span>
               <br>
               <div class="color-plac-text">
                 <i class="fas fa-star" *ngFor='let stars of arrayAssessmentStars'></i>
                 <i class="far fa-star" *ngFor='let stars of arrayAssessmentNoStars'></i>
-                {{place.assessment}}
+                {{arrayAssessmentStars.length}}
               </div>
             </div>
             <div class="col-12 col-md-3 ml-auto d-flex justify-content-center">
@@ -53,62 +66,10 @@
 
       </div>
 
-      <!--
-      <div class="col-12 col-md-3 border d-flex justify-content-center" style="height: 100px;">
-        <div class="align-self-center">
-          <h3>{{place.place_location_name}}</h3>
-        </div>
-      </div>
-      <div class="col-12 col-md-3 border d-flex justify-content-center" style="height: 100px;">
-        <div class="align-self-center">
-          {{place.place_description}}
-        </div>
-      </div>
-      <div class="col-12 col-md-3 border d-flex justify-content-center" style="height: 100px;">
-        <div class="align-self-center">
-
-          Valoración:
-          <div class="color-plac-text">
-            <i class="fas fa-star" *ngFor='let stars of arrayAssessmentStars'></i>
-            <i class="far fa-star" *ngFor='let stars of arrayAssessmentNoStars'></i>
-          </div>
-
-        </div>
-      </div>
-      <div class="col-12 col-md-3 border d-flex justify-content-center" style="height: 100px;">
-        <div class="align-self-center" *ngIf="deliverySchedules != null">
-          Horarios de envio:
-          <div *ngFor="let schedule of deliverySchedules">
-            <div *ngIf="schedule.isOpened">
-              {{schedule.period}}: {{schedule.am}}AM a {{schedule.pm}}PM
-            </div>
-            <div *ngIf="!schedule.isOpened">
-              {{schedule.period}}: no abre
-            </div>
-          </div>
-        </div>
-        <div class="align-self-center">
-          <i class="fas fa-shipping-fast color-plac-text" style="font-size: 20px"></i>
-        </div>
-
-      </div>
-    -->
-      <div class="col-12 col-sm-9 d-flex justify-content-left" style="margin-top:20px; overflow-x: auto">
+      <div class="col-12 col-sm-12 d-flex justify-content-center" style="margin-top:15px; overflow-x: auto">
         <button *ngFor="let category of place.categories" (click)="selectCategory(category)" class="btn btn-outline-plac btn-outline-plac-variation"
           [ngClass]="{'active': categorySelected ==category.category_name}" [ngStyle]="{'background-image':'url('+category.category_img_url+')'}"
-          style="height: 42.5px;background-size: auto 42.5px;background-repeat: no-repeat;background-position: right center; margin: 0 3px;margin-bottom: 20px; padding-right: 30px">{{category.category_name}}</button>
-      </div>
-
-      <div class="col-12 col-sm-3 d-flex justify-content-center" style="margin-top:10px">
-        <div class="input-group">
-          <input style="padding: 7px; height: 37px;" #searchInput [(ngModel)]="searchText" (keyup.enter)="onEnterSearch(searchInput)"
-            class="form-control " type="search" placeholder="Buscar productos en {{place.place_location_name}}">
-          <div class="input-group-append" style="height: 37px;">
-            <button class="btn btn-outline-plac" type="button" (click)="onEnterSearch(searchInput)">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
+          style="height: 42.5px;background-size: auto 42.5px;background-repeat: no-repeat;background-position: right center; margin: 0 3px;margin-bottom: 15px; padding-right: 30px">{{category.category_name}}</button>
       </div>
 
 

@@ -29,7 +29,6 @@ export class OrdersListComponent implements OnInit {
     this._orderService.getOrderByUserId()
       .subscribe(result => {
         this.orders = result.data;
-        console.log(this.orders);
       }, error => {
 
       }, () => {

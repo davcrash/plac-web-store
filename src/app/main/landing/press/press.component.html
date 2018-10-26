@@ -64,7 +64,7 @@
       </div>
       <div class="col-3 p-3" align="center">
         <div class="bg-white rounded" style="padding:7px" align="center">
-          <h3>{{info.products}}</h3>
+          <h3>{{(info)?info.products:''}}</h3>
         </div>
         Artículos en venta
       </div>
@@ -72,13 +72,13 @@
     <div class="row justify-content-center mb-5">
       <div class="col-3 p-3" align="center">
         <div class="bg-white rounded" style="padding:7px" align="center">
-          <h3>{{info.places}}</h3>
+          <h3>{{(info)?info.places:''}}</h3>
         </div>
         Empresas activas
       </div>
       <div class="col-3 p-3" align="center">
         <div class="bg-white rounded" style="padding:7px" align="center">
-          <h3>{{info.pets}}</h3>
+          <h3>{{(info)?info.pets:''}}</h3>
         </div>
         Mascotas activas
       </div>

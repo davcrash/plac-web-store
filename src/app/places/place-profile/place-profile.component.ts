@@ -15,6 +15,9 @@ export class PlaceProfileComponent implements OnInit {
   arrayAssessmentStars: Array<number>;
   arrayAssessmentNoStars: Array<number>;
   deliverySchedules;
+  productsCount;
+  ordersCount;
+  operationCities;
 
   categorySelected: string;
   categoryIdSelected: string;
@@ -51,7 +54,6 @@ export class PlaceProfileComponent implements OnInit {
 
 
   ngOnInit() {
-
     if (!this._placeProfileService.place) {
       this.getPlaceById();
     } else {
@@ -97,6 +99,10 @@ export class PlaceProfileComponent implements OnInit {
   setPlacePropieties() {
     this.place = this._placeProfileService.place;
     this.categoryArray = this.place.categories;
+    let place_description_info = this.place.place_description_info;
+    this.productsCount = place_description_info.products_count;
+    this.ordersCount = place_description_info.orders_count;
+    this.operationCities = place_description_info.place_cities;
     //para listar las estrellas
     this.arrayAssessmentStars = Array(Math.round(this.place.assessment)).fill(0).map((x, i) => i);
     this.arrayAssessmentNoStars = Array(-this.arrayAssessmentStars.length + 5).fill(0).map((x, i) => i);

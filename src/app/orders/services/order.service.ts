@@ -12,7 +12,7 @@ export class OrderService {
 
   getOrderByUserId(): Observable<any> {
     let id = JSON.parse(localStorage.getItem('user_data')).plac_user_id;
-    return this._globalService.HttpMethod("GET", `store/orders/user/${id}/state`);
+    return this._globalService.HttpMethod("GET", `tienda/store/orders/user/${id}/state`);
 
   }
 }
