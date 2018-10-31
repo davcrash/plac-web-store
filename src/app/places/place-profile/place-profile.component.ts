@@ -55,7 +55,7 @@ export class PlaceProfileComponent implements OnInit {
 
   ngOnInit() {
     if (!this._placeProfileService.place) {
-      this.getPlaceById();
+      this.getPlaceByName();
     } else {
       this.setPlacePropieties();
     }
@@ -68,7 +68,7 @@ export class PlaceProfileComponent implements OnInit {
         this._placeProfileService.subcategoryId = null;
         this._placeProfileService.subcategoryName = null;
         this.needResetBrand += 'sub';
-        this.getPlaceById();
+        this.getPlaceByName();
 
         this.categorySelected = null;
         this.categoryIdSelected = null;
@@ -83,9 +83,9 @@ export class PlaceProfileComponent implements OnInit {
 
   }
 
-  getPlaceById() {
+  getPlaceByName() {
     this.loaderProducts = true;
-    this._placeProfileService.getPlaceById(this._route.snapshot.params['id'])
+    this._placeProfileService.getPlaceById(this._route.snapshot.params['name'])
       .subscribe(result => {
         this._placeProfileService.place = result;
         this.setPlacePropieties();

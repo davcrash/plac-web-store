@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormatService } from 'src/app/format.service';
 
 @Component({
   selector: 'app-product-card',
@@ -15,7 +16,8 @@ export class ProductCardComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _formatService: FormatService
   ) { }
 
   ngOnInit() {
@@ -23,7 +25,11 @@ export class ProductCardComponent implements OnInit {
 
   viewProduct() {
     let queryParams = this._route.snapshot.queryParams;
-
-    this._router.navigate(['product', this.productId], { relativeTo: this._route, queryParams: queryParams });
+    this._router
+      .navigate(
+        [`producto/${this.productId}/${this._formatService.formatString(this.productName)}`],
+        { relativeTo: this._route, queryParams: queryParams }
+      );
+    //this._router.navigate(['producto', this._formatService.formatString(this.productName)], { relativeTo: this._route, queryParams: queryParams });
   }
 }

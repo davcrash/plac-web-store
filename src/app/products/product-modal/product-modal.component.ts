@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductModalService } from '../services/product-modal.service';
 import { ShopCartService } from '../../shop-cart/services/shop-cart.service';
 import swal from 'sweetalert';
+import { FormatService } from 'src/app/format.service';
 
 @Component({
   selector: 'app-product-modal',
@@ -42,7 +43,8 @@ export class ProductModalComponent implements OnInit {
     private _location: Location,
     private _router: Router,
     private _productModalService: ProductModalService,
-    private _shopCartService: ShopCartService
+    private _shopCartService: ShopCartService,
+    private _formatService: FormatService
   ) {
   }
 
@@ -52,9 +54,30 @@ export class ProductModalComponent implements OnInit {
 
     this._route.params.subscribe(routeParam => {
       this.productId = routeParam.id;
+      //this.productName = this._formatService.unformatString(routeParam.name);
       this._productModalService.getProductById(this.productId)
         .subscribe(res => {
           this.product = res;
+
+          if (!routeParam.name) {
+            let queryParams = this._route.snapshot.queryParams;
+            let url = this._router.createUrlTree([this._formatService.formatString(this.product.product_name)], { relativeTo: this._route, queryParams})
+              .toString();
+            //this._router.navigate([url]);
+            this._location.go(url);
+          } else {
+            if (this.product.product_name.trim().toLowerCase() != this._formatService.unformatString(routeParam.name).toLowerCase()) {
+              let queryParams = this._route.snapshot.queryParams;
+              let url = this._router.createUrlTree(
+                ['../' + this._formatService.formatString(this.product.product_name)], { relativeTo: this._route ,queryParams}
+              )
+                .toString();
+              //this._router.navigate([url]);
+              this._location.go(url);
+            }
+          }
+
+
           this.product.questions.reverse();
           let maxLength = 170;
           if (this.product.product_description.length > maxLength) {
@@ -84,17 +107,30 @@ export class ProductModalComponent implements OnInit {
       //abrir modal 
       this._modalService.open(this.modal, { size: 'lg' }).result.then(() => {
         //regresar atras si se cierra
-        (window.history.length > 2) ? this._location.back() : this._router.navigate(['../../'], { relativeTo: this._route, replaceUrl: true });
-
-
-        ;
+        this.redirectCloseModal();
       }, () => {
         //regresar atras si se da click afuera
-        (window.history.length > 2) ? this._location.back() : this._router.navigate(['../../'], { relativeTo: this._route, replaceUrl: true });
+        this.redirectCloseModal();
+
       });
 
     }, 1);
 
+  }
+
+  redirectCloseModal() {
+    var url;
+    let queryParams = this._route.snapshot.queryParams;
+    try {
+      url = this._router.createUrlTree(['../../../'], { relativeTo: this._route, queryParams }).toString().replace(/%20/g, ' ');
+    } catch (error) {
+      url = this._router.createUrlTree(['../../'], { relativeTo: this._route, queryParams }).toString().replace(/%20/g, ' ');
+    }
+    console.log(url);
+    this._router.navigateByUrl(url);
+    //(window.history.length > 2) ? this._location.back() : this._router.navigate(['../../../'], { relativeTo: this._route, replaceUrl: true });
+    //this._router.navigate(['../../../'], { relativeTo: this._route });
+    //this._location.back()
   }
 
   vewMoreText() {
@@ -105,7 +141,7 @@ export class ProductModalComponent implements OnInit {
 
     if (this.uid) {
       this.question.place_id = this.product.place_location.place_id;
-      this.question.product_id = this.productId;
+      this.question.product_id = this.product.product_id;
       this.question.plac_user_id = this.uid;
 
       this.textButtonQuestion = "Enviando...";
