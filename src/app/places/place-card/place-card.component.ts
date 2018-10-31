@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlaceProfileService } from '../services/place-profile.service';
+import { FormatService } from '../../format.service';
 
 @Component({
   selector: 'app-place-card',
@@ -28,7 +29,8 @@ export class PlaceCardComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _placeProfileService: PlaceProfileService
+    private _placeProfileService: PlaceProfileService,
+    private _formatService: FormatService
   ) { }
 
   ngOnInit() {
@@ -47,7 +49,8 @@ export class PlaceCardComponent implements OnInit {
     this._placeProfileService.category = this.categoryToProfile;
     this._placeProfileService.subcategoryId = this.subcategoryIdToProfile;
     this._placeProfileService.brand = this.brandToProfile;
-    this._router.navigate(['/place/' + this.placeId]);
+
+    this._router.navigate(['/tienda/' + this._formatService.formatString(this.placeName)]);
   }
 
 }

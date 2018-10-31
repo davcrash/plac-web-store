@@ -33,28 +33,32 @@ const routes: Routes = [
   {
     path: '', component: HomePageComponent,
     children: [
-      { path: 'product/:id', component: ProductModalComponent }
+      { path: 'producto/:id', component: ProductModalComponent },
+      { path: 'producto/:id/:name', component: ProductModalComponent }
     ]
   },
   //perfil empresa
   {
-    path: 'place/:id', component: PlaceProfileComponent,
+    path: 'tienda/:name', component: PlaceProfileComponent,
     children: [
-      { path: 'product/:id', component: ProductModalComponent }
+      { path: 'producto/:id/:name', component: ProductModalComponent },
+      { path: 'producto/:id', component: ProductModalComponent }
     ]
   },
   //categoria
   {
     path: 'categoria/:category_name', component: CategoryWithFiltersComponent,
     children: [
-      { path: 'product/:id', component: ProductModalComponent }
+      { path: 'producto/:id/:name', component: ProductModalComponent },
+      { path: 'producto/:id', component: ProductModalComponent }
     ]
   },
   //busqueda
   {
     path: 'search', component: SearchComponent,
     children: [
-      { path: 'product/:id', component: ProductModalComponent }
+      { path: 'producto/:id/:name', component: ProductModalComponent },
+      { path: 'producto/:id', component: ProductModalComponent }
     ]
   },
 

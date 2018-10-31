@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GlobalService } from '../../global.service';
 import { Observable } from 'rxjs';
+import { FormatService } from 'src/app/format.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,12 @@ export class PlaceProfileService {
   subcategoryName: string;
   brand: string;
 
-  constructor(private _globalService: GlobalService) { }
+  constructor(private _globalService: GlobalService, private _formatService: FormatService) { }
 
-  getPlaceById(id): Observable<any> {
+  getPlaceById(name): Observable<any> {
+    name = this._formatService.unformatString(name);
     let params = {
-      place_id: id,
+      place_name: name,
       pet_target: localStorage.getItem("pet_filter")
     };
 
