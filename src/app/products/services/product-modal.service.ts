@@ -10,8 +10,8 @@ export class ProductModalService {
 
   constructor(private _globalService: GlobalService) { }
 
-  getProductById(id): Observable<any> {
-    return this._globalService.HttpMethod("GET", "getproductbyid/"+id);
+  getProductByName(name): Observable<any> {
+    return this._globalService.HttpMethod("GET", "getproductbyid/"+name);
   }
 
   sendNewQuestion(question): Observable<any>{
