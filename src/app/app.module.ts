@@ -60,6 +60,7 @@ import { TeamComponent } from './main/landing/team/team.component';
 import { JobComponent } from './main/landing/job/job.component';
 import { PressComponent } from './main/landing/press/press.component';
 import { OrdersListComponent } from './orders/orders-list/orders-list.component';
+import { ChangesReturnsComponent } from './main/landing/changes-returns/changes-returns.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { OrdersListComponent } from './orders/orders-list/orders-list.component'
     JobComponent,
     PressComponent,
     OrdersListComponent,
+    ChangesReturnsComponent,
   ],
   imports: [
     BrowserModule,

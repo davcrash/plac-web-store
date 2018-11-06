@@ -21,6 +21,8 @@ import { TeamComponent } from './main/landing/team/team.component';
 import { PressComponent } from './main/landing/press/press.component';
 import { JobComponent } from './main/landing/job/job.component';
 import { OrdersListComponent } from './orders/orders-list/orders-list.component';
+import { ChangesReturnsComponent } from './main/landing/changes-returns/changes-returns.component';
+
 
 
 const routes: Routes = [
@@ -72,6 +74,7 @@ const routes: Routes = [
   { path: 'empleo', component: JobComponent },
   { path: 'ordenes', component: OrdersListComponent, canActivate: [LoginGuard] },
   { path: 'descargar', component: DownloadAppComponent },
+  { path: 'politica-cambios-y-devoluciones', component: ChangesReturnsComponent },
 
   /*
   EJEMPLOS
