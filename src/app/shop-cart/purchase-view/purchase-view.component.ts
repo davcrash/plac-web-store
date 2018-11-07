@@ -85,12 +85,6 @@ export class PurchaseViewComponent implements OnInit {
     this.paymentMercadoPago = false;
     this._purchaseService.getPaymentMethods(object).subscribe(data => {
       this.paymentMethods = data;
-      if (!this.paymentMethods.mercadoPagoAvailable) {
-        this.paymentDelivery = true;
-      } else if (!this.paymentMethods.paymentDeliveryAvailable) {
-        this.paymentMercadoPago = true;
-      }
-
 
     }, error => {
       console.log(error);
@@ -245,7 +239,7 @@ export class PurchaseViewComponent implements OnInit {
         closeOnEsc: false,
         closeOnClickOutside: false
       }).then((result) => {
-        if (result.value) {
+        if (result) {
           //redirigimos
           if (JSON.parse(localStorage.getItem("shop-cart")).length > 0) {
             //redirigimos a compra/0
@@ -266,7 +260,7 @@ export class PurchaseViewComponent implements OnInit {
         closeOnEsc: false,
         closeOnClickOutside: false
       }).then((result) => {
-        if (result.value) {
+        if (result) {
           //redirigimos a mercado pago
           location.href = response.data.object.response.init_point;
 

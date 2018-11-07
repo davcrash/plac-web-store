@@ -110,7 +110,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
             this._localStorageService.setItem('user_data', JSON.stringify(result.data));
 
             swal('Muy bien', "", "success");
-            this._router.navigate(['']);
+            this.redirectAfterLogin();
+
           } else {
             if (result.message === "23000") {
               swal({
@@ -177,13 +178,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
           if (result.status == 'success') {
             this._localStorageService.setItem('user_data', JSON.stringify(result.data));
             swal('Muy bien', "", "success");
-            this._router.navigate(['']);
+            this.redirectAfterLogin();
           } else {
             swal('Oops...', result.message, 'error');
           }
         }, error => {
           console.log(error);
         })
+    }
+  }
+
+  redirectAfterLogin() {
+    let goToBuy = sessionStorage.getItem('goToBuy');
+    if (goToBuy) {
+      sessionStorage.removeItem('goToBuy');
+      this._router.navigate(['/compra/' + goToBuy]);
+    } else {
+      this._router.navigate(['']);
     }
   }
 
