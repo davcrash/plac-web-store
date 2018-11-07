@@ -11,7 +11,7 @@
       </div>
       <br>
       <br>
-      <p class="text-center">Ingresar con</p>
+      <p class="text-center">Continua con</p>
 
       <div class="row" *ngIf="!needConfirmationDigit">
         <div class="col-md-12">
@@ -26,7 +26,7 @@
               type="tel" class="form-control" placeholder="Ingresar con tu celular" [(ngModel)]="phoneNumber">
           </div>
           <button *ngIf="inputphoneNumber.dirty && inputphoneNumber.value != ''" class="btn btn-primary float-right"
-            (click)="phoneLogin()">verificar</button>
+            (click)="phoneLogin()">Continuar</button>
         </div>
       </div>
       <div class="row" *ngIf="needConfirmationDigit">
@@ -37,8 +37,8 @@
             Numero de 6 dígitos que llego a tu celular {{phoneNumber}}
           </small>
           <br>
-          <button class="btn btn-primary float-right" style="margin-left: 10px" (click)="verifyLoginCode()">continuar</button>
-          <button class="btn btn-light float-right" (click)="cancelVerificationCode()">cancelar</button>
+          <button class="btn btn-primary float-right" style="margin-left: 10px" (click)="verifyLoginCode()">Continuar</button>
+          <button class="btn btn-light float-right" (click)="cancelVerificationCode()">Cancelar</button>
         </div>
       </div>
       <div id="recaptcha-container"></div>
@@ -65,9 +65,10 @@
         <b>Términos y Condiciones, Políticas de uso y Habeas data</b>
       </p>
       <br>
-      <p class="text-center">
-        <a href="http://www.placapp.com/dashboard">Inicia como empresa</a>
-      </p>
+      <div align="center">
+
+        <a class="btn btn-plac" href="http://www.placapp.com/dashboard">Plataforma para empresas</a>
+      </div>
 
 
 

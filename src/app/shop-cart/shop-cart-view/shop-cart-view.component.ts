@@ -94,37 +94,40 @@ export class ShopCartViewComponent implements OnInit {
       this.closeCar.emit();
     } else {
       this.closeCar.emit();
-
-
-      swal({
-        title: 'Inicia sesión',
-        text: 'Para realizar tus compras, primero debes iniciar sesión',
-        icon: 'info',
-        buttons: ["Más tarde", "Iniciar sesión"]
-      }).then((value) => {
-        if (value === true) {
-          this._router.navigate(['login']);
-        }
-      });
+      sessionStorage.setItem('goToBuy',iPlace);
+      this._router.navigate(['login']);
 
       /*
-      setTimeout(() => {
-
-        swal({
-          title: 'Inicia sesión',
-          text: 'Para realizar tus compras, primero debes iniciar sesión',
-          type: 'info',
-          showCancelButton: true,
-          cancelButtonText: 'Más tarde',
-          confirmButtonText: 'Iniciar sesión'
-        }).then(res => {
-          if (res.value === true) {
-            this._router.navigate(['login']);
-          }
-        });
-
-      }, 10000);
-*/
+      
+            swal({
+              title: 'Inicia sesión',
+              text: 'Para realizar tus compras, primero debes iniciar sesión',
+              icon: 'info',
+              buttons: ["Más tarde", "Iniciar sesión"]
+            }).then((value) => {
+              if (value === true) {
+                this._router.navigate(['login']);
+              }
+            });
+      
+            
+            setTimeout(() => {
+      
+              swal({
+                title: 'Inicia sesión',
+                text: 'Para realizar tus compras, primero debes iniciar sesión',
+                type: 'info',
+                showCancelButton: true,
+                cancelButtonText: 'Más tarde',
+                confirmButtonText: 'Iniciar sesión'
+              }).then(res => {
+                if (res.value === true) {
+                  this._router.navigate(['login']);
+                }
+              });
+      
+            }, 10000);
+      */
     }
 
 

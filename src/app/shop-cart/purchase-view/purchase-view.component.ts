@@ -85,12 +85,6 @@ export class PurchaseViewComponent implements OnInit {
     this.paymentMercadoPago = false;
     this._purchaseService.getPaymentMethods(object).subscribe(data => {
       this.paymentMethods = data;
-      if (!this.paymentMethods.mercadoPagoAvailable) {
-        this.paymentDelivery = true;
-      } else if (!this.paymentMethods.paymentDeliveryAvailable) {
-        this.paymentMercadoPago = true;
-      }
-
 
     }, error => {
       console.log(error);

@@ -165,11 +165,22 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
         } else if (result.message == "user_exist") {
           this._localStorageService.setItem('user_data', JSON.stringify(result.data));
 
-          let routerService = this.injector.get(Router);
-          let ngZone = this.injector.get(NgZone);
-          ngZone.run(() => {
-            routerService.navigate(['']);
-          });
+          let goToBuy = sessionStorage.getItem('goToBuy');
+          if (goToBuy) {
+            sessionStorage.removeItem('goToBuy');
+            let routerService = this.injector.get(Router);
+            let ngZone = this.injector.get(NgZone);
+            ngZone.run(() => {
+              routerService.navigate(['/compra/' + goToBuy]);
+            });
+          } else {
+            let routerService = this.injector.get(Router);
+            let ngZone = this.injector.get(NgZone);
+            ngZone.run(() => {
+              routerService.navigate(['']);
+            });
+          }
+
         }
       }, error => {
         this.logout();
