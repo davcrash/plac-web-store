@@ -35,28 +35,30 @@
           <div class="float-right"><button (click)="showSection = 'listAddress'" type="button" class="btn btn-outline-secondary">Cambiar
               datos</button></div>
 
-          <h5><b>Datos del envío </b>({{addressSelected.city.city_name}})</h5>
+          <h5><b>Datos del envío </b>({{(addressSelected)?addressSelected.city.city_name:'...'}})</h5>
 
-          <span><b>Nombre:</b> {{addressSelected.plac_user_name}}</span><br>
-          <span><b>Correo:</b> {{addressSelected.plac_user_email}}</span><br>
-          <span><b>Teléfono:</b> {{addressSelected.plac_user_telephone}}</span><br>
+          <span><b>Nombre:</b> {{(addressSelected)?addressSelected.plac_user_name:'...'}}</span><br>
+          <span><b>Correo:</b> {{(addressSelected)?addressSelected.plac_user_email:'...'}}</span><br>
+          <span><b>Teléfono:</b> {{(addressSelected)?addressSelected.plac_user_telephone:'...'}}</span><br>
           <span><b>Dirección:</b> {{currentAddressFormatted}}</span><br>
-          <span><b>Barrio:</b> {{addressSelected.plac_user_neighborhood}}</span><br>
-          <span><b>Info. Adicional:</b> {{addressSelected.plac_user_additional_info}}</span><br>
+          <span><b>Barrio:</b> {{(addressSelected)?addressSelected.plac_user_neighborhood:'...'}}</span><br>
+          <span><b>Info. Adicional:</b> {{(addressSelected)?addressSelected.plac_user_additional_info:'...'}}</span><br>
 
         </div>
 
         <br>
         <div *ngIf="paymentMethods" class="border" style="padding:10px;">
           <h5><b>Métodos de pago disponibles</b></h5>
-          <div *ngIf="paymentMethods.paymentDeliveryAvailable" class="form-check" >
-            <input  (change)="selectPaymentMethod('paymentDelivery')" [(ngModel)]="paymentDelivery" name="paymentDelivery" class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <div *ngIf="paymentMethods.paymentDeliveryAvailable" class="form-check">
+            <input (change)="selectPaymentMethod('paymentDelivery')" [(ngModel)]="paymentDelivery" name="paymentDelivery"
+              class="form-check-input" type="checkbox" value="" id="defaultCheck1">
             <label class="form-check-label" for="defaultCheck1">
               Pago contra entrega
             </label>
           </div>
-          <div class="form-check"  *ngIf="paymentMethods.mercadoPagoAvailable">
-            <input  (change)="selectPaymentMethod('paymentMercadoPago')" [(ngModel)]="paymentMercadoPago" name="paymentMercadoPago" class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+          <div class="form-check" *ngIf="paymentMethods.mercadoPagoAvailable">
+            <input (change)="selectPaymentMethod('paymentMercadoPago')" [(ngModel)]="paymentMercadoPago" name="paymentMercadoPago"
+              class="form-check-input" type="checkbox" value="" id="defaultCheck2">
             <label class="form-check-label" for="defaultCheck2">
               Pago por internet
             </label>
@@ -80,7 +82,7 @@
         <br>
         <div class="list-group">
           <a *ngFor="let item of userAddresses" class="list-group-item list-group-item-action" style="cursor: pointer"
-          (click)="selectAddres(item);">
+            (click)="selectAddres(item);">
             {{item.plac_user_name}}, {{item.plac_user_telephone}},
             {{item.plac_user_email}}, {{formatterAddress(item.plac_user_address)}},
             {{item.plac_user_neighborhood}}, {{item.city.city_name}}
@@ -99,22 +101,25 @@
         <div class="row">
           <div class="col-md-6">
             <span>Nombre</span><br>
-            <input [(ngModel)]="addressModel.plac_user_name" name="plac_user_name" type="text" class="form-control" placeholder="Giovanny Vargas" />
+            <input [(ngModel)]="addressModel.plac_user_name" name="plac_user_name" type="text" class="form-control"
+              placeholder="Giovanny Vargas" />
           </div>
           <div class="col-md-6">
             <span>Teléfono</span><br>
-            <input [(ngModel)]="addressModel.plac_user_telephone" name="plac_user_telephone" type="number" class="form-control" placeholder="3123010232" />
+            <input [(ngModel)]="addressModel.plac_user_telephone" name="plac_user_telephone" type="number" class="form-control"
+              placeholder="3123010232" />
           </div>
         </div>
 
         <span>Correo</span><br>
-        <input [(ngModel)]="addressModel.plac_user_email" name="plac_user_email" type="text" class="form-control" placeholder="ejemplo@gmail.com" />
+        <input [(ngModel)]="addressModel.plac_user_email" name="plac_user_email" type="text" class="form-control"
+          placeholder="ejemplo@gmail.com" />
 
         <!-- Input de direccion -->
         <span>Dirección</span><br>
         <div class="input-group mb-3">
           <select [(ngModel)]="addressModel.plac_user_address.mainWay" name="mainWay" class="custom-select" id="inputGroupSelect02">
-            <option value="Calle" >Calle</option>
+            <option value="Calle">Calle</option>
             <option value="Carrera">Carrera</option>
             <option value="Avenida calle">Avenida calle</option>
             <option value="Avenida carrera">Avenida carrera</option>
@@ -125,39 +130,44 @@
             <option value="Manzana">Manzana</option>
             <option value="Circular">Circular</option>
           </select>
-          <input [(ngModel)]="addressModel.plac_user_address.address1" name="address1" class="form-control" type="text" placeholder="67 bis">
+          <input [(ngModel)]="addressModel.plac_user_address.address1" name="address1" class="form-control" type="text"
+            placeholder="67 bis">
           <div class="input-group-append">
             <label class="input-group-text">#</label>
           </div>
-          <input [(ngModel)]="addressModel.plac_user_address.address2" name="address2"  class="form-control" type="text" placeholder="105">
+          <input [(ngModel)]="addressModel.plac_user_address.address2" name="address2" class="form-control" type="text"
+            placeholder="105">
           <div class="input-group-append">
             <label class="input-group-text">-</label>
           </div>
-          <input [(ngModel)]="addressModel.plac_user_address.address3" name="address3"  class="form-control" type="text" placeholder="28">
+          <input [(ngModel)]="addressModel.plac_user_address.address3" name="address3" class="form-control" type="text"
+            placeholder="28">
         </div>
 
         <div class="row">
           <div class="col-md-4">
             <span>Barrio</span><br>
-            <input [(ngModel)]="addressModel.plac_user_neighborhood" name="plac_user_neighborhood" class="form-control" type="text" placeholder="Modelia">
+            <input [(ngModel)]="addressModel.plac_user_neighborhood" name="plac_user_neighborhood" class="form-control"
+              type="text" placeholder="Modelia">
           </div>
           <div class="col-md-8">
             <span>Información adicional</span><br>
-            <input [(ngModel)]="addressModel.plac_user_additional_info" name="plac_user_additional_info" class="form-control" type="text" placeholder="Conjunto amanecer verde casa 54">
+            <input [(ngModel)]="addressModel.plac_user_additional_info" name="plac_user_additional_info" class="form-control"
+              type="text" placeholder="Conjunto amanecer verde casa 54">
           </div>
         </div>
         <br>
-        
+
         <loader *ngIf="loaderNewAddress"></loader>
-        <button *ngIf="!loaderNewAddress" (click)="addNewAddress()"  class="btn btn-plac btn-block"
-        [disabled]="
+        <button *ngIf="!loaderNewAddress" (click)="addNewAddress()" class="btn btn-plac btn-block" [disabled]="
             addressModel.plac_user_name == '' &&
             addressModel.plac_user_telephone == '' &&
             addressModel.plac_user_email == '' &&
             addressModel.plac_user_address.address1 == '' &&
             addressModel.plac_user_address.address2 == '' &&
             addressModel.plac_user_address.address3 == '' &&
-            addressModel.plac_user_neighborhood == ''">Agregar datos</button>
+            addressModel.plac_user_neighborhood == ''">Agregar
+          datos</button>
       </div>
 
 
@@ -209,7 +219,8 @@
       </div>
       <br>
       <loader *ngIf="loaderNewOrder"></loader>
-      <button *ngIf="!loaderNewOrder" [disabled]="!((paymentDelivery || paymentMercadoPago) && addressSelected != null)" (click)="buyOrder()" class="d-inline" type="button" class="btn btn-plac btn-block btn-lg">Comprar</button>
+      <button *ngIf="!loaderNewOrder" [disabled]="!((paymentDelivery || paymentMercadoPago) && addressSelected != null)"
+        (click)="buyOrder()" class="d-inline" type="button" class="btn btn-plac btn-block btn-lg">Comprar</button>
 
 
     </div>

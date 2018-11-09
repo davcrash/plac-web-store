@@ -226,6 +226,26 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
       });
   }
 
+  loginAnonymously() {
+    this.redirectLoader = true;
+    this._loginService.loginAnonymously()
+      .then(result => {
+        console.log(result);
+        let user = result.user;
+        let placAuth = {
+          user_uid: user.uid,
+          authentication_type: 'anonymously',
+          authentication_identificator: 'anonymously'
+        };
+        this.verifyIfUserExist(placAuth, result);
+      })
+      .catch(error => {
+        this.removeRedirectLoader();
+        this.showAlertError(error);
+        console.log(error);
+      });
+  }
+
   logout() {
     this._loginService.logout()
       .then(() => {

@@ -56,6 +56,10 @@ export class LoginService {
         return this._angularFireAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider().addScope('email'));
     }
 
+    loginAnonymously() {
+        return this._angularFireAuth.auth.signInAnonymously();
+    }
+
 
     logout() {
         return this._angularFireAuth.auth.signOut();
