@@ -14,7 +14,7 @@ export class PurchaseService {
   }
 
   addNewAddress(address){
-    return this._globalService.HttpMethod("POST", "placuser/shipping/address/", address);
+    return this._globalService.HttpMethod("POST", "placuser/shipping/address", address);
   }
 
   getPaymentMethods(placeId){
