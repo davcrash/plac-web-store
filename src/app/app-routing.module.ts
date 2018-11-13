@@ -22,6 +22,7 @@ import { PressComponent } from './main/landing/press/press.component';
 import { JobComponent } from './main/landing/job/job.component';
 import { OrdersListComponent } from './orders/orders-list/orders-list.component';
 import { ChangesReturnsComponent } from './main/landing/changes-returns/changes-returns.component';
+import { OrderViewComponent } from './orders/order-view/order-view.component';
 
 
 
@@ -73,6 +74,8 @@ const routes: Routes = [
   { path: 'prensa', component: PressComponent },
   { path: 'empleo', component: JobComponent },
   { path: 'ordenes', component: OrdersListComponent, canActivate: [LoginGuard] },
+  { path: 'orden/:id/:pago', component: OrderViewComponent, canActivate: [LoginGuard] },
+  { path: 'orden/:id', component: OrderViewComponent, canActivate: [LoginGuard] },
   { path: 'descargar', component: DownloadAppComponent },
   { path: 'politica-cambios-y-devoluciones', component: ChangesReturnsComponent },
 
