@@ -61,6 +61,8 @@ import { JobComponent } from './main/landing/job/job.component';
 import { PressComponent } from './main/landing/press/press.component';
 import { OrdersListComponent } from './orders/orders-list/orders-list.component';
 import { ChangesReturnsComponent } from './main/landing/changes-returns/changes-returns.component';
+import { OrderViewComponent } from './orders/order-view/order-view.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { ChangesReturnsComponent } from './main/landing/changes-returns/changes-
     PressComponent,
     OrdersListComponent,
     ChangesReturnsComponent,
+    OrderViewComponent,
+    OrderDetailComponent,
   ],
   imports: [
     BrowserModule,

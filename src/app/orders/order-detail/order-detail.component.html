@@ -1,0 +1,123 @@
+<div #orderElement [attr.data-iscollapsed]="(collapseOrder!=null)?false:true" class="pointer rounded shadow">
+  <div class="row" (click)="manageCollapsed(orderElement)">
+    <div class="col-auto">
+
+      <img [src]="order.place_location.place.path_image_logo" class="img-logo-place rounded">
+    </div>
+    <div class="col">
+      <span class="text-muted float-right px-2 py-2">
+        {{order.created_at | date: 'dd/MM/yyyy'}}
+      </span>
+      <h5 class="py-2 px-2" style="font-family: 'Montserrat', sans-serif;"><b>${{(JSON.parse(order.order_payment_full)
+          +
+          JSON.parse(order.order_shipping_price) )| number}}</b></h5>
+
+      <div class="px-2 mb-3" *ngIf="order.order_payment_type == 'payment_delivery'; else mercadopago">
+        Pago en efectivo - <span class="color-dark-green-text">Contra entrega</span>
+      </div>
+      <ng-template #mercadopago>
+        <div *ngIf="order.mercado_pago.lenght >0 ; else noMercadoPago" class="px-2 mb-3">
+          {{order.mercado_pago.resumed.payment_method}} - <span [class]="(order.mercado_pago.resumed.order_status!='Aprobado')?'color-medium-gray-text':'color-dark-green-text'">{{order.mercado_pago.resumed.payment_type}}</span>
+        </div>
+        <ng-template #noMercadoPago>
+          <div class="px-2 mb-3">
+            Esperando que tu pago sea procesado por Mercado Pago...
+            <button class="btn btn-plac" (click)="reloadPage()">Clic aquí para verificar tu pago</button>
+          </div>
+        </ng-template>
+
+
+      </ng-template>
+
+      <div class="d-flex justify-content-center align-items-center mb-4" *ngIf="(order.mercado_pago)?order.mercado_pago.lenght >0:true">
+        <div class="box-status" align="center">
+
+          <div class="rounded-circle d-flex justify-content-center align-items-center circle-status" [ngClass]="{'color-plac-text' : true}">
+            <i class="far fa-clock" style="font-size: 22px"></i>
+          </div>
+          Preparando
+          <br>
+          {{order.created_at | date: 'dd/MM/yyyy HH:mm'}}
+        </div>
+
+        <div class="box-status" align="center">
+          <div class="rounded-circle d-flex justify-content-center align-items-center circle-status"
+            [class.color-plac-text]="order.order_delivery_status == 'En camino' ||  order.order_delivery_status == 'Entregado'"
+            [class.color-dark-gray-text]="order.order_delivery_status !='En camino' && order.order_delivery_status !='Entregado'">
+            <i class="fas fa-motorcycle" style="font-size: 22px"></i>
+          </div>
+          En camino
+          <br>
+          <span *ngIf="order.order_delivery_date; else noDate">{{order.order_ship_date | date:
+            'dd/MM/yyyy HH:mm'}}</span>
+        </div>
+
+        <div class="box-status" align="center">
+          <div class="rounded-circle d-flex justify-content-center align-items-center circle-status"
+            [class.color-plac-text]="order.order_delivery_status == 'Entregado'" [class.color-dark-gray-text]="order.order_delivery_status !='Entregado'">
+            <i class="far fa-thumbs-up " style="font-size: 22px"></i>
+          </div>
+          Entregado
+          <br>
+          <span *ngIf="order.order_delivery_date; else noDate">{{order.order_delivery_date | date:
+            'dd/MM/yyyy HH:mm'}}</span>
+
+        </div>
+        <ng-template #noDate>--</ng-template>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="row justify-content-center px-5 py-5" [ngbCollapse]="(collapseOrder!=null)?false:orderElement.dataset.iscollapsed !== 'false'">
+    <div class="col-12">
+      <b>Numero de orden: #{{order.order_id}}</b>
+      <br>
+      <b>Entrega a:</b>
+      {{order.shipping_address.full_address}}, {{order.shipping_address.plac_user_neighborhood}},
+      {{order.shipping_address.city.city_name}}
+    </div>
+    <div class="col-12 table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">#</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let _order of order.order_detail">
+            <td>
+              <img style="width: 50px" [src]="JSON.parse(_order.product.product_images)[0].url">
+              {{_order.product.product_name}}
+            </td>
+            <td class="align-middle">${{_order.order_price | number}}</td>
+            <td class="align-middle">{{_order.order_quantity}}</td>
+            <td class="align-middle">${{_order.order_total | number}}</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+            </td>
+            <td class="align-middle"><b>Subtotal</b></td>
+            <td class="align-middle">${{order.order_payment_full | number}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="border-top:0">
+            </td>
+            <td class="align-middle"><b>Envio</b></td>
+            <td class="align-middle">${{order.order_shipping_price | number}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="border-top:0">
+            </td>
+            <td class="align-middle"><b>Total</b></td>
+            <td class="align-middle"><b>${{(JSON.parse(order.order_payment_full) +
+                JSON.parse(order.order_shipping_price) )| number}}</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

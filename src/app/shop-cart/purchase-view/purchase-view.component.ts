@@ -230,7 +230,11 @@ export class PurchaseViewComponent implements OnInit {
     this._shopCartService.removePlace(this.indexPlace);
 
     if (this.paymentDelivery) {
+
+      this._router.navigate([`/orden/${response.data.object.order_id}/CE`]);
+
       //Mostramos alerta 
+      /*
       swal({
 
         title: 'Correcto',
@@ -250,22 +254,30 @@ export class PurchaseViewComponent implements OnInit {
           }
         }
       })
-
+*/
     } else if (this.paymentMercadoPago) {
-      swal({
-        title: 'Correcto',
-        text: "Te redirigeremos a Mercado Pago para que realices el pago correspondiente, Muchas gracias.",
-        icon: 'success',
-        buttons: [false, 'Ir a Mercado Pago'],
-        closeOnEsc: false,
-        closeOnClickOutside: false
-      }).then((result) => {
-        if (result) {
-          //redirigimos a mercado pago
-          location.href = response.data.object.response.init_point;
 
-        }
-      })
+
+      //redirigimos a mercado pago
+      window.open(response.data.object.response.init_point, "_blank");
+      this._router.navigate([`/orden/${response.data.object.response.external_reference}/MP`]);
+      //location.href = response.data.object.response.init_point;
+
+      /*
+            swal({
+              title: 'Correcto',
+              text: "Te redirigeremos a Mercado Pago para que realices el pago correspondiente, Muchas gracias.",
+              icon: 'success',
+              buttons: [false, 'Ir a Mercado Pago'],
+              closeOnEsc: false,
+              closeOnClickOutside: false
+            }).then((result) => {
+              if (result) {
+                //redirigimos a mercado pago
+                location.href = response.data.object.response.init_point;
+      
+              }
+            })*/
     }
   }
 

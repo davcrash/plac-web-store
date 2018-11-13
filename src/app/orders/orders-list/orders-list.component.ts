@@ -15,9 +15,7 @@ export class OrdersListComponent implements OnInit {
   loader = true;
 
 
-  JSON;//para usar stringify y parse en el html
   constructor(private _orderService: OrderService) {
-    this.JSON = JSON;//para usar stringify y parse en el html
   }
 
   ngOnInit() {
