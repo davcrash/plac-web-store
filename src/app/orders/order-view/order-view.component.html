@@ -1,0 +1,9 @@
+<br><br>
+<loader *ngIf="loader"></loader>
+<div class="row justify-content-center" *ngIf="!loader">
+  <div class="col-8">
+    <h3 *ngIf="showMessage" class="color-dark-green-text" align="center">Tu orden fue procesada.<br>En un momento PLAC se comunicará contigo vía telefónica, para confirmar tu envío, Gracias 😃🚚 </h3>
+    <br>
+    <app-order-detail [order]="order" [collapse]="true"></app-order-detail>
+  </div>
+</div>
