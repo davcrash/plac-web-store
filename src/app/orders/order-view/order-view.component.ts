@@ -39,7 +39,6 @@ export class OrderViewComponent implements OnInit {
     this._orderService.getOrderById(this._route.snapshot.params['id'])
       .subscribe(result => {
         this.setOrderPropieties(result);
-        console.log(result)
       }, error => {
         console.log(error);
       }, () => {

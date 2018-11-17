@@ -20,9 +20,22 @@ export class PurchaseService {
   getPaymentMethods(placeId){
     return this._globalService.HttpMethod("POST", "store/place/payments/availables/tienda", placeId);
   }
-
+  
+  getPaymentMethodsAndCityPrice(request){
+    return this._globalService.HttpMethod("POST", "storeconfiguration/place", request);
+  }
+  
   createOrder(order){
     return this._globalService.HttpMethodAccesKey('orders', order);
+  }
+  
+  
+  getDepartments(){
+    return this._globalService.HttpMethod("GET", "store/purchase/get/departments");
+  }
+
+  getCityByDepartmentId(department_id){
+    return this._globalService.HttpMethod("GET", "store/purchase/get/cities/"+department_id);
   }
   
 

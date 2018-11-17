@@ -11,6 +11,13 @@ import swal from 'sweetalert'
 })
 export class PurchaseViewComponent implements OnInit {
 
+
+  departments;
+  departmentSelected = "";
+  cities;
+  shippingPrice;
+
+
   indexPlace;
   objectPlace;
   userAddresses;
@@ -49,6 +56,13 @@ export class PurchaseViewComponent implements OnInit {
     private _shopCartService: ShopCartService, private _router: Router) { }
 
   ngOnInit() {
+    //Se consultan los departamentos
+    this._purchaseService.getDepartments()
+      .subscribe(result => this.departments = result
+        , error => {
+          console.log(error);
+          swal("Opps..", "Ocurrio un error obteniendo los departamentos", "error")
+        });
 
     //Tomamos el uid de la persona 
     this.uid = JSON.parse(localStorage.getItem("user_data")).plac_user_id;
@@ -61,15 +75,15 @@ export class PurchaseViewComponent implements OnInit {
       if (!JSON.parse(localStorage.getItem("shop-cart"))[this.indexPlace]) {
         this._router.navigate(['/']);
       } else {
+
         //Capturamos el objeto del lugar que esta en el carrito de compras
         this.objectPlace = JSON.parse(localStorage.getItem("shop-cart"))[this.indexPlace];
-
 
         //Consultamos las direcciones del cliente
         this.getUserAdresses();
 
         //Consultamos los metodos de pago de la mepresa
-        this.getPaymentMethods(this.objectPlace.place.place_id);
+        //this.getPaymentMethods(this.objectPlace.place.place_id);
       }
 
     });
@@ -92,6 +106,28 @@ export class PurchaseViewComponent implements OnInit {
     })
   }
 
+  getPaymentMethodsAndCityPrice(placeId, cityId, productType) {
+
+    this.paymentMethods = null;
+    this.paymentDelivery = false;
+    this.paymentMercadoPago = false;
+
+    let request = {
+      place_id: placeId,
+      plac_user_city_id: cityId,
+      product_type: productType
+    }
+    this._purchaseService.getPaymentMethodsAndCityPrice(request)
+      .subscribe(result => {
+        this.paymentMethods = result.data.payment_methods_available;
+        this.shippingPrice = JSON.parse(result.data.city_price.price);
+      }, error => {
+        console.log(error);
+        swal("Opps..", "Ocurrio un error obteniendo los metodos de pago", "error");
+      });
+  }
+
+
   selectPaymentMethod(paymentMethod) {
     switch (paymentMethod) {
       case 'paymentDelivery':
@@ -109,7 +145,8 @@ export class PurchaseViewComponent implements OnInit {
 
       if (this.userAddresses.length > 0) {
         //Le damos formato a la direccion 
-        this.addressSelected = this.userAddresses[0];
+        //this.addressSelected = this.userAddresses[0];
+        this.selectAddres(this.userAddresses[0]);
         this.currentAddressFormatted = this.formatterAddress(this.addressSelected.plac_user_address);
       } else {
         this.showSection = "formAddress";
@@ -133,6 +170,7 @@ export class PurchaseViewComponent implements OnInit {
 
 
   selectAddres(address) {
+    this.getPaymentMethodsAndCityPrice(this.objectPlace.place.place_id, address.city_id, 'product');
     this.addressSelected = address;
     this.currentAddressFormatted = this.formatterAddress(address.plac_user_address);
     this.showSection = 'myAddress';
@@ -142,7 +180,6 @@ export class PurchaseViewComponent implements OnInit {
   addNewAddress() {
     this.loaderNewAddress = true;
     this.addressModel.plac_user_id = this.uid;
-    this.addressModel.city_id = localStorage.getItem("city");
 
     this._purchaseService.addNewAddress(this.addressModel).subscribe(response => {
       this.getUserAdresses();
@@ -175,8 +212,8 @@ export class PurchaseViewComponent implements OnInit {
       orderDetails: [],
       orderResumed: {
         subTotal: this.objectPlace.total,
-        total: this.objectPlace.total + 5000,
-        shippingPrice: 5000
+        total: this.objectPlace.total + this.shippingPrice,
+        shippingPrice: this.shippingPrice
       },
       placUserShippingAddress: {
         plac_user_shipping_address_id: this.addressSelected.plac_user_shipping_address_id,
@@ -279,6 +316,17 @@ export class PurchaseViewComponent implements OnInit {
               }
             })*/
     }
+  }
+
+  selectDepartment() {
+    this.addressModel.city_id = '';
+    this._purchaseService.getCityByDepartmentId(this.departmentSelected)
+      .subscribe(result => {
+        this.cities = result;
+      }, error => {
+        console.log(error);
+        swal("Opps..", "Ocurrio un error obteniendo las ciudades", "error")
+      });
   }
 
 }

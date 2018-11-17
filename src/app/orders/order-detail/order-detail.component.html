@@ -16,8 +16,9 @@
         Pago en efectivo - <span class="color-dark-green-text">Contra entrega</span>
       </div>
       <ng-template #mercadopago>
-        <div *ngIf="order.mercado_pago.lenght >0 ; else noMercadoPago" class="px-2 mb-3">
-          {{order.mercado_pago.resumed.payment_method}} - <span [class]="(order.mercado_pago.resumed.order_status!='Aprobado')?'color-medium-gray-text':'color-dark-green-text'">{{order.mercado_pago.resumed.payment_type}}</span>
+        <div *ngIf="order.mercado_pago; else noMercadoPago" class="px-2 mb-3">
+          {{order.mercado_pago.resumed.payment_method}} - <span [class]="(order.mercado_pago.resumed.order_status!='Aprobado')?'color-medium-gray-text':'color-dark-green-text'">{{order.mercado_pago.resumed.payment_type}}</span> -
+          <span [class]="(order.mercado_pago.resumed.order_status!='Aprobado')?'color-medium-gray-text':'color-dark-green-text'">{{order.mercado_pago.resumed.order_status}}</span>
         </div>
         <ng-template #noMercadoPago>
           <div class="px-2 mb-3">
@@ -29,7 +30,7 @@
 
       </ng-template>
 
-      <div class="d-flex justify-content-center align-items-center mb-4" *ngIf="(order.mercado_pago)?order.mercado_pago.lenght >0:true">
+      <div class="d-flex justify-content-center align-items-center mb-4" *ngIf="order.mercado_pago || order.order_payment_type =='payment_delivery'">
         <div class="box-status" align="center">
 
           <div class="rounded-circle d-flex justify-content-center align-items-center circle-status" [ngClass]="{'color-plac-text' : true}">
@@ -101,7 +102,7 @@
             <td colspan="2">
             </td>
             <td class="align-middle"><b>Subtotal</b></td>
-            <td class="align-middle">${{order.order_payment_full | number}}</td>
+            <td class="align-middle">${{order.order_payment_full-order.order_shipping_price | number}}</td>
           </tr>
           <tr>
             <td colspan="2" style="border-top:0">
@@ -113,8 +114,7 @@
             <td colspan="2" style="border-top:0">
             </td>
             <td class="align-middle"><b>Total</b></td>
-            <td class="align-middle"><b>${{(JSON.parse(order.order_payment_full) +
-                JSON.parse(order.order_shipping_price) )| number}}</b></td>
+            <td class="align-middle"><b>${{(JSON.parse(order.order_payment_full))| number}}</b></td>
           </tr>
         </tbody>
       </table>
