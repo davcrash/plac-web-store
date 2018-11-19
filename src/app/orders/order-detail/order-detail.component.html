@@ -8,16 +8,16 @@
       <span class="text-muted float-right px-2 py-2">
         {{order.created_at | date: 'dd/MM/yyyy'}}
       </span>
-      <h5 class="py-2 px-2" style="font-family: 'Montserrat', sans-serif;"><b>${{(JSON.parse(order.order_payment_full)
-          +
-          JSON.parse(order.order_shipping_price) )| number}}</b></h5>
+      <h5 class="py-2 px-2" style="font-family: 'Montserrat', sans-serif;"><b>${{JSON.parse(order.order_payment_full) |
+          number}}</b></h5>
 
       <div class="px-2 mb-3" *ngIf="order.order_payment_type == 'payment_delivery'; else mercadopago">
         Pago en efectivo - <span class="color-dark-green-text">Contra entrega</span>
       </div>
       <ng-template #mercadopago>
         <div *ngIf="order.mercado_pago; else noMercadoPago" class="px-2 mb-3">
-          {{order.mercado_pago.resumed.payment_method}} - <span [class]="(order.mercado_pago.resumed.order_status!='Aprobado')?'color-medium-gray-text':'color-dark-green-text'">{{order.mercado_pago.resumed.payment_type}}</span> -
+          {{order.mercado_pago.resumed.payment_method}} - <span [class]="(order.mercado_pago.resumed.order_status!='Aprobado')?'color-medium-gray-text':'color-dark-green-text'">{{order.mercado_pago.resumed.payment_type}}</span>
+          -
           <span [class]="(order.mercado_pago.resumed.order_status!='Aprobado')?'color-medium-gray-text':'color-dark-green-text'">{{order.mercado_pago.resumed.order_status}}</span>
         </div>
         <ng-template #noMercadoPago>
