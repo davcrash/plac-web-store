@@ -22,9 +22,6 @@ export class OrderDetailComponent implements OnInit {
     }
   }
 
-  reloadPage() {
-    location.reload();
-  }
 
   manageCollapsed(orderElement) {
     orderElement.dataset.iscollapsed = orderElement.dataset.iscollapsed === 'false' ? 'true' : 'false';

@@ -304,9 +304,9 @@ export class PurchaseViewComponent implements OnInit {
 
 
       //redirigimos a mercado pago
-      window.open(response.data.object.response.init_point, "_blank");
-      this._router.navigate([`/orden/${response.data.object.response.external_reference}/MP`]);
-      //location.href = response.data.object.response.init_point;
+      //window.open(response.data.object.response.init_point, "_blank");
+      //this._router.navigate([`/orden/${response.data.object.response.external_reference}/MP`]);
+      location.href = response.data.object.response.init_point;
 
       /*
             swal({

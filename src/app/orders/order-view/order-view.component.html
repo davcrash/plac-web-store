@@ -4,14 +4,15 @@
 
   <div class="row justify-content-center" *ngIf="!loader">
     <div class="col-8">
-      <h3 *ngIf="showMessage== 'CE'|| (showMessage && order.mercado_pago )" class="color-dark-green-text" align="center">Tu
+      <h3 *ngIf="showMessage" class="color-dark-green-text" align="center">Tu
         orden fue procesada.<br>En un momento PLAC
-        se comunicará contigo vía telefónica, para confirmar tu compra, Gracias 😃🚚 </h3>
+        se comunicará contigo vía telefónica, para confirmar tu compra, Gracias 😃🚚
+      </h3>
       <br>
       <app-order-detail [order]="order" [collapse]="true"></app-order-detail>
       <br>
       <div align="center">
-        <button class="btn btn-plac" [routerLink]="['/']">Volver a la tienda</button>
+        <button class="btn btn-plac" [routerLink]="['/']">Seguir comprando</button>
       </div>
       <br>
     </div>
