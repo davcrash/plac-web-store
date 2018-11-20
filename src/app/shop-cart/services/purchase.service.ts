@@ -9,34 +9,47 @@ export class PurchaseService {
   constructor(private _globalService: GlobalService) { }
 
 
-  getuserAddresses(userId){
-    return this._globalService.HttpMethod("GET", "placuser/shipping/address/"+userId);
+  getuserAddresses(userId) {
+    return this._globalService.HttpMethod("GET", "placuser/shipping/address/" + userId);
   }
 
-  addNewAddress(address){
+  addNewAddress(address) {
     return this._globalService.HttpMethod("POST", "placuser/shipping/address", address);
   }
 
-  getPaymentMethods(placeId){
+  checkCoupon(coupon_code, plac_user_id, place_id, total,subTotal,shipping_price) {
+
+    let request = {
+      coupon_code,
+      plac_user_id,
+      place_id,
+      total,
+      subTotal,
+      shipping_price
+    }
+    return this._globalService.HttpMethod("POST", "coupons/check", request);
+  }
+
+  getPaymentMethods(placeId) {
     return this._globalService.HttpMethod("POST", "store/place/payments/availables/tienda", placeId);
   }
-  
-  getPaymentMethodsAndCityPrice(request){
+
+  getPaymentMethodsAndCityPrice(request) {
     return this._globalService.HttpMethod("POST", "storeconfiguration/place", request);
   }
-  
-  createOrder(order){
+
+  createOrder(order) {
     return this._globalService.HttpMethodAccesKey('orders', order);
   }
-  
-  
-  getDepartments(){
+
+
+  getDepartments() {
     return this._globalService.HttpMethod("GET", "store/purchase/get/departments");
   }
 
-  getCityByDepartmentId(department_id){
-    return this._globalService.HttpMethod("GET", "store/purchase/get/cities/"+department_id);
+  getCityByDepartmentId(department_id) {
+    return this._globalService.HttpMethod("GET", "store/purchase/get/cities/" + department_id);
   }
-  
+
 
 }

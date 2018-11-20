@@ -252,6 +252,14 @@ export class PurchaseViewComponent implements OnInit {
 
   }
 
+  applyCoupon(couponText) {
+    this._purchaseService.checkCoupon(couponText, this.uid, this.objectPlace.place.place_id, this.objectPlace.total + this.shippingPrice,this.objectPlace.total,this.shippingPrice)
+      .subscribe(result => {
+        console.log(result);
+      })
+
+  }
+
   encryptData(str) {
     var encoded = "";
     for (var i = 0; i < str.length; i++) {

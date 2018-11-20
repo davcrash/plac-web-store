@@ -260,6 +260,13 @@
 
       </div>
       <br>
+      <div class="input-group mb-3">
+        <input #couponText type="text" maxlength="30" class="form-control" placeholder="Ingrese el código del cupón"
+          aria-label="Ingrese el código del cupón" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-plac" id="basic-addon2" (click)="applyCoupon(couponText.value)">Aplicar cupon</button>
+        </div>
+      </div>
       <loader *ngIf="loaderNewOrder"></loader>
       <button *ngIf="!loaderNewOrder" [disabled]="!((paymentDelivery || paymentMercadoPago) && addressSelected != null && shippingPrice!=null)"
         (click)="buyOrder()" class="d-inline" type="button" class="btn btn-plac btn-block btn-lg">Comprar</button>
