@@ -101,19 +101,31 @@
             <td colspan="2">
             </td>
             <td class="align-middle"><b>Subtotal</b></td>
-            <td class="align-middle">${{order.order_payment_full-order.order_shipping_price | number}}</td>
+            <td class="align-middle">${{(orderResumed)?(orderResumed.subtotal| number):(order.order_payment_full-order.order_shipping_price | number)}}</td>
           </tr>
           <tr>
             <td colspan="2" style="border-top:0">
             </td>
             <td class="align-middle"><b>Envio</b></td>
-            <td class="align-middle">${{order.order_shipping_price | number}}</td>
+            <td class="align-middle">${{(orderResumed)?(orderResumed.envio| number):order.order_shipping_price | number}}</td>
+          </tr>
+          <tr *ngIf="order.coupon_detail">
+            <td colspan="2" style="border-top:0">
+            </td>
+            <td class="align-middle"><b>Cupón</b></td>
+            <td class="align-middle">{{orderResumed.coupon.message }}</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="border-top:0">
+            </td>
+            <td class="align-middle"><b>Total antes</b></td>
+            <td class="align-middle"><b>${{JSON.parse(order.order_payment_full)| number}}</b></td>
           </tr>
           <tr>
             <td colspan="2" style="border-top:0">
             </td>
             <td class="align-middle"><b>Total</b></td>
-            <td class="align-middle"><b>${{(JSON.parse(order.order_payment_full))| number}}</b></td>
+            <td class="align-middle"><b>${{(orderResumed)?(orderResumed.total| number):JSON.parse(order.order_payment_full)| number}}</b></td>
           </tr>
         </tbody>
       </table>

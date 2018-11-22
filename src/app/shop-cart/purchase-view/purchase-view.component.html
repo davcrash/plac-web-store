@@ -250,23 +250,45 @@
           </tr>
           <tr>
             <td>Envío: </td>
-            <td class="text-right">${{shippingPrice | number}}</td>
+            <td class="text-right">${{couponInfo.coupon?(couponInfo.coupon.resumed.shipping_price
+              |number):shippingPrice | number}}</td>
+          </tr>
+          <tr *ngIf="couponInfo.coupon">
+            <td>Cupón: </td>
+            <td class="text-right">{{couponInfo.coupon.resumed.message}}</td>
+          </tr>
+          <tr *ngIf="couponInfo.coupon">
+            <td><b>Total antes: </b></td>
+            <td class="text-right"><b>${{objectPlace.total + shippingPrice| number}}</b></td>
           </tr>
           <tr>
-            <td><b>TOTAL: </b></td>
-            <td class="text-right"><b>${{objectPlace.total + shippingPrice| number}}</b></td>
+            <td><b>Total: </b></td>
+            <td class="text-right"><b>${{couponInfo.coupon?(couponInfo.coupon.resumed.total | number):objectPlace.total
+                + shippingPrice| number}}</b></td>
           </tr>
         </table>
 
       </div>
       <br>
       <div class="input-group mb-3">
-        <input #couponText type="text" maxlength="30" class="form-control" placeholder="Ingrese el código del cupón"
-          aria-label="Ingrese el código del cupón" aria-describedby="basic-addon2">
+        <input [(ngModel)]="couponText" type="text" maxlength="30" class="form-control" [ngClass]="{'is-invalid' : couponInfo.status == 'error','is-valid' : couponInfo.status == 'success'}"
+          placeholder="Ingrese el código del cupón" aria-label="Ingrese el código del cupón" aria-describedby="basic-addon2"
+          [disabled]="couponInfo.status == 'success'">
+
         <div class="input-group-append">
-          <button class="btn btn-plac" id="basic-addon2" (click)="applyCoupon(couponText.value)">Aplicar cupon</button>
+          <button style="border-radius: 0 .25rem .25rem 0 ;" class="btn btn-plac" id="basic-addon2" (click)="applyCoupon()">Aplicar
+            cupon</button>
         </div>
+        <span class="invalid-feedback">
+          {{couponInfo.message}}.
+        </span>
+        <span class="valid-feedback">
+          {{couponInfo.message}}.
+        </span>
       </div>
+
+
+
       <loader *ngIf="loaderNewOrder"></loader>
       <button *ngIf="!loaderNewOrder" [disabled]="!((paymentDelivery || paymentMercadoPago) && addressSelected != null && shippingPrice!=null)"
         (click)="buyOrder()" class="d-inline" type="button" class="btn btn-plac btn-block btn-lg">Comprar</button>
