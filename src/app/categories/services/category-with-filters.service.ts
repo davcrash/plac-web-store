@@ -12,7 +12,6 @@ export class CategoryWithFiltersService {
   
   getPlacesWithProducts(categoryReceivedByRoute, subcategorySelected, productBrandSelected): Observable<any> {
     var params = {
-      'cityId': localStorage.getItem("city"),
       'petTypeName': localStorage.getItem("pet_filter"),
       'category': {
         'category_name': categoryReceivedByRoute,
