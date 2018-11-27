@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //rootApiUrl: "https://api.placapp.com/",
-  rootApiUrl: "http://localhost:8000/",
+  rootApiUrl: "https://api.placapp.com/",
+  //rootApiUrl: "http://localhost:8000/",
   firebase: {
     apiKey: "AIzaSyChbdpaza09f_Y5aaVxkMjfm1Hvn0aCRxY",
     authDomain: "fir-plac-debug.firebaseapp.com",
