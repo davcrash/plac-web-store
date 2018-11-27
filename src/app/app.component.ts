@@ -36,7 +36,7 @@ export class AppComponent {
     //alert(screen.width);
 
 
-    localStorage.setItem("city", "2257"); //Codigo de bogota
+    //localStorage.setItem("city", "2257"); //Codigo de bogota
   }
 
   closeShopCart() {

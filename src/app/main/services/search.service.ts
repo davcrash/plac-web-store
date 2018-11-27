@@ -13,7 +13,6 @@ export class SearchService {
   getSearchPlacesProducts(queryText, orderByPrice, paymentTypeFilter): Observable<any> {
     var params = {
       filters: {
-        city_id: localStorage.getItem("city"),
         payment_type: paymentTypeFilter,
         pet_type: localStorage.getItem("pet_filter") != null ? localStorage.getItem("pet_filter") : ''
       },
@@ -26,7 +25,6 @@ export class SearchService {
   getMorePlacesWithProducts(url, queryText, orderByPrice, paymentTypeFilter): Observable<any> {
     var params = {
       filters: {
-        city_id: localStorage.getItem("city"),
         payment_type: paymentTypeFilter,
         pet_type: localStorage.getItem("pet_filter") != null ? localStorage.getItem("pet_filter") : ''
       },
