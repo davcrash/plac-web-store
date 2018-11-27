@@ -17,7 +17,7 @@ export class PurchaseService {
     return this._globalService.HttpMethod("POST", "placuser/shipping/address", address);
   }
 
-  checkCoupon(coupon_code, plac_user_id, place_id, total,subTotal,shipping_price) {
+  checkCoupon(coupon_code, plac_user_id, place_id, total, subTotal, shipping_price) {
 
     let request = {
       coupon_code,
@@ -40,6 +40,10 @@ export class PurchaseService {
 
   createOrder(order) {
     return this._globalService.HttpMethodAccesKey('orders', order);
+  }
+
+  createOrderV2(order) {
+    return this._globalService.HttpMethodWithUrl('POST', 'https://api.placapp.com/v2/orders', order);
   }
 
 

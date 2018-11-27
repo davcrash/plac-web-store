@@ -210,27 +210,41 @@ export class PurchaseViewComponent implements OnInit {
 
 
   buyOrder() {
+
     this.loaderNewOrder = true;
-    var methodSelected;
+    let methodSelected;
 
     if (this.paymentDelivery) {
       methodSelected = "payment_delivery";
     } else if (this.paymentMercadoPago) {
-      methodSelected = "payment_mercadoPago"
+      methodSelected = "mercado_pago"
     }
 
 
-    var orderModel = {
-      paymentTypeSelected: methodSelected,
-      orderDetails: [],
-      orderResumed: {
+    let orderModel = {
+      payment_method_id: methodSelected,
+      order_details: [],
+      order_resumed: {
         subTotal: this.objectPlace.total,
         total: this.objectPlace.total + this.shippingPrice,
-        shippingPrice: this.shippingPrice
+        shipping_price: this.shippingPrice,
+        //cambiar los temp
+        subTotal_tmp: (this.couponInfo.coupon) ? this.couponInfo.coupon.resumed.subTotal : this.objectPlace.total,
+        shipping_price_tmp: (this.couponInfo.coupon) ? this.couponInfo.coupon.resumed.shipping_price : this.shippingPrice
       },
-      placUserShippingAddress: {
+      plac_user_shipping_address: {
         ...this.addressSelected
       },
+      place_location: {
+        place: {
+          path_image_logo: this.objectPlace.place.place.path_image_logo,
+          place_id: this.objectPlace.place.place.place_id
+        },
+        place_id: this.objectPlace.place.place_id,
+        place_location_id: this.objectPlace.place.place_location_id,
+        place_location_name: this.objectPlace.place.place_location_name
+      },
+      products_type: 'products',
       coupon: (this.couponInfo.coupon) ? {
         coupon_detail_id: this.couponInfo.coupon.coupon_detail_id,
         coupon_id: this.couponInfo.coupon.coupon_id,
@@ -241,7 +255,7 @@ export class PurchaseViewComponent implements OnInit {
 
     this.objectPlace.order_detail.forEach(element => {
 
-      orderModel.orderDetails.push({
+      orderModel.order_details.push({
         place_id: this.objectPlace.place.place.place_id,
         product_id: element.product.product_id,
         quantity: element.quantity,
@@ -251,19 +265,42 @@ export class PurchaseViewComponent implements OnInit {
       });
     });
 
-    var orderEncrypted = {
-      order: this.encryptData(JSON.stringify(orderModel))
-    }
 
-    this._purchaseService.createOrder(orderEncrypted).subscribe(response => {
-      this.manageOrderSuccess(response);
-      this.loaderNewOrder = false;
+    let order = {
+      order: {
+        ...orderModel
+      }
+    };
+
+    this._purchaseService.createOrderV2(order).subscribe(response => {
+      console.log(response);
+
+      if (response.status == 'success') {
+        this.manageOrderSuccess(response);
+      } else {
+        swal("Opps..", "Ocurrio un error creando la orden", "error");
+      }
+
     }, error => {
       swal("Opps..", "Ocurrio un error creando la orden", "error");
       console.log(error);
       this.loaderNewOrder = false;
     });
 
+    /*
+        var orderEncrypted = {
+          order: this.encryptData(JSON.stringify(orderModel))
+        }
+    
+        this._purchaseService.createOrder(orderEncrypted).subscribe(response => {
+          this.manageOrderSuccess(response);
+          this.loaderNewOrder = false;
+        }, error => {
+          swal("Opps..", "Ocurrio un error creando la orden", "error");
+          console.log(error);
+          this.loaderNewOrder = false;
+        });
+    */
 
   }
 
@@ -273,7 +310,7 @@ export class PurchaseViewComponent implements OnInit {
 
       this._purchaseService.checkCoupon(this.couponText, this.uid, this.objectPlace.place.place_id, this.objectPlace.total + this.shippingPrice, this.objectPlace.total, this.shippingPrice)
         .subscribe(result => {
-          //console.log(result);
+          console.log(result);
           this.couponInfo.coupon = result.data;
           this.couponInfo.message = result.message;
           this.couponInfo.status = result.status;
@@ -287,23 +324,13 @@ export class PurchaseViewComponent implements OnInit {
 
   }
 
-  encryptData(str) {
-    var encoded = "";
-    for (var i = 0; i < str.length; i++) {
-      var a = str.charCodeAt(i);
-      var b = a ^ 6;
-      encoded = encoded + String.fromCharCode(b);
-    }
-    return encoded;
-  }
-
   manageOrderSuccess(response) {
     //Eliminamos la orden del carrito de compras
     this._shopCartService.removePlace(this.indexPlace);
 
     if (this.paymentDelivery) {
-
-      this._router.navigate([`/orden/${response.data.object.order_id}/CE`]);
+      this.loaderNewOrder = false;
+      this._router.navigate([`/orden/${response.data.order_id}/CE`]);
 
       //Mostramos alerta 
       /*
@@ -333,8 +360,8 @@ export class PurchaseViewComponent implements OnInit {
       //redirigimos a mercado pago
       //window.open(response.data.object.response.init_point, "_blank");
       //this._router.navigate([`/orden/${response.data.object.response.external_reference}/MP`]);
-      location.href = response.data.object.response.init_point;
-
+      
+      location.href = response.data.mercado_pago.response.init_point;
       /*
             swal({
               title: 'Correcto',
