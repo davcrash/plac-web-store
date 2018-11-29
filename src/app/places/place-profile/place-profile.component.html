@@ -45,7 +45,38 @@
                 {{arrayAssessmentStars.length}}
               </div>
             </div>
-            <div class="col-12 col-md-3 ml-auto d-flex justify-content-center">
+            <div class="col-12 col-md-3 ml-auto ">
+              <div class="row justify-content-center">
+                <div class="col-auto">
+                  <div class="align-self-center" *ngIf="deliverySchedules != null">
+                    Horarios de envio:
+                    <div *ngFor="let schedule of deliverySchedules">
+                      <div *ngIf="schedule.isOpened" style="font-size: 11px; line-height: 1.4">
+                        {{schedule.period}}: {{schedule.am}}AM a {{schedule.pm}}PM
+                      </div>
+                      <div *ngIf="!schedule.isOpened" style="font-size: 11px; line-height: 1.4">
+                        {{schedule.period}}: no abre
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <div class="align-self-center" style="margin: 10px">
+                    <i class="fas fa-shipping-fast color-plac-text" style="font-size: 20px"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-center" *ngIf="promotion.isActive">
+                <p align="center">
+                  <br>
+                  {{promotion.text}}
+                  <img style="height:16px; display: inline;" src="{{promotion.image}}">
+                  <br>
+                  <span class="text-muted" style="font-size: 12px">{{promotion.expired}}</span>
+                </p>
+              </div>
+
+              <!--
               <div class="align-self-center" *ngIf="deliverySchedules != null">
                 Horarios de envio:
                 <div *ngFor="let schedule of deliverySchedules">
@@ -60,6 +91,8 @@
               <div class="align-self-center" style="margin: 10px">
                 <i class="fas fa-shipping-fast color-plac-text" style="font-size: 20px"></i>
               </div>
+              <div>Hola</div>
+-->
             </div>
           </div>
         </div>
