@@ -12,6 +12,8 @@ export class PlaceProfileComponent implements OnInit {
 
   place: any;
 
+  promotion: any;//avillas promocion
+
   arrayAssessmentStars: Array<number>;
   arrayAssessmentNoStars: Array<number>;
   deliverySchedules;
@@ -98,6 +100,13 @@ export class PlaceProfileComponent implements OnInit {
 
   setPlacePropieties() {
     this.place = this._placeProfileService.place;
+
+
+    if (this.place.promotion) {
+      this.promotion = JSON.parse(this.place.promotion);
+      console.log(this.promotion);
+    }
+
     this.categoryArray = this.place.categories;
     let place_description_info = this.place.place_description_info;
     this.productsCount = place_description_info.products_count;
