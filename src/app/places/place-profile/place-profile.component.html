@@ -66,7 +66,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row justify-content-center" *ngIf="promotion.isActive">
+              <div class="row justify-content-center" *ngIf="(promotion)?promotion.isActive:false">
                 <p align="center">
                   <br>
                   {{promotion.text}}
