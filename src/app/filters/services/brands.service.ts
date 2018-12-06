@@ -13,14 +13,14 @@ export class BrandsService {
 
     var params = {
       filters: {
-        'category_id': category_id,
-        'pet_type': pet_target != null ? pet_target : '',
+        category_id,
+        pet_type: pet_target != null ? pet_target : ''
       }
     };
     subcategory_id != "" ? params.filters['subcategory_id'] = subcategory_id : '';
     place_id != "" ? params.filters['place_id'] = place_id : '';
     search != "" ? params.filters['search'] = search : '';
     //console.log(params);
-    return this._globalService.HttpMethod("POST", "store/place/products/brand/tienda", params);
+    return this._globalService.HttpMethod("POST", "products/brands/filter", params);
   }
 }

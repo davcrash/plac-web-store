@@ -36,10 +36,10 @@
               <h5><b>{{place.place_location_name}}</b></h5>
               <p style="font-size: 11px; line-height: 1.4" class="text-muted">{{place.place_description}}</p>
               <span class="border-right px-2">{{operationCities}}</span>
-              <span class="border-right px-2">{{productsCount}} Articulos</span>
-              <span class="px-2">{{ordersCount}} Ventas</span>
+              <span class="px-2">{{productsCount}} Articulos</span>
+              <span class="border-left px-2" *ngIf="ordersCount > 0">{{ordersCount}} Ventas</span>
               <br>
-              <div class="color-plac-text">
+              <div class="color-plac-text" *ngIf="place.rating > 0">
                 <i class="fas fa-star" *ngFor='let stars of arrayAssessmentStars'></i>
                 <i class="far fa-star" *ngFor='let stars of arrayAssessmentNoStars'></i>
                 {{arrayAssessmentStars.length}}
@@ -70,29 +70,13 @@
                 <p align="center">
                   <br>
                   {{promotion.text}}
-                  <img style="height:16px; display: inline;" src="{{promotion.image}}">
+                  <img height="16" style="display: inline;" src="{{promotion.image}}">
                   <br>
                   <span class="text-muted" style="font-size: 12px">{{promotion.expired}}</span>
                 </p>
               </div>
 
-              <!--
-              <div class="align-self-center" *ngIf="deliverySchedules != null">
-                Horarios de envio:
-                <div *ngFor="let schedule of deliverySchedules">
-                  <div *ngIf="schedule.isOpened" style="font-size: 11px; line-height: 1.4">
-                    {{schedule.period}}: {{schedule.am}}AM a {{schedule.pm}}PM
-                  </div>
-                  <div *ngIf="!schedule.isOpened" style="font-size: 11px; line-height: 1.4">
-                    {{schedule.period}}: no abre
-                  </div>
-                </div>
-              </div>
-              <div class="align-self-center" style="margin: 10px">
-                <i class="fas fa-shipping-fast color-plac-text" style="font-size: 20px"></i>
-              </div>
-              <div>Hola</div>
--->
+
             </div>
           </div>
         </div>
@@ -105,11 +89,9 @@
           style="height: 42.5px;background-size: auto 42.5px;background-repeat: no-repeat;background-position: right center; margin: 0 3px;margin-bottom: 15px; padding-right: 30px">{{category.category_name}}</button>
       </div>
 
-
-
       <div class="col-12 d-flex justify-content-center subcategory-container" *ngIf="categorySelected && categoryArray.length>=1">
-        <app-subcategories [needReset]="needResetSubcategory" [categoryName]="categorySelected" [preLoadSubcategories]="subcategories"
-          [preLoadSelected]="subcategorySelected" (subcategorySelected)="selectSubcategory($event)"></app-subcategories>
+        <app-subcategories [needReset]="needResetSubcategory" [preLoadSelected]="subcategorySelected" [categoryName]="categorySelected"
+          [preLoadSubcategories]="subcategories" (subcategorySelected)="selectSubcategory($event)"></app-subcategories>
       </div>
 
       <div class="col-sm-auto col-12 ng-sidebar-width">
@@ -140,7 +122,7 @@
 
         <loader *ngIf="loaderProducts"></loader>
         <div *ngIf="!loaderProducts">
-          <app-product-card *ngFor="let product of products" [productId]="product.product_id" [imgProduct]="product.product_images[0].url"
+          <app-product-card *ngFor="let product of products" [productId]="product.product_id" [imgProduct]="product.product_link_image"
             [productName]="product.product_name" [productPrice]="product.product_price">
           </app-product-card>
           <div class="d-flex justify-content-center">

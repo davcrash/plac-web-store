@@ -45,7 +45,7 @@ export class PlaceCardComponent implements OnInit {
   }
 
   selectPlace() {
-    this._placeProfileService.place = this.placeToProfile;
+    //this._placeProfileService.place = this.placeToProfile;
     this._placeProfileService.category = this.categoryToProfile;
     this._placeProfileService.subcategoryId = this.subcategoryIdToProfile;
     this._placeProfileService.brand = this.brandToProfile;

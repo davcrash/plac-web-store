@@ -15,9 +15,9 @@ export class SidemenuService {
   ) { }
 
   getCategories(): Observable<any> {
-    return this._globalService.HttpMethod("GET", "categories/subcategories")
+    return this._globalService.HttpMethod("GET", "products/categories")
       .pipe(tap(res => {
-        this._localStorageService.setItem('categories', JSON.stringify(res));
+        this._localStorageService.setItem('categories', JSON.stringify(res.data));
       }));
   }
 }

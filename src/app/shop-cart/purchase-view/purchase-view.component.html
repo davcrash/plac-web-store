@@ -113,7 +113,7 @@
           <a *ngFor="let item of userAddresses" class="list-group-item list-group-item-action" style="cursor: pointer"
             (click)="selectAddres(item)">
             {{item.plac_user_name}}, {{item.plac_user_telephone}},
-            {{item.plac_user_email}}, {{formatterAddress(item.plac_user_address)}},
+            {{item.plac_user_email}}, {{item.address_formatted}},
             {{item.plac_user_neighborhood}}, {{item.city.city_name}}
           </a>
         </div>
@@ -224,12 +224,12 @@
           <tr>
             <td>Producto</td>
             <td>Unidades</td>
-            <td>Subtotal</td>
+            <td>Valor</td>
           </tr>
           <tr *ngFor="let item of objectPlace.order_detail">
             <td class="align-center">
               <div style="width: 70px; height: 70px;">
-                <img src="{{item.product.product_images[0].url}}" style="max-height: 70px; max-width: 100%;">
+                <img src="{{item.product.product_link_image}}" style="max-height: 70px; max-width: 100%;">
               </div>
             </td>
             <td class="align-center">

@@ -17,52 +17,41 @@ export class PlaceProfileService {
 
   constructor(private _globalService: GlobalService, private _formatService: FormatService) { }
 
-  getPlaceById(name): Observable<any> {
+  getPlaceByName(name): Observable<any> {
     name = this._formatService.unformatString(name);
     let params = {
-      place_name: name,
-      pet_target: localStorage.getItem("pet_filter")
+      place_name: name
     };
-
-    return this._globalService.HttpMethod("POST", 'store/place/id', params);
+    return this._globalService.HttpMethod("POST", 'places/show/name', params);
   }
 
   getProducts(search?): Observable<any> {
     let params = {
       filters: {
-        'pet_type': localStorage.getItem("pet_filter"),
-        'category': {
-          'category_name': (this.category) ? this.category : null,
-          'subcategory': {
-            'subcategory_name': (this.subcategoryName) ? this.subcategoryName : null
-          }
-        },
-        'brand': (this.brand) ? this.brand : null,
-        'place_id': this.place.place_id,
-        'limit': 20,
-        'search': (search) ? search : null,
-      }
+        pet_type: localStorage.getItem("pet_filter"),
+        category_name: (this.category) ? this.category : null,
+        subcategory_name: (this.subcategoryName) ? this.subcategoryName : null,
+        brand: (this.brand) ? this.brand : null,
+        place_id: this.place.place_id,
+        pagination: 20,
+      },
+      search: (search) ? search : null,
     };
-    return this._globalService.HttpMethod("POST", 'store/place/products/tienda', params);
+
+    return this._globalService.HttpMethod("POST", 'products/filters', params);
   }
 
   getMoreProducts(url, search?): Observable<any> {
-
     let params = {
       filters: {
-
-        'pet_type': localStorage.getItem("pet_filter"),
-        'category': {
-          'category_name': (this.category) ? this.category : null,
-          'subcategory': {
-            'subcategory_name': (this.subcategoryName) ? this.subcategoryName : null
-          }
-        },
-        'brand': (this.brand) ? this.brand : null,
-        'place_id': this.place.place_id,
-        'limit': 20,
-        'search': (search) ? search : null,
-      }
+        pet_type: localStorage.getItem("pet_filter"),
+        category_name: (this.category) ? this.category : null,
+        subcategory_name: (this.subcategoryName) ? this.subcategoryName : null,
+        brand: (this.brand) ? this.brand : null,
+        place_id: this.place.place_id,
+        pagination: 20,
+      },
+      search: (search) ? search : null,
     };
 
     return this._globalService.HttpMethodWithUrl("POST", url, params);

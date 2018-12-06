@@ -9,12 +9,12 @@ export class PurchaseService {
   constructor(private _globalService: GlobalService) { }
 
 
-  getuserAddresses(userId) {
-    return this._globalService.HttpMethod("GET", "placuser/shipping/address/" + userId);
+  getUserAddresses(userId) {
+    return this._globalService.HttpMethod("GET", "placusers/shippingaddresses/" + userId);
   }
 
   addNewAddress(address) {
-    return this._globalService.HttpMethod("POST", "placuser/shipping/address", address);
+    return this._globalService.HttpMethod("POST", "placusers/shippingaddresses", address);
   }
 
   checkCoupon(coupon_code, plac_user_id, place_id, total, subTotal, shipping_price) {
@@ -30,29 +30,20 @@ export class PurchaseService {
     return this._globalService.HttpMethod("POST", "coupons/check", request);
   }
 
-  getPaymentMethods(placeId) {
-    return this._globalService.HttpMethod("POST", "store/place/payments/availables/tienda", placeId);
-  }
-
   getPaymentMethodsAndCityPrice(request) {
     return this._globalService.HttpMethod("POST", "storeconfiguration/place", request);
   }
 
   createOrder(order) {
-    return this._globalService.HttpMethodAccesKey('orders', order);
+    return this._globalService.HttpMethod("POST", 'orders', order);
   }
-
-  createOrderV2(order) {
-    return this._globalService.HttpMethodWithUrl('POST', 'https://api.placapp.com/v2/orders', order);
-  }
-
 
   getDepartments() {
-    return this._globalService.HttpMethod("GET", "store/purchase/get/departments");
+    return this._globalService.HttpMethod("GET", "cities/departments");
   }
 
   getCityByDepartmentId(department_id) {
-    return this._globalService.HttpMethod("GET", "store/purchase/get/cities/" + department_id);
+    return this._globalService.HttpMethod("GET", "cities/departments/" + department_id);
   }
 
 

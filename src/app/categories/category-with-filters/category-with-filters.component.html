@@ -47,13 +47,13 @@
 
           <!-- Inicio: Card perfil empresa-->
           <app-place-card [placeId]="place.place_id" [placeDescription]="place.place_description" [placePathImageLogo]="place.path_image_logo"
-            [placeAssessment]="place.assessment" [placeName]="place.place_location_name" [placeToProfile]="place" [brandToProfile]="productBrandSelected"
+            [placeAssessment]="place.rating" [placeName]="place.place_location_name" [placeToProfile]="place" [brandToProfile]="productBrandSelected"
             [categoryToProfile]="categoryReceivedByRoute" [subcategoryNameToProfile]="subcategorySelected" [subcategoryIdToProfile]="subcategoryIdSelected">
           </app-place-card>
           <!-- Fin: Card perfil empresa-->
 
           <!-- Inicio: Card producto-->
-          <app-product-card *ngFor="let product of place.products.data" [productId]="product.product_id" [imgProduct]="product.product_images[0].url"
+          <app-product-card *ngFor="let product of place.products.data" [productId]="product.product_id" [imgProduct]="product.product_link_image"
             [productName]="product.product_name" [productPrice]="product.product_price">
           </app-product-card>
           <!-- Fin: Card producto-->

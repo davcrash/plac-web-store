@@ -31,8 +31,8 @@ export class CategoryWithFiltersComponent implements OnInit {
   subcategoryIdSelected = "";
   productBrandSelected: string;
 
-  needResetBrand:string;
-  needResetSubcategory:boolean = false;
+  needResetBrand: string;
+  needResetSubcategory: boolean = false;
 
   placesWithProducts;
 
@@ -74,7 +74,7 @@ export class CategoryWithFiltersComponent implements OnInit {
 
   setCategoryPropieties() {
     this.categoryPropieties = this.categories.find(category => category.category_name === this.categoryReceivedByRoute);
-    (this.categoryPropieties==undefined)?this._router.navigate(['']):'';
+    (this.categoryPropieties == undefined) ? this._router.navigate(['']) : '';
   }
 
   changeSubcategory(subcategory) {
@@ -94,7 +94,7 @@ export class CategoryWithFiltersComponent implements OnInit {
     this.loader = true;
     this._categoryWithFiltersService.getPlacesWithProducts(this.categoryReceivedByRoute, this.subcategorySelected, this.productBrandSelected)
       .subscribe(result => {
-        this.placesWithProducts = result;
+        this.placesWithProducts = result.data.data;
       }, error => {
         console.log(error);
       }, () => {//Cuando ya la solicitud se completo ocultamos el loader

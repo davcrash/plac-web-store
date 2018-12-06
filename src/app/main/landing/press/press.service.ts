@@ -10,6 +10,6 @@ export class PressService {
   constructor(private _globalService: GlobalService) { }
 
   getInfo(): Observable<any> {
-    return this._globalService.HttpMethod("GET", 'getinfopress');
+    return this._globalService.HttpMethodWithUrl("GET", 'https://api.placapp.com/getinfopress');
   }
 }

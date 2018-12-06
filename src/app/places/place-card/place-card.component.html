@@ -7,7 +7,7 @@
     <div>
       {{placeName}}
     </div>
-    <div class="color-plac-text">
+    <div *ngIf="placeAssessment > 0" class="color-plac-text">
       <i class="fas fa-star" *ngFor='let stars of arrayAssessmentStars'></i>
       <i class="far fa-star" *ngFor='let stars of arrayAssessmentNoStars'></i>
     </div>

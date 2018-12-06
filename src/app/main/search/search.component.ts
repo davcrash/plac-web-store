@@ -55,8 +55,8 @@ export class SearchComponent implements OnInit {
     this.loader = true;
     this._searchService.getSearchPlacesProducts(queryText, this.orderByPrice, this.paymentTypeFilter)
       .subscribe(result => {
-        this.placesWithProductsPaginator = result.next_page_url;
-        this.placesWithProducts = result.data;
+        this.placesWithProductsPaginator = result.data.next_page_url;
+        this.placesWithProducts = result.data.data;
         this.placesWithProductsLenght = this.placesWithProducts.length;
       }, error => {
         console.log(error);
@@ -67,8 +67,8 @@ export class SearchComponent implements OnInit {
   getMorePlacesWithProductsBySearch() {
     this._searchService.getMorePlacesWithProducts(this.placesWithProductsPaginator, this.queryText, this.orderByPrice, this.paymentTypeFilter)
       .subscribe(result => {
-        this.placesWithProductsPaginator = result.next_page_url;
-        this.placesWithProducts.push.apply(this.placesWithProducts, result.data);
+        this.placesWithProductsPaginator = result.data.next_page_url;
+        this.placesWithProducts.push.apply(this.placesWithProducts, result.data.data);
       }, error => {
         console.log(error);
       }, () => {//Cuando ya la solicitud se completo ocultamos el loader

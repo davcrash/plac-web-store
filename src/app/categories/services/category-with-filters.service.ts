@@ -9,9 +9,9 @@ export class CategoryWithFiltersService {
 
   constructor(private _globalService: GlobalService) { }
 
-  
+
   getPlacesWithProducts(categoryReceivedByRoute, subcategorySelected, productBrandSelected): Observable<any> {
-    var params = {
+    /*var params = {
       'petTypeName': localStorage.getItem("pet_filter"),
       'category': {
         'category_name': categoryReceivedByRoute,
@@ -19,8 +19,17 @@ export class CategoryWithFiltersService {
           'subcategory_name': subcategorySelected
         }
       },
-      'brand':productBrandSelected
+      'brand': productBrandSelected
     }
-    return this._globalService.HttpMethod("POST", "store/places/city/tienda",params);
+    */
+    let params = {
+      filters: {
+        category_name: categoryReceivedByRoute ? categoryReceivedByRoute : null,
+        subcategory_name: subcategorySelected ? subcategorySelected : null,
+        brand: productBrandSelected ? productBrandSelected : null,
+        pet_type: localStorage.getItem("pet_filter") != null ? localStorage.getItem("pet_filter") : ''
+      }
+    };
+    return this._globalService.HttpMethod("POST", "products/places/filters", params);
   }
 }
