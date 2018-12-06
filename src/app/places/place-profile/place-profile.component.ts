@@ -56,11 +56,14 @@ export class PlaceProfileComponent implements OnInit {
 
 
   ngOnInit() {
+    /*
     if (!this._placeProfileService.place) {
       this.getPlaceByName();
     } else {
-      this.setPlacePropieties();
-    }
+      this.getPlaceByName();
+      //this.setPlacePropieties();
+    }*/
+    this.getPlaceByName();
     this._localStorageService.watchStorage().subscribe((data) => {
       //Cuando cambien el filtro de tipo de mascota
       if (data.change === 'pet_filter') {

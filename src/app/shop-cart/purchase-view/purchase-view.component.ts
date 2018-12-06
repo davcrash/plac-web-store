@@ -172,7 +172,6 @@ export class PurchaseViewComponent implements OnInit {
     this.addressModel.plac_user_id = this.uid;
 
     this._purchaseService.addNewAddress(this.addressModel).subscribe(response => {
-      console.log(response);
       this.getUserAdresses();
 
       this.loaderNewAddress = false;
@@ -251,7 +250,7 @@ export class PurchaseViewComponent implements OnInit {
     };
 
     this._purchaseService.createOrder(order).subscribe(response => {
-      console.log(response);
+      
 
       if (response.status == 'success') {
         this.manageOrderSuccess(response);
