@@ -87,9 +87,9 @@ export class PlaceProfileComponent implements OnInit {
 
   getPlaceByName() {
     this.loaderProducts = true;
-    this._placeProfileService.getPlaceById(this._route.snapshot.params['name'])
+    this._placeProfileService.getPlaceByName(this._route.snapshot.params['name'])
       .subscribe(result => {
-        this._placeProfileService.place = result;
+        this._placeProfileService.place = result.data;
         this.setPlacePropieties();
       }, error => {
         console.log(error);
@@ -101,19 +101,19 @@ export class PlaceProfileComponent implements OnInit {
   setPlacePropieties() {
     this.place = this._placeProfileService.place;
 
-
     if (this.place.promotion) {
       this.promotion = JSON.parse(this.place.promotion);
-      console.log(this.promotion);
     }
 
     this.categoryArray = this.place.categories;
-    let place_description_info = this.place.place_description_info;
-    this.productsCount = place_description_info.products_count;
-    this.ordersCount = place_description_info.orders_count;
-    this.operationCities = place_description_info.place_cities;
+    //let place_description_info = this.place.place_description_info;
+
+    this.productsCount = this.place.total_products;
+    this.ordersCount = this.place.total_orders_made;
+    this.operationCities = this.place.city_name;
+
     //para listar las estrellas
-    this.arrayAssessmentStars = Array(Math.round(this.place.assessment)).fill(0).map((x, i) => i);
+    this.arrayAssessmentStars = Array(Math.round(this.place.rating)).fill(0).map((x, i) => i);
     this.arrayAssessmentNoStars = Array(-this.arrayAssessmentStars.length + 5).fill(0).map((x, i) => i);
     this.deliverySchedules = JSON.parse(this.place.delivery_schedules);
 
@@ -147,7 +147,7 @@ export class PlaceProfileComponent implements OnInit {
     this.loaderProducts = true;
     this._placeProfileService.getProducts(searchText)
       .subscribe(result => {
-        this.productsPaginator = result;
+        this.productsPaginator = result.data;
         this.products = this.productsPaginator.data;
         this.loaderProducts = false;
       }, error => {
@@ -161,7 +161,7 @@ export class PlaceProfileComponent implements OnInit {
   getMoreProducts() {
     this._placeProfileService.getMoreProducts(this.productsPaginator.next_page_url, this.searchText)
       .subscribe(result => {
-        this.productsPaginator = result;
+        this.productsPaginator = result.data;
         this.products.push.apply(this.products, this.productsPaginator.data);
       }, error => {
         console.log(error);

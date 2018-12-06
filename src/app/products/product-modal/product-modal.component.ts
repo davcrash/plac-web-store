@@ -36,7 +36,7 @@ export class ProductModalComponent implements OnInit {
   questionGenerated;
   uid;
 
-
+  JSON;//para usar stringify y parse en el html
   constructor(
     private _modalService: NgbModal,
     private _route: ActivatedRoute,
@@ -46,6 +46,7 @@ export class ProductModalComponent implements OnInit {
     private _shopCartService: ShopCartService,
     private _formatService: FormatService
   ) {
+    this.JSON = JSON;//para usar stringify y parse en el html
   }
 
   ngOnInit() {
@@ -57,11 +58,11 @@ export class ProductModalComponent implements OnInit {
       //this.productName = this._formatService.unformatString(routeParam.name);
       this._productModalService.getProductById(this.productId)
         .subscribe(res => {
-          this.product = res;
+          this.product = res.data;
 
           if (!routeParam.name) {
             let queryParams = this._route.snapshot.queryParams;
-            let url = this._router.createUrlTree([this._formatService.formatString(this.product.product_name)], { relativeTo: this._route, queryParams})
+            let url = this._router.createUrlTree([this._formatService.formatString(this.product.product_name)], { relativeTo: this._route, queryParams })
               .toString();
             //this._router.navigate([url]);
             this._location.go(url);
@@ -69,7 +70,7 @@ export class ProductModalComponent implements OnInit {
             if (this.product.product_name.trim().toLowerCase() != this._formatService.unformatString(routeParam.name).toLowerCase()) {
               let queryParams = this._route.snapshot.queryParams;
               let url = this._router.createUrlTree(
-                ['../' + this._formatService.formatString(this.product.product_name)], { relativeTo: this._route ,queryParams}
+                ['../' + this._formatService.formatString(this.product.product_name)], { relativeTo: this._route, queryParams }
               )
                 .toString();
               //this._router.navigate([url]);
@@ -126,7 +127,6 @@ export class ProductModalComponent implements OnInit {
     } catch (error) {
       url = this._router.createUrlTree(['../../'], { relativeTo: this._route, queryParams }).toString().replace(/%20/g, ' ');
     }
-    console.log(url);
     this._router.navigateByUrl(url);
     //(window.history.length > 2) ? this._location.back() : this._router.navigate(['../../../'], { relativeTo: this._route, replaceUrl: true });
     //this._router.navigate(['../../../'], { relativeTo: this._route });
@@ -146,9 +146,11 @@ export class ProductModalComponent implements OnInit {
 
       this.textButtonQuestion = "Enviando...";
       this._productModalService.sendNewQuestion(this.question).subscribe(data => {
-        this.questionGenerated = data;
-        this.product.questions.push(this.questionGenerated);
-        this.product.questions.reverse();
+        this.question.question_txt = '';
+        this.questionGenerated = data.data;
+        this.product.questions.unshift(this.questionGenerated);
+
+        //this.product.questions.reverse();
         this.textButtonQuestion = "Preguntar";
       }, error => {
         console.log(error);

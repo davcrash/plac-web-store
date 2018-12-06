@@ -12,12 +12,14 @@ export class SubcategoriesService {
   ) { }
 
   getSubCategories(category_name, pet_target): Observable<any> {
-    var params = { 
-      category_name, 
-      pet_target: pet_target!=null?pet_target:''
+    var params = {
+      filters: {
+        pet_type: pet_target != null ? pet_target : '',
+        category_name
+      }
     };
 
-    return this._globalService.HttpMethod("GET", "subcategories/get", params);
+    return this._globalService.HttpMethod("POST", "products/categories/subcategories/filter", params);
   }
 
 

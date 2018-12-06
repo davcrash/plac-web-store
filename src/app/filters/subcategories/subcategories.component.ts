@@ -66,7 +66,7 @@ export class SubcategoriesComponent implements OnChanges, OnInit {
       this.subcategories = null;
       this._subcategoriesService.getSubCategories(this.categoryName, localStorage.getItem('pet_filter'))
         .subscribe(res => {
-          this.subcategories = res;
+          this.subcategories = res.data;
         }, error => {
           console.log(error);
         }, () => {
