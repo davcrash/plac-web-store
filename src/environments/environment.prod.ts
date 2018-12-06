@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  rootApiUrl: "https://api.placapp.com/",
+  rootApiUrl: "https://api.placapp.com/v2/",
   firebase: {
     apiKey: "AIzaSyCZRgNVO95U9t7rowIkfEVKpekEQLHtd0c",
     authDomain: "plac-release.firebaseapp.com",

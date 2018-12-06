@@ -230,7 +230,6 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     this.redirectLoader = true;
     this._loginService.loginAnonymously()
       .then(result => {
-        console.log(result);
         let user = result.user;
         let placAuth = {
           user_uid: user.uid,

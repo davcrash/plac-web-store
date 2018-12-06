@@ -17,7 +17,7 @@ export class RegisterService {
       "authentication": authentication,
       "installation": installation
     };
-    return this._globalService.HttpMethod("POST", "placusers/tienda", body);
+    return this._globalService.HttpMethod("POST", "placusers", body);
   }
 
   linkCurrentAccountWithAuth(placUserId, placUserName, placUserEmail, newAuth): Observable<any> {
@@ -40,7 +40,7 @@ export class RegisterService {
       "installation": installation,
       "authentication": authentication
     };
-    return this._globalService.HttpMethod("POST", "authentication/account/verify/link/code", body);
+    return this._globalService.HttpMethod("POST", `authentication/account/verify/link/code`, body);
   }
 
 

@@ -12,15 +12,19 @@ export class OrderService {
   order: any;
 
   getOrderByUserId(): Observable<any> {
-    let id = JSON.parse(localStorage.getItem('user_data')).plac_user_id;
-    return this._globalService.HttpMethod("GET", `tienda/store/orders/user/${id}/state`);
+    let params = {
+      plac_user_id: JSON.parse(localStorage.getItem('user_data')).plac_user_id
+    }
+    return this._globalService.HttpMethod("POST", `orders/user`, params);
 
   }
 
   getOrderById(id): Observable<any> {
-    let plac_user_id = JSON.parse(localStorage.getItem('user_data')).plac_user_id;
-
-    return this._globalService.HttpMethod("GET", `orders/${id}`, { plac_user_id });
+    let params = {
+      plac_user_id: JSON.parse(localStorage.getItem('user_data')).plac_user_id,
+      order_id: id
+    }
+    return this._globalService.HttpMethod("POST", `orders/user`, params);
 
   }
 }

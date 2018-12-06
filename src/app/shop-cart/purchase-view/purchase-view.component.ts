@@ -65,11 +65,12 @@ export class PurchaseViewComponent implements OnInit {
   ngOnInit() {
     //Se consultan los departamentos
     this._purchaseService.getDepartments()
-      .subscribe(result => this.departments = result
-        , error => {
-          console.log(error);
-          swal("Opps..", "Ocurrio un error obteniendo los departamentos", "error")
-        });
+      .subscribe(result => {
+        this.departments = result.data
+      }, error => {
+        console.log(error);
+        swal("Opps..", "Ocurrio un error obteniendo los departamentos", "error")
+      });
 
     //Tomamos el uid de la persona 
     this.uid = JSON.parse(localStorage.getItem("user_data")).plac_user_id;
@@ -89,29 +90,12 @@ export class PurchaseViewComponent implements OnInit {
         //Consultamos las direcciones del cliente
         this.getUserAdresses();
 
-        //Consultamos los metodos de pago de la mepresa
-        //this.getPaymentMethods(this.objectPlace.place.place_id);
       }
 
     });
 
   }
 
-  getPaymentMethods(placeId) {
-    var object = {
-      place_id: placeId
-    }
-    this.paymentMethods = null;
-    this.paymentDelivery = false;
-    this.paymentMercadoPago = false;
-    this._purchaseService.getPaymentMethods(object).subscribe(data => {
-      this.paymentMethods = data;
-
-    }, error => {
-      console.log(error);
-      swal("Opps..", "Ocurrio un error obteniendo los metodos de pago", "error");
-    })
-  }
 
   getPaymentMethodsAndCityPrice(placeId, cityId, productType) {
 
@@ -147,14 +131,14 @@ export class PurchaseViewComponent implements OnInit {
   }
 
   getUserAdresses() {
-    this._purchaseService.getuserAddresses(this.uid).subscribe(data => {
-      this.userAddresses = data;
+    this._purchaseService.getUserAddresses(this.uid).subscribe(data => {
+      this.userAddresses = data.data;
 
       if (this.userAddresses.length > 0) {
         //Le damos formato a la direccion 
         //this.addressSelected = this.userAddresses[0];
         this.selectAddres(this.userAddresses[0]);
-        this.currentAddressFormatted = this.formatterAddress(this.addressSelected.plac_user_address);
+        this.currentAddressFormatted = this.addressSelected.address_formatted;
       } else {
         this.showSection = "formAddress";
       }
@@ -169,13 +153,6 @@ export class PurchaseViewComponent implements OnInit {
 
   }
 
-  formatterAddress(addressJSON) {
-    addressJSON = JSON.parse(addressJSON);
-    return addressJSON.mainWay + " " + addressJSON.address1 + " # " + addressJSON.address2 + " - " + addressJSON.address3;
-  }
-
-
-
   selectAddres(address) {
     this.couponInfo = {
       message: null,
@@ -185,7 +162,7 @@ export class PurchaseViewComponent implements OnInit {
     this.couponText = '';
     this.getPaymentMethodsAndCityPrice(this.objectPlace.place.place_id, address.city_id, 'product');
     this.addressSelected = address;
-    this.currentAddressFormatted = this.formatterAddress(address.plac_user_address);
+    this.currentAddressFormatted = this.addressSelected.address_formatted;
     this.showSection = 'myAddress';
   }
 
@@ -272,8 +249,8 @@ export class PurchaseViewComponent implements OnInit {
       }
     };
 
-    this._purchaseService.createOrderV2(order).subscribe(response => {
-      console.log(response);
+    this._purchaseService.createOrder(order).subscribe(response => {
+      
 
       if (response.status == 'success') {
         this.manageOrderSuccess(response);
@@ -287,21 +264,6 @@ export class PurchaseViewComponent implements OnInit {
       this.loaderNewOrder = false;
     });
 
-    /*
-        var orderEncrypted = {
-          order: this.encryptData(JSON.stringify(orderModel))
-        }
-    
-        this._purchaseService.createOrder(orderEncrypted).subscribe(response => {
-          this.manageOrderSuccess(response);
-          this.loaderNewOrder = false;
-        }, error => {
-          swal("Opps..", "Ocurrio un error creando la orden", "error");
-          console.log(error);
-          this.loaderNewOrder = false;
-        });
-    */
-
   }
 
   applyCoupon() {
@@ -310,7 +272,6 @@ export class PurchaseViewComponent implements OnInit {
 
       this._purchaseService.checkCoupon(this.couponText, this.uid, this.objectPlace.place.place_id, this.objectPlace.total + this.shippingPrice, this.objectPlace.total, this.shippingPrice)
         .subscribe(result => {
-          console.log(result);
           this.couponInfo.coupon = result.data;
           this.couponInfo.message = result.message;
           this.couponInfo.status = result.status;
@@ -329,54 +290,14 @@ export class PurchaseViewComponent implements OnInit {
     this._shopCartService.removePlace(this.indexPlace);
 
     if (this.paymentDelivery) {
+
       this.loaderNewOrder = false;
       this._router.navigate([`/orden/${response.data.order_id}/CE`]);
 
-      //Mostramos alerta 
-      /*
-      swal({
-
-        title: 'Correcto',
-        text: "La orden fue procesada, PLAC la enviará a la dirección de domicilio seleccionada, Muchas gracias.",
-        icon: 'success',
-        closeOnEsc: false,
-        closeOnClickOutside: false
-      }).then((result) => {
-        if (result) {
-          //redirigimos
-          if (JSON.parse(localStorage.getItem("shop-cart")).length > 0) {
-            //redirigimos a compra/0
-            this._router.navigate(['/compra/0']);
-          } else {
-            //redirigimos a /
-            this._router.navigate(['/']);
-          }
-        }
-      })
-*/
     } else if (this.paymentMercadoPago) {
 
-
-      //redirigimos a mercado pago
-      //window.open(response.data.object.response.init_point, "_blank");
-      //this._router.navigate([`/orden/${response.data.object.response.external_reference}/MP`]);
-      
       location.href = response.data.mercado_pago.response.init_point;
-      /*
-            swal({
-              title: 'Correcto',
-              text: "Te redirigeremos a Mercado Pago para que realices el pago correspondiente, Muchas gracias.",
-              icon: 'success',
-              buttons: [false, 'Ir a Mercado Pago'],
-              closeOnEsc: false,
-              closeOnClickOutside: false
-            }).then((result) => {
-              if (result) {
-                //redirigimos a mercado pago
-                location.href = response.data.object.response.init_point;
-      
-              }
-            })*/
+
     }
   }
 
@@ -384,7 +305,7 @@ export class PurchaseViewComponent implements OnInit {
     this.addressModel.city_id = '';
     this._purchaseService.getCityByDepartmentId(this.departmentSelected)
       .subscribe(result => {
-        this.cities = result;
+        this.cities = result.data;
       }, error => {
         console.log(error);
         swal("Opps..", "Ocurrio un error obteniendo las ciudades", "error")
