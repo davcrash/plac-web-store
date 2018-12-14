@@ -23,7 +23,7 @@ export class ShopCartService {
 
   }
 
-  addProductToCart(product, quantity, fromModal?) {
+  addProductToCart(product, quantity, eventType?) {
 
 
     var place = product.place_location;
@@ -61,12 +61,17 @@ export class ShopCartService {
 
     //si la cantidad es 0 quiere decir que eliminaron el producto desde el carrito
     if (quantity <= 0) {
-      this.removeProduct(indexPlace, indexPlace);
+      this.removeProduct(indexPlace, indexProduct);
     }
 
     //Si viene del dialogo del producto, utilizamos el metodo para que escuche y se abra el carrito
-    if (fromModal) {
+    if (eventType == true) {//si es true es porque viene del modal
       this._localStorageService.setItem("shop-cart", JSON.stringify(this.myShopCart));
+    } else if (eventType == 'purchase') {//viene del purchase view
+
+      sessionStorage.setItem("flag-in-purchase", 'true');
+      this._localStorageService.setItem("shop-cart", JSON.stringify(this.myShopCart));
+
     } else {
       localStorage.setItem("shop-cart", JSON.stringify(this.myShopCart));
     }
@@ -148,10 +153,10 @@ export class ShopCartService {
 
   }
 
-  removePlace(indexPlace){
+  removePlace(indexPlace) {
     delete this.myShopCart[indexPlace];
     this.reIndexingShopCart();
-    localStorage.setItem("flag-in-purchase", "1");
+    //localStorage.setItem("flag-in-purchase", "1");
     this._localStorageService.setItem("shop-cart", JSON.stringify(this.myShopCart));
   }
 

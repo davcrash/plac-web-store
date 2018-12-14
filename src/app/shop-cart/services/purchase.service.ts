@@ -17,6 +17,11 @@ export class PurchaseService {
     return this._globalService.HttpMethod("POST", "placusers/shippingaddresses", address);
   }
 
+  editAddress(id, address) {
+    address._method = 'PUT';
+    return this._globalService.HttpMethod("POST", `placusers/shippingaddresses/${id}`, address);
+  }
+
   checkCoupon(coupon_code, plac_user_id, place_id, total, subTotal, shipping_price) {
 
     let request = {
@@ -38,12 +43,22 @@ export class PurchaseService {
     return this._globalService.HttpMethod("POST", 'orders', order);
   }
 
+  getCountries() {
+    return this._globalService.HttpMethod("GET", "cities/countries");
+  }
+
   getDepartments() {
     return this._globalService.HttpMethod("GET", "cities/departments");
   }
 
-  getCityByDepartmentId(department_id) {
-    return this._globalService.HttpMethod("GET", "cities/departments/" + department_id);
+  getCityByFilter(country_id, department_id?) {
+
+    let filter = {
+      country_id
+    };
+    department_id ? filter['department_id'] = department_id : '';
+
+    return this._globalService.HttpMethod("GET", "cities/departments/filter", filter);
   }
 
 

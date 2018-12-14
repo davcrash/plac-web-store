@@ -46,11 +46,13 @@ export class NavComponent implements OnInit {
       }
       //CARRITO DE COMPRA, ABRIR O CERRAR CARRO CUANDO SE AGREGAN PRODUCTOS
       if (data.change === 'shop-cart') {
-        if (localStorage.getItem("flag-in-purchase")) {
-          localStorage.removeItem("flag-in-purchase");
+
+        if (sessionStorage.getItem("flag-in-purchase")) {
+          sessionStorage.removeItem("flag-in-purchase");
         } else {
           this.openedShopCar.emit(true);
         }
+        
       }
     });
 

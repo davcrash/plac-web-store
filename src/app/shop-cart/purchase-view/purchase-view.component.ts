@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PurchaseService } from '../services/purchase.service';
 import { ShopCartService } from '../services/shop-cart.service';
 import swal from 'sweetalert'
+import { LocalStorageService } from 'src/app/local-storage.service';
 
 @Component({
   selector: 'app-purchase-view',
@@ -13,7 +14,9 @@ export class PurchaseViewComponent implements OnInit {
 
 
   departments;
+  countries;
   departmentSelected = "";
+  countrySelected = 'COL';
   cities;
   shippingPrice;
 
@@ -28,9 +31,12 @@ export class PurchaseViewComponent implements OnInit {
   addressSelected;
 
   paymentMethods;
+
+  paymentMethodSelected: string = null;
+  /*
   paymentDelivery = false;
   paymentMercadoPago = false;
-
+*/
 
   showSection = "myAddress";
 
@@ -59,10 +65,38 @@ export class PurchaseViewComponent implements OnInit {
 
   uid;
 
+  addressIdToEdit: string = null;
+  shippingFormSubmitted: boolean = false;//variable para mostrar los errores despues de enviar el formulario
+
   constructor(private _route: ActivatedRoute, private _purchaseService: PurchaseService,
-    private _shopCartService: ShopCartService, private _router: Router) { }
+    private _shopCartService: ShopCartService, private _router: Router, private _localStorageService: LocalStorageService) { }
 
   ngOnInit() {
+
+    this._localStorageService.watchStorage().subscribe((data) => {
+      //CARRITO DE COMPRA, ABRIR O CERRAR CARRO CUANDO SE AGREGAN PRODUCTOS
+      if (data.change === 'shop-cart') {
+        this.objectPlace = JSON.parse(localStorage.getItem("shop-cart"))[this.indexPlace];
+        if (!this.objectPlace) {
+          location.reload();
+          if (!JSON.parse(localStorage.getItem("shop-cart"))[0]) {
+            this._router.navigate(['/']);
+          }
+        }
+      }
+    });
+
+
+    //Se consultan los paises
+    this._purchaseService.getCountries()
+      .subscribe(result => {
+        console.log(result);
+        this.countries = result.data
+      }, error => {
+        console.log(error);
+        swal("Opps..", "Ocurrio un error obteniendo los departamentos", "error")
+      });
+
     //Se consultan los departamentos
     this._purchaseService.getDepartments()
       .subscribe(result => {
@@ -81,7 +115,7 @@ export class PurchaseViewComponent implements OnInit {
       this.indexPlace = routeParam.indexPlace;
 
       if (!JSON.parse(localStorage.getItem("shop-cart"))[this.indexPlace]) {
-        this._router.navigate(['/']);
+        this._router.navigate(['compra/0']);
       } else {
 
         //Capturamos el objeto del lugar que esta en el carrito de compras
@@ -100,8 +134,9 @@ export class PurchaseViewComponent implements OnInit {
   getPaymentMethodsAndCityPrice(placeId, cityId, productType) {
 
     this.paymentMethods = null;
-    this.paymentDelivery = false;
-    this.paymentMercadoPago = false;
+    //this.paymentDelivery = false;
+    //this.paymentMercadoPago = false;
+    this.paymentMethodSelected = null;
 
     let request = {
       place_id: placeId,
@@ -119,13 +154,44 @@ export class PurchaseViewComponent implements OnInit {
   }
 
 
+  addUnit(index) {
+
+    let quantity = this.objectPlace.order_detail[index].quantity += 1;
+    let product = this.objectPlace.order_detail[index].product;
+
+    this.objectPlace.total = this._shopCartService.calculateTotalPlace(this.objectPlace);
+    this.objectPlace.order_detail[index].totalProduct = quantity * parseFloat(product.product_price);
+
+    this._shopCartService.addProductToCart(product, quantity, 'purchase');
+  }
+
+  decreaseUnit(index) {
+
+    var quantity = this.objectPlace.order_detail[index].quantity -= 1;
+    var product = this.objectPlace.order_detail[index].product;
+
+    this.objectPlace.total = this._shopCartService.calculateTotalPlace(this.objectPlace);
+    this.objectPlace.order_detail[index].totalProduct = quantity * parseFloat(product.product_price);
+
+    if (quantity <= 0) { //Estan eliminando un producto
+      this.objectPlace.order_detail[index] = null;
+      if (this._shopCartService.calculateTotalPlace(this.objectPlace) <= 0) {
+        this.objectPlace = null;
+
+      }
+    }
+
+    this._shopCartService.addProductToCart(product, quantity, 'purchase');
+
+  }
+
   selectPaymentMethod(paymentMethod) {
     switch (paymentMethod) {
       case 'paymentDelivery':
-        this.paymentMercadoPago = false;
+        //this.paymentMercadoPago = false;
         break;
       case 'paymentMercadoPago':
-        this.paymentDelivery = false;
+        //this.paymentDelivery = false;
         break;
     }
   }
@@ -168,38 +234,84 @@ export class PurchaseViewComponent implements OnInit {
 
 
   addNewAddress() {
+
     this.loaderNewAddress = true;
     this.addressModel.plac_user_id = this.uid;
 
     this._purchaseService.addNewAddress(this.addressModel).subscribe(response => {
       this.getUserAdresses();
-
+      this.shippingFormSubmitted = false;
       this.loaderNewAddress = false;
-      this.showSection = 'myAddress';
+      this.manageReturnSection();
 
     }, error => {
       swal("Opps..", "Ocurrio un error agregando la información", "error");
       console.log(error)
+      this.shippingFormSubmitted = false;
       this.loaderNewAddress = false;
-    })
+    });
+
 
   }
 
+  selectToEditAddress() {
+    this.showSection = "formAddressEditingCurrent";
+
+    this.addressIdToEdit = this.addressSelected.plac_user_shipping_address_id
+    this.addressModel.plac_user_name = this.addressSelected.plac_user_name;
+    this.addressModel.plac_user_telephone = this.addressSelected.plac_user_telephone;
+    this.addressModel.plac_user_email = this.addressSelected.plac_user_email;
+
+    this.countrySelected = this.addressSelected.city['country_id'];
+    this.selectCountry();
+
+    if (this.countrySelected == 'COL') {
+      this.departmentSelected = this.addressSelected.city['city_department/state'];
+      this.selectDepartment();
+    }
+    this.addressModel.city_id = this.addressSelected.city['city_id'];
+
+    this.addressModel.plac_user_address = JSON.parse(this.addressSelected.plac_user_address);
+
+    this.addressModel.plac_user_neighborhood = this.addressSelected.plac_user_neighborhood;
+    this.addressModel.plac_user_additional_info = this.addressSelected.plac_user_additional_info;
+
+  }
+
+  editAddress() {
+
+    this.loaderNewAddress = true;
+    this.addressModel.plac_user_id = this.uid;
+
+    this._purchaseService.editAddress(this.addressIdToEdit, this.addressModel).subscribe(response => {
+      this.getUserAdresses();
+      this.shippingFormSubmitted = false;
+      this.loaderNewAddress = false;
+      this.manageReturnSection();
+
+    }, error => {
+      swal("Opps..", "Ocurrio un error agregando la información", "error");
+      console.log(error)
+      this.shippingFormSubmitted = false;
+      this.loaderNewAddress = false;
+    });
+  }
 
   buyOrder() {
 
     this.loaderNewOrder = true;
-    let methodSelected;
+
+    /*let methodSelected;
 
     if (this.paymentDelivery) {
       methodSelected = "payment_delivery";
     } else if (this.paymentMercadoPago) {
       methodSelected = "mercado_pago"
-    }
+    }*/
 
 
     let orderModel = {
-      payment_method_id: methodSelected,
+      payment_method_id: this.paymentMethodSelected,
       order_details: [],
       order_resumed: {
         subTotal: this.objectPlace.total,
@@ -250,7 +362,7 @@ export class PurchaseViewComponent implements OnInit {
     };
 
     this._purchaseService.createOrder(order).subscribe(response => {
-      
+
 
       if (response.status == 'success') {
         this.manageOrderSuccess(response);
@@ -289,12 +401,12 @@ export class PurchaseViewComponent implements OnInit {
     //Eliminamos la orden del carrito de compras
     this._shopCartService.removePlace(this.indexPlace);
 
-    if (this.paymentDelivery) {
+    if (this.paymentMethodSelected == 'payment_delivery') {
 
       this.loaderNewOrder = false;
       this._router.navigate([`/orden/${response.data.order_id}/CE`]);
 
-    } else if (this.paymentMercadoPago) {
+    } else if (this.paymentMethodSelected == 'mercado_pago') {
 
       location.href = response.data.mercado_pago.response.init_point;
 
@@ -303,13 +415,63 @@ export class PurchaseViewComponent implements OnInit {
 
   selectDepartment() {
     this.addressModel.city_id = '';
-    this._purchaseService.getCityByDepartmentId(this.departmentSelected)
+
+
+    this._purchaseService.getCityByFilter(this.countrySelected, this.departmentSelected)
       .subscribe(result => {
         this.cities = result.data;
       }, error => {
         console.log(error);
         swal("Opps..", "Ocurrio un error obteniendo las ciudades", "error")
       });
+  }
+
+  selectCountry() {
+    this.addressModel.city_id = '';
+    if (this.countrySelected != "COL") {
+
+      this._purchaseService.getCityByFilter(this.countrySelected)
+        .subscribe(result => {
+          console.log(result);
+          this.cities = result.data;
+        }, error => {
+          console.log(error);
+          swal("Opps..", "Ocurrio un error obteniendo las ciudades", "error")
+        });
+
+    } else {
+
+      this.cities = null;
+
+    }
+  }
+
+
+  manageReturnSection() {
+    if (this.showSection == 'formAddressEditingCurrent') {
+      this.showSection = 'myAddress'
+    } else {
+      this.showSection = 'listAddress'
+    }
+
+    this.addressModel = {
+      plac_user_address: {
+        mainWay: "Calle",
+        address1: "",
+        address2: "",
+        address3: "",
+      },
+      plac_user_name: "",
+      plac_user_email: "",
+      plac_user_telephone: "",
+      plac_user_neighborhood: "",
+      city_id: "",
+      plac_user_id: "",
+      plac_user_additional_info: ""
+    };
+    this.countrySelected = "COL";
+    this.departmentSelected = "";
+    this.addressIdToEdit = null;
   }
 
 }
