@@ -90,7 +90,6 @@ export class PurchaseViewComponent implements OnInit {
     //Se consultan los paises
     this._purchaseService.getCountries()
       .subscribe(result => {
-        console.log(result);
         this.countries = result.data
       }, error => {
         console.log(error);
@@ -156,6 +155,13 @@ export class PurchaseViewComponent implements OnInit {
 
   addUnit(index) {
 
+    this.couponInfo = {
+      message: null,
+      coupon: null,
+      status: null
+    }
+    this.couponText = '';
+
     let quantity = this.objectPlace.order_detail[index].quantity += 1;
     let product = this.objectPlace.order_detail[index].product;
 
@@ -166,6 +172,13 @@ export class PurchaseViewComponent implements OnInit {
   }
 
   decreaseUnit(index) {
+
+    this.couponInfo = {
+      message: null,
+      coupon: null,
+      status: null
+    }
+    this.couponText = '';
 
     var quantity = this.objectPlace.order_detail[index].quantity -= 1;
     var product = this.objectPlace.order_detail[index].product;
@@ -282,7 +295,7 @@ export class PurchaseViewComponent implements OnInit {
 
     this.loaderNewAddress = true;
     this.addressModel.plac_user_id = this.uid;
-
+    console.log("entro");
     this._purchaseService.editAddress(this.addressIdToEdit, this.addressModel).subscribe(response => {
       this.getUserAdresses();
       this.shippingFormSubmitted = false;
@@ -432,7 +445,6 @@ export class PurchaseViewComponent implements OnInit {
 
       this._purchaseService.getCityByFilter(this.countrySelected)
         .subscribe(result => {
-          console.log(result);
           this.cities = result.data;
         }, error => {
           console.log(error);
@@ -440,7 +452,7 @@ export class PurchaseViewComponent implements OnInit {
         });
 
     } else {
-
+      this.departmentSelected = "";
       this.cities = null;
 
     }
