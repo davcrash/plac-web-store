@@ -33,11 +33,14 @@ export class ShopCartViewComponent implements OnInit {
     }
 
     this._localStorageService.watchStorage().subscribe((data) => {
-      if (data.change === 'shop-cart') {
-        this.shopCart = JSON.parse(localStorage.getItem('shop-cart'));
-        if (this.shopCart.length > 0) {
-          this.cartEmpty = false;
-        }
+
+        if (data.change === 'shop-cart') {
+          this.shopCart = JSON.parse(localStorage.getItem('shop-cart'));
+          if (this.shopCart.length > 0) {
+            this.cartEmpty = false;
+          }
+          this.validateEmptyCar();  
+          sessionStorage.removeItem("flag-in-purchase");
       }
     });
 
@@ -52,7 +55,7 @@ export class ShopCartViewComponent implements OnInit {
     this.shopCart[indexPlace].total = this._shopService.calculateTotalPlace(this.shopCart[indexPlace]);
     this.shopCart[indexPlace].order_detail[indexProduct].totalProduct = quantity * parseFloat(product.product_price);
 
-    this._shopService.addProductToCart(product, quantity);
+    this._shopService.addProductToCart(product, quantity, "purchase");
   }
 
   decreaseUnit(indexPlace, indexProduct) {
@@ -71,7 +74,7 @@ export class ShopCartViewComponent implements OnInit {
       }
     }
 
-    this._shopService.addProductToCart(product, quantity);
+    this._shopService.addProductToCart(product, quantity, "purchase");
     this.validateEmptyCar();
     // this.cartEmpty = this._shopService.validateQuantities();
 
@@ -94,7 +97,7 @@ export class ShopCartViewComponent implements OnInit {
       this.closeCar.emit();
     } else {
       this.closeCar.emit();
-      sessionStorage.setItem('goToBuy',iPlace);
+      sessionStorage.setItem('goToBuy', iPlace);
       this._router.navigate(['login']);
 
       /*

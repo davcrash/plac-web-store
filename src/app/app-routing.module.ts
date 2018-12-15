@@ -63,6 +63,10 @@ const routes: Routes = [
     ]
   },
 
+  //rutas para dynamic links
+  { path: 'notificaciones/:noti', component: DownloadAppComponent },
+  { path: 'perfil/:perf', component: DownloadAppComponent },
+
   { path: 'compra/:indexPlace', component: PurchaseViewComponent, canActivate: [LoginGuard] },
   { path: 'descargar', component: DownloadAppComponent },
   { path: 'vende-en-plac', component: SellInComponent },
