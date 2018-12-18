@@ -68,8 +68,12 @@ export class PurchaseViewComponent implements OnInit {
   addressIdToEdit: string = null;
   shippingFormSubmitted: boolean = false;//variable para mostrar los errores despues de enviar el formulario
 
+  JSON;//para usar stringify y parse en el html
   constructor(private _route: ActivatedRoute, private _purchaseService: PurchaseService,
-    private _shopCartService: ShopCartService, private _router: Router, private _localStorageService: LocalStorageService) { }
+    private _shopCartService: ShopCartService, private _router: Router, private _localStorageService: LocalStorageService) {
+
+    this.JSON = JSON;//para usar stringify y parse en el html
+  }
 
   ngOnInit() {
 
@@ -198,17 +202,6 @@ export class PurchaseViewComponent implements OnInit {
 
   }
 
-  selectPaymentMethod(paymentMethod) {
-    switch (paymentMethod) {
-      case 'paymentDelivery':
-        //this.paymentMercadoPago = false;
-        break;
-      case 'paymentMercadoPago':
-        //this.paymentDelivery = false;
-        break;
-    }
-  }
-
   getUserAdresses() {
     this._purchaseService.getUserAddresses(this.uid).subscribe(data => {
       this.userAddresses = data.data;
@@ -217,7 +210,8 @@ export class PurchaseViewComponent implements OnInit {
         //Le damos formato a la direccion 
         //this.addressSelected = this.userAddresses[0];
         this.selectAddres(this.userAddresses[0]);
-        this.currentAddressFormatted = this.addressSelected.address_formatted;
+        (this.addressSelected.city.country_id == 'COL') ? this.currentAddressFormatted = this.addressSelected.address_formatted : this.currentAddressFormatted = JSON.parse(this.addressSelected.plac_user_address).mainWay;
+
       } else {
         this.showSection = "formAddress";
       }
@@ -241,7 +235,7 @@ export class PurchaseViewComponent implements OnInit {
     this.couponText = '';
     this.getPaymentMethodsAndCityPrice(this.objectPlace.place.place_id, address.city_id, 'product');
     this.addressSelected = address;
-    this.currentAddressFormatted = this.addressSelected.address_formatted;
+    (this.addressSelected.city.country_id == 'COL') ? this.currentAddressFormatted = this.addressSelected.address_formatted : this.currentAddressFormatted = JSON.parse(this.addressSelected.plac_user_address).mainWay;
     this.showSection = 'myAddress';
   }
 
@@ -295,7 +289,6 @@ export class PurchaseViewComponent implements OnInit {
 
     this.loaderNewAddress = true;
     this.addressModel.plac_user_id = this.uid;
-    console.log("entro");
     this._purchaseService.editAddress(this.addressIdToEdit, this.addressModel).subscribe(response => {
       this.getUserAdresses();
       this.shippingFormSubmitted = false;
@@ -442,7 +435,7 @@ export class PurchaseViewComponent implements OnInit {
   selectCountry() {
     this.addressModel.city_id = '';
     if (this.countrySelected != "COL") {
-
+      this.addressModel.plac_user_address.mainWay = '';
       this._purchaseService.getCityByFilter(this.countrySelected)
         .subscribe(result => {
           this.cities = result.data;
@@ -452,6 +445,7 @@ export class PurchaseViewComponent implements OnInit {
         });
 
     } else {
+      this.addressModel.plac_user_address.mainWay = 'Calle';
       this.departmentSelected = "";
       this.cities = null;
 
