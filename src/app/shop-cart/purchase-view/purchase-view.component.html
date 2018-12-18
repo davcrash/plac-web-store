@@ -50,7 +50,8 @@
           <span><b>Nombre:</b> {{(addressSelected)?addressSelected.plac_user_name:'...'}}</span><br>
           <span><b>Correo:</b> {{(addressSelected)?addressSelected.plac_user_email:'...'}}</span><br>
           <span><b>Teléfono:</b> {{(addressSelected)?addressSelected.plac_user_telephone:'...'}}</span><br>
-          <span><b>Ciudad:</b> {{(addressSelected)?addressSelected.city.city_name:'...'}}</span><br>
+          <span><b>Ciudad:</b> {{(addressSelected)?addressSelected.city.city_name+',
+            '+addressSelected.city.country_id:'...'}}</span><br>
           <span><b>Dirección:</b> {{currentAddressFormatted}}</span><br>
           <span><b>Barrio:</b> {{(addressSelected)?addressSelected.plac_user_neighborhood:'...'}}</span><br>
           <span><b>Info. Adicional:</b> {{(addressSelected)?addressSelected.plac_user_additional_info:'...'}}</span><br>
@@ -72,7 +73,8 @@
                 <label class="form-check-label pointer" for="defaultCheck2">
                   <span class="align-top">
                     Pago en línea
-                    <i class=" fas fa-info-circle" style="font-size: 18px" ngbTooltip="El pago será procesado con la plataforma mercado pago" placement="right"></i>
+                    <i class=" fas fa-info-circle" style="font-size: 18px" ngbTooltip="El pago será procesado con la plataforma mercado pago"
+                      placement="right"></i>
                   </span>
                   <img class="ml-2" height="25" src="/assets/img/payments-types/credit-card.png">
                   <img class="ml-2" height="25" src="/assets/img/payments-types/efecty.png">
@@ -86,7 +88,8 @@
                 <label class="form-check-label pointer" for="defaultCheck1">
                   <span class="align-top">
                     Pago contra entrega
-                    <i class=" fas fa-info-circle" style="font-size: 18px" ngbTooltip="El pago se realizara cuando recibas tu producto" placement="right"></i>
+                    <i class=" fas fa-info-circle" style="font-size: 18px" ngbTooltip="El pago se realizara cuando recibas tu producto"
+                      placement="right"></i>
                   </span>
 
                   <img class="ml-2" height="25" src="/assets/img/payments-types/cash.png">
@@ -135,8 +138,10 @@
         <div class="list-group">
           <a *ngFor="let item of userAddresses" class="list-group-item list-group-item-action pointer" (click)="selectAddres(item)">
             {{item.plac_user_name}}, {{item.plac_user_telephone}},
-            {{item.plac_user_email}}, {{item.address_formatted}},
+            {{item.plac_user_email}},
+            {{(item.city.country_id!='COL')?JSON.parse(item.plac_user_address).mainWay:item.address_formatted}},
             {{item.plac_user_neighborhood}}, {{item.city.city_name}}
+
           </a>
         </div>
 
@@ -149,7 +154,7 @@
         class="border" style="padding:10px;">
         <h5>
           <i *ngIf="userAddresses.length > 0" (click)="manageReturnSection()" class="fas fa-arrow-left color-plac-text pointer mr-2"></i>
-          <b>Datos del envío (Bogotá)</b>
+          <b>Datos del envío</b>
         </h5>
 
         <div class="form-row mb-3">
@@ -235,7 +240,21 @@
           </div>
         </div>
 
-        <div class="form-row mb-3">
+        <div class="form-row mb-3" *ngIf="countrySelected!='COL'">
+          <div class="col-12">
+            <span>Dirección</span><br>
+            <input #placUserAddress="ngModel" required [(ngModel)]="addressModel.plac_user_address.mainWay" name="mainWay"
+              [ngClass]="{ 'is-invalid':shippingFormSubmitted && placUserAddress.invalid}" class="form-control" type="text"
+              placeholder="ej. Av. Santa Fe 4815" value="">
+
+            <div *ngIf="shippingFormSubmitted && placUserAddress.invalid" class="invalid-feedback">
+              <div *ngIf="placUserAddress.invalid && placUserAddress.errors['required']">Este campo es
+                obligatorio</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row mb-3" *ngIf="countrySelected=='COL'">
           <div class="col-12">
             <!-- Input de direccion -->
             <span>Dirección</span><br>
