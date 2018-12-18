@@ -29,7 +29,11 @@
     cursor: pointer;
 }
 
+.brand-title {
+    position: sticky;
+    top: 0;
+}
 
-.brands-container{
-    padding-top:10px
+.brands-container {
+    padding-top: 10px
 }

@@ -94,7 +94,7 @@
           [preLoadSubcategories]="subcategories" (subcategorySelected)="selectSubcategory($event)"></app-subcategories>
       </div>
 
-      <div class="col-sm-auto col-12 ng-sidebar-width">
+      <div class="col-sm-auto col-12 ng-sidebar-width brands">
         <app-brands [needReset]="needResetBrand" [categoryId]="categoryIdSelected" [subcategoryId]="subcategoryIdSelected"
           [search]="searchText" [preBrandSelected]="brandSelected" (brandSelected)="selectBrand($event)" [placeId]="place.place_id"></app-brands>
       </div>

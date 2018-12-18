@@ -1,6 +1,8 @@
 <div class="brands-container">
 
-  <h5 class="color-dark-green-text">Selecciona una marca</h5>
+  <div class="bg-white p-2 brand-title">
+    <h5 class="color-dark-green-text">Selecciona una marca</h5>
+  </div>
   <loader *ngIf="loader"></loader>
 
 
@@ -12,7 +14,8 @@
 
   <div *ngIf="!loader" class="d-none d-sm-block">
 
-    <div class="contenedor-item" *ngFor="let brand of brands" id="{{brand.brand}}" [ngClass]="{'active': productBrandSelected == brand.brand}" (click)="selectBrand(brand.brand)">
+    <div class="contenedor-item" *ngFor="let brand of brands" id="{{brand.brand}}" [ngClass]="{'active': productBrandSelected == brand.brand}"
+      (click)="selectBrand(brand.brand)">
       <span>
         <span>{{brand.brand}}</span>
       </span>
