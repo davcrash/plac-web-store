@@ -32,4 +32,17 @@ export class CategoryWithFiltersService {
     };
     return this._globalService.HttpMethod("POST", "products/places/filters", params);
   }
+
+  getMorePlacesWithProducts(next_page_url,categoryReceivedByRoute, subcategorySelected, productBrandSelected): Observable<any>{
+ 
+   let params = {
+    filters: {
+      category_name: categoryReceivedByRoute ? categoryReceivedByRoute : null,
+      subcategory_name: subcategorySelected ? subcategorySelected : null,
+      brand: productBrandSelected ? productBrandSelected : null,
+      pet_type: localStorage.getItem("pet_filter") != null ? localStorage.getItem("pet_filter") : ''
+    }
+  };
+  return this._globalService.HttpMethodWithUrl("POST", next_page_url, params);
+  }
 }

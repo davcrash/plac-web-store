@@ -60,6 +60,9 @@
 
           <!--FIN: lista de productos scroll horizontal-->
         </carousel-arrows>
+        <div class="d-flex justify-content-center mb-5">
+          <button *ngIf="placesPaginator" class="btn btn-plac" (click)="getMorePlacesWithProducts()">ver más</button>
+        </div>
       </div>
 
 
