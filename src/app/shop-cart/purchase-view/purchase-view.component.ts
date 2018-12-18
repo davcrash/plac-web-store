@@ -350,6 +350,7 @@ export class PurchaseViewComponent implements OnInit {
 
 
     let orderModel = {
+      order_from:'web',//para saber que va de web
       payment_method_id: this.paymentMethodSelected,
       order_details: [],
       order_resumed: {
