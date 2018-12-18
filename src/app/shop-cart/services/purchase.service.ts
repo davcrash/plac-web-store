@@ -22,6 +22,11 @@ export class PurchaseService {
     return this._globalService.HttpMethod("POST", `placusers/shippingaddresses/${id}`, address);
   }
 
+  deleteAddress(id) {
+    let params = {_method:'DELETE'};
+    return this._globalService.HttpMethod("POST", `placusers/shippingaddresses/${id}`, params);
+  }
+
   checkCoupon(coupon_code, plac_user_id, place_id, total, subTotal, shipping_price) {
 
     let request = {
