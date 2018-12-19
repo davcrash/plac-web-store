@@ -93,6 +93,7 @@ export class NavComponent implements OnInit {
   }
 
   showShopCar() {
+    this._localStorageService.setItem('close-shopcart', 'true');
     this.openedShopCar.emit(!this._openedShopCar);
   }
 

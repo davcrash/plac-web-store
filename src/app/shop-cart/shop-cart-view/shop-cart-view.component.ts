@@ -38,6 +38,14 @@ export class ShopCartViewComponent implements OnInit {
 
     this._localStorageService.watchStorage().subscribe((data) => {
 
+      if (data.change === 'close-shopcart') {
+        this.added = {
+          place_index: '',
+          product_id: ''
+        }
+        localStorage.removeItem('close-shopcart');
+      }
+
       if (data.change === 'shop-cart') {
         this.shopCart = JSON.parse(localStorage.getItem('shop-cart'));
         if (this.shopCart.length > 0) {
@@ -57,7 +65,7 @@ export class ShopCartViewComponent implements OnInit {
               left: 0,
               behavior: 'smooth'
             });
-          }, 600);
+          }, 350);
 
         }
         this.validateEmptyCar();
