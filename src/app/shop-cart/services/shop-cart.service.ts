@@ -66,6 +66,7 @@ export class ShopCartService {
 
     //Si viene del dialogo del producto, utilizamos el metodo para que escuche y se abra el carrito
     if (eventType == true) {//si es true es porque viene del modal
+      sessionStorage.setItem("flag-in-open", JSON.stringify({ place_index: indexPlace, product_id: product.product_id }));
       this._localStorageService.setItem("shop-cart", JSON.stringify(this.myShopCart));
     } else if (eventType == 'purchase') {//viene del purchase view
 
@@ -118,6 +119,33 @@ export class ShopCartService {
 
     return totalPlace;
 
+  }
+
+  getCountProducts() {
+    let count = 0;
+    this.myShopCart.forEach(place => {
+      place.order_detail.forEach(product => {
+        count += product.quantity;
+      });
+    });
+
+    return count;
+  }
+
+  getProductCount(product_id) {
+    let count = 0;
+
+    this.myShopCart.forEach(place => {
+
+      let product = place.order_detail.find(product => {
+        return product.product.product_id === product_id;
+      });
+
+      if (product) {
+        count += product.quantity;
+      }
+    });
+    return count;
   }
 
   getProductInCart(product) {

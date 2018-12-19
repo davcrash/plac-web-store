@@ -1,4 +1,3 @@
-
 <div style="width: 100%; background-color: white;">
   <br>
   <div class="container">
@@ -20,8 +19,8 @@
     <div *ngIf="shopCart.length > 0">
 
       <!--Div de empresa -->
-      <div *ngIf="placeObject != null" class="border" style="background-color: #F7F7F7; margin-top: 25px;">
-        
+      <div id="{{iPlace}}" *ngIf="placeObject != null" class="border" style="background-color: #F7F7F7; margin-top: 25px;">
+
         <div class="col-md-12">
           <table style="height: 100%;">
             <tbody>
@@ -45,6 +44,7 @@
 
                 <td class="align-middle" style="width: 10%;">
                   <button (click)="goToBuy(iPlace)" class="d-inline" type="button" class="btn  btn-plac">Comprar</button>
+                  <!--<button #btn (focus)="btn.blur()" (click)="goToBuy(iPlace)" class="d-inline" type="button" class="btn  btn-plac">Comprar</button>-->
                 </td>
 
               </tr>
@@ -55,57 +55,58 @@
 
       <!--Lista de productos-->
       <div *ngIf="placeObject != null">
-      <div  *ngFor="let productObject of placeObject.order_detail; let iProdcut = index;">
-        <div class="border" *ngIf="productObject != null">
-          <div class="col-md-12">
-            <table style="height: 100%; width: 100%;">
-              <tbody>
-                <tr>
+        <div *ngFor="let productObject of placeObject.order_detail; let iProduct = index;">
+          <div class="border " *ngIf="productObject != null" id="{{productObject.product.product_id}}">
+            <div class="col-md-12" [class.added-product]="productObject.product.product_id == added.product_id">
+              <table style="height: 100%; width: 100%;">
+                <tbody>
+                  <tr>
 
-                  <td class="align-middle" style="width: 5%;">
-                  </td>
-                  <td class="align-middle" style="width: 15%;">
-                    <div style="width: 70px; height: 70px;">
-                      <img src="{{productObject.product.product_link_image}}" style="max-height: 70px; max-width: 100%;">
-                    </div>
-                  </td>
-
-                  <td class="align-middle" style="width: 35%;">
-                    <h6 style="font-family: Montserrat">
-                      {{productObject.product.product_name}}
-                    </h6>
-                  </td>
-
-                  <td class="align-middle" style="width: 30%;">
-
-                    <div class="input-group mb-6">
-                      <div class="input-group-prepend">
-                        <button  (click)="decreaseUnit(iPlace, iProdcut)" class="btn btn-outline-plac btn-sm" type="button">
-                          <i *ngIf="productObject.quantity >= 2" class="fas fa-minus"></i>
-                          <i *ngIf="productObject.quantity <= 1" class="far fa-trash-alt"></i>
-                        </button>
+                    <td class="align-middle" style="width: 5%;">
+                    </td>
+                    <td class="align-middle" style="width: 15%;">
+                      <div style="width: 70px; height: 70px;">
+                        <img src="{{productObject.product.product_link_image}}" style="max-height: 70px; max-width: 100%;">
                       </div>
-                      <input value="{{productObject.quantity}}" [disabled]="true" type="text" class="form-control form-control-sm" style="flex: none;width: 30px; text-align:center;">
-                      <div class="input-group-append">
-                        <button (click)="addUnit(iPlace, iProdcut)" class="btn btn-outline-plac btn-sm" type="button">
-                          <i class="fas fa-plus d-inline"></i>
-                        </button>
+                    </td>
+
+                    <td class="align-middle" style="width: 35%;">
+                      <h6 style="font-family: Montserrat">
+                        {{productObject.product.product_name}}
+                      </h6>
+                    </td>
+
+                    <td class="align-middle" style="width: 30%;">
+
+                      <div class="input-group mb-6">
+                        <div class="input-group-prepend">
+                          <button (click)="decreaseUnit(iPlace, iProduct)" class="btn btn-outline-plac btn-sm" type="button">
+                            <i *ngIf="productObject.quantity >= 2" class="fas fa-minus"></i>
+                            <i *ngIf="productObject.quantity <= 1" class="far fa-trash-alt"></i>
+                          </button>
+                        </div>
+                        <input value="{{productObject.quantity}}" [disabled]="true" type="text" class="form-control form-control-sm"
+                          style="flex: none;width: 30px; text-align:center;">
+                        <div class="input-group-append">
+                          <button (click)="addUnit(iPlace, iProduct)" class="btn btn-outline-plac btn-sm" type="button">
+                            <i class="fas fa-plus d-inline"></i>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  </td>
+                    </td>
 
-                  <td class="align-middle" style="width: 15%;" style="text-align: right;">
-                    <h6 style="font-family: Montserrat">${{productObject.totalProduct | number}}</h6>
-                  </td>
+                    <td class="align-middle" style="width: 15%;" style="text-align: right;">
+                      <h6 style="font-family: Montserrat">${{productObject.totalProduct | number}}</h6>
+                    </td>
 
-                </tr>
-              </tbody>
-            </table>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
-    </div>
 
     </div>
 

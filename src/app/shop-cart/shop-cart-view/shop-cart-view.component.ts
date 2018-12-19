@@ -2,7 +2,6 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { LocalStorageService } from '../../local-storage.service';
 import { ShopCartService } from '../services/shop-cart.service';
 import { Router } from '@angular/router';
-import swal from 'sweetalert';
 
 
 @Component({
@@ -16,10 +15,15 @@ export class ShopCartViewComponent implements OnInit {
   cartEmpty = true;
   @Output() public closeCar = new EventEmitter<void>();
 
+  added = {
+    place_index: '',
+    product_id: ''
+  }
+
   constructor(
     private _localStorageService: LocalStorageService,
     private _shopService: ShopCartService,
-    private _router: Router
+    private _router: Router,
   ) {
   }
 
@@ -34,13 +38,30 @@ export class ShopCartViewComponent implements OnInit {
 
     this._localStorageService.watchStorage().subscribe((data) => {
 
-        if (data.change === 'shop-cart') {
-          this.shopCart = JSON.parse(localStorage.getItem('shop-cart'));
-          if (this.shopCart.length > 0) {
-            this.cartEmpty = false;
-          }
-          this.validateEmptyCar();  
-          sessionStorage.removeItem("flag-in-purchase");
+      if (data.change === 'shop-cart') {
+        this.shopCart = JSON.parse(localStorage.getItem('shop-cart'));
+        if (this.shopCart.length > 0) {
+          this.cartEmpty = false;
+        }
+        if (sessionStorage.getItem("flag-in-open")) {
+          let productPlaceAdd = JSON.parse(sessionStorage.getItem("flag-in-open"));
+          sessionStorage.removeItem("flag-in-open");
+          this.added = {
+            ...productPlaceAdd
+          };
+
+
+          setTimeout(() => {
+            document.getElementById('scroll-shopcart').getElementsByTagName('aside')[0].scroll({
+              top: document.getElementById(this.added.place_index).offsetTop - 10,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }, 600);
+
+        }
+        this.validateEmptyCar();
+        sessionStorage.removeItem("flag-in-purchase");
       }
     });
 
@@ -95,8 +116,16 @@ export class ShopCartViewComponent implements OnInit {
     if (localStorage.getItem("user_data")) {
       this._router.navigate(['/compra/' + iPlace]);
       this.closeCar.emit();
+      this.added = {
+        place_index: '',
+        product_id: ''
+      };
     } else {
       this.closeCar.emit();
+      this.added = {
+        place_index: '',
+        product_id: ''
+      };
       sessionStorage.setItem('goToBuy', iPlace);
       this._router.navigate(['login']);
 

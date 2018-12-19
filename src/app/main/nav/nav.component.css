@@ -3,7 +3,21 @@
 }
 
 .btn-menu-sidebar {
-    min-width: 35.25px;
+    min-width: 37.88px;
+}
+
+.icon-pc {
+    font-size: 17px;
+}
+
+.badge {
+    position: relative;
+    left: -15px;
+    top: -10px
+}
+
+.badge-mobile {
+    font-size: 60%
 }
 
 .logo-plac {

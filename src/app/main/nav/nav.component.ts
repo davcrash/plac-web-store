@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 import { LocalStorageService } from '../../local-storage.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../users/services/login.service';
+import { ShopCartService } from 'src/app/shop-cart/services/shop-cart.service';
 
 @Component({
   selector: 'app-nav',
@@ -20,6 +21,8 @@ export class NavComponent implements OnInit {
   isLoggedin: boolean = false;
   userData: any;
 
+  shopcartCount: number = 0;
+
 
   //Si dan click en el nav se cierra el carrito
   @Output() public closeShopCart = new EventEmitter<any>();
@@ -29,9 +32,11 @@ export class NavComponent implements OnInit {
     private _localStorageService: LocalStorageService,
     private _router: Router,
     private _loginService: LoginService,
+    private _shopCartService: ShopCartService
   ) { }
 
   ngOnInit() {
+    this.shopcartCount = this._shopCartService.getCountProducts();
     this.selectedPet = localStorage.getItem('pet_filter');
     this.setUserData();
 
@@ -46,13 +51,14 @@ export class NavComponent implements OnInit {
       }
       //CARRITO DE COMPRA, ABRIR O CERRAR CARRO CUANDO SE AGREGAN PRODUCTOS
       if (data.change === 'shop-cart') {
+        this.shopcartCount = this._shopCartService.getCountProducts();
 
         if (sessionStorage.getItem("flag-in-purchase")) {
           sessionStorage.removeItem("flag-in-purchase");
         } else {
           this.openedShopCar.emit(true);
         }
-        
+
       }
     });
 
