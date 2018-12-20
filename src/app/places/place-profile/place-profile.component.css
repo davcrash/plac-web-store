@@ -37,6 +37,12 @@
 }
 
 .brands {
-    overflow-y: auto;
-    height: 90vh
+    height: auto
+}
+
+@media (min-width: 992px) {
+    .brands {
+        overflow-y: auto;
+        height: 90vh
+    }
 }
