@@ -135,14 +135,17 @@
 
         <!--Lista de direcciones-->
         <br>
-        <div class="list-group">
-          <a *ngFor="let item of userAddresses" class="list-group-item list-group-item-action pointer" (click)="selectAddres(item)">
+        <div class="list-group container-fluid">
+          <div *ngFor="let item of userAddresses ; index as i" class="list-group-item list-group-item-action pointer"
+            (click)="selectAddres(item)">
+            <button class="btn btn-outline-danger btn-sm mx-2 float-right" (click)="deleteAddress(item,i)"><i class="fas fa-trash"></i></button>
             {{item.plac_user_name}}, {{item.plac_user_telephone}},
             {{item.plac_user_email}},
             {{(item.city.country_id!='COL')?JSON.parse(item.plac_user_address).mainWay:item.address_formatted}},
             {{item.plac_user_neighborhood}}, {{item.city.city_name}}
+          </div>
 
-          </a>
+
         </div>
 
 

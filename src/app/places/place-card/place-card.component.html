@@ -1,10 +1,10 @@
 <div class="card-container-place d-inline-block border rounded align-top" align="center">
 
   <div style="height: 40%;">
-    <img src="{{placePathImageLogo}}" class="img-card-place">
+    <img src="{{placePathImageLogo}}" class="img-card-place pointer" (click)="selectPlace()">
   </div>
   <div style="height: 40%;">
-    <div>
+    <div class="pointer" (click)="selectPlace()">
       {{placeName}}
     </div>
     <div *ngIf="placeAssessment > 0" class="color-plac-text">

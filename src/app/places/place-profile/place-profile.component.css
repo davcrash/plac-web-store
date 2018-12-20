@@ -31,3 +31,12 @@
     padding: 15px;
     background-color: #fdfdfd;
 }
+
+.brands::-webkit-scrollbar {
+    display: none;
+}
+
+.brands {
+    overflow-y: auto;
+    height: 90vh
+}

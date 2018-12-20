@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewChecked } from '@angular/core';
 import { SellInService } from './main/landing/sell-in/sell-in.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class AppComponent {
 
   @ViewChild('contentPages') contentPages;
   //Variable que define propiedades del menu de categorias
+
   _opened: boolean = false;
   _sideBarMode: string;
   _closeOutside: boolean = false;
@@ -34,10 +35,14 @@ export class AppComponent {
   constructor(private _sellInService: SellInService) {
     //document.body.style.
     //alert(screen.width);
-
+    setTimeout(() => {
+      (window.innerWidth >= 576) ? '' : this._opened = false;
+    });
 
     //localStorage.setItem("city", "2257"); //Codigo de bogota
   }
+
+
 
   closeShopCart() {
     this.shopCarProperties._opened = false;

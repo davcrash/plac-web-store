@@ -35,7 +35,8 @@
     background-color: #fdfdfd;
 }
 
-.color-dark-gray-text>.breadcrumb-item.active, .color-dark-gray-text>.breadcrumb-item.active:hover {
+.color-dark-gray-text>.breadcrumb-item.active,
+.color-dark-gray-text>.breadcrumb-item.active:hover {
     color: #00B99B;
     text-decoration: none;
     cursor: default;
@@ -51,4 +52,13 @@
     background-color: transparent;
     margin-bottom: 0;
     min-height: auto;
+}
+
+.brands::-webkit-scrollbar {
+    display: none;
+}
+
+.brands {
+    overflow-y: auto;
+    height: 90vh
 }

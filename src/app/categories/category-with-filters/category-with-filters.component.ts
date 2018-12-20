@@ -35,6 +35,7 @@ export class CategoryWithFiltersComponent implements OnInit {
   needResetSubcategory: boolean = false;
 
   placesWithProducts;
+  placesPaginator;
 
   constructor(
     private _route: ActivatedRoute,
@@ -94,7 +95,21 @@ export class CategoryWithFiltersComponent implements OnInit {
     this.loader = true;
     this._categoryWithFiltersService.getPlacesWithProducts(this.categoryReceivedByRoute, this.subcategorySelected, this.productBrandSelected)
       .subscribe(result => {
+        this.placesPaginator = result.data.next_page_url;
         this.placesWithProducts = result.data.data;
+      }, error => {
+        console.log(error);
+      }, () => {//Cuando ya la solicitud se completo ocultamos el loader
+        this.loader = false;
+      });
+  }
+
+  getMorePlacesWithProducts() {
+    this._categoryWithFiltersService.getMorePlacesWithProducts(this.placesPaginator, this.categoryReceivedByRoute, this.subcategorySelected, this.productBrandSelected)
+      .subscribe(result => {
+        this.placesPaginator = result.data.next_page_url;
+        this.placesWithProducts.push.apply(this.placesWithProducts, result.data.data);
+
       }, error => {
         console.log(error);
       }, () => {//Cuando ya la solicitud se completo ocultamos el loader

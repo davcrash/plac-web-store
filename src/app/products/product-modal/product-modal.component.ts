@@ -133,7 +133,7 @@ export class ProductModalComponent implements OnInit {
     //this._location.back()
   }
 
-  vewMoreText() {
+  viewMoreText() {
     (this.product.product_description === this.productViewDescription) ? this.productViewDescription = this.productShortDescription : this.productViewDescription = this.product.product_description
   }
 

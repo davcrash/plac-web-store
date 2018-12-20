@@ -2,9 +2,10 @@
     font-family: 'Montserrat';
     src: url(./assets/fonts/Montserrat-Regular.ttf);
 }
+
 @font-face {
     font-family: 'Raleway';
-	src: url(./assets/fonts/Raleway-Regular.ttf);
+    src: url(./assets/fonts/Raleway-Regular.ttf);
 }
 
 html {
@@ -74,6 +75,22 @@ nav {
         width: 500px !important;
     }
     z-index: 1090 !important;
+}
+
+.badge-orange {
+    color: white;
+    background-color: orange;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
 }
 
 .no-padding {

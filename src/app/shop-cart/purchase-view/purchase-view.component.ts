@@ -20,6 +20,7 @@ export class PurchaseViewComponent implements OnInit {
   cities;
   shippingPrice;
 
+  deleteIsActive: boolean = false;
 
   indexPlace;
   objectPlace;
@@ -133,6 +134,33 @@ export class PurchaseViewComponent implements OnInit {
 
   }
 
+  deleteAddress(address, index) {
+
+    this.deleteIsActive = true;
+
+    swal({
+      title: '¿Seguro que deseas eliminar la dirección?',
+      text: `Se eliminara la dirección ${(address.city.country_id != 'COL') ? JSON.parse(address.plac_user_address).mainWay : address.address_formatted}`,
+      icon: 'warning',
+      buttons: ["Cancelar", "Eliminar"]
+    }).then((value) => {
+      if (value === true) {
+        this._purchaseService.deleteAddress(address.plac_user_shipping_address_id)
+          .subscribe(result => {
+            if (result.status == 'success') {
+              this.userAddresses.splice(index, 1);
+            } else {
+              swal("Opps..", "Ocurrio un eliminando la dirección", "error");
+            }
+          }, error => {
+            swal("Opps..", "Ocurrio un eliminando la dirección", "error");
+            console.log(error);
+          });
+      }
+    });
+
+
+  }
 
   getPaymentMethodsAndCityPrice(placeId, cityId, productType) {
 
@@ -227,16 +255,21 @@ export class PurchaseViewComponent implements OnInit {
   }
 
   selectAddres(address) {
-    this.couponInfo = {
-      message: null,
-      coupon: null,
-      status: null
+    if (!this.deleteIsActive) {
+      this.couponInfo = {
+        message: null,
+        coupon: null,
+        status: null
+      }
+      this.couponText = '';
+      this.getPaymentMethodsAndCityPrice(this.objectPlace.place.place_id, address.city_id, 'product');
+      this.addressSelected = address;
+      (this.addressSelected.city.country_id == 'COL') ? this.currentAddressFormatted = this.addressSelected.address_formatted : this.currentAddressFormatted = JSON.parse(this.addressSelected.plac_user_address).mainWay;
+      this.showSection = 'myAddress';
+    } else {
+      this.deleteIsActive = false;
     }
-    this.couponText = '';
-    this.getPaymentMethodsAndCityPrice(this.objectPlace.place.place_id, address.city_id, 'product');
-    this.addressSelected = address;
-    (this.addressSelected.city.country_id == 'COL') ? this.currentAddressFormatted = this.addressSelected.address_formatted : this.currentAddressFormatted = JSON.parse(this.addressSelected.plac_user_address).mainWay;
-    this.showSection = 'myAddress';
+
   }
 
 
@@ -317,6 +350,7 @@ export class PurchaseViewComponent implements OnInit {
 
 
     let orderModel = {
+      order_from:'web',//para saber que va de web
       payment_method_id: this.paymentMethodSelected,
       order_details: [],
       order_resumed: {

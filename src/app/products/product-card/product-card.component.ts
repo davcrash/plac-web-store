@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormatService } from 'src/app/format.service';
+import { LocalStorageService } from 'src/app/local-storage.service';
+import { ShopCartService } from 'src/app/shop-cart/services/shop-cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -14,13 +16,24 @@ export class ProductCardComponent implements OnInit {
   @Input() public productName: string;
   @Input() public productPrice: any;
 
+
+  countInCart: number = 0;
+
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
-    private _formatService: FormatService
+    private _formatService: FormatService,
+    private _localStorageService: LocalStorageService,
+    private _shopCartService: ShopCartService
   ) { }
 
   ngOnInit() {
+    this.countInCart = this._shopCartService.getProductCount(this.productId);
+    this._localStorageService.watchStorage().subscribe((data) => {
+      if (data.change === 'shop-cart') {
+        this.countInCart = this._shopCartService.getProductCount(this.productId);
+      }
+    });
   }
 
   viewProduct() {
