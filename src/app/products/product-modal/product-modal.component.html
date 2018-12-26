@@ -11,7 +11,29 @@
     <div class="row">
 
       <div class="col-md-12 col-lg-6">
-        <img [src]="JSON.parse(product.product_images)[0].url" class="rounded mx-auto d-block" style="width: 100%; padding: 15px">
+        <div class="row">
+          <div class="col-12">
+
+            <img [src]="JSON.parse(product.product_images)[0].url" class="rounded mx-auto d-block" style="width: 100%; padding: 15px">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-4">
+            <button class="btn btn-primary btn-block" style="background-color: #4267b2; border: #29487d" (click)="shareProduct('facebook')">
+              <i class="fab fa-facebook-f icon-social-network"></i>&nbsp;&nbsp;<span class="d-none d-lg-inline-block d-xl-inline-block">Compartir</span>
+            </button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-danger btn-block" style="background-color: #e60023; border: #af001a" (click)="shareProduct('pinterest')">
+              <i class="fab fa-pinterest icon-social-network"></i>&nbsp;&nbsp;<span class="d-none d-lg-inline-block d-xl-inline-block">Guardar</span>
+            </button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-info btn-block" style="background-color: #00acee; border: #0190c9" (click)="shareProduct('twitter')">
+              <i class="fab fa-twitter icon-social-network"></i>&nbsp;&nbsp;<span class="d-none d-lg-inline-block d-xl-inline-block">Tuitear</span>
+            </button>
+          </div>
+        </div>
       </div>
       <div class="d-flex flex-column col-md-12 col-lg-6">
         <div>
@@ -24,8 +46,10 @@
           <div>
             {{productViewDescription}}
             <a *ngIf="productShortDescription" (click)="viewMoreText()">
-              <span *ngIf="this.product.product_description === this.productViewDescription" class="btn-link pointer">ver menos</span>
-              <span *ngIf="this.product.product_description !== this.productViewDescription" class="btn-link pointer">ver más</span>
+              <span *ngIf="this.product.product_description === this.productViewDescription" class="btn-link pointer">ver
+                menos</span>
+              <span *ngIf="this.product.product_description !== this.productViewDescription" class="btn-link pointer">ver
+                más</span>
             </a>
           </div>
         </div>
@@ -33,11 +57,13 @@
         <br>
         <div class="mt-auto">
           <img style="width: 100%; height: auto;" src="/assets/img/logos-todos.png">
-         
+
           <div style="margin-bottom: 5px; margin-left: 30px;">
             <!-- <span class="color-dark-green-text" style="font-size: 1.25rem;">${{product.product_price | number}} cu</span>-->
-            <b *ngIf="!productInCart.totalProduct" class="color-dark-green-text" style="font-size: 1.25rem;"> ${{product.product_price | number}}</b>
-            <b *ngIf="productInCart.totalProduct" class="color-dark-green-text" style="font-size: 1.25rem;"> ${{productInCart.totalProduct | number}}</b>
+            <b *ngIf="!productInCart.totalProduct" class="color-dark-green-text" style="font-size: 1.25rem;">
+              ${{product.product_price | number}}</b>
+            <b *ngIf="productInCart.totalProduct" class="color-dark-green-text" style="font-size: 1.25rem;">
+              ${{productInCart.totalProduct | number}}</b>
           </div>
 
           <div class="row">
@@ -48,8 +74,8 @@
                     <i class="fas fa-minus"></i>
                   </button>
                 </div>
-                <input [disabled]="true" [(ngModel)]="quantityToAddToCart" name="quantityToAddToCart" type="number" class="form-control"
-                  style="flex: none;width: 55px; text-align:right;" aria-describedby="button-addon1">
+                <input [disabled]="true" [(ngModel)]="quantityToAddToCart" name="quantityToAddToCart" type="number"
+                  class="form-control" style="flex: none;width: 55px; text-align:right;" aria-describedby="button-addon1">
                 <div class="input-group-append">
                   <button (click)="addUnits()" class="btn btn-outline-plac" type="button">
                     <i class="fas fa-plus d-inline"></i>
@@ -58,7 +84,8 @@
               </div>
             </div>
             <div class="col-6">
-              <button class="btn btn-plac float-right " (click)="addProductToCart();c();" style="font-size: 1rem; padding-right: 25px; padding-left: 25px;"><i class="fas fa-shopping-cart" ></i>&nbsp;&nbsp;Agregar</button>
+              <button class="btn btn-plac float-right " (click)="addProductToCart();c();" style="font-size: 1rem; padding-right: 25px; padding-left: 25px;"><i
+                  class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Agregar</button>
             </div>
           </div>
 
@@ -75,13 +102,14 @@
       <textarea [(ngModel)]="question.question_txt" name="hey" type="text" class="form-control" placeholder="Preguntarle al vendedor..."
         rows="2" style="resize: none;"></textarea>
       <div class="input-group-append">
-        <button [disabled]="textButtonQuestion != 'Preguntar' || question.question_txt == ''" (click)="sendNewQuestion()" class="btn btn-outline-plac"
-          type="button">{{textButtonQuestion}}</button>
+        <button [disabled]="textButtonQuestion != 'Preguntar' || question.question_txt == ''" (click)="sendNewQuestion()"
+          class="btn btn-outline-plac" type="button">{{textButtonQuestion}}</button>
       </div>
     </div>
 
     <div *ngIf="!uid">
-      <small>Para realizar una pregunta, primero debes <span class="btn-link pointer" (click)="c();goToLogin()">Iniciar sesión</span></small>
+      <small>Para realizar una pregunta, primero debes <span class="btn-link pointer" (click)="c();goToLogin()">Iniciar
+          sesión</span></small>
     </div>
     <br>
 
@@ -116,4 +144,3 @@
   </div>
 
 </ng-template>
-

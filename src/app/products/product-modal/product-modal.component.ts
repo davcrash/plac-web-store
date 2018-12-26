@@ -200,4 +200,29 @@ export class ProductModalComponent implements OnInit {
 
   }
 
+  shareProduct(destination) {
+    console.log(this.product.product_dynamic_link);
+    switch (destination) {
+      case 'facebook':
+        window.open(`http://www.facebook.com/sharer.php?u=${this.product.product_dynamic_link}`,
+          'facebookwindow',
+          'toolbar=0, status=0, width=650, height=650');
+        break;
+      case 'pinterest':
+        window.open(`http://www.pinterest.com/pin/create/bookmarklet/?url=${this.product.product_dynamic_link}&media=${JSON.parse(this.product.product_images)[0].url}&is_video=false&description=${this.product.product_description}`,
+          'pinterestwindow',
+          'toolbar=0, status=0, width=650, height=650');
+        break;
+      case 'twitter':
+
+        window.open(`https://twitter.com/intent/tweet?url=${this.product.product_dynamic_link}&text=${this.product.product_description.replace("%", "%25")}&via=placapp&`,
+          'twitterwindow',
+          'toolbar=0, status=0, width=650, height=650');
+
+        break;
+
+    }
+
+  }
+
 }
