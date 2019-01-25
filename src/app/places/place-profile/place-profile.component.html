@@ -43,7 +43,7 @@
               <div class="color-plac-text" *ngIf="place.rating > 0">
                 <i (click)="openModal(modalAssessment)" class="fas fa-star pointer align-middle" *ngFor='let stars of arrayAssessmentStars'></i>
                 <i (click)="openModal(modalAssessment)" class="far fa-star pointer align-middle" *ngFor='let stars of arrayAssessmentNoStars'></i>
-                <span (click)="openModal(modalAssessment)" class="pointer align-middle">{{place.rating|number :
+                <span (click)="openModal(modalAssessment)" class="ml-1 pointer align-middle">{{place.rating|number :
                   '1.1-1'}}</span>
                 <button class="btn btn-outline-plac ml-3" (click)="openModal(modalAssessment)">Ver
                   reseñas</button>
