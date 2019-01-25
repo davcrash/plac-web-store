@@ -57,5 +57,26 @@ export class PlaceProfileService {
     return this._globalService.HttpMethodWithUrl("POST", url, params);
   }
 
+  getRatingBrief(place_id): Observable<any> {
+    let params = {
+      place_id
+    };
+    return this._globalService.HttpMethod("POST", 'places/rating/brief', params);
+  }
+
+  getRatingReviews(place_id): Observable<any> {
+    let params = {
+      place_id
+    };
+    return this._globalService.HttpMethod("POST", 'places/rating/reviews', params);
+  }
+
+  getMoreRatingReviews(url, place_id): Observable<any> {
+    let params = {
+      place_id
+    };
+    return this._globalService.HttpMethodWithUrl("POST", url, params);
+  }
+
 
 }

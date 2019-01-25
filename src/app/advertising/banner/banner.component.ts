@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class BannerComponent implements OnInit {
 
   imageUrls = [
-    { url: 'https://res.cloudinary.com/plac-web/image/upload/page/banners/pieza-banner-web-avplac.jpg' }
+    { url: 'https://res.cloudinary.com/plac-web/image/upload/v1548367820/page/banners/pieza-banner-web-avplac.jpg' }
   ];
 
   constructor() { }

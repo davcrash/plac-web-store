@@ -39,10 +39,14 @@
               <span class="px-2">{{productsCount}} Articulos</span>
               <span class="border-left px-2" *ngIf="ordersCount > 0">{{ordersCount}} Ventas</span>
               <br>
+              <br>
               <div class="color-plac-text" *ngIf="place.rating > 0">
-                <i class="fas fa-star" *ngFor='let stars of arrayAssessmentStars'></i>
-                <i class="far fa-star" *ngFor='let stars of arrayAssessmentNoStars'></i>
-                {{arrayAssessmentStars.length}}
+                <i (click)="openModal(modalAssessment)" class="fas fa-star pointer align-middle" *ngFor='let stars of arrayAssessmentStars'></i>
+                <i (click)="openModal(modalAssessment)" class="far fa-star pointer align-middle" *ngFor='let stars of arrayAssessmentNoStars'></i>
+                <span (click)="openModal(modalAssessment)" class="ml-1 pointer align-middle">{{place.rating|number :
+                  '1.1-1'}}</span>
+                <button class="btn btn-outline-plac ml-3" (click)="openModal(modalAssessment)">Ver
+                  reseñas</button>
               </div>
             </div>
             <div class="col-12 col-md-3 ml-auto ">
@@ -143,3 +147,75 @@
   </div>
 
 </div>
+<ng-template #modalAssessment let-c="close">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Valoraciones</h4>
+    <button type="button" class="close" aria-label="Close" (click)="c()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <loader *ngIf="!loaderRaiting"></loader>
+
+    <div *ngIf="loaderRaiting" class="container-fluid">
+      <div class="row">
+        <div class="col-md-5 col-12" align="center">
+          <span class="general-average">{{raitingBrief.ratingAverage | number : '1.1-1'}}</span>
+          <span class="ml-3 color-dark-gray-text">{{raitingBrief.ratingTotal}} valoraciones</span>
+
+          <div class="row justify-content-center">
+            <div class="col-auto no-padding pr-2">
+              <div class="rounded-circle d-flex justify-content-center circle">
+                <span class="align-self-center">{{bestRatingBarsType.assessType| number : '1.1-1'}}</span>
+              </div>
+            </div>
+            <div class="col-auto d-flex no-padding">
+              <span class="align-self-center color-plac-text">{{bestRatingBarsType.type}}</span>
+            </div>
+          </div>
+
+          <br>
+        </div>
+        <div class="col-md-7 col-12">
+
+
+
+          <div class="row mb-1" *ngFor="let ratingBar of raitingBrief.ratingBars.reverse()">
+            <div class="col-auto">
+              <div style="width: 30px">
+                <span>{{ratingBar.start}}</span>
+                <i class="ml-1 fas fa-star color-plac-text"></i>
+              </div>
+            </div>
+            <div class="col"><span [ngClass]="{'five-star': ratingBar.start == 5, 'four-star': ratingBar.start == 4, 'three-star': ratingBar.start == 3 , 'two-star':ratingBar.start == 2 , 'one-star':ratingBar.start == 1}"
+                [style.width.%]="ratingBar.qty*100/raitingBrief.ratingTotal"></span></div>
+            <div class="col-auto">
+              <div style="width: 90px">{{ratingBar.qty}} personas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <div class="row mb-4" *ngFor="let review of ratingReviews">
+            <div class="col-12">
+              <div class="color-plac-text">
+                <span class="mr-2" style="color: black"><b>{{review.plac_user_name}}</b></span>
+                <i class="fas fa-star" *ngFor='let stars of [].constructor(review.assessment_quantity)'></i>
+                <i class="far fa-star" *ngFor='let stars of [].constructor(-review.assessment_quantity+5)'></i>
+              </div>
+            </div>
+            <div class="col-12">
+              <div>{{review.assessment_message}}</div>
+              <div class="color-dark-gray-text">{{review.created_ago}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-4" align="center">
+        <button *ngIf="ratingReviewsPaginator" class="btn btn-plac" (click)="getMoreRatingReviews()">ver más</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

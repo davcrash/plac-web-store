@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlaceProfileService } from '../services/place-profile.service';
 import { ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from '../../local-storage.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-place-profile',
@@ -31,6 +32,11 @@ export class PlaceProfileComponent implements OnInit {
   brandSelected: string;
   categoryArray;
 
+  ratingReviews;
+  ratingReviewsPaginator;
+  raitingBrief;
+  bestRatingBarsType;
+
 
   subcategories;
 
@@ -45,10 +51,12 @@ export class PlaceProfileComponent implements OnInit {
   searchText: string;
 
   loaderProducts: boolean = false;
+  loaderRaiting: boolean = false;
   constructor(
     private _placeProfileService: PlaceProfileService,
     private _route: ActivatedRoute,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private modalService: NgbModal
   ) {
   }
 
@@ -103,7 +111,6 @@ export class PlaceProfileComponent implements OnInit {
 
   setPlacePropieties() {
     this.place = this._placeProfileService.place;
-
     if (this.place.promotion) {
       this.promotion = JSON.parse(this.place.promotion);
     }
@@ -225,6 +232,50 @@ export class PlaceProfileComponent implements OnInit {
     }
   }
 
+  openModal(content) {
+    this.modalService.open(content, { size: 'lg' });
+
+
+    if (!this.ratingReviews || !this.raitingBrief) {
+      this._placeProfileService.getRatingReviews(this.place.place_id).subscribe(result => {
+        this.ratingReviewsPaginator = result.data.next_page_url;
+        this.ratingReviews = result.data.data;
+
+        console.log(this.ratingReviews);
+      }, error => {
+        console.log(error);
+      }, () => {
+        (this.ratingReviews && this.raitingBrief) ? this.loaderRaiting = true : null;
+      });
+
+      this._placeProfileService.getRatingBrief(this.place.place_id).subscribe(result => {
+        this.raitingBrief = result.data;
+
+        let maxBarQty = Math.max(...(this.raitingBrief.ratingBarsType.map((value) => value.qty)));
+
+        this.bestRatingBarsType = this.raitingBrief.ratingBarsType.filter(value => {
+          return value.qty === maxBarQty;
+        })[0];
+
+      }, error => {
+        console.log(error);
+      }, () => {
+        (this.ratingReviews && this.raitingBrief) ? this.loaderRaiting = true : null;
+      });
+    }
+  }
+
+  getMoreRatingReviews() {
+    this._placeProfileService.getMoreRatingReviews(this.ratingReviewsPaginator, this.place.place_id)
+      .subscribe(result => {
+        this.ratingReviewsPaginator = result.data.next_page_url;
+        this.ratingReviews.push.apply(this.ratingReviews, result.data.data);
+      }, error => {
+        console.log(error);
+      }, () => {
+        //loader
+      });
+  }
 
   manageBreadcrumbs(key) {
 
