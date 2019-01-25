@@ -46,3 +46,45 @@
         height: 90vh
     }
 }
+
+.general-average {
+    font-size: 60px
+}
+
+.one-star {
+    height: 100%;
+    display: block;
+    background-color: #FF5557;
+}
+
+.two-star {
+    height: 100%;
+    display: block;
+    background-color: #FF8A51;
+}
+
+.three-star {
+    height: 100%;
+    display: block;
+    background-color: #FFFB44;
+}
+
+.four-star {
+    height: 100%;
+    display: block;
+    background-color: #BFFF34;
+}
+
+.five-star {
+    height: 100%;
+    display: block;
+    background-color: #00FF3D;
+}
+
+.circle{
+    background-color: #15d2bb;
+    height: 30px;
+    width: 30px;
+    color: white;
+    font-size: 15px;
+}
