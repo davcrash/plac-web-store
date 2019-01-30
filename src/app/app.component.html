@@ -199,10 +199,10 @@
             </div>
 
             <!--Menu desplegable Shoping Car-->
-            <ng-sidebar #sideBarShoCart id="scroll-shopcart" [autoFocus]="false" [(opened)]="shopCarProperties._opened" [position]="shopCarProperties._position"
-                [mode]="shopCarProperties._mode" [autoCollapseWidth]="575" [closeOnClickOutside]="shopCarProperties._closeOutside"
-                [showBackdrop]="shopCarProperties._showBackdrop" [closeOnClickBackdrop]="shopCarProperties._closeOnClickBackdrop"
-                [sidebarClass]="'shop-car'">
+            <ng-sidebar #sideBarShoCart id="scroll-shopcart" [autoFocus]="false" [(opened)]="shopCarProperties._opened"
+                [position]="shopCarProperties._position" [mode]="shopCarProperties._mode" [autoCollapseWidth]="575"
+                [closeOnClickOutside]="shopCarProperties._closeOutside" [showBackdrop]="shopCarProperties._showBackdrop"
+                [closeOnClickBackdrop]="shopCarProperties._closeOnClickBackdrop" [sidebarClass]="'shop-car'">
                 <div class="wrap border-left container-categories">
                     <app-shop-cart-view (closeCar)="shopCarProperties._opened = false"></app-shop-cart-view>
                 </div>
@@ -214,9 +214,31 @@
     </div>
 </div>
 
+<div *ngIf="openModal" class="d-block d-sm-block d-md-none download-container bg-white p-2 border-top">
+    <div class="container-fluid">
+        <div class="row justify-content-around align-items-center">
+            <div class="col-auto">
+                <img src="/assets/img/download-modal/descarga-la-app.png" height="50" alt="Descarga la app">
+            </div>
+            <div class="col-auto p-0">
+                <img src="/assets/img/download-modal/title.png" height="30" alt="Descarga la app">
+                <br>
+                <img src="/assets/img/download-modal/stars.png" height="20" alt="Descarga la app">
+                <div>
+                    <small class="ml-2 color-medium-gray-text">Gratis</small>
+                </div>
+            </div>
+            <div class="col-auto">
+                <a class="btn btn-plac" href="https://placapp.page.link/descargaweb">
+                    <small>Descargar</small>
+                </a>
+            </div>
+            <div class="col-auto p-0 align-self-start">
+                <button type="button" class="close" aria-label="Close" (click)="closeDownloadModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
 
-<!--
-<div class="d-block d-sm-block d-md-none download-container bg-primary">
-    Componente de descarga la app
-    ir a tienda de aplicaciones
-</div>-->
+    </div>
+</div>

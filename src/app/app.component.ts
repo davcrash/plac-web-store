@@ -25,6 +25,7 @@ export class AppComponent {
     _closeOnClickBackdrop: true
   }
 
+  openModal: boolean = true;
 
   //variable para mostrar elementos
   showElement: boolean = true;
@@ -38,11 +39,16 @@ export class AppComponent {
     setTimeout(() => {
       (window.innerWidth >= 576) ? '' : this._opened = false;
     });
+    
+    this.openModal = (sessionStorage.getItem('download-modal') == null);
 
     //localStorage.setItem("city", "2257"); //Codigo de bogota
   }
 
-
+  closeDownloadModal() {
+    this.openModal = false;
+    sessionStorage.setItem('download-modal', 'true');
+  }
 
   closeShopCart() {
     this.shopCarProperties._opened = false;
