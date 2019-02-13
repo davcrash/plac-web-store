@@ -13,7 +13,7 @@ export class HomeService {
     var params = {
       'pet_target': localStorage.getItem("pet_filter") != null ? localStorage.getItem("pet_filter") : ''
     }
-    return this._globalService.HttpMethodWithUrl("GET", "https://api.placapp.com/featured/products", params);
+    return this._globalService.HttpMethodWithUrl("GET", "https://api.placapp.com/v2/featured/products", params);
   }
 
   getFeaturedPlaces(): Observable<any> {
@@ -21,7 +21,7 @@ export class HomeService {
     var params = {
       'pet_target': localStorage.getItem("pet_filter") != null ? localStorage.getItem("pet_filter") : ''
     }
-    return this._globalService.HttpMethodWithUrl("GET", "https://api.placapp.com/featured/places", params);
+    return this._globalService.HttpMethodWithUrl("GET", "https://api.placapp.com/v2/featured/places", params);
   }
 
 
