@@ -1,14 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SidemenuService } from '../services/sidemenu.service';
-import { Router } from '@angular/router';
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { SidemenuService } from "../services/sidemenu.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-sidemenu',
-  templateUrl: './sidemenu.component.html',
-  styleUrls: ['./sidemenu.component.css']
+  selector: "app-sidemenu",
+  templateUrl: "./sidemenu.component.html",
+  styleUrls: ["./sidemenu.component.css"],
 })
 export class SidemenuComponent implements OnInit {
-
   @Output() public closeSidemenu = new EventEmitter<any>();
 
   categories;
@@ -19,15 +18,17 @@ export class SidemenuComponent implements OnInit {
   constructor(
     private _sidemenuService: SidemenuService,
     private _router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this._sidemenuService.getCategories()
-      .subscribe(res => {
-        this.categories = res.data;
-      }, error => {
+    this._sidemenuService.getCategories().subscribe(
+      (res) => {
+        this.categories = res;
+      },
+      (error) => {
         console.log(error);
-      });
+      }
+    );
   }
 
   clickOnMenu(event) {
@@ -35,7 +36,4 @@ export class SidemenuComponent implements OnInit {
     this._router.navigate(["/categoria", this.idMenuSelected]);
     this.closeSidemenu.emit(true);
   }
-
-
-
 }
