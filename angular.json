@@ -25,8 +25,7 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -124,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "angularGuiaV6"
+  "defaultProject": "angularGuiaV6",
+  "cli": {
+    "analytics": "8bfe6f34-51a1-4d2a-8400-1272bc3da44e"
+  }
 }
