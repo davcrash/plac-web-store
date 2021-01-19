@@ -1,32 +1,34 @@
 <!-- Componente slide de publicidad
 <app-banner></app-banner>-->
 
-
 <!-- Componente recudros informativos d-none d-lg-flex-->
-<div class="row no-margin ">
+<div class="row no-margin">
   <!--router outlet de producto-->
   <router-outlet></router-outlet>
   <!--fin router outlet de producto-->
 
   <!--<div class="col-md-4 col-sm-6 informative-box border pointer" (click)="openModal(queEsPlac)">-->
-  <div class="col-md-4 col-sm-6 informative-box border pointer" routerLink="que-es-plac">
+  <div
+    class="col-md-4 col-sm-6 informative-box border pointer"
+    routerLink="que-es-plac"
+  >
     <div class="col-12 text-center img-icon">
-      <img src="/assets/img/logo-PLAC-01.svg">
+      <img src="/assets/img/logo-PLAC-01.svg" />
     </div>
     <div class="col-12 text-center">
       <b>¿QUÉ ES PLAC?</b>
     </div>
-    <div class="col-12 text-center">
-      Descubre como funciona
-    </div>
+    <div class="col-12 text-center">Descubre como funciona</div>
   </div>
 
-
   <!--<div class="col-md-4 col-sm-6 informative-box border pointer" (click)="openModal(descargaLaApp)">-->
-  <div class="col-md-4 col-sm-6 informative-box border pointer" routerLink="descargar">
+  <div
+    class="col-md-4 col-sm-6 informative-box border pointer"
+    routerLink="descargar"
+  >
     <div class="col-12 text-center img-icon">
-      <img src="/assets/img/appstore.png">
-      <img src="/assets/img/playstore.png">
+      <img src="/assets/img/appstore.png" />
+      <img src="/assets/img/playstore.png" />
     </div>
     <div class="col-12 text-center">
       <b>DESCARGA LA APP</b>
@@ -37,9 +39,12 @@
   </div>
 
   <!--<div class="col-md-4 col-sm-6 informative-box border pointer" (click)="openModal(vendeEnPlac)">-->
-  <div class="col-md-4 col-sm-6 informative-box border pointer" routerLink="vende-en-plac">
+  <div
+    class="col-md-4 col-sm-6 informative-box border pointer"
+    routerLink="vende-en-plac"
+  >
     <div class="col-12 text-center img-icon">
-      <img src="/assets/img/store.png">
+      <img src="/assets/img/store.png" />
     </div>
     <div class="col-12 text-center">
       <b>VENDE EN PLAC</b>
@@ -48,76 +53,71 @@
       Abre tu tienda y llega a miles de usuarios
     </div>
   </div>
-
 </div>
 <!-- Componente recudros informativos-->
 
-<br>
-
+<br />
 
 <div class="home-container">
   <loader *ngIf="loaderfeaturedProducts && loaderfeaturedPlaces"></loader>
-  <div *ngIf="!loaderfeaturedProducts && !loaderfeaturedPlaces" class="container-fluid d-none">
-
+  <div
+    *ngIf="!loaderfeaturedProducts && !loaderfeaturedPlaces"
+    class="container-fluid d-none"
+  >
     <div class="row justify-content-center">
+      <h3>Novedades de esta semana</h3>
       <div class="col-auto">
-        <h3>Novedades de esta semana</h3>
-        <div class="border rounded product-container-week product-main-week">
-
-
-        </div>
+        <div
+          class="border rounded product-container-week product-main-week"
+        ></div>
       </div>
 
       <div class="col-auto d-none d-lg-block d-xl-block margin-h3">
-        <div class="border rounded product-container-week product-sm-week margin-product-sm-week">
-
-
-        </div>
-        <div class="border rounded product-container-week product-sm-week">
-
-
-        </div>
+        <div
+          class="border rounded product-container-week product-sm-week margin-product-sm-week"
+        ></div>
+        <div
+          class="border rounded product-container-week product-sm-week"
+        ></div>
       </div>
       <div class="col-auto d-none d-lg-flex d-xl-flex margin-h3">
-        <div class="border rounded product-container-week product-lg-week">
-
-
-        </div>
+        <div
+          class="border rounded product-container-week product-lg-week"
+        ></div>
       </div>
     </div>
   </div>
 
-
   <!--<br>-->
-
-
-
 
   <div *ngIf="!loaderfeaturedProducts && !loaderfeaturedPlaces">
     <h3>Los más vendidos</h3>
 
     <carousel-arrows>
-
-      <app-product-card *ngFor="let featuredProductList of featuredProducts" [productId]="featuredProductList.product_id"
-        [imgProduct]="featuredProductList.product.product_images[0].url" [productName]="featuredProductList.product.product_name"
-        [productPrice]="featuredProductList.product.product_price">
+      <app-product-card
+        *ngFor="let featuredProductList of featuredProducts"
+        [productId]="featuredProductList.product_id"
+        [imgProduct]="featuredProductList.product.product_images[0].url"
+        [productName]="featuredProductList.product.product_name"
+        [productPrice]="featuredProductList.product.product_price"
+      >
       </app-product-card>
-
     </carousel-arrows>
 
     <h3>Marcas destacadas</h3>
     <carousel-arrows>
-      <app-place-card *ngFor="let featuredPlaceList of featuredPlaces" [placeId]="featuredPlaceList.place_id"
-        [placeName]="featuredPlaceList.place_location.place_location_name" [placeDescription]="featuredPlaceList.place_location.place_description"
-        [placeAssessment]="featuredPlaceList.assessment" [placePathImageLogo]="featuredPlaceList.path_image_logo">
+      <app-place-card
+        *ngFor="let featuredPlaceList of featuredPlaces"
+        [placeId]="featuredPlaceList.place_id"
+        [placeName]="featuredPlaceList.place_location.place_location_name"
+        [placeDescription]="featuredPlaceList.place_location.place_description"
+        [placeAssessment]="featuredPlaceList.assessment"
+        [placePathImageLogo]="featuredPlaceList.path_image_logo"
+      >
       </app-place-card>
-
     </carousel-arrows>
-
-
   </div>
 </div>
-
 
 <!--Modal que es plac-->
 <ng-template #queEsPlac let-c="close" let-d="dismiss">
@@ -129,9 +129,12 @@
 
   <div class="modal-body">
     <ngb-carousel *ngIf="queEsPlacImages">
-
       <ng-template ngbSlide>
-        <img [src]="queEsPlacImages[0]" alt="Random first slide" class="img-info">
+        <img
+          [src]="queEsPlacImages[0]"
+          alt="Random first slide"
+          class="img-info"
+        />
         <div class="carousel-caption">
           <h3>First slide label</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -140,7 +143,11 @@
       </ng-template>
 
       <ng-template ngbSlide>
-        <img [src]="queEsPlacImages[1]" alt="Random second slide" class="img-info">
+        <img
+          [src]="queEsPlacImages[1]"
+          alt="Random second slide"
+          class="img-info"
+        />
         <div class="carousel-caption">
           <h3>Second slide label</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -148,19 +155,22 @@
       </ng-template>
 
       <ng-template ngbSlide>
-        <img [src]="queEsPlacImages[2]" alt="Random third slide" class="img-info">
+        <img
+          [src]="queEsPlacImages[2]"
+          alt="Random third slide"
+          class="img-info"
+        />
         <div class="carousel-caption">
           <h3>Third slide label</h3>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
         </div>
       </ng-template>
-
     </ngb-carousel>
   </div>
-
 </ng-template>
 <!--Fin modal que es plac-->
-
 
 <!--Modal descarga la app-->
 <ng-template #descargaLaApp let-c="close" let-d="dismiss">
@@ -172,13 +182,20 @@
 
   <div class="modal-body">
     <ngb-carousel *ngIf="descargaLaAppImages">
-
       <ng-template ngbSlide>
-        <img [src]="descargaLaAppImages[0]" alt="Random first slide" class="img-info">
+        <img
+          [src]="descargaLaAppImages[0]"
+          alt="Random first slide"
+          class="img-info"
+        />
       </ng-template>
 
       <ng-template ngbSlide>
-        <img [src]="descargaLaAppImages[1]" alt="Random second slide" class="img-info">
+        <img
+          [src]="descargaLaAppImages[1]"
+          alt="Random second slide"
+          class="img-info"
+        />
         <div class="carousel-caption">
           <h3>Second slide label</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -186,19 +203,22 @@
       </ng-template>
 
       <ng-template ngbSlide>
-        <img [src]="descargaLaAppImages[2]" alt="Random third slide" class="img-info">
+        <img
+          [src]="descargaLaAppImages[2]"
+          alt="Random third slide"
+          class="img-info"
+        />
         <div class="carousel-caption">
           <h3>Third slide label</h3>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
         </div>
       </ng-template>
-
     </ngb-carousel>
   </div>
-
 </ng-template>
 <!--Fin modal descarga la app-->
-
 
 <!--Modal vende en plac-->
 <ng-template #vendeEnPlac let-c="close" let-d="dismiss">
@@ -210,9 +230,12 @@
 
   <div class="modal-body">
     <ngb-carousel *ngIf="vendeEnPlacImages">
-
       <ng-template ngbSlide>
-        <img [src]="vendeEnPlacImages[0]" alt="Random first slide" class="img-info">
+        <img
+          [src]="vendeEnPlacImages[0]"
+          alt="Random first slide"
+          class="img-info"
+        />
         <div class="carousel-caption">
           <h3>First slide label</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -220,7 +243,11 @@
       </ng-template>
 
       <ng-template ngbSlide>
-        <img [src]="vendeEnPlacImages[1]" alt="Random second slide" class="img-info">
+        <img
+          [src]="vendeEnPlacImages[1]"
+          alt="Random second slide"
+          class="img-info"
+        />
         <div class="carousel-caption">
           <h3>Second slide label</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -228,15 +255,19 @@
       </ng-template>
 
       <ng-template ngbSlide>
-        <img [src]="vendeEnPlacImages[2]" alt="Random third slide" class="img-info">
+        <img
+          [src]="vendeEnPlacImages[2]"
+          alt="Random third slide"
+          class="img-info"
+        />
         <div class="carousel-caption">
           <h3>Third slide label</h3>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
         </div>
       </ng-template>
-
     </ngb-carousel>
   </div>
-
 </ng-template>
 <!--Fin modal vende en plac-->
