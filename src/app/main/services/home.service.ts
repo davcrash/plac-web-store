@@ -38,7 +38,7 @@ export class HomeService {
           },
         },
         {
-          product_id: "2",
+          product_id: "3",
           product: {
             product_name: "Barf MasVital 1 barra de cerdo congelada",
             product_price: 4500,
@@ -51,7 +51,7 @@ export class HomeService {
           },
         },
         {
-          product_id: "2",
+          product_id: "4",
           product: {
             product_name: "Correa para gato misifus talla S",
             product_price: 55300,
@@ -64,7 +64,7 @@ export class HomeService {
           },
         },
         {
-          product_id: "2",
+          product_id: "5",
           product: {
             product_name: "Cama tibuton comelon para cachorro talla xs",
             product_price: 40250,
@@ -77,7 +77,7 @@ export class HomeService {
           },
         },
         {
-          product_id: "2",
+          product_id: "6",
           product: {
             product_name: "Cama auto ferrari para cachorro talla xs",
             product_price: 100000,
@@ -90,7 +90,7 @@ export class HomeService {
           },
         },
         {
-          product_id: "2",
+          product_id: "7",
           product: {
             product_name: "Peluche conejo BadBunny Brrr para conejos malos",
             product_price: 19900,
@@ -102,7 +102,7 @@ export class HomeService {
           },
         },
         {
-          product_id: "2",
+          product_id: "8",
           product: {
             product_name: "Comida chunky para perro adulto que ladra",
             product_price: 35000,
@@ -115,7 +115,7 @@ export class HomeService {
           },
         },
         {
-          product_id: "2",
+          product_id: "9",
           product: {
             product_name: "Banana para perro cariñoso no tan grande",
             product_price: 6000,
