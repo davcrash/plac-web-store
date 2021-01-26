@@ -1,38 +1,176 @@
-import { Injectable } from '@angular/core';
-import { GlobalService } from '../../global.service';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { GlobalService } from "../../global.service";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class SearchService {
+  constructor(private _globalService: GlobalService) {}
 
-  constructor(private _globalService: GlobalService) { }
+  getSearchPlacesProducts(
+    queryText,
+    orderByPrice,
+    paymentTypeFilter
+  ): Observable<any> {
+    return new Observable((subscriber) => {
+      const productsOne = [
+        {
+          product_id: "4",
+          product: {
+            product_name: "Correa para gato misifus talla S",
+            product_price: 55300,
+            product_images: [
+              {
+                url:
+                  "/assets/img/product-images/productcol-out-mg4cd6dpc4e5a223f05f0l9.jpg",
+              },
+            ],
+          },
+        },
 
+        {
+          product_id: "6",
+          product: {
+            product_name: "Cama auto ferrari para cachorro talla xs",
+            product_price: 100000,
+            product_images: [
+              {
+                url:
+                  "/assets/img/product-images/productferrari398960b050c20al255ep5c.jpg",
+              },
+            ],
+          },
+        },
 
-  getSearchPlacesProducts(queryText, orderByPrice, paymentTypeFilter): Observable<any> {
-    let params = {
-      filters: {
-        payment_type: paymentTypeFilter,
-        pet_type: localStorage.getItem("pet_filter") != null ? localStorage.getItem("pet_filter") : ''
-      },
-      orderBy: { price: orderByPrice },//low o high
-      search: queryText
-    }
-    return this._globalService.HttpMethod("POST", "products/places/filters", params);
+        {
+          product_id: "8",
+          product: {
+            product_name: "Comida chunky para perro adulto que ladra",
+            product_price: 35000,
+            product_images: [
+              {
+                url:
+                  "/assets/img/product-images/product4fa5896c5al2216pddb00b.png",
+              },
+            ],
+          },
+        },
+        {
+          product_id: "9",
+          product: {
+            product_name: "Banana para perro cariñoso no tan grande",
+            product_price: 6000,
+            product_images: [
+              {
+                url:
+                  "/assets/img/product-images/productJP101326bca592c0b2p20al5821.png",
+              },
+            ],
+          },
+        },
+      ];
+      const productsTwo = [
+        {
+          product_id: "5",
+          product: {
+            product_name: "Cama tibuton comelon para cachorro talla xs",
+            product_price: 40250,
+            product_images: [
+              {
+                url:
+                  "/assets/img/product-images/producttiburon2p290c95b6badc062al250.jpg",
+              },
+            ],
+          },
+        },
+        {
+          product_id: "7",
+          product: {
+            product_name: "Peluche conejo BadBunny Brrr para conejos malos",
+            product_price: 19900,
+            product_images: [
+              {
+                url: "/assets/img/product-images/product1IMGixJ33z7owj.jpg",
+              },
+            ],
+          },
+        },
+        {
+          product_id: "1",
+          product: {
+            product_name: "Correa negra para perro Talla XS",
+            product_price: 5000,
+            product_images: [
+              {
+                url:
+                  "/assets/img/product-images/producttrailla-12a30f2c0dfe0l7pc5c845.jpg",
+              },
+            ],
+          },
+        },
+        {
+          product_id: "2",
+          product: {
+            product_name: "Barf MasVital 6 barras de cerdo congeladas",
+            product_price: 50000,
+            product_images: [
+              {
+                url:
+                  "/assets/img/product-images/productMVPAMIXS60c26dp082cc5l2cac47026.jpg",
+              },
+            ],
+          },
+        },
+        {
+          product_id: "3",
+          product: {
+            product_name: "Barf MasVital 1 barra de cerdo congelada",
+            product_price: 4500,
+            product_images: [
+              {
+                url:
+                  "/assets/img/product-images/productMVSM5a09ld67aa1bbcp26a20d.jpg",
+              },
+            ],
+          },
+        },
+      ];
+      const placesWithProducts = [
+        {
+          place_id: "1",
+          place_location: {
+            place_location_name: "Halari Cat Toys",
+            place_description: "Tienda de juguetes para gato",
+          },
+          assessment: 5,
+          path_image_logo: "/assets/img/place-imgs/logot08g3Scd9A.jpg",
+          products: { data: productsOne },
+          next_page_url: null,
+        },
+        {
+          place_id: "1",
+          place_location: {
+            place_location_name: "Cato",
+            place_description: "Tienda de gatos para gatos",
+          },
+          assessment: 4,
+          path_image_logo: "/assets/img/place-imgs/logoTuNk3nd538.png",
+          products: { data: productsTwo },
+          next_page_url: null,
+        },
+      ];
+
+      setTimeout(() => subscriber.next(placesWithProducts), 1000);
+    });
   }
 
-  getMorePlacesWithProducts(url, queryText, orderByPrice, paymentTypeFilter): Observable<any> {
-    let params = {
-      filters: {
-        payment_type: paymentTypeFilter,
-        pet_type: localStorage.getItem("pet_filter") != null ? localStorage.getItem("pet_filter") : ''
-      },
-      orderBy: orderByPrice,//low o high
-      search: queryText
-    }
-    return this._globalService.HttpMethodWithUrl("POST", url, params);
+  getMorePlacesWithProducts(
+    url,
+    queryText,
+    orderByPrice,
+    paymentTypeFilter
+  ): Observable<any> {
+    return new Observable();
   }
-
-
 }

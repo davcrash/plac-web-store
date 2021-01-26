@@ -2,19 +2,26 @@
 <router-outlet></router-outlet>
 <!--fin router outlet de producto-->
 
-<div class="container-fluid" *ngIf="placesWithProductsLenght">
-  <h2>Resultados para : <b>{{queryText}}</b></h2>
+<div class="container-fluid">
+  <h2>
+    Resultados para : <b>{{ queryText }}</b>
+  </h2>
   <b>Filtrar por:</b>
   <div class="row">
-    <div class="col-sm-auto col-12" style="margin-bottom: 5px;">
+    <div class="col-sm-auto col-12" style="margin-bottom: 5px">
       Precio:
-      <div class="btn-group btn-group-toggle float-right float-sm-none" ngbRadioGroup name="radioBasic" [(ngModel)]="orderByPrice"
-        (ngModelChange)="onChangePrice()">
+      <div
+        class="btn-group btn-group-toggle float-right float-sm-none"
+        ngbRadioGroup
+        name="radioBasic"
+        [(ngModel)]="orderByPrice"
+        (ngModelChange)="onChangePrice()"
+      >
         <label ngbButtonLabel class="btn-outline-plac">
-          <input ngbButton type="radio" value="low"> Menor
+          <input ngbButton type="radio" value="low" /> Menor
         </label>
         <label ngbButtonLabel class="btn-outline-plac">
-          <input ngbButton type="radio" value="high"> Mayor
+          <input ngbButton type="radio" value="high" /> Mayor
         </label>
       </div>
     </div>
@@ -34,36 +41,51 @@
     -->
   </div>
 
-  <br>
+  <br />
 
   <loader *ngIf="loader"></loader>
   <!--INICIO: lista de productos scroll horizontal-->
   <div *ngIf="!loader">
     <carousel-arrows *ngFor="let place of placesWithProducts">
-
       <!-- Inicio: Card perfil empresa-->
-      <app-place-card [placeId]="place.place_id" [placeDescription]="place.place_description" [placePathImageLogo]="place.path_image_logo"
-        [placeAssessment]="place.rating" [placeName]="place.place_location_name">
+      <app-place-card
+        [placeId]="place.place_id"
+        [placeDescription]="place.place_location.place_description"
+        [placePathImageLogo]="place.path_image_logo"
+        [placeAssessment]="place.assessment"
+        [placeName]="place.place_location_name"
+      >
       </app-place-card>
       <!-- Fin: Card perfil empresa-->
 
       <!-- Inicio: Card producto-->
-      <app-product-card *ngFor="let product of place.products.data" [productId]="product.product_id" [imgProduct]="product.product_link_image"
-        [productName]="product.product_name" [productPrice]="product.product_price">
+      <app-product-card
+        *ngFor="let product of place.products.data"
+        [productId]="product.product.product_id"
+        [imgProduct]="product.product.product_images[0].url"
+        [productName]="product.product.product_name"
+        [productPrice]="product.product.product_price"
+      >
       </app-product-card>
       <!-- Fin: Card producto-->
 
       <!--FIN: lista de productos scroll horizontal-->
     </carousel-arrows>
     <div class="d-flex justify-content-center">
-      <button *ngIf="placesWithProductsPaginator" class="btn btn-plac" (click)="getMorePlacesWithProductsBySearch()">ver
-        más</button>
+      <button
+        *ngIf="placesWithProductsPaginator"
+        class="btn btn-plac"
+        (click)="getMorePlacesWithProductsBySearch()"
+      >
+        ver más
+      </button>
     </div>
-    <br>
-    <br>
+    <br />
+    <br />
   </div>
-
 </div>
 <div class="container" *ngIf="!placesWithProductsLenght && !loader">
-  <h1>No hay resultados para: <b>{{queryText}}</b></h1>
+  <h1>
+    No hay resultados para: <b>{{ queryText }}</b>
+  </h1>
 </div>
