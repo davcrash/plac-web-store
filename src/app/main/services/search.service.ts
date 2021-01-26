@@ -96,45 +96,6 @@ export class SearchService {
             ],
           },
         },
-        {
-          product_id: "1",
-          product: {
-            product_name: "Correa negra para perro Talla XS",
-            product_price: 5000,
-            product_images: [
-              {
-                url:
-                  "/assets/img/product-images/producttrailla-12a30f2c0dfe0l7pc5c845.jpg",
-              },
-            ],
-          },
-        },
-        {
-          product_id: "2",
-          product: {
-            product_name: "Barf MasVital 6 barras de cerdo congeladas",
-            product_price: 50000,
-            product_images: [
-              {
-                url:
-                  "/assets/img/product-images/productMVPAMIXS60c26dp082cc5l2cac47026.jpg",
-              },
-            ],
-          },
-        },
-        {
-          product_id: "3",
-          product: {
-            product_name: "Barf MasVital 1 barra de cerdo congelada",
-            product_price: 4500,
-            product_images: [
-              {
-                url:
-                  "/assets/img/product-images/productMVSM5a09ld67aa1bbcp26a20d.jpg",
-              },
-            ],
-          },
-        },
       ];
       const placesWithProducts = [
         {
