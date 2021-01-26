@@ -12,6 +12,31 @@ export class HomeService {
     return new Observable((subscriber) => {
       const products = [
         {
+          product_id: "5",
+          product: {
+            product_name: "Cama tibuton comelon para cachorro talla xs",
+            product_price: 40250,
+            product_images: [
+              {
+                url:
+                  "/assets/img/product-images/producttiburon2p290c95b6badc062al250.jpg",
+              },
+            ],
+          },
+        },
+        {
+          product_id: "7",
+          product: {
+            product_name: "Peluche conejo BadBunny Brrr para conejos malos",
+            product_price: 19900,
+            product_images: [
+              {
+                url: "/assets/img/product-images/product1IMGixJ33z7owj.jpg",
+              },
+            ],
+          },
+        },
+        {
           product_id: "1",
           product: {
             product_name: "Correa negra para perro Talla XS",
@@ -63,19 +88,7 @@ export class HomeService {
             ],
           },
         },
-        {
-          product_id: "5",
-          product: {
-            product_name: "Cama tibuton comelon para cachorro talla xs",
-            product_price: 40250,
-            product_images: [
-              {
-                url:
-                  "/assets/img/product-images/producttiburon2p290c95b6badc062al250.jpg",
-              },
-            ],
-          },
-        },
+
         {
           product_id: "6",
           product: {
@@ -89,18 +102,7 @@ export class HomeService {
             ],
           },
         },
-        {
-          product_id: "7",
-          product: {
-            product_name: "Peluche conejo BadBunny Brrr para conejos malos",
-            product_price: 19900,
-            product_images: [
-              {
-                url: "/assets/img/product-images/product1IMGixJ33z7owj.jpg",
-              },
-            ],
-          },
-        },
+
         {
           product_id: "8",
           product: {
