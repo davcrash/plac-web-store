@@ -12,10 +12,9 @@ export class LoginGuard implements CanActivate {
 
   canActivate(): Observable<boolean> | boolean {
     if (localStorage.getItem("user_data")) {
-      this._router.navigate([""]);
-
       return true;
     }
+    this._router.navigate([""]);
     return false;
   }
 }
