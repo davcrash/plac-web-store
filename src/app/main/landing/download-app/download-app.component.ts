@@ -1,27 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-download-app',
-  templateUrl: './download-app.component.html',
-  styleUrls: ['./download-app.component.css']
+  selector: "app-download-app",
+  templateUrl: "./download-app.component.html",
+  styleUrls: ["./download-app.component.css"],
 })
 export class DownloadAppComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   goTo(where) {
     let windowRef = window;
     switch (where) {
-      case 'download-ios':
-        windowRef.open("https://itunes.apple.com/us/app/plac/id1220217354", "_blank");
+      case "download-ios":
+        windowRef.open("", "_blank");
         break;
-      case 'download-android':
-        windowRef.open("https://play.google.com/store/apps/details?id=com.placapp", "_blank");
+      case "download-android":
+        windowRef.open("", "_blank");
         break;
     }
   }
-
 }

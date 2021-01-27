@@ -1,63 +1,101 @@
-<div class="container-fluid ">
-  <div class="row" style="height: 92vh; ">
+<div class="container-fluid">
+  <div class="row" style="height: 92vh">
     <div class="col-12 d-flex justify-content-center align-items-center">
       <div align="center">
         <h3>
-          Si tienes productos innovadores para Perros, Gatos, Conejos,<br> Hamster o MiniPig estás en el lugar
-          correcto.
+          Si tienes productos innovadores para Perros, Gatos, Conejos,<br />
+          Hamster o MiniPig estás en el lugar correcto.
         </h3>
-        <br>
-        <br>
-        <br>
-        <a class="btn btn-plac btn-lg" href="http://www.placapp.com/dashboard">Abre tu tienda en plac</a>
+        <br />
+        <br />
+        <br />
+        <a class="btn btn-plac btn-lg" href="">Abre tu tienda en plac</a>
         <div class="text-muted">es gratis</div>
-
-
       </div>
     </div>
   </div>
 
   <div class="row navmenu" #nav>
     <div class="col-12 py-2" align="center">
-      <button name="tarifas" #tarifasBtn [class.active]="destination === tarifasBtn.name" class="btn btn-link color-dark-gray-text"
-        [routerLink]="['/vende-en-plac/tarifas']"><b>Tarifas</b></button>
-      <button name="herramientas" #herramientasBtn [class.active]="destination === herramientasBtn.name" class="btn btn-link color-dark-gray-text"
-        [routerLink]="['/vende-en-plac/herramientas']"><b>Herramientas</b></button>
-      <button name="ayuda" #ayudaBtn [class.active]="destination === ayudaBtn.name" class="btn btn-link color-dark-gray-text"
-        [routerLink]="['/vende-en-plac/ayuda']"><b>Ayuda</b></button>
+      <button
+        name="tarifas"
+        #tarifasBtn
+        [class.active]="destination === tarifasBtn.name"
+        class="btn btn-link color-dark-gray-text"
+        [routerLink]="['/vende-en-plac/tarifas']"
+      >
+        <b>Tarifas</b>
+      </button>
+      <button
+        name="herramientas"
+        #herramientasBtn
+        [class.active]="destination === herramientasBtn.name"
+        class="btn btn-link color-dark-gray-text"
+        [routerLink]="['/vende-en-plac/herramientas']"
+      >
+        <b>Herramientas</b>
+      </button>
+      <button
+        name="ayuda"
+        #ayudaBtn
+        [class.active]="destination === ayudaBtn.name"
+        class="btn btn-link color-dark-gray-text"
+        [routerLink]="['/vende-en-plac/ayuda']"
+      >
+        <b>Ayuda</b>
+      </button>
       <!--<button name="historias" #historiasBtn [class.active]="destination === historiasBtn.name" class="btn btn-link color-dark-gray-text" [routerLink]="['/vende-en-plac/historias']"><b>Historias</b></button>-->
-      <button name="ventas" #ventasBtn [class.active]="destination === ventasBtn.name" class="btn btn-link color-dark-gray-text"
-        [routerLink]="['/vende-en-plac/ventas']"><b>Ventas</b></button>
-      <button name="preguntas" #preguntasBtn [class.active]="destination === preguntasBtn.name" class="btn btn-link color-dark-gray-text"
-        [routerLink]="['/vende-en-plac/preguntas']"><b>Preguntas
-          frecuentes</b></button>
+      <button
+        name="ventas"
+        #ventasBtn
+        [class.active]="destination === ventasBtn.name"
+        class="btn btn-link color-dark-gray-text"
+        [routerLink]="['/vende-en-plac/ventas']"
+      >
+        <b>Ventas</b>
+      </button>
+      <button
+        name="preguntas"
+        #preguntasBtn
+        [class.active]="destination === preguntasBtn.name"
+        class="btn btn-link color-dark-gray-text"
+        [routerLink]="['/vende-en-plac/preguntas']"
+      >
+        <b>Preguntas frecuentes</b>
+      </button>
     </div>
   </div>
 
-  <div class="row border-radius-container" style="padding-top: 100px ;padding-bottom: 100px">
+  <div
+    class="row border-radius-container"
+    style="padding-top: 100px; padding-bottom: 100px"
+  >
     <div class="container d-flex justify-content-center align-items-center">
       <div class="row justify-content-center">
-        <div class="col-sm-12 d-flex justify-content-center align-items-center" style="margin-bottom: 60px">
+        <div
+          class="col-sm-12 d-flex justify-content-center align-items-center"
+          style="margin-bottom: 60px"
+        >
           <h2 align="center">
             <b>
               Únete al mercado online para mascotas más grande del continente
             </b>
           </h2>
-
         </div>
-
-
 
         <div class="col-12 col-md-auto" align="center">
           <div class="card-first-container shadow-sm">
             <div class="" style="padding: 35px; padding-top: 50px">
-              <i class="fas fa-database color-plac-text" style="font-size: 80px"></i>
+              <i
+                class="fas fa-database color-plac-text"
+                style="font-size: 80px"
+              ></i>
             </div>
             <div>
               <h5><b>Llega a cientos de clientes</b></h5>
-              Publica tus artículos. Solo pagarás las tarifas por transacción y procesamiento cuando hagas una
-              venta.
-              <br><br>
+              Publica tus artículos. Solo pagarás las tarifas por transacción y
+              procesamiento cuando hagas una venta.
+              <br /><br />
             </div>
           </div>
         </div>
@@ -65,13 +103,16 @@
         <div class="col-12 col-md-auto" align="center">
           <div class="card-first-container shadow-sm">
             <div class="" style="padding: 35px; padding-top: 50px">
-              <i class="fas fa-piggy-bank color-plac-text" style="font-size: 80px"></i>
+              <i
+                class="fas fa-piggy-bank color-plac-text"
+                style="font-size: 80px"
+              ></i>
             </div>
             <div>
               <h5><b>Vendemos por ti</b></h5>
-              plac realiza todas las campañas publicitarias necesarias para atraer a tu público objetivo a tus
-              productos y servicios.
-              <br><br>
+              plac realiza todas las campañas publicitarias necesarias para
+              atraer a tu público objetivo a tus productos y servicios.
+              <br /><br />
             </div>
           </div>
         </div>
@@ -79,457 +120,523 @@
         <div class="col-12 col-md-auto" align="center">
           <div class="card-first-container shadow-sm">
             <div class="" style="padding: 35px; padding-top: 50px">
-              <i class="fas fa-motorcycle color-plac-text" style="font-size: 80px"></i>
+              <i
+                class="fas fa-motorcycle color-plac-text"
+                style="font-size: 80px"
+              ></i>
             </div>
             <div>
               <h5><b>plac logística</b></h5>
-              Cuando un cliente compra un producto, plac envía un mensajero para recorgerlo y llevarlo hasta la
-              puerta del comprador.
+              Cuando un cliente compra un producto, plac envía un mensajero para
+              recorgerlo y llevarlo hasta la puerta del comprador.
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
   </div>
   <div id="tarifas" class="row">
     <div class="container d-flex justify-content-center align-items-center">
       <div class="row">
-        <div class="col-sm-12 d-flex justify-content-center align-items-center" style="margin-top: 60px;margin-bottom: 30px">
+        <div
+          class="col-sm-12 d-flex justify-content-center align-items-center"
+          style="margin-top: 60px; margin-bottom: 30px"
+        >
           <h2 align="center">
             <b>
-              Tarifas<br>
+              Tarifas<br />
               Simple, transparente y seguro
             </b>
           </h2>
-
         </div>
       </div>
     </div>
-    <div class="col-12 col-sm-6 offset-sm-3 border-top border-bottom" align="center">
+    <div
+      class="col-12 col-sm-6 offset-sm-3 border-top border-bottom"
+      align="center"
+    >
       <div class="row">
         <div class="col-sm-6 col-12 d-flex align-items-center text-left checks">
-          <i class="fas fa-check color-plac-text" style="font-size: 20px; margin-right: 5px"></i>Sin mensualidades
+          <i
+            class="fas fa-check color-plac-text"
+            style="font-size: 20px; margin-right: 5px"
+          ></i
+          >Sin mensualidades
         </div>
         <div class="col-sm-6 col-12 d-flex align-items-center text-left checks">
-          <i class="fas fa-check color-plac-text" style="font-size: 20px; margin-right: 5px"></i>Todos los medios de
-          pagos electrónicos
+          <i
+            class="fas fa-check color-plac-text"
+            style="font-size: 20px; margin-right: 5px"
+          ></i
+          >Todos los medios de pagos electrónicos
         </div>
         <div class="col-sm-6 col-12 d-flex align-items-center text-left checks">
-          <i class="fas fa-check color-plac-text" style="font-size: 20px; margin-right: 5px"></i>plac se encarga del
-          domicilio
+          <i
+            class="fas fa-check color-plac-text"
+            style="font-size: 20px; margin-right: 5px"
+          ></i
+          >plac se encarga del domicilio
         </div>
         <div class="col-sm-6 col-12 d-flex align-items-center text-left checks">
-          <i class="fas fa-check color-plac-text" style="font-size: 20px; margin-right: 5px"></i>Pagos contra entrega
+          <i
+            class="fas fa-check color-plac-text"
+            style="font-size: 20px; margin-right: 5px"
+          ></i
+          >Pagos contra entrega
         </div>
         <div class="col-sm-6 col-12 d-flex align-items-center text-left checks">
-          <i class="fas fa-check color-plac-text" style="font-size: 20px; margin-right: 5px"></i>Sin permanencia o
-          exclusividades
+          <i
+            class="fas fa-check color-plac-text"
+            style="font-size: 20px; margin-right: 5px"
+          ></i
+          >Sin permanencia o exclusividades
         </div>
         <div class="col-sm-6 col-12 d-flex align-items-center text-left checks">
-          <i class="fas fa-check color-plac-text" style="font-size: 20px; margin-right: 5px"></i>El domicilio y los
-          cargos de la pasarela de pago están incluidos en la comisión de plac
+          <i
+            class="fas fa-check color-plac-text"
+            style="font-size: 20px; margin-right: 5px"
+          ></i
+          >El domicilio y los cargos de la pasarela de pago están incluidos en
+          la comisión de plac
         </div>
-
       </div>
-
     </div>
-    <div class="col-12 col-sm-6 offset-sm-3 " align="center">
+    <div class="col-12 col-sm-6 offset-sm-3" align="center">
       <!--
       <div class="col-12 col-sm-12 col-md-12  col-lg-8  col-xl-6 rounded" style="margin-top:30px; padding: 10px; background-color: #212529 ">
         <h3 style="color: white; font-family: 'Montserrat', sans-serif;">15% + $2000</h3>
         <h4 style="color: white; font-family: 'Montserrat', sans-serif;">Por venta efectiva</h4>
       </div>
       -->
-      <br>
-      <div class="col-12 col-sm-12 col-md-12  col-lg-8  col-xl-6" style="padding:0">
+      <br />
+      <div
+        class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6"
+        style="padding: 0"
+      >
         <div>
-          Los productos estarán activos las 24 horas los 365 días del año. Cuando se vende un artículo, plac descuenta
-          una pequeña comisión + $2000 por transacción.
+          Los productos estarán activos las 24 horas los 365 días del año.
+          Cuando se vende un artículo, plac descuenta una pequeña comisión +
+          $2000 por transacción.
         </div>
-        <br>
+        <br />
         <div>
-          Los $2000 por transacción son descontados de la cuenta empresarial y serán destidos unica y exclusivamente a
-          invertir en publicidad para tu marca.
+          Los $2000 por transacción son descontados de la cuenta empresarial y
+          serán destidos unica y exclusivamente a invertir en publicidad para tu
+          marca.
         </div>
-        <br>
-        <br>
+        <br />
+        <br />
         <div>
           <i class="fas fa-shield-alt" style="font-size: 80px"></i>
         </div>
         <div>
-          Procesamos los pagos en nuestra plataforma segura cifrada en SSL, y contamos con especialistas en seguridad y
-          sistemas de detección de fraude para protegerte a ti a tus compradores todo el año.
+          Procesamos los pagos en nuestra plataforma segura cifrada en SSL, y
+          contamos con especialistas en seguridad y sistemas de detección de
+          fraude para protegerte a ti a tus compradores todo el año.
         </div>
-        <br>
-        <br>
+        <br />
+        <br />
       </div>
     </div>
   </div>
-  <div id="herramientas" class="row border-radius-container" style="padding-top: 100px ;padding-bottom: 100px">
+  <div
+    id="herramientas"
+    class="row border-radius-container"
+    style="padding-top: 100px; padding-bottom: 100px"
+  >
     <div class="container">
-      <div class="col-12 col-sm-6 ">
+      <div class="col-12 col-sm-6">
         <h2 align="left">
-          <b>
-            Herramientas indespensables para administrar tu negocio
-          </b>
+          <b> Herramientas indespensables para administrar tu negocio </b>
         </h2>
         <div>
-          Pasa menos tiempo administrando la tienda y más haciendo lo que te gusta.
-          <br>
-          <br>
+          Pasa menos tiempo administrando la tienda y más haciendo lo que te
+          gusta.
+          <br />
+          <br />
           <b>Gestiona tu negocio desde cualquier lugar</b>
-          <br>
-          Usa la aplicación de <span class="color-plac-text">plac</span> en modo empresa para gestionar pedidos, editar
-          anuncios y responder a los
+          <br />
+          Usa la aplicación de <span class="color-plac-text">plac</span> en modo
+          empresa para gestionar pedidos, editar anuncios y responder a los
           compradores de forma instantánea desde cualquier lugar.
-          <br>
-          <br>
+          <br />
+          <br />
           <b>Acepta pagos sin complicaciones</b>
-          <br>
-          Atrae a más compradores a <span class="color-plac-text">plac</span> con los anuncios promocionados y
-          herramientas gratuitas para redes sociales.
-          <br>
-          <br>
+          <br />
+          Atrae a más compradores a
+          <span class="color-plac-text">plac</span> con los anuncios
+          promocionados y herramientas gratuitas para redes sociales.
+          <br />
+          <br />
           <b>Analiza y optimiza tu tienda</b>
-          <br>
-          Accede a estadísticas detalladas sobre el rendimiento de tu tienda para aumentar tus ventas.
-
+          <br />
+          Accede a estadísticas detalladas sobre el rendimiento de tu tienda
+          para aumentar tus ventas.
         </div>
       </div>
-      <div class="col-12 col-sm-6 offset-sm-6 ">
-        <br><br>
+      <div class="col-12 col-sm-6 offset-sm-6">
+        <br /><br />
         <h2 align="left">
-          <b>
-            Llega a un mundo de compradores
-          </b>
+          <b> Llega a un mundo de compradores </b>
         </h2>
         <div>
           Lleva tu marca a potentes herramientas de marketing.
-          <br>
-          <br>
+          <br />
+          <br />
           <b>Haz crecer tu número de seguidores</b>
-          <br>
-          Nuestras herramientas simplifican el proceso de crear las publicaciones perfectas para Facebook, Pinterest,
-          Twitter o Instagram.
-          <br>
-          <br>
+          <br />
+          Nuestras herramientas simplifican el proceso de crear las
+          publicaciones perfectas para Facebook, Pinterest, Twitter o Instagram.
+          <br />
+          <br />
           <b>Mejora tu visibilidad</b>
-          <br>
-          Llega a compradores de plac y mas allá con herramientas publicitarias fáciles de usar, como Anuncios
-          promocionados y Google Shopping.
-          <br>
-          <br>
+          <br />
+          Llega a compradores de plac y mas allá con herramientas publicitarias
+          fáciles de usar, como Anuncios promocionados y Google Shopping.
+          <br />
+          <br />
           <b>Atrae a nuevos clientes</b>
-          <br>
-          Crea una promoción o un cupón para llamar la atención de los compradores o aterrizar directamente en sus
-          correos con una oferta dirigida
-          <br>
-          <br>
+          <br />
+          Crea una promoción o un cupón para llamar la atención de los
+          compradores o aterrizar directamente en sus correos con una oferta
+          dirigida
+          <br />
+          <br />
         </div>
-
       </div>
-      <div class="col-12 col-sm-6 offset-sm-3 ">
-        <br><br>
+      <div class="col-12 col-sm-6 offset-sm-3">
+        <br /><br />
         <h2 align="center" class="color-plac-text">
-          <b>
-            Elige cómo quieres triunfar
-          </b>
+          <b> Elige cómo quieres triunfar </b>
         </h2>
         <div align="center">
-          plac tiene herramientas diseñadas para ayudarte en cada etapa del crecimeinto de tu
-          negocio,independientemente de cuáles sean tus ambiciones. Accede a herramientas avanzadas de
-          comercialización.
+          plac tiene herramientas diseñadas para ayudarte en cada etapa del
+          crecimeinto de tu negocio,independientemente de cuáles sean tus
+          ambiciones. Accede a herramientas avanzadas de comercialización.
         </div>
       </div>
     </div>
-
   </div>
   <div id="ayuda" class="row">
     <div class="container d-flex justify-content-center align-items-center">
       <div class="row">
-        <div class="col-sm-12 d-flex justify-content-center align-items-center flex-column" style="margin-top: 60px;margin-bottom: 30px">
+        <div
+          class="col-sm-12 d-flex justify-content-center align-items-center flex-column"
+          style="margin-top: 60px; margin-bottom: 30px"
+        >
           <h2 align="center" class="color-plac-text">
-            <b>
-              Ayuda de plac
-            </b>
+            <b> Ayuda de plac </b>
           </h2>
           <h5>
-            Estamos comprometidos a ayudar a nuestros vendedores con asistencia y formación para tiendas grandes y
-            pequeñas.
+            Estamos comprometidos a ayudar a nuestros vendedores con asistencia
+            y formación para tiendas grandes y pequeñas.
           </h5>
-          <br><br><br>
+          <br /><br /><br />
         </div>
       </div>
-
     </div>
     <div class="col-12 container">
       <div class="container">
-
         <div class="row">
-
           <div class="col-12 col-sm-6" style="margin: 50px 0">
             <div class="row">
-              <div class="col-3 d-flex justify-content-center align-items-center">
-                <i class="far fa-comments color-plac-text" style="font-size: 80px"></i>
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <i
+                  class="far fa-comments color-plac-text"
+                  style="font-size: 80px"
+                ></i>
               </div>
               <div class="col-9">
                 <b>Habla con nosotros</b>
-                <br>
-                Ponte en contacto con nuestro equipo de soporte por correo electrónico o por el chat interno de
+                <br />
+                Ponte en contacto con nuestro equipo de soporte por correo
+                electrónico o por el chat interno de
                 <span class="color-plac-text">plac</span>
                 siempre que te surja una pregunta.
-                <br>
-                <br>
+                <br />
+                <br />
               </div>
             </div>
           </div>
           <div class="col-12 col-sm-6" style="margin: 50px 0">
             <div class="row">
-              <div class="col-3 d-flex justify-content-center align-items-center">
-                <i class="fas fa-chart-line color-plac-text" style="font-size: 80px"></i>
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <i
+                  class="fas fa-chart-line color-plac-text"
+                  style="font-size: 80px"
+                ></i>
               </div>
               <div class="col-9">
                 <b>Consejos para el éxito</b>
-                <br>
-                Infórmate sobre las prácticas recomendadas para tu negocio con nuestro manual del vendedor, en el que
-                siempre encontrarás consejos nuevos.
-                <br>
-                <br>
+                <br />
+                Infórmate sobre las prácticas recomendadas para tu negocio con
+                nuestro manual del vendedor, en el que siempre encontrarás
+                consejos nuevos.
+                <br />
+                <br />
               </div>
             </div>
           </div>
           <div class="col-12 col-sm-6" style="margin: 50px 0">
             <div class="row">
-              <div class="col-3 d-flex justify-content-center align-items-center">
-                <i class="far fa-newspaper color-plac-text" style="font-size: 80px"></i>
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <i
+                  class="far fa-newspaper color-plac-text"
+                  style="font-size: 80px"
+                ></i>
               </div>
               <div class="col-9">
                 <b>Boletín del vendedor</b>
-                <br>
-                Lee el boletín de <span class="color-plac-text">plac</span> para recibir consejos sobre cómo mejorar tu
-                tienda directamente en tu bandeja de
-                entrada.
-                <br>
-                <br>
+                <br />
+                Lee el boletín de <span class="color-plac-text">plac</span> para
+                recibir consejos sobre cómo mejorar tu tienda directamente en tu
+                bandeja de entrada.
+                <br />
+                <br />
               </div>
             </div>
           </div>
           <div class="col-12 col-sm-6" style="margin: 50px 0">
             <div class="row">
-              <div class="col-3 d-flex justify-content-center align-items-center">
-                <i class="fas fa-map-marked-alt color-plac-text" style="font-size: 80px"></i>
+              <div
+                class="col-3 d-flex justify-content-center align-items-center"
+              >
+                <i
+                  class="fas fa-map-marked-alt color-plac-text"
+                  style="font-size: 80px"
+                ></i>
               </div>
               <div class="col-9">
                 <b>Recibe asesoramiento</b>
-                <br>
-                Haz que tu empresa llegue a otros lugares del mundo desde un mismo lugar, <span class="color-plac-text">plac</span>
-                te acompaña en el
-                proceso
-                <br>
-                <br>
+                <br />
+                Haz que tu empresa llegue a otros lugares del mundo desde un
+                mismo lugar, <span class="color-plac-text">plac</span>
+                te acompaña en el proceso
+                <br />
+                <br />
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
-
   </div>
 
-  <div id="historias" class="row border-radius-container d-none" style="padding-top: 100px ;padding-bottom: 100px">
+  <div
+    id="historias"
+    class="row border-radius-container d-none"
+    style="padding-top: 100px; padding-bottom: 100px"
+  >
     <div class="container d-flex justify-content-center align-items-center">
       <div class="row justify-content-center">
-        <div class="col-sm-12 d-flex justify-content-center align-items-center" style="margin-bottom: 60px">
+        <div
+          class="col-sm-12 d-flex justify-content-center align-items-center"
+          style="margin-bottom: 60px"
+        >
           <h2 align="center">
-            <b>
-              Historias
-            </b>
+            <b> Historias </b>
           </h2>
-
         </div>
-
-
 
         <div class="col-12 col-sm-7" align="center">
           <div class="container-history row">
-            <div class="col-3" style="padding: 5px;">
-              <img class="img-fluid" src="https://res.cloudinary.com/plac-web/image/upload/v1522880467/places/logo8lnr35ft4Y.png">
+            <div class="col-3" style="padding: 5px">
+              <img
+                class="img-fluid"
+                src="https://res.cloudinary.com/plac-web/image/upload/v1522880467/places/logo8lnr35ft4Y.png"
+              />
             </div>
-            <div class="col-9">
-
-            </div>
+            <div class="col-9"></div>
           </div>
         </div>
         <div class="col-12 col-sm-7" align="center">
           <div class="container-history row">
-            <div class="col-3" style="padding: 5px;">
-              <img class="img-fluid" src="https://res.cloudinary.com/plac-web/image/upload/v1522880467/places/logo8lnr35ft4Y.png">
+            <div class="col-3" style="padding: 5px">
+              <img
+                class="img-fluid"
+                src="https://res.cloudinary.com/plac-web/image/upload/v1522880467/places/logo8lnr35ft4Y.png"
+              />
             </div>
-            <div class="col-9">
-
-            </div>
+            <div class="col-9"></div>
           </div>
         </div>
         <div class="col-12 col-sm-7" align="center">
           <div class="container-history row">
-            <div class="col-3" style="padding: 5px;">
-              <img class="img-fluid" src="https://res.cloudinary.com/plac-web/image/upload/v1522880467/places/logo8lnr35ft4Y.png">
+            <div class="col-3" style="padding: 5px">
+              <img
+                class="img-fluid"
+                src="https://res.cloudinary.com/plac-web/image/upload/v1522880467/places/logo8lnr35ft4Y.png"
+              />
             </div>
-            <div class="col-9">
-
-            </div>
+            <div class="col-9"></div>
           </div>
         </div>
-
-
       </div>
     </div>
-
   </div>
-
 
   <div id="ventas" class="row">
     <div class="container d-flex justify-content-center align-items-center">
       <div class="row">
-        <div class="col-sm-12 d-flex justify-content-center align-items-center flex-column" style="margin-top: 60px;margin-bottom: 30px">
+        <div
+          class="col-sm-12 d-flex justify-content-center align-items-center flex-column"
+          style="margin-top: 60px; margin-bottom: 30px"
+        >
           <h2 align="center" class="color-plac-text">
-            <b>
-              ¿Qué puedes vender en plac?
-            </b>
+            <b> ¿Qué puedes vender en plac? </b>
           </h2>
         </div>
       </div>
-
     </div>
     <div class="col-12 container">
       <div class="container">
-
         <div class="row justify-content-center">
-
-          <div class="col-6 col-sm-3" style="margin: 50px 0;">
-            <img class="img-fluid rounded" src="/assets/img/sell-in-view/productos.jpg">
+          <div class="col-6 col-sm-3" style="margin: 50px 0">
+            <img
+              class="img-fluid rounded"
+              src="/assets/img/sell-in-view/productos.jpg"
+            />
             <h5 class="text-type-product">Productos</h5>
-
           </div>
           <div class="col-6 col-sm-3" style="margin: 50px 0">
-            <img class="img-fluid rounded" src="/assets/img/sell-in-view/servicios.jpg">
+            <img
+              class="img-fluid rounded"
+              src="/assets/img/sell-in-view/servicios.jpg"
+            />
             <h5 class="text-type-product">Servicios</h5>
           </div>
-
         </div>
         <div class="row justify-content-center">
-
           <div class="col-12 col-sm-7">
-            <span class="color-plac-text">plac</span> es un mercado en el que ciento de personas dueñas de mascotas se
-            conectan para interacturar, vender y comprar productos únicos. En <span class="color-plac-text">plac</span>,
-            puedes vender productos y servicios que ayuden al bienestar de las mascotas.
+            <span class="color-plac-text">plac</span> es un mercado en el que
+            ciento de personas dueñas de mascotas se conectan para interacturar,
+            vender y comprar productos únicos. En
+            <span class="color-plac-text">plac</span>, puedes vender productos y
+            servicios que ayuden al bienestar de las mascotas.
           </div>
           <div class="col-12 col-sm-7" align="center">
-            <br>
-            <br>
-            <br>
-            <br>
+            <br />
+            <br />
+            <br />
+            <br />
 
-            <a class="btn btn-plac btn-lg" href="http://www.placapp.com/dashboard">Abre tu tienda en plac</a>
-            <br>
-            <br>
-            <br>
+            <a class="btn btn-plac btn-lg" href="">Abre tu tienda en plac</a>
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
-  <div id="preguntas" class="row border-radius-container" style="padding-top: 100px ;padding-bottom: 100px">
-
+  <div
+    id="preguntas"
+    class="row border-radius-container"
+    style="padding-top: 100px; padding-bottom: 100px"
+  >
     <div class="col-12">
       <h2 align="center">
-        <b>
-          Preguntas frecuentes
-        </b>
+        <b> Preguntas frecuentes </b>
       </h2>
-      <h5 align="center">Estas son algunas preguntas habituales sobre cómo vender en <span class="color-plac-text">plac</span></h5>
-      <br><br><br>
+      <h5 align="center">
+        Estas son algunas preguntas habituales sobre cómo vender en
+        <span class="color-plac-text">plac</span>
+      </h5>
+      <br /><br /><br />
     </div>
 
     <div class="col-12">
-      <div class=" container">
+      <div class="container">
         <div class="row">
-          <div class="col-12 col-sm-6 ">
+          <div class="col-12 col-sm-6">
             <b>¿Cómo funciona <span class="color-plac-text">plac</span>?</b>
-            <br>
-            Rpta: Las empresas crean una cuenta en <span class="color-plac-text">plac</span> registrando la información
-            más relevante de sus negocios junto
-            a sus productos o servicios para que los usuarios puedan comprar de manera ágil y efectiva.
-            <br>
-            <br>
+            <br />
+            Rpta: Las empresas crean una cuenta en
+            <span class="color-plac-text">plac</span> registrando la información
+            más relevante de sus negocios junto a sus productos o servicios para
+            que los usuarios puedan comprar de manera ágil y efectiva.
+            <br />
+            <br />
           </div>
           <div class="col-12 col-sm-6">
-            <b>¿Qué puedo vender en <span class="color-plac-text">plac</span>? </b>
-            <br>
-            Rpta: En PLAC solo se pueden comercializar productos y servicios dirigidos a las mascotas, específicamente
-            (Perros, Gatos, Conejos, Hámsters, Mini pigs).
-            <br>
-            <br>
+            <b
+              >¿Qué puedo vender en <span class="color-plac-text">plac</span>?
+            </b>
+            <br />
+            Rpta: En PLAC solo se pueden comercializar productos y servicios
+            dirigidos a las mascotas, específicamente (Perros, Gatos, Conejos,
+            Hámsters, Mini pigs).
+            <br />
+            <br />
           </div>
           <div class="col-12 col-sm-6">
-            <b>¿Cuánto es el costo por vender en <span class="color-plac-text">plac</span>?</b>
-            <br>
-            Rpta: <span class="color-plac-text">plac</span> cobra una comisión de 15% + 2000 IVA incluido por cada
-            venta realizada.
-            <br><br><br>
+            <b
+              >¿Cuánto es el costo por vender en
+              <span class="color-plac-text">plac</span>?</b
+            >
+            <br />
+            Rpta: <span class="color-plac-text">plac</span> cobra una comisión
+            de 15% + 2000 IVA incluido por cada venta realizada.
+            <br /><br /><br />
           </div>
           <div class="col-12 col-sm-6">
             <b>¿Cómo funciona el pago contra entrega?</b>
-            <br>
-            Rpta: Cuando el cliente decide comprar y pagar contra entrega, <span class="color-plac-text">plac</span>
-            recoge el producto directamente en tu
-            empresa y lo lleva al cliente en el mismo día
-            <br><br><br>
+            <br />
+            Rpta: Cuando el cliente decide comprar y pagar contra entrega,
+            <span class="color-plac-text">plac</span>
+            recoge el producto directamente en tu empresa y lo lleva al cliente
+            en el mismo día
+            <br /><br /><br />
           </div>
           <div class="col-12 col-sm-6">
-            <b>¿Cómo funciona la recarga en <span class="color-plac-text">plac</span>?</b>
-            <br>
-            Rpta: La recarga se activa con $99.000 y cada vez que un usuario realiza una compra <span class="color-plac-text">plac</span>
-            descuenta $2000
-            sin importar el valor de la compra. Estos $2000 se destinaran exclusivamente a incentivar las compras de tu
-            empresa con nuestro programa de marketing acelerado.
-            <br><br>
+            <b
+              >¿Cómo funciona la recarga en
+              <span class="color-plac-text">plac</span>?</b
+            >
+            <br />
+            Rpta: La recarga se activa con $99.000 y cada vez que un usuario
+            realiza una compra <span class="color-plac-text">plac</span>
+            descuenta $2000 sin importar el valor de la compra. Estos $2000 se
+            destinaran exclusivamente a incentivar las compras de tu empresa con
+            nuestro programa de marketing acelerado.
+            <br /><br />
           </div>
           <div class="col-12 col-sm-6">
-            <b>¿Tengo algún tipo de permanencia en <span class="color-plac-text">plac</span>?</b>
-            <br>
-            Rpta: NINGUNA la empresa puede darse de baja en el momento que lo desee, aunque estamos seguros que nunca
-            van a querer irse :)
-            <br><br>
+            <b
+              >¿Tengo algún tipo de permanencia en
+              <span class="color-plac-text">plac</span>?</b
+            >
+            <br />
+            Rpta: NINGUNA la empresa puede darse de baja en el momento que lo
+            desee, aunque estamos seguros que nunca van a querer irse :)
+            <br /><br />
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-12 col-sm-6 offset-sm-3 ">
-
+    <div class="col-12 col-sm-6 offset-sm-3">
       <div align="center">
-        <br>
-        <b>¿Puedo vender mascotas en <span class="color-plac-text">plac</span>?</b>
-        <br>
+        <br />
+        <b
+          >¿Puedo vender mascotas en
+          <span class="color-plac-text">plac</span>?</b
+        >
+        <br />
         Rpta: ¡NO!, está prohibido la venta de mascotas a través de la app.
-        <br>
-        <br>
-        <br>
-        <br>
-        <a class="btn btn-plac btn-lg" href="http://www.placapp.com/dashboard">Abre tu tienda en plac</a>
+        <br />
+        <br />
+        <br />
+        <br />
+        <a class="btn btn-plac btn-lg" href="">Abre tu tienda en plac</a>
       </div>
     </div>
-
-
-
-
-
   </div>
-
 </div>

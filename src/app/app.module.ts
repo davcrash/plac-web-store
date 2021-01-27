@@ -53,9 +53,6 @@ import { PurchaseViewComponent } from "./shop-cart/purchase-view/purchase-view.c
 import { DownloadAppComponent } from "./main/landing/download-app/download-app.component";
 import { SellInComponent } from "./main/landing/sell-in/sell-in.component";
 import { WhatIsComponent } from "./main/landing/what-is/what-is.component";
-import { TeamComponent } from "./main/landing/team/team.component";
-import { JobComponent } from "./main/landing/job/job.component";
-import { PressComponent } from "./main/landing/press/press.component";
 import { ChangesReturnsComponent } from "./main/landing/changes-returns/changes-returns.component";
 
 @NgModule({
@@ -84,9 +81,6 @@ import { ChangesReturnsComponent } from "./main/landing/changes-returns/changes-
     DownloadAppComponent,
     SellInComponent,
     WhatIsComponent,
-    TeamComponent,
-    JobComponent,
-    PressComponent,
     ChangesReturnsComponent,
   ],
   imports: [
