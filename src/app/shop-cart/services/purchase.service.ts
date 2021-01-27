@@ -104,7 +104,6 @@ export class PurchaseService {
         ],
       });
     });
-    return this._globalService.HttpMethod("GET", "cities/departments");
   }
 
   getCityByFilter(country_id, department_id?) {
