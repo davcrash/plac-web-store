@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
     - name: Building and Deploying...
       uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.1
       with:
