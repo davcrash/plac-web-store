@@ -1,8 +1,0 @@
-.color-dark-green-text:hover {
-    color: #00B99B;
-    text-decoration: underline;
-}
-
-.input-group.is-invalid~.invalid-feedback {
-    display: block;
-}
