@@ -42,8 +42,7 @@ export class LoginService {
         data: {
           uid: "asdasd",
           name: "usertest123",
-          plac_user_image:
-            "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
+          plac_user_image: "/assets/img/profile.jpg",
         },
       });
     });
