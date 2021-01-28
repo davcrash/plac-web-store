@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angularGuiaV6": {
+    "placWebStore": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angularGuiaV6",
+            "outputPath": "dist/placWebStore",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angularGuiaV6:build"
+            "browserTarget": "placWebStore:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angularGuiaV6:build:production"
+              "browserTarget": "placWebStore:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angularGuiaV6:build"
+            "browserTarget": "placWebStore:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "angularGuiaV6-e2e": {
+    "placWebStore-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angularGuiaV6:serve"
+            "devServerTarget": "placWebStore:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angularGuiaV6:serve:production"
+              "devServerTarget": "placWebStore:serve:production"
             }
           }
         },
@@ -123,7 +123,7 @@
       }
     }
   },
-  "defaultProject": "angularGuiaV6",
+  "defaultProject": "placWebStore",
   "cli": {
     "analytics": "8bfe6f34-51a1-4d2a-8400-1272bc3da44e"
   }
