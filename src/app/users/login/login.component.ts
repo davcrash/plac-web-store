@@ -198,7 +198,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
   async phoneLogin() {
     let phoneWithCountry = "+57" + this.phoneNumber;
-    await this._loginService
+    /*  await this._loginService
       .loginWithPhoneNumber(phoneWithCountry, this.recaptchaVerifier)
       .then((confirmationResult) => {
         this.confirmationResult = confirmationResult;
@@ -210,25 +210,25 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
         this.recaptchaVerifier.render().then((widgetId) => {
           grecaptcha.reset(widgetId);
         });
-      });
+      }); */
   }
 
   loginWithGoogle() {
     this.setRedirectLoader("google");
-    this._loginService.loginWithGoogle().catch((error) => {
+    /* this._loginService.loginWithGoogle().catch((error) => {
       this.removeRedirectLoader();
       this.showAlertError(error);
       console.log(error);
-    });
+    }); */
   }
 
   loginWithFacebook() {
-    this.setRedirectLoader("facebook");
+    /* this.setRedirectLoader("facebook");
     this._loginService.loginWithFacebook().catch((error) => {
       this.removeRedirectLoader();
       this.showAlertError(error);
       console.log(error);
-    });
+    }); */
   }
 
   loginAnonymously() {

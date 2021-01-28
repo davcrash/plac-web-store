@@ -5,12 +5,6 @@ import { AppRoutingModule } from ".//app-routing.module";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-//Firebase
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-
-//Environment
-import { environment } from "../environments/environment";
 //Estilos
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
@@ -86,8 +80,6 @@ import { ChangesReturnsComponent } from "./main/landing/changes-returns/changes-
   imports: [
     BrowserModule,
     DeviceDetectorModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
     BrowserAnimationsModule,
     NgbModule.forRoot(),
     AppRoutingModule,

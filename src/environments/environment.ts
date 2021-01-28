@@ -6,14 +6,6 @@ export const environment = {
   production: false,
   //rootApiUrl: "https://api.placapp.com/v2/",
   rootApiUrl: "http://localhost:8000/",
-  firebase: {
-    apiKey: "AIzaSyChbdpaza09f_Y5aaVxkMjfm1Hvn0aCRxY",
-    authDomain: "fir-plac-debug.firebaseapp.com",
-    databaseURL: "https://fir-plac-debug.firebaseio.com",
-    projectId: "firebase-plac-debug",
-    storageBucket: "firebase-plac-debug.appspot.com",
-    messagingSenderId: "705857991353"
-  }
 };
 
 /*
