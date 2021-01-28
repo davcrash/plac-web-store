@@ -5,11 +5,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x]
 
     steps:
+      - uses: actions/setup-node@v1 #this will install Node and npm on Ubuntu
+      with:
+        node-version: '10.x'
       - uses: actions/checkout@v1
 
       - name: Cache node modules
