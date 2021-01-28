@@ -1,6 +1,7 @@
 # placWebStore
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+Hosted in: https://davcrash.github.io/plac-web-store/
 
 ## Development server
 
