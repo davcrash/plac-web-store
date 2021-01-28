@@ -27,7 +27,7 @@ export class HomePageComponent implements OnInit {
   ];
 
   descargaLaAppImages: Array<string> = [
-    "/assets/img/descarga-la-app-1.png",
+    "assets/img/descarga-la-app-1.png",
     "https://picsum.photos/900/500?image=825",
     "https://picsum.photos/900/500?image=816",
   ];

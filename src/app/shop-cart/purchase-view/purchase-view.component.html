@@ -1,37 +1,38 @@
 <div class="container" *ngIf="objectPlace">
-
-  <br>
+  <br />
   <!-- Inicio: Encabezado -->
   <table>
     <tr>
       <td style="width: 20%">
-        <div style="width: 50px; height: 50px;">
-          <img src="{{objectPlace.place.place.path_image_logo}}" style="max-width: 100%; max-height: 70px;">
+        <div style="width: 50px; height: 50px">
+          <img
+            src="{{ objectPlace.place.place.path_image_logo }}"
+            style="max-width: 100%; max-height: 70px"
+          />
         </div>
       </td>
       <td class="align-middle">
-        <h4>Orden de compra para <b>{{objectPlace.place.place_location_name}}</b></h4>
+        <h4>
+          Orden de compra para
+          <b>{{ objectPlace.place.place_location_name }}</b>
+        </h4>
       </td>
     </tr>
   </table>
   <!-- Fin: Encabezado -->
 
-  <br>
+  <br />
 
   <div class="row">
     <div class="col-md-6">
-
       <!--Datos del envio -->
       <div *ngIf="showSection == 'myAddress'">
-
         <div *ngIf="loaderInfo" align="center">
           <loader></loader>
           Obteniendo tus direcciones...
         </div>
 
-
-        <div *ngIf="!loaderInfo" class="border" style="padding:10px;">
-
+        <div *ngIf="!loaderInfo" class="border" style="padding: 10px">
           <!--
 
           <div class="float-right">
@@ -40,59 +41,145 @@
           </div>
           -->
 
-          <h5 class="m-0"><b>Datos del envío </b>({{(addressSelected)?addressSelected.city.city_name:'...'}})</h5>
-          <small class="color-dark-green-text pointer mr-2" (click)="showSection = 'listAddress'">Enviar a otra
-            dirección</small>
+          <h5 class="m-0">
+            <b>Datos del envío </b>({{
+              addressSelected ? addressSelected.city.city_name : "..."
+            }})
+          </h5>
+          <small
+            class="color-dark-green-text pointer mr-2"
+            (click)="showSection = 'listAddress'"
+            >Enviar a otra dirección</small
+          >
 
-          <br>
-          <br>
-          <button class="btn btn-outline-plac btn-sm mr-2 float-right" (click)="selectToEditAddress()">Editar dirección</button>
-          <span><b>Nombre:</b> {{(addressSelected)?addressSelected.plac_user_name:'...'}}</span><br>
-          <span><b>Correo:</b> {{(addressSelected)?addressSelected.plac_user_email:'...'}}</span><br>
-          <span><b>Teléfono:</b> {{(addressSelected)?addressSelected.plac_user_telephone:'...'}}</span><br>
-          <span><b>Ciudad:</b> {{(addressSelected)?addressSelected.city.city_name+',
-            '+addressSelected.city.country_id:'...'}}</span><br>
-          <span><b>Dirección:</b> {{currentAddressFormatted}}</span><br>
-          <span><b>Barrio:</b> {{(addressSelected)?addressSelected.plac_user_neighborhood:'...'}}</span><br>
-          <span><b>Info. Adicional:</b> {{(addressSelected)?addressSelected.plac_user_additional_info:'...'}}</span><br>
-
+          <br />
+          <br />
+          <button
+            class="btn btn-outline-plac btn-sm mr-2 float-right"
+            (click)="selectToEditAddress()"
+          >
+            Editar dirección
+          </button>
+          <span
+            ><b>Nombre:</b>
+            {{ addressSelected ? addressSelected.plac_user_name : "..." }}</span
+          ><br />
+          <span
+            ><b>Correo:</b>
+            {{
+              addressSelected ? addressSelected.plac_user_email : "..."
+            }}</span
+          ><br />
+          <span
+            ><b>Teléfono:</b>
+            {{
+              addressSelected ? addressSelected.plac_user_telephone : "..."
+            }}</span
+          ><br />
+          <span
+            ><b>Ciudad:</b>
+            {{
+              addressSelected
+                ? addressSelected.city.city_name +
+                  ",
+            " +
+                  addressSelected.city.country_id
+                : "..."
+            }}</span
+          ><br />
+          <span><b>Dirección:</b> {{ currentAddressFormatted }}</span
+          ><br />
+          <span
+            ><b>Barrio:</b>
+            {{
+              addressSelected ? addressSelected.plac_user_neighborhood : "..."
+            }}</span
+          ><br />
+          <span
+            ><b>Info. Adicional:</b>
+            {{
+              addressSelected
+                ? addressSelected.plac_user_additional_info
+                : "..."
+            }}</span
+          ><br />
         </div>
 
-        <br>
+        <br />
         <div *ngIf="paymentMethods">
-          <div class="border" style="padding:10px;">
+          <div class="border" style="padding: 10px">
             <h5><b>Métodos de pago disponibles</b></h5>
             <div *ngIf="paymentMethods.length == 0">
               En esta ciudad no hay métodos de pagos disponibles
             </div>
             <div *ngFor="let paymentMethod of paymentMethods">
-
-              <div *ngIf="paymentMethod.payment_method_id=='mercado_pago'" class="form-check mb-1 pointer">
-                <input [(ngModel)]="paymentMethodSelected" name="paymentMethodSelected" class="form-check-input" type="radio"
-                  value="mercado_pago" id="defaultCheck2">
+              <div
+                *ngIf="paymentMethod.payment_method_id == 'mercado_pago'"
+                class="form-check mb-1 pointer"
+              >
+                <input
+                  [(ngModel)]="paymentMethodSelected"
+                  name="paymentMethodSelected"
+                  class="form-check-input"
+                  type="radio"
+                  value="mercado_pago"
+                  id="defaultCheck2"
+                />
                 <label class="form-check-label pointer" for="defaultCheck2">
                   <span class="align-top">
                     Pago en línea
-                    <i class=" fas fa-info-circle" style="font-size: 18px" ngbTooltip="El pago será procesado con la plataforma mercado pago"
-                      placement="right"></i>
+                    <i
+                      class="fas fa-info-circle"
+                      style="font-size: 18px"
+                      ngbTooltip="El pago será procesado con la plataforma mercado pago"
+                      placement="right"
+                    ></i>
                   </span>
-                  <img class="ml-2" height="25" src="/assets/img/payments-types/credit-card.png">
-                  <img class="ml-2" height="25" src="/assets/img/payments-types/efecty.png">
-                  <img class="ml-2" height="25" src="/assets/img/payments-types/pse.png">
+                  <img
+                    class="ml-2"
+                    height="25"
+                    src="assets/img/payments-types/credit-card.png"
+                  />
+                  <img
+                    class="ml-2"
+                    height="25"
+                    src="assets/img/payments-types/efecty.png"
+                  />
+                  <img
+                    class="ml-2"
+                    height="25"
+                    src="assets/img/payments-types/pse.png"
+                  />
                 </label>
-
               </div>
-              <div *ngIf="paymentMethod.payment_method_id=='payment_delivery'" class="form-check pointer">
-                <input [(ngModel)]="paymentMethodSelected" name="paymentMethodSelected" class="form-check-input" type="radio"
-                  value="payment_delivery" id="defaultCheck1">
+              <div
+                *ngIf="paymentMethod.payment_method_id == 'payment_delivery'"
+                class="form-check pointer"
+              >
+                <input
+                  [(ngModel)]="paymentMethodSelected"
+                  name="paymentMethodSelected"
+                  class="form-check-input"
+                  type="radio"
+                  value="payment_delivery"
+                  id="defaultCheck1"
+                />
                 <label class="form-check-label pointer" for="defaultCheck1">
                   <span class="align-top">
                     Pago contra entrega
-                    <i class=" fas fa-info-circle" style="font-size: 18px" ngbTooltip="El pago se realizara cuando recibas tu producto"
-                      placement="right"></i>
+                    <i
+                      class="fas fa-info-circle"
+                      style="font-size: 18px"
+                      ngbTooltip="El pago se realizara cuando recibas tu producto"
+                      placement="right"
+                    ></i>
                   </span>
 
-                  <img class="ml-2" height="25" src="/assets/img/payments-types/cash.png">
+                  <img
+                    class="ml-2"
+                    height="25"
+                    src="assets/img/payments-types/cash.png"
+                  />
                 </label>
               </div>
             </div>
@@ -117,152 +204,337 @@
             </div>
           </div>
           -->
-
-
         </div>
       </div>
 
       <!--Seleccion de direcciones -->
-      <div *ngIf="showSection == 'listAddress'" class="border" style="padding:10px;">
+      <div
+        *ngIf="showSection == 'listAddress'"
+        class="border"
+        style="padding: 10px"
+      >
         <div>
           <h5>
-            <i (click)="showSection = 'myAddress'" class="fas  fa-arrow-left color-plac-text pointer mr-2"></i>
-            <b>Mis direcciones</b></h5>
+            <i
+              (click)="showSection = 'myAddress'"
+              class="fas fa-arrow-left color-plac-text pointer mr-2"
+            ></i>
+            <b>Mis direcciones</b>
+          </h5>
         </div>
         <small>Selecciona una dirección o </small>
-        <small class="pointer mr-2 color-plac-text" (click)="showSection = 'formAddress'">Crear una nueva</small>
-        <br>
+        <small
+          class="pointer mr-2 color-plac-text"
+          (click)="showSection = 'formAddress'"
+          >Crear una nueva</small
+        >
+        <br />
 
         <!--Lista de direcciones-->
-        <br>
+        <br />
         <div class="list-group container-fluid">
-          <div *ngFor="let item of userAddresses ; index as i" class="list-group-item list-group-item-action pointer"
-            (click)="selectAddres(item)">
-            <button class="btn btn-outline-danger btn-sm mx-2 float-right" (click)="deleteAddress(item,i)"><i class="fas fa-trash"></i></button>
-            {{item.plac_user_name}}, {{item.plac_user_telephone}},
-            {{item.plac_user_email}},
-            {{(item.city.country_id!='COL')?JSON.parse(item.plac_user_address).mainWay:item.address_formatted}},
-            {{item.plac_user_neighborhood}}, {{item.city.city_name}}
+          <div
+            *ngFor="let item of userAddresses; index as i"
+            class="list-group-item list-group-item-action pointer"
+            (click)="selectAddres(item)"
+          >
+            <button
+              class="btn btn-outline-danger btn-sm mx-2 float-right"
+              (click)="deleteAddress(item, i)"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+            {{ item.plac_user_name }}, {{ item.plac_user_telephone }},
+            {{ item.plac_user_email }},
+            {{
+              item.city.country_id != "COL"
+                ? JSON.parse(item.plac_user_address).mainWay
+                : item.address_formatted
+            }}, {{ item.plac_user_neighborhood }}, {{ item.city.city_name }}
           </div>
-
-
         </div>
-
-
-
       </div>
 
       <!--Cambio de datos -->
-      <form #shippingForm="ngForm" *ngIf="showSection == 'formAddress' || showSection == 'formAddressEditingCurrent'"
-        class="border" style="padding:10px;">
+      <form
+        #shippingForm="ngForm"
+        *ngIf="
+          showSection == 'formAddress' ||
+          showSection == 'formAddressEditingCurrent'
+        "
+        class="border"
+        style="padding: 10px"
+      >
         <h5>
-          <i *ngIf="userAddresses.length > 0" (click)="manageReturnSection()" class="fas fa-arrow-left color-plac-text pointer mr-2"></i>
+          <i
+            *ngIf="userAddresses.length > 0"
+            (click)="manageReturnSection()"
+            class="fas fa-arrow-left color-plac-text pointer mr-2"
+          ></i>
           <b>Datos del envío</b>
         </h5>
 
         <div class="form-row mb-3">
           <div class="col-md-6">
-            <span>Nombre</span><br>
-            <input #placUserName="ngModel" required [(ngModel)]="addressModel.plac_user_name" name="plac_user_name"
-              [ngClass]="{ 'is-invalid':shippingFormSubmitted && placUserName.invalid}" type="text" class="form-control"
-              placeholder="Escribe el nombre" />
-            <div *ngIf="shippingFormSubmitted && placUserName.invalid" class="invalid-feedback">
-              <div *ngIf="placUserName.invalid && placUserName.errors['required']">Este campo es obligatorio</div>
+            <span>Nombre</span><br />
+            <input
+              #placUserName="ngModel"
+              required
+              [(ngModel)]="addressModel.plac_user_name"
+              name="plac_user_name"
+              [ngClass]="{
+                'is-invalid': shippingFormSubmitted && placUserName.invalid
+              }"
+              type="text"
+              class="form-control"
+              placeholder="Escribe el nombre"
+            />
+            <div
+              *ngIf="shippingFormSubmitted && placUserName.invalid"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="placUserName.invalid && placUserName.errors['required']"
+              >
+                Este campo es obligatorio
+              </div>
             </div>
           </div>
           <div class="col-md-6">
-            <span>Teléfono</span><br>
-            <input #placUserTelephone="ngModel" appOnlyNumber maxlength="10" required [(ngModel)]="addressModel.plac_user_telephone"
-              name="plac_user_telephone" [ngClass]="{ 'is-invalid':shippingFormSubmitted && placUserTelephone.invalid}"
-              type="text" class="form-control" placeholder="Escribe el telefono" />
-            <div *ngIf="shippingFormSubmitted && placUserTelephone.invalid" class="invalid-feedback">
-              <div *ngIf="placUserTelephone.invalid && placUserTelephone.errors['required']">Este campo es obligatorio</div>
+            <span>Teléfono</span><br />
+            <input
+              #placUserTelephone="ngModel"
+              appOnlyNumber
+              maxlength="10"
+              required
+              [(ngModel)]="addressModel.plac_user_telephone"
+              name="plac_user_telephone"
+              [ngClass]="{
+                'is-invalid': shippingFormSubmitted && placUserTelephone.invalid
+              }"
+              type="text"
+              class="form-control"
+              placeholder="Escribe el telefono"
+            />
+            <div
+              *ngIf="shippingFormSubmitted && placUserTelephone.invalid"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="
+                  placUserTelephone.invalid &&
+                  placUserTelephone.errors['required']
+                "
+              >
+                Este campo es obligatorio
+              </div>
             </div>
           </div>
         </div>
 
         <div class="form-row mb-3">
           <div class="col-12">
-            <span>Correo</span><br>
-            <input #placUserEmail="ngModel" required [(ngModel)]="addressModel.plac_user_email" name="plac_user_email"
-              [ngClass]="{ 'is-invalid':shippingFormSubmitted && placUserEmail.invalid}" type="text" class="form-control"
-              placeholder="ejemplo@ejemplo.com" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$" />
-            <div *ngIf="shippingFormSubmitted && placUserEmail.invalid" class="invalid-feedback">
-              <div *ngIf="placUserEmail.invalid && placUserEmail.errors['required']">Este campo es obligatorio</div>
-              <div *ngIf="placUserEmail.invalid && placUserEmail.errors['pattern']">El correo no es valido
-                (ejemplo@ejemplo.com)</div>
+            <span>Correo</span><br />
+            <input
+              #placUserEmail="ngModel"
+              required
+              [(ngModel)]="addressModel.plac_user_email"
+              name="plac_user_email"
+              [ngClass]="{
+                'is-invalid': shippingFormSubmitted && placUserEmail.invalid
+              }"
+              type="text"
+              class="form-control"
+              placeholder="ejemplo@ejemplo.com"
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$"
+            />
+            <div
+              *ngIf="shippingFormSubmitted && placUserEmail.invalid"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="
+                  placUserEmail.invalid && placUserEmail.errors['required']
+                "
+              >
+                Este campo es obligatorio
+              </div>
+              <div
+                *ngIf="placUserEmail.invalid && placUserEmail.errors['pattern']"
+              >
+                El correo no es valido (ejemplo@ejemplo.com)
+              </div>
             </div>
           </div>
         </div>
 
         <div class="form-row mb-3">
           <div class="col-12">
-            <span>País</span><br>
-            <select #userCountrySelected="ngModel" required [(ngModel)]="countrySelected" name="countrySelected"
-              [ngClass]="{ 'is-invalid':shippingFormSubmitted && userCountrySelected.invalid}" class="custom-select"
-              (change)="selectCountry()">
-              <option value="" disabled [selected]="!countrySelected">Seleccione el país</option>
-              <option *ngFor="let country of countries" value="{{country.country_id}}">{{country.country_name}}</option>
+            <span>País</span><br />
+            <select
+              #userCountrySelected="ngModel"
+              required
+              [(ngModel)]="countrySelected"
+              name="countrySelected"
+              [ngClass]="{
+                'is-invalid':
+                  shippingFormSubmitted && userCountrySelected.invalid
+              }"
+              class="custom-select"
+              (change)="selectCountry()"
+            >
+              <option value="" disabled [selected]="!countrySelected">
+                Seleccione el país
+              </option>
+              <option
+                *ngFor="let country of countries"
+                value="{{ country.country_id }}"
+              >
+                {{ country.country_name }}
+              </option>
             </select>
-            <div *ngIf="shippingFormSubmitted && userCountrySelected.invalid" class="invalid-feedback">
-              <div *ngIf="userCountrySelected.invalid && userCountrySelected.errors['required']">Este campo es
-                obligatorio</div>
+            <div
+              *ngIf="shippingFormSubmitted && userCountrySelected.invalid"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="
+                  userCountrySelected.invalid &&
+                  userCountrySelected.errors['required']
+                "
+              >
+                Este campo es obligatorio
+              </div>
             </div>
           </div>
         </div>
 
-
-        <div class="form-row mb-3" *ngIf="countrySelected=='COL'">
+        <div class="form-row mb-3" *ngIf="countrySelected == 'COL'">
           <div class="col-12">
-            <span>Departamento</span><br>
-            <select #userDepartmentSelected="ngModel" required [(ngModel)]="departmentSelected" name="departmentSelected"
-              [ngClass]="{ 'is-invalid':shippingFormSubmitted && userDepartmentSelected.invalid}" class="custom-select"
-              (change)="selectDepartment()">
-              <option value="" disabled [selected]="!departmentSelected">Seleccione el departamento</option>
-              <option *ngFor="let department of departments" value="{{department.id_departamento}}">{{department.departamento}}</option>
+            <span>Departamento</span><br />
+            <select
+              #userDepartmentSelected="ngModel"
+              required
+              [(ngModel)]="departmentSelected"
+              name="departmentSelected"
+              [ngClass]="{
+                'is-invalid':
+                  shippingFormSubmitted && userDepartmentSelected.invalid
+              }"
+              class="custom-select"
+              (change)="selectDepartment()"
+            >
+              <option value="" disabled [selected]="!departmentSelected">
+                Seleccione el departamento
+              </option>
+              <option
+                *ngFor="let department of departments"
+                value="{{ department.id_departamento }}"
+              >
+                {{ department.departamento }}
+              </option>
             </select>
-            <div *ngIf="shippingFormSubmitted && userDepartmentSelected.invalid" class="invalid-feedback">
-              <div *ngIf="userDepartmentSelected.invalid && userDepartmentSelected.errors['required']">Este campo es
-                obligatorio</div>
+            <div
+              *ngIf="shippingFormSubmitted && userDepartmentSelected.invalid"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="
+                  userDepartmentSelected.invalid &&
+                  userDepartmentSelected.errors['required']
+                "
+              >
+                Este campo es obligatorio
+              </div>
             </div>
           </div>
         </div>
 
         <div class="form-row mb-3">
           <div class="col-12">
-            <span>Ciudad</span><br>
-            <select #placUserCity="ngModel" required [(ngModel)]="addressModel.city_id" name="city_id" [ngClass]="{ 'is-invalid':shippingFormSubmitted && placUserCity.invalid}"
-              class="custom-select">
-              <option value="" disabled [selected]="!addressModel.city_id">Seleccione la ciudad</option>
-              <option *ngFor="let city of cities" value="{{city.city_id}}">{{city.city_name}}</option>
+            <span>Ciudad</span><br />
+            <select
+              #placUserCity="ngModel"
+              required
+              [(ngModel)]="addressModel.city_id"
+              name="city_id"
+              [ngClass]="{
+                'is-invalid': shippingFormSubmitted && placUserCity.invalid
+              }"
+              class="custom-select"
+            >
+              <option value="" disabled [selected]="!addressModel.city_id">
+                Seleccione la ciudad
+              </option>
+              <option *ngFor="let city of cities" value="{{ city.city_id }}">
+                {{ city.city_name }}
+              </option>
             </select>
-            <div *ngIf="shippingFormSubmitted && placUserCity.invalid" class="invalid-feedback">
-              <div *ngIf="placUserCity.invalid && placUserCity.errors['required']">Este campo es
-                obligatorio</div>
+            <div
+              *ngIf="shippingFormSubmitted && placUserCity.invalid"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="placUserCity.invalid && placUserCity.errors['required']"
+              >
+                Este campo es obligatorio
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="form-row mb-3" *ngIf="countrySelected!='COL'">
+        <div class="form-row mb-3" *ngIf="countrySelected != 'COL'">
           <div class="col-12">
-            <span>Dirección</span><br>
-            <input #placUserAddress="ngModel" required [(ngModel)]="addressModel.plac_user_address.mainWay" name="mainWay"
-              [ngClass]="{ 'is-invalid':shippingFormSubmitted && placUserAddress.invalid}" class="form-control" type="text"
-              placeholder="ej. Av. Santa Fe 4815" value="">
+            <span>Dirección</span><br />
+            <input
+              #placUserAddress="ngModel"
+              required
+              [(ngModel)]="addressModel.plac_user_address.mainWay"
+              name="mainWay"
+              [ngClass]="{
+                'is-invalid': shippingFormSubmitted && placUserAddress.invalid
+              }"
+              class="form-control"
+              type="text"
+              placeholder="ej. Av. Santa Fe 4815"
+              value=""
+            />
 
-            <div *ngIf="shippingFormSubmitted && placUserAddress.invalid" class="invalid-feedback">
-              <div *ngIf="placUserAddress.invalid && placUserAddress.errors['required']">Este campo es
-                obligatorio</div>
+            <div
+              *ngIf="shippingFormSubmitted && placUserAddress.invalid"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="
+                  placUserAddress.invalid && placUserAddress.errors['required']
+                "
+              >
+                Este campo es obligatorio
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="form-row mb-3" *ngIf="countrySelected=='COL'">
+        <div class="form-row mb-3" *ngIf="countrySelected == 'COL'">
           <div class="col-12">
             <!-- Input de direccion -->
-            <span>Dirección</span><br>
-            <div class="input-group" [ngClass]="{ 'is-invalid':shippingFormSubmitted && (placUserAddress1.invalid || placUserAddress2.invalid || placUserAddress3.invalid)}">
-              <select required [(ngModel)]="addressModel.plac_user_address.mainWay" name="mainWay" class="custom-select">
+            <span>Dirección</span><br />
+            <div
+              class="input-group"
+              [ngClass]="{
+                'is-invalid':
+                  shippingFormSubmitted &&
+                  (placUserAddress1.invalid ||
+                    placUserAddress2.invalid ||
+                    placUserAddress3.invalid)
+              }"
+            >
+              <select
+                required
+                [(ngModel)]="addressModel.plac_user_address.mainWay"
+                name="mainWay"
+                class="custom-select"
+              >
                 <option value="Calle">Calle</option>
                 <option value="Carrera">Carrera</option>
                 <option value="Avenida calle">Avenida calle</option>
@@ -274,43 +546,95 @@
                 <option value="Manzana">Manzana</option>
                 <option value="Circular">Circular</option>
               </select>
-              <input #placUserAddress1="ngModel" required [(ngModel)]="addressModel.plac_user_address.address1" name="address1"
-                [ngClass]="{ 'is-invalid':shippingFormSubmitted && placUserAddress1.invalid}" class="form-control" type="text"
-                placeholder="ej. 67 bis">
+              <input
+                #placUserAddress1="ngModel"
+                required
+                [(ngModel)]="addressModel.plac_user_address.address1"
+                name="address1"
+                [ngClass]="{
+                  'is-invalid':
+                    shippingFormSubmitted && placUserAddress1.invalid
+                }"
+                class="form-control"
+                type="text"
+                placeholder="ej. 67 bis"
+              />
               <div class="input-group-append">
                 <label class="input-group-text">#</label>
               </div>
-              <input #placUserAddress2="ngModel" required [(ngModel)]="addressModel.plac_user_address.address2" name="address2"
-                [ngClass]="{ 'is-invalid':shippingFormSubmitted && placUserAddress2.invalid}" class="form-control" type="text"
-                placeholder="ej. 105d">
+              <input
+                #placUserAddress2="ngModel"
+                required
+                [(ngModel)]="addressModel.plac_user_address.address2"
+                name="address2"
+                [ngClass]="{
+                  'is-invalid':
+                    shippingFormSubmitted && placUserAddress2.invalid
+                }"
+                class="form-control"
+                type="text"
+                placeholder="ej. 105d"
+              />
               <div class="input-group-append">
                 <label class="input-group-text">-</label>
               </div>
-              <input #placUserAddress3="ngModel" required [(ngModel)]="addressModel.plac_user_address.address3" name="address3"
-                [ngClass]="{ 'is-invalid':shippingFormSubmitted && placUserAddress3.invalid}" class="form-control" type="text"
-                placeholder="ej. 28">
+              <input
+                #placUserAddress3="ngModel"
+                required
+                [(ngModel)]="addressModel.plac_user_address.address3"
+                name="address3"
+                [ngClass]="{
+                  'is-invalid':
+                    shippingFormSubmitted && placUserAddress3.invalid
+                }"
+                class="form-control"
+                type="text"
+                placeholder="ej. 28"
+              />
             </div>
-            <div class="invalid-feedback">
-              Este campo es obligatorio
-            </div>
+            <div class="invalid-feedback">Este campo es obligatorio</div>
           </div>
         </div>
 
         <div class="form-row mb-3">
           <div class="col-md-4">
-            <span>Barrio</span><br>
-            <input #placUserNeighborhood="ngModel" required [(ngModel)]="addressModel.plac_user_neighborhood" name="plac_user_neighborhood"
-              [ngClass]="{ 'is-invalid':shippingFormSubmitted && placUserNeighborhood.invalid}" class="form-control"
-              type="text" placeholder="ej. Modelia">
-            <div *ngIf="shippingFormSubmitted && placUserTelephone.invalid" class="invalid-feedback">
-              <div *ngIf="placUserTelephone.invalid && placUserTelephone.errors['required']">Este campo es obligatorio</div>
+            <span>Barrio</span><br />
+            <input
+              #placUserNeighborhood="ngModel"
+              required
+              [(ngModel)]="addressModel.plac_user_neighborhood"
+              name="plac_user_neighborhood"
+              [ngClass]="{
+                'is-invalid':
+                  shippingFormSubmitted && placUserNeighborhood.invalid
+              }"
+              class="form-control"
+              type="text"
+              placeholder="ej. Modelia"
+            />
+            <div
+              *ngIf="shippingFormSubmitted && placUserTelephone.invalid"
+              class="invalid-feedback"
+            >
+              <div
+                *ngIf="
+                  placUserTelephone.invalid &&
+                  placUserTelephone.errors['required']
+                "
+              >
+                Este campo es obligatorio
+              </div>
             </div>
           </div>
           <div class="col-md-8">
-            <span>Información adicional</span><br>
-            <input [(ngModel)]="addressModel.plac_user_additional_info" name="plac_user_additional_info" class="form-control"
-              type="text" placeholder="ej. Apartamento / Casa / Dpto">
-
+            <span>Información adicional</span><br />
+            <input
+              [(ngModel)]="addressModel.plac_user_additional_info"
+              name="plac_user_additional_info"
+              class="form-control"
+              type="text"
+              placeholder="ej. Apartamento / Casa / Dpto"
+            />
           </div>
         </div>
         <div class="form-row">
@@ -318,25 +642,50 @@
             <loader *ngIf="loaderNewAddress"></loader>
 
             <!--Para guardar-->
-            <button *ngIf="!loaderNewAddress && showSection != 'formAddressEditingCurrent'" class="btn btn-plac btn-block btn-lg"
-              (click)="shippingForm.form.valid?addNewAddress():shippingFormSubmitted = true">Guardar</button>
+            <button
+              *ngIf="
+                !loaderNewAddress && showSection != 'formAddressEditingCurrent'
+              "
+              class="btn btn-plac btn-block btn-lg"
+              (click)="
+                shippingForm.form.valid
+                  ? addNewAddress()
+                  : (shippingFormSubmitted = true)
+              "
+            >
+              Guardar
+            </button>
 
             <!--Para editar-->
-            <button *ngIf="!loaderNewAddress && showSection == 'formAddressEditingCurrent'" class="btn btn-plac btn-lg float-right mr-2"
-              (click)="shippingForm.form.valid?editAddress():shippingFormSubmitted = true">Guardar</button>
+            <button
+              *ngIf="
+                !loaderNewAddress && showSection == 'formAddressEditingCurrent'
+              "
+              class="btn btn-plac btn-lg float-right mr-2"
+              (click)="
+                shippingForm.form.valid
+                  ? editAddress()
+                  : (shippingFormSubmitted = true)
+              "
+            >
+              Guardar
+            </button>
 
-            <button *ngIf="!loaderNewAddress && showSection == 'formAddressEditingCurrent'" class="btn btn-light btn-lg float-right mr-2"
-              (click)="manageReturnSection()">Cancelar</button>
-
+            <button
+              *ngIf="
+                !loaderNewAddress && showSection == 'formAddressEditingCurrent'
+              "
+              class="btn btn-light btn-lg float-right mr-2"
+              (click)="manageReturnSection()"
+            >
+              Cancelar
+            </button>
           </div>
         </div>
       </form>
-
-
     </div>
 
     <div class="col-md-6">
-
       <h5><b>Resumen de la orden</b></h5>
 
       <table class="table">
@@ -348,89 +697,145 @@
           </tr>
           <tr *ngFor="let item of objectPlace.order_detail; index as i">
             <td class="align-center">
-              <div style="width: 70px; height: 70px;">
-                <img src="{{item.product.product_link_image}}" style="max-height: 70px; max-width: 100%;">
+              <div style="width: 70px; height: 70px">
+                <img
+                  src="{{ item.product.product_link_image }}"
+                  style="max-height: 70px; max-width: 100%"
+                />
               </div>
             </td>
             <td class="align-center">
               <div class="input-group mb-6">
                 <div class="input-group-prepend">
-                  <button (click)="decreaseUnit(i)" class="btn btn-outline-plac btn-sm" type="button">
+                  <button
+                    (click)="decreaseUnit(i)"
+                    class="btn btn-outline-plac btn-sm"
+                    type="button"
+                  >
                     <i *ngIf="item.quantity >= 2" class="fas fa-minus"></i>
                     <i *ngIf="item.quantity <= 1" class="far fa-trash-alt"></i>
                   </button>
                 </div>
-                <input value="{{item.quantity}}" [disabled]="true" type="text" class="form-control form-control-sm"
-                  style="flex: none;width: 30px; text-align:center;">
+                <input
+                  value="{{ item.quantity }}"
+                  [disabled]="true"
+                  type="text"
+                  class="form-control form-control-sm"
+                  style="flex: none; width: 30px; text-align: center"
+                />
                 <div class="input-group-append">
-                  <button (click)="addUnit(i)" class="btn btn-outline-plac btn-sm" type="button">
+                  <button
+                    (click)="addUnit(i)"
+                    class="btn btn-outline-plac btn-sm"
+                    type="button"
+                  >
                     <i class="fas fa-plus d-inline"></i>
                   </button>
                 </div>
               </div>
             </td>
-            <td class="align-right">${{item.totalProduct | number}}</td>
+            <td class="align-right">${{ item.totalProduct | number }}</td>
           </tr>
         </tbody>
       </table>
 
-
-      <div align="right" style="padding: 15px;;width: 100%; height: auto; background-color: #FDFDFD; border-radius: 5px;">
-
+      <div
+        align="right"
+        style="
+          padding: 15px;
+          width: 100%;
+          height: auto;
+          background-color: #fdfdfd;
+          border-radius: 5px;
+        "
+      >
         <table>
           <tr>
-            <td>Subtotal: </td>
-            <td class="text-right">${{objectPlace.total | number}}</td>
+            <td>Subtotal:</td>
+            <td class="text-right">${{ objectPlace.total | number }}</td>
           </tr>
           <tr>
-            <td>Envío: </td>
-            <td class="text-right">${{couponInfo.coupon?(couponInfo.coupon.resumed.shipping_price
-              |number):shippingPrice | number}}</td>
+            <td>Envío:</td>
+            <td class="text-right">
+              ${{
+                couponInfo.coupon
+                  ? (couponInfo.coupon.resumed.shipping_price | number)
+                  : (shippingPrice | number)
+              }}
+            </td>
           </tr>
           <tr *ngIf="couponInfo.coupon">
-            <td>Cupón: </td>
-            <td class="text-right">{{couponInfo.coupon.resumed.message}}</td>
+            <td>Cupón:</td>
+            <td class="text-right">{{ couponInfo.coupon.resumed.message }}</td>
           </tr>
           <tr *ngIf="couponInfo.coupon">
             <td><b>Total antes: </b></td>
-            <td class="text-right"><b>${{objectPlace.total + shippingPrice| number}}</b></td>
+            <td class="text-right">
+              <b>${{ objectPlace.total + shippingPrice | number }}</b>
+            </td>
           </tr>
           <tr>
             <td><b>Total: </b></td>
-            <td class="text-right"><b>${{couponInfo.coupon?(couponInfo.coupon.resumed.total | number):objectPlace.total
-                + shippingPrice| number}}</b></td>
+            <td class="text-right">
+              <b
+                >${{
+                  couponInfo.coupon
+                    ? (couponInfo.coupon.resumed.total | number)
+                    : (objectPlace.total + shippingPrice | number)
+                }}</b
+              >
+            </td>
           </tr>
         </table>
-
       </div>
-      <br>
+      <br />
       <div class="input-group mb-3">
-        <input [(ngModel)]="couponText" type="text" maxlength="30" class="form-control" [ngClass]="{'is-invalid' : couponInfo.status == 'error','is-valid' : couponInfo.status == 'success'}"
-          placeholder="Ingrese el código del cupón" aria-label="Ingrese el código del cupón" aria-describedby="basic-addon2"
-          [disabled]="couponInfo.status == 'success'">
+        <input
+          [(ngModel)]="couponText"
+          type="text"
+          maxlength="30"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': couponInfo.status == 'error',
+            'is-valid': couponInfo.status == 'success'
+          }"
+          placeholder="Ingrese el código del cupón"
+          aria-label="Ingrese el código del cupón"
+          aria-describedby="basic-addon2"
+          [disabled]="couponInfo.status == 'success'"
+        />
 
         <div class="input-group-append">
-          <button style="border-radius: 0 .25rem .25rem 0 ;" class="btn btn-plac" id="basic-addon2" (click)="applyCoupon()">Aplicar
-            cupon</button>
+          <button
+            style="border-radius: 0 0.25rem 0.25rem 0"
+            class="btn btn-plac"
+            id="basic-addon2"
+            (click)="applyCoupon()"
+          >
+            Aplicar cupon
+          </button>
         </div>
-        <span class="invalid-feedback">
-          {{couponInfo.message}}.
-        </span>
-        <span class="valid-feedback">
-          {{couponInfo.message}}.
-        </span>
+        <span class="invalid-feedback"> {{ couponInfo.message }}. </span>
+        <span class="valid-feedback"> {{ couponInfo.message }}. </span>
       </div>
 
-
-
       <loader *ngIf="loaderNewOrder"></loader>
-      <button *ngIf="!loaderNewOrder" [disabled]="!((paymentMethodSelected) && addressSelected != null && shippingPrice!=null)"
-        (click)="buyOrder()" class="d-inline" type="button" class="btn btn-plac btn-block btn-lg">Comprar</button>
-
-
+      <button
+        *ngIf="!loaderNewOrder"
+        [disabled]="
+          !(
+            paymentMethodSelected &&
+            addressSelected != null &&
+            shippingPrice != null
+          )
+        "
+        (click)="buyOrder()"
+        class="d-inline"
+        type="button"
+        class="btn btn-plac btn-block btn-lg"
+      >
+        Comprar
+      </button>
     </div>
-
   </div>
-
-
 </div>

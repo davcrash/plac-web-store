@@ -1,30 +1,30 @@
 @font-face {
-    font-family: 'Montserrat';
-    src: url(./assets/fonts/Montserrat-Regular.ttf);
+  font-family: "Montserrat";
+  src: url(./assets/fonts/Montserrat-Regular.ttf);
 }
 
 @font-face {
-    font-family: 'Raleway';
-    src: url(./assets/fonts/Raleway-Regular.ttf);
+  font-family: "Raleway";
+  src: url(./assets/fonts/Raleway-Regular.ttf);
 }
 
 html {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 /* para que el contenido se acople al nav SOLO FUNCIONA SI SE PONE ACA!*/
 
 body {
-    overflow: hidden;
-    font-family: 'Montserrat', sans-serif;
-    padding-top: 137px;
-    @media (min-width: 992px) and (max-width: 4000.98px) {
-        padding-top: 72px;
-    }
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+  padding-top: 137px;
+  @media (min-width: 992px) and (max-width: 4000.98px) {
+    padding-top: 72px;
+  }
 }
 
 body.sidebar-login {
-    padding-top: 72px;
+  padding-top: 72px;
 }
 
 h1,
@@ -32,186 +32,186 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 img:focus {
-    outline-style: none;
+  outline-style: none;
 }
 
 nav {
-    z-index: 1030;
-    min-height: 72px;
-    background-color: #fff;
+  z-index: 1030;
+  min-height: 72px;
+  background-color: #fff;
 }
 
 /* darle el tamaño de el sidebar categorias SOLO FUNCIONA SI SE PONE ACA!*/
 
 .ng-sidebar {
-    z-index: 1080 !important;
-    width: 280px !important;
+  z-index: 1080 !important;
+  width: 280px !important;
 }
 
 /* si se cambia el width de arriba toca cambiar este*/
 
 .ng-sidebar-width {
-    width: 280px;
+  width: 280px;
 }
 
 .ng-sidebar__backdrop {
-    opacity: .5 !important;
-    z-index: 1090 !important;
+  opacity: 0.5 !important;
+  z-index: 1090 !important;
 }
 
 .swal2-container {
-    z-index: 1080 !important;
+  z-index: 1080 !important;
 }
 
 /* darle el tamaño de el sidebar shopCar SOLO FUNCIONA SI SE PONE ACA!*/
 
 .shop-car {
-    width: 100% !important;
-    @media (min-width: 992px) and (max-width: 4000.98px) {
-        width: 500px !important;
-    }
-    z-index: 1090 !important;
+  width: 100% !important;
+  @media (min-width: 992px) and (max-width: 4000.98px) {
+    width: 500px !important;
+  }
+  z-index: 1090 !important;
 }
 
 .badge-orange {
-    color: white;
-    background-color: orange;
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Safari */
-    -khtml-user-select: none;
-    /* Konqueror HTML */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
+  color: white;
+  background-color: orange;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 .no-padding {
-    padding-right: 0;
-    padding-left: 0;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .avatar {
-    vertical-align: middle;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .avatar.sm {
-    width: 25px !important;
-    height: 25px !important;
+  width: 25px !important;
+  height: 25px !important;
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .modal-backdrop {
-    z-index: 99999999;
+  z-index: 99999999;
 }
 
 .modal {
-    z-index: 100000000;
+  z-index: 100000000;
 }
 
 /*colores plac*/
 
 .color-plac-text {
-    color: #15d2bb !important;
+  color: #15d2bb !important;
 }
 
 .color-dark-gray-text {
-    color: #555555;
+  color: #555555;
 }
 
 .color-dark-green-text {
-    color: #00B99B;
+  color: #00b99b;
 }
 
 .color-pink-like-text {
-    color: #fe526c;
+  color: #fe526c;
 }
 
 .color-medium-gray-text {
-    color: #AAAAAA;
+  color: #aaaaaa;
 }
 
 .color-error-red-text {
-    color: #d2152b;
+  color: #d2152b;
 }
 
 /*Boton con color de plac*/
 
 .btn-plac:not(:disabled):not(.disabled):active,
-.show>.btn-plac.dropdown-toggle {
-    color: #fff;
-    background-color: #13bda9;
-    border-color: #13b9a6;
+.show > .btn-plac.dropdown-toggle {
+  color: #fff;
+  background-color: #13bda9;
+  border-color: #13b9a6;
 }
 
 .btn-plac.focus,
 .btn-plac:focus {
-    box-shadow: 0 0 0 0.2rem rgba(21, 210, 187, .5);
+  box-shadow: 0 0 0 0.2rem rgba(21, 210, 187, 0.5);
 }
 
 .btn-plac {
-    color: #fff;
-    background-color: #00B99B;
-    border-color: #00B99B;
+  color: #fff;
+  background-color: #00b99b;
+  border-color: #00b99b;
 }
 
 .btn-plac:hover {
-    color: #fff;
-    background-color: #049b82;
-    border-color: #049b82;
+  color: #fff;
+  background-color: #049b82;
+  border-color: #049b82;
 }
 
 /*Boton outline con color de plac*/
 
 .btn-outline-plac {
-    color: #00B99B;
-    background-color: transparent;
-    background-image: none;
-    border-color: #00B99B;
+  color: #00b99b;
+  background-color: transparent;
+  background-image: none;
+  border-color: #00b99b;
 }
 
 .btn-outline-plac:hover {
-    color: #fff;
-    background-color: #00B99B;
-    border-color: #00B99B;
+  color: #fff;
+  background-color: #00b99b;
+  border-color: #00b99b;
 }
 
 .btn-outline-plac:not(:disabled):not(.disabled).active,
 .btn-outline-plac:not(:disabled):not(.disabled):active,
-.show>.btn-outline-plac.dropdown-toggle {
-    color: #fff;
-    background-color: #00B99B;
-    border-color: #00B99B;
+.show > .btn-outline-plac.dropdown-toggle {
+  color: #fff;
+  background-color: #00b99b;
+  border-color: #00b99b;
 }
 
 .btn-outline-plac.focus,
 .btn-outline-plac:focus {
-    box-shadow: 0 0 0 0.2rem rgba(21, 210, 187, .5);
+  box-shadow: 0 0 0 0.2rem rgba(21, 210, 187, 0.5);
 }
 
 .btn-outline-plac-variation {
-    color: #555555;
+  color: #555555;
 }
 
 /*input plac*/
 
 .form-control:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #15d2bb;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 185, 155, .25);
+  color: #495057;
+  background-color: #fff;
+  border-color: #15d2bb;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 185, 155, 0.25);
 }

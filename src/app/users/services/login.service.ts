@@ -33,7 +33,7 @@ export class LoginService {
         data: {
           uid: "asdasd",
           name: "usertest123",
-          plac_user_image: "/assets/img/profile.jpg",
+          plac_user_image: "assets/img/profile.jpg",
         },
       });
     });
