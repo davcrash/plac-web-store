@@ -1,38 +1,43 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { SubcategoriesService } from '../services/subcategories.service';
-import { LocalStorageService } from '../../local-storage.service';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  Output,
+  EventEmitter,
+} from "@angular/core";
+import { SubcategoriesService } from "../services/subcategories.service";
+import { LocalStorageService } from "../../local-storage.service";
 
 @Component({
-  selector: 'app-subcategories',
-  templateUrl: './subcategories.component.html',
-  styleUrls: ['./subcategories.component.css']
+  selector: "app-subcategories",
+  templateUrl: "./subcategories.component.html",
+  styleUrls: ["./subcategories.component.css"],
 })
 export class SubcategoriesComponent implements OnChanges, OnInit {
-
   loader: boolean = true;
 
   @Input() categoryName: string;
 
-
   @Input() preLoadSubcategories?: any;
   @Input() preLoadSelected?: any;
-
 
   @Output() public subcategorySelected = new EventEmitter<any>();
 
   @Input() needReset?: boolean = false;
 
-  currentSubcategorySelected
-  subcategories
+  currentSubcategorySelected;
+  subcategories;
 
   constructor(
     private _subcategoriesService: SubcategoriesService,
     private _localStorageService: LocalStorageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this._localStorageService.watchStorage().subscribe((data) => {
-      if (data.change === 'pet_filter') {
+      if (data.change === "pet_filter") {
         this.loader = true;
         this.getSubCategoriesByCategoryName();
       }
@@ -45,13 +50,13 @@ export class SubcategoriesComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['needReset']) {
+    if (changes["needReset"]) {
       this.preLoadSelected = null;
       this.currentSubcategorySelected = null;
     }
-    if (changes['categoryName']) {
+    if (changes["categoryName"]) {
       this.subcategories = null;
-      this.categoryName = changes['categoryName'].currentValue;
+      this.categoryName = changes["categoryName"].currentValue;
       this.loader = true;
       this.getSubCategoriesByCategoryName();
     }
@@ -60,19 +65,24 @@ export class SubcategoriesComponent implements OnChanges, OnInit {
   getSubCategoriesByCategoryName() {
     if (this.preLoadSubcategories) {
       this.subcategories = this.preLoadSubcategories;
-      this.currentSubcategorySelected = (this.preLoadSelected) ? this.preLoadSelected : '';
+      this.currentSubcategorySelected = this.preLoadSelected
+        ? this.preLoadSelected
+        : "";
       this.loader = false;
     } else {
       this.subcategories = null;
-      this._subcategoriesService.getSubCategories(this.categoryName, localStorage.getItem('pet_filter'))
-        .subscribe(res => {
-          this.subcategories = res.data;
-        }, error => {
-          console.log(error);
-        }, () => {
-          this.loader = false;
-        });
+      this._subcategoriesService
+        .getSubCategories(this.categoryName, localStorage.getItem("pet_filter"))
+        .subscribe(
+          (res) => {
+            this.subcategories = res;
+            this.loader = false;
+          },
+          (error) => {
+            console.log(error);
+          },
+          () => {}
+        );
     }
   }
-
 }
