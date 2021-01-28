@@ -28,4 +28,4 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: ./dist/angular-ci-cd
+        FOLDER: ~/home/runner/work/plac-web-store/dist/angular-ci-cd
