@@ -33,6 +33,16 @@ export class ProductModalService {
             question_txt: "Que tallas tienes disponibles?",
             answer_txt: "Hola, Tenemos en talla s talla m y talla este",
           },
+          {
+            question_txt: "Es confiable?",
+            answer_txt: "Hola, Somos re confiables pana",
+          },
+          {
+            question_txt:
+              "un impresor (N. del T. persona que se dedica a la imprent los mezcló de tal manera que logró hacer un?",
+            answer_txt:
+              "lorem ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando ",
+          },
         ],
       });
     });

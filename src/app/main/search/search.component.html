@@ -61,7 +61,7 @@
       <!-- Inicio: Card producto-->
       <app-product-card
         *ngFor="let product of place.products.data"
-        [productId]="product.product.product_id"
+        [productId]="product.product_id"
         [imgProduct]="product.product.product_images[0].url"
         [productName]="product.product.product_name"
         [productPrice]="product.product.product_price"
