@@ -35,12 +35,14 @@ export class PlaceProfileService {
 
   getProducts(search?): Observable<any> {
     return new Observable((s) => {
-      s.next({
-        data: {
-          next_page_url: null,
-          data: products,
-        },
-      });
+      setTimeout(() => {
+        s.next({
+          data: {
+            next_page_url: null,
+            data: products,
+          },
+        });
+      }, 500);
     });
   }
 
@@ -73,7 +75,7 @@ export class PlaceProfileService {
   }
 
   getRatingReviews(place_id): Observable<any> {
-    return new Observable((s) =>
+    return new Observable((s) => {
       s.next({
         data: {
           next_page_url: null,
@@ -105,8 +107,8 @@ export class PlaceProfileService {
             },
           ],
         },
-      })
-    );
+      });
+    });
   }
 
   getMoreRatingReviews(url, place_id): Observable<any> {
